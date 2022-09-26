@@ -16,112 +16,136 @@ import FavoriteButton from './buttons/FavoriteButton'
 import Switch from '@mui/material/Switch';
 import Slide from '@mui/material/Slide';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Divider from "@mui/material/Divider"
 
-function createData(icon, name, date, category, attendees) {
-    return {
-        icon,
-        name, 
-        date, 
-        category, 
-        attendees,
-        details: [
-            {
-              picture: 'img',
-              location: '69, 420',
-              description: 'an event for peens and peen lovers, an event for peens and peen lovers, an event for peens and peen lovers, an event for peens and peen lovers, an event for peens and peen lovers, an event for peens and peen lovers, an event for peens and peen lovers, an event for peens and peen lovers, an event for peens and peen lovers',
-            },
-        ], 
-    };
+function createData(name, date, time, users, category, image, location, description) {
+  return {
+      name, 
+      date,
+      time, 
+      users,
+      category,
+      image,
+      location,
+      description,
+  };
 }
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="right" ref={ref} {...props} />;
+});
 
 function Row(props) {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
   
     return (
       <React.Fragment>
         <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} /*onClick={() => setOpen(!open)}*/>
-            <TableCell component="th" scope="row" sx={{borderBottomLeftRadius: 10, borderTopLeftRadius: 10}} onClick={() => setOpen(!open)}>
-              <Box position="relative" width="2vw" height="2vw" marginRight="-0.4rem">
+            <TableCell component="th" scope="row" onClick={() => setOpen(!open)}>
+              <Box position="relative" width="0.8rem" height="0.8rem" marginRight="-0.4rem">
                 <Image src="/DCLD_logo.png" alt='DCLD Logo' layout="fill" objectFit="contain"/>
               </Box>
             </TableCell>
             <TableCell align="left" onClick={() => setOpen(!open)}>{row.name}</TableCell>
             <TableCell align="left" onClick={() => setOpen(!open)}>{row.date}</TableCell>
-            <TableCell align="right" onClick={() => setOpen(!open)}>{row.category}</TableCell>
-            <TableCell align="right" onClick={() => setOpen(!open)}>{row.attendees}</TableCell>
-            <TableCell sx={{borderBottomRightRadius: 10, borderTopRightRadius: 10}}>
+            <TableCell align="left" onClick={() => setOpen(!open)}>{row.time}</TableCell>
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'block' } }}>
+                  {row.category}
+              </TableCell>
+            </Box>
+            <TableCell align="right" onClick={() => setOpen(!open)}>{row.users}</TableCell>
+            <TableCell align="right">
               <FavoriteButton/>
             </TableCell>
         </TableRow>
-        <TableRow>
-          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6} sx={{borderBottomLeftRadius: 10, borderTopLeftRadius: 10, borderBottomRightRadius: 10, borderTopRightRadius: 10}}>
-            <Slide direction="left" in={open} timeout="auto" unmountOnExit>
-              <Box sx={{ margin: 1 }}>
-                <Table size="small" aria-label="details">
-                  <TableBody>
-                    {row.details.map((detailsRow) => (
-                      <TableRow key={detailsRow.picture} sx={{ backgroundColor: "rgba(40, 43, 47, 0.4)", borderBottom: "none" }}>
-                        <Grid>
-                            <TableCell component="th" scope="row">
-                            {detailsRow.picture}
-                            </TableCell>
-                            <TableCell>{detailsRow.location}</TableCell>
-                        </Grid>
-                            <TableCell align="left">{detailsRow.description}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </Box>
-            </Slide>
-          </TableCell>
-        </TableRow>
+        <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+        sx={{
+            opacity:"100",
+            backgroundColor:"black",
+            width: '100vw',
+            height: '100vh'
+        }}
+      >
+        <DialogTitle sx={{fontSize:'20px'}}>{row.name}</DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{color:'white'}}>
+            <Image src="/adbar2.jpg" alt='Adbar2' width="600rem" height="300rem"/>
+          </DialogContentText>
+          <br />
+          <DialogContentText sx={{color:'white'}}>
+            {row.date}, {row.time}
+          </DialogContentText>
+          <Divider/>
+          <DialogContentText sx={{color:'white'}}>
+            {row.category}
+          </DialogContentText>
+          <Divider/>
+          <DialogContentText sx={{color:'white'}}>
+            {row.users}
+          </DialogContentText>
+          <Divider/>
+          <DialogContentText sx={{color:'white'}}>
+            {row.location}
+          </DialogContentText>
+          <Divider/>
+          <br />
+          <DialogContentText id="alert-dialog-slide-description" sx={{color:'white'}}>
+            {row.description}
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
       </React.Fragment>
     );
   }
   
-const rows = [
-    createData("i", 'Event1', "June 9th, 10:00 AM", "A", 6),
-    createData("i", 'Event2', "June 9th, 11:00 AM", "B", 36),
-    createData("i", 'Event3', "June 9th, 12:00 PM", "C", 216),
-];
+  const rows = [
+    createData('Event1', "June 9th", "10:00 AM", 6, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
+    createData('Event2', "June 9th", "11:00 AM", 36, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
+    createData('Event3', "June 9th", "12:00 PM", 216, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
+    createData('Event4', "June 9th", "1:00 PM", 1296, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
+    createData('Event5', "June 9th", "2:00 PM", 7776, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
+    createData('Event6', "June 9th", "3:00 PM", 46656, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
+    createData('Event7', "June 9th", "4:00 PM", "279K", "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
+  ];
 
 export default function EventsList2() {
     return (
       <TableContainer>
-        <Grid
-          container
-          display="flex"
-          alignItems="center"
-          justifyContent= "flex-start"
-          paddingLeft={0}
-          wrap="nowrap"
-          marginTop="0.2rem"
-          >
-              <Image src="/ActiveEvents.png" alt="" width="13rem" height="13rem"/>
-              <Typography variant="h5" color="white" fontWeight="bold" marginLeft="0.5rem">Active</Typography>
-          </Grid>
-          <Table sx={{ minWidth: 200, borderCollapse: "separate", borderSpacing: "0px 0.1rem" }} aria-label="simple table">
-            <colgroup>
-                <col width="2%" />
-                <col width="28%" />
-                <col width="30%" />
-                <col width="8%" />
-                <col width="5%" />
-                <col width="2%" />
-            </colgroup>
+          <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem" }} aria-label="simple table">
               <TableHead>
                   <TableRow sx={{ borderBottom: "none" }}>
-                      <TableCell></TableCell>
-                      <TableCell align="left">Name</TableCell>
-                      <TableCell align="left">Date</TableCell>
-                      <TableCell align="right">Category</TableCell>
-                      <TableCell align="right">Users</TableCell>
-                      <TableCell></TableCell>
+                      <TableCell style={{ width: "5%" }}></TableCell>
+                      <TableCell align="left" style={{ width: "30%" }}>Name</TableCell>
+                      <TableCell align="left" style={{ width: "20%" }}>Date</TableCell>
+                      <TableCell align="left" style={{ width: "18%" }}>Time</TableCell>
+                      <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                      <TableCell align="left" style={{ width: "12%" }}>Category</TableCell>
+                      </Box>
+                      <TableCell align="right" style={{ width: "5%" }}>Users</TableCell>
+                      <TableCell style={{ width: "5%" }}></TableCell>
                   </TableRow>
               </TableHead>
-              <TableBody sx={{ backgroundColor: "rgba(40, 43, 47, 0.4)"}}>  
+              <TableBody sx={{ backgroundColor: "black"}}>  
               {rows.map((row) => (
                   <Row
                   key={row.name}

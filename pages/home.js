@@ -2,7 +2,7 @@ import { styled } from "@mui/system";
 import Lander from "./index.js";
 
 const Wrapper = styled("div")(({ theme }) => ({
-  maxWidth: 800,
+  maxWidth: 900,
   margin: "0 auto",
   [theme.breakpoints.down("sm")]: {
     maxWidth: "100%",

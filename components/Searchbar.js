@@ -1,31 +1,29 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Autocomplete from '@mui/material/Autocomplete';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import DirectionsIcon from '@mui/icons-material/Directions';
+import InputAdornment from '@mui/material/InputAdornment';
 
-export default function Searchbar() {
+export default function CustomizedInputBase() {
   return (
-    <Stack spacing={2} sx={{ width: 300 }}>
-      <Autocomplete
-        id="free-solo-demo"
-        freeSolo
-        renderInput={(params) => <TextField {...params} label="freeSolo" />}
+    <Paper
+      component="form"
+      sx={{ mt: "4px", display: 'flex', alignItems: 'center', width: 200, height: 10 }}
+    >
+      <InputBase
+        sx={{ flex: 1, color: "white", fontSize: "12px", backgroundColor: "#2e2e2e", borderRadius: "25px", height: 20, paddingLeft: 1 }}
+        placeholder="Search"
+        inputProps={{ 'aria-label': 'search' }}
+        endAdornment={ 
+          <IconButton type="button" aria-label="search">
+            <SearchIcon sx={{ width: '12px', height: '12px' }}/>
+          </IconButton>
+        }
       />
-      <Autocomplete
-        freeSolo
-        id="free-solo-2-demo"
-        disableClearable
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Search input"
-            InputProps={{
-              ...params.InputProps,
-              type: 'search',
-            }}
-          />
-        )}
-      />
-    </Stack>
+    </Paper>
   );
 }

@@ -1,68 +1,77 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import FormLabel from '@mui/material/FormLabel';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import RadioGroup from '@mui/material/RadioGroup';
-import Radio from '@mui/material/Radio';
-import Paper from '@mui/material/Paper';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { styled } from "@mui/system"
 
-export default function AdBar() {
-  const [spacing, setSpacing] = React.useState(2);
+const AdBarContainer = styled("div")(({ theme }) => ({
+  padding: "0rem 1rem",
+  margin: "-1px 0px -35px 0px",
+}));
 
-  const handleChange = (event) => {
-    setSpacing(Number(event.target.value));
-  };
-
-  const jsx = `
-<Grid container spacing={${spacing}}>
-`;
-
+export default function TitlebarBelowImageList() {
   return (
-    <Grid sx={{ flexGrow: 1 }} container spacing={2}>
-      <Grid item xs={12}>
-        <Grid container justifyContent="center" spacing={spacing}>
-          {[0, 1, 2].map((value) => (
-            <Grid key={value} item>
-              <Paper
-                sx={{
-                  height: 140,
-                  width: 100,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-                }}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
-      <Grid item xs={12}>
-        <Paper sx={{ p: 2 }}>
-          <Grid container>
-            <Grid item>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">spacing</FormLabel>
-                <RadioGroup
-                  name="spacing"
-                  aria-label="spacing"
-                  value={spacing.toString()}
-                  onChange={handleChange}
-                  row
-                >
-                  {[0, 0.5, 1, 2, 3, 4, 8, 12].map((value) => (
-                    <FormControlLabel
-                      key={value}
-                      value={value.toString()}
-                      control={<Radio />}
-                      label={value.toString()}
-                    />
-                  ))}
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-          </Grid>
-        </Paper>
-      </Grid>
-    </Grid>
+    <AdBarContainer>
+    <ImageList sx={{ 
+      width: "90vw",
+      gridAutoFlow: "column",
+      gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr)) !important",
+      gridAutoColumns: "minmax(150px, 1fr)",
+      overflowX:'scroll',
+      '&::-webkit-scrollbar':{
+          width: 0,
+      }
+      }}>
+      {itemData.map((item) => (
+        <ImageListItem key={item.img}>
+          <img
+            src={`${item.img}?w=248&fit=crop&auto=format`}
+            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            alt={item.title}
+            loading="lazy"
+            style={{borderRadius: 10}}
+          />
+          <ImageListItemBar
+            title={item.title}
+            subtitle={<span>{item.subtitle}</span>}
+            position="below"
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
+    </AdBarContainer>
   );
 }
+
+const itemData = [
+  {
+    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+    title: 'Meta',
+    subtitle: 'Subtitle',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+    title: 'Verse',
+    subtitle: 'Subtitle',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+    title: 'Crypto',
+    subtitle: 'Subtitle',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+    title: 'Test',
+    subtitle: 'Subtitle',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+    title: 'Images',
+    subtitle: 'Subtitle',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+    title: 'For',
+    subtitle: 'Subtitle',
+  },
+];

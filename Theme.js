@@ -101,6 +101,7 @@ const theme = createTheme({
     MuiMenuItem: {
       styleOverrides: {
         root: {
+          fontSize: "0.8rem",
           backgroundColor: "transparent",
           color: "white",
           '&:hover': {
@@ -199,6 +200,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialog: {
+      styleOverrides: {
+        scrollPaper: {
+          alignItems: "flex-start",
+        },
+      },
+    },
     MuiDialogContent: {
       styleOverrides: {
         root: {
@@ -226,6 +234,17 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "#2e2e2e",
+        },
+      },
+    },
+    MuiImageListItemBar: {
+      styleOverrides: {
+        title: {
+          color: "#737373",
+          fontSize: "0.8rem"
+        },
+        subtitle: {
+          color: "white",
         },
       },
     },

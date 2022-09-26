@@ -12,8 +12,7 @@ import ThemeProvider from "../Theme"
 import Link from 'next/link'
 import CssBaseline from '@mui/material/CssBaseline'
 import Filters from '../components/Filters'
-import EventsList from '../components/EventsList'
-import InfoPane2 from '../components/InfoPane'
+import EventsList2 from '../components/EventsList2'
 import AdBar from '../components/AdBar'
 import Box from "@mui/material/Box"
 
@@ -79,12 +78,12 @@ export default function Lander() {
         <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <HeaderBottom/>
         <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
+        <AdBar/>
           <Main>
             <Box sx={{mb: "12px"}}>
             <Filters/>
             </Box>
-            <EventsList/>
-            <InfoPane2/>
+            <EventsList2/>
           </Main>
       </Wrapper>
     </ThemeProvider>

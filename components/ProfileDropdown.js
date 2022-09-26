@@ -54,6 +54,7 @@ export default function ProfileDropdown() {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          sx={{marginLeft:"2px"}}
           MenuListProps={{
             'aria-labelledby': 'basic-button',
           }}

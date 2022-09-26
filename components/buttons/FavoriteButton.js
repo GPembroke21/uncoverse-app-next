@@ -16,7 +16,7 @@ export default function FavoriteButton() {
         style={{ padding: 0, marginLeft: "-0.4rem" }}
         >
             <StarBorderRoundedIcon 
-            style={{height: "2.2vw", width: "2.2vw"}}
+            style={{height: "0.75rem", width: "0.75rem"}}
             />
         </IconButton>
         }
@@ -26,7 +26,7 @@ export default function FavoriteButton() {
         style={{ padding: 0, marginLeft: "-0.4rem" }}
         >
             <StarRoundedIcon 
-            style={{height: "2.2vw", width: "2.2vw"}}
+            style={{ height: "0.75rem", width: "0.75rem" }}
             />
         </IconButton>
         }

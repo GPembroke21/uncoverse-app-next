@@ -31,7 +31,7 @@ const Filters = () => {
             <FiltersContainer>
                 <PlatformFilter/>
                 <CategoryFilter/>
-                <ClearFilters/>
+                <Searchbar/>
             </FiltersContainer>
         </Wrapper>
     </ThemeProvider>

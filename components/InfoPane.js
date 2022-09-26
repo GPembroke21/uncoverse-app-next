@@ -8,12 +8,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { sizeWidth } from '@mui/system';
 import Divider from "@mui/material/Divider"
+import Image from 'next/image'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide() {
+export default function InfoPane() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {

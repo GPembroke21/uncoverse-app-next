@@ -6,14 +6,18 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import FavoriteButton from './buttons/FavoriteButton'
+import FavoriteButton from './buttons/FavoriteButton';
+import InfoPane from './InfoPane'
 
-function createData(name, date, time, users) {
+function createData(name, date, time, users, image, location, description) {
     return {
         name, 
         date,
         time, 
         users,
+        image,
+        location,
+        description,
     };
 }
 
