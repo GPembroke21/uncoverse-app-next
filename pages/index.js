@@ -28,47 +28,6 @@ const Main = styled("div")(({ theme }) => ({
   color: "#ffffff",
 }));
 
-const TextContainer = styled(Grid)(({ theme }) => ({
-  flex: "1",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "top",
-  alignItems: "flex-start",
-  color: "#ffffff",
-  padding: "25vh 1.2rem 1rem",
-}));
-
-const ButtonContainer = styled(Grid)(({ theme }) => ({
-  flex: "1",
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "flex-start",
-  alignItems: "center",
-  color: "#ffffff",
-  padding: "0 0.7rem 1rem",
-}));
-
-const NavButton = styled("button")(({ theme }) => ({
-  fontFamily: "Helvetica Neue",
-  fontSize: "0.8rem",
-  fontWeight: "500",
-  textAlign: "center",
-  color: "black",
-  border: "0px solid #282b2f",
-  borderRadius: "0.4rem",
-  width: "10.1rem",
-  height: "3rem",
-  padding: "0.8rem",
-  cursor: "pointer",
-  margin: "0rem 0.5rem",
-  backgroundImage: "linear-gradient(60deg, #b300ff, #6a02fa, #02fafa)",
-  backgroundSize: '200%',
-  transition: "0.4s",
-  "&:hover": {
-    backgroundPosition: "right",
-  }
-}));
-
 export default function Lander() {
   return (
     <ThemeProvider>

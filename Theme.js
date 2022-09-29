@@ -80,7 +80,7 @@ const theme = createTheme({
     MuiMenu: {
       styleOverrides: {
         root: {
-          margin: "0.85rem 0rem 0rem 0rem",
+          margin: "0.86rem 0rem 0rem 0rem",
         },
         list: {
           backgroundColor: "black",
@@ -154,7 +154,7 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          fontSize: "min(4vw, 13px)",
+          fontSize: "min(2.3vw, 13px)",
           color: "white",
           borderBottom: "1px solid #2e2e2e",
           padding: "10px 5px",
@@ -241,10 +241,13 @@ const theme = createTheme({
       styleOverrides: {
         title: {
           color: "#737373",
-          fontSize: "0.8rem"
+          fontSize: "min(2.9vw, 13px)",
+          margin: "-0.2rem 0rem 0rem 0rem"
         },
         subtitle: {
           color: "white",
+          fontSize: "min(2.6vw, 13px)",
+          margin: "-0.2rem 0rem 0rem 0rem"
         },
       },
     },
