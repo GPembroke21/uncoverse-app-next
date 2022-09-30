@@ -39,10 +39,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-<<<<<<< HEAD
-=======
-  const imageLoader=({src})=>`${row.image}`;
->>>>>>> uncoverse-app2/maine2
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -52,19 +48,6 @@ function Row(props) {
     setOpen(false);
   };
 
-<<<<<<< HEAD
-=======
-const date = new Date(row.start_at);
-const formattedDate = date.toLocaleDateString('en-US', {
-  day: 'numeric', month: 'short'
-})
-
-const time = new Date(row.start_at);
-const formattedTime = date.toLocaleTimeString('en-US', {
-  timeZone: 'EST', timezoneName: 'short', timeStyle: 'short'
-})
-
->>>>>>> uncoverse-app2/maine2
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} /*onClick={() => setOpen(!open)}*/>
@@ -73,7 +56,6 @@ const formattedTime = date.toLocaleTimeString('en-US', {
             <Image src="/DCLD_logo.png" alt='DCLD Logo' layout="fill" objectFit="contain" />
           </Box>
         </TableCell>
-<<<<<<< HEAD
         <TableCell align="left" onClick={() => setOpen(!open)}>{row.name}</TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)}>{row.date}</TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)}>{row.time}</TableCell>
@@ -83,32 +65,6 @@ const formattedTime = date.toLocaleTimeString('en-US', {
               </TableCell>
             </Box> */}
         <TableCell align="right" onClick={() => setOpen(!open)}>{row.users}</TableCell>
-=======
-        <TableCell 
-          align="left" 
-          onClick={() => setOpen(!open)}
-          sx={{
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis',
-              // height: '3rem',
-              maxWidth: '1rem',
-              // display: "-webkit-box",
-              // "-webkit-box-orient": "vertical",
-              // "-webkit-line-clamp": "2",
-              overflow: 'hidden',
-              // lineHeight: 'auto',
-              // maxHeight: '10rem',
-          }}
-          >
-            {row.name}
-        </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)}>{formattedDate}, {formattedTime}</TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)}>{row.categories}</TableCell>
-        {/* <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {row.category}
-        </TableCell> */}
-        {/* <TableCell align="right" onClick={() => setOpen(!open)}>{row.total_attendees}</TableCell> */}
->>>>>>> uncoverse-app2/maine2
         <TableCell align="right">
           <FavoriteButton />
         </TableCell>
@@ -129,30 +85,6 @@ const formattedTime = date.toLocaleTimeString('en-US', {
         <DialogTitle sx={{ fontSize: '20px' }}>{row.name}</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ color: 'white' }}>
-<<<<<<< HEAD
-            <Image src="/adbar2.jpg" alt='Adbar2' width="600rem" height="300rem" />
-          </DialogContentText>
-          <br />
-          <DialogContentText sx={{ color: 'white' }}>
-            {row.date}, {row.time}
-          </DialogContentText>
-          <Divider />
-          <DialogContentText sx={{ color: 'white' }}>
-            {row.category}
-          </DialogContentText>
-          <Divider />
-          <DialogContentText sx={{ color: 'white' }}>
-            {row.users}
-          </DialogContentText>
-          <Divider />
-          <DialogContentText sx={{ color: 'white' }}>
-            {row.location}
-          </DialogContentText>
-          <Divider />
-          <br />
-          <DialogContentText id="alert-dialog-slide-description" sx={{ color: 'white' }}>
-            {row.description}
-=======
             <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" />
           </DialogContentText>
           <br />
@@ -178,7 +110,6 @@ const formattedTime = date.toLocaleTimeString('en-US', {
             sx={{ fontSize: '1rem', color: 'white' }} 
             style={{maxHeight: 200, overflow: 'auto'}}>
               {row.description}
->>>>>>> uncoverse-app2/maine2
           </DialogContentText>
         </DialogContent>
       </Dialog>
@@ -197,7 +128,6 @@ const rows = [
 ];
 
 export default function EventsList2() {
-<<<<<<< HEAD
   return (
     <TableContainer>
       <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem" }} aria-label="simple table">
@@ -216,41 +146,6 @@ export default function EventsList2() {
         </TableHead>
         <TableBody sx={{ backgroundColor: "black" }}>
           {rows.map((row) => (
-=======
-
-  const [eventlist, setEventList] = useState([]);
-
-  const getFunction = useCallback(async () => {
-      try {
-          const response = await fetch('https://events.decentraland.org/api/events')
-          const events = await response.json()
-          return setEventList(events.data)
-      } catch (error) {
-          console.log("Error loading API:", error)
-      }
-  }, [])
-
-  useEffect(() => {
-      getFunction()
-  }, [getFunction])
-
-  return (
-    <TableContainer sx={{height:400}} style={{overflowX: 'auto'}}>
-      <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem"}} aria-label="simple table">
-        <TableHead>
-          <TableRow sx={{ borderBottom: "none" }}>
-            <TableCell style={{ width: "2%" }}></TableCell>
-            <TableCell align="left" style={{ width: "35%" }}>Name</TableCell>
-            <TableCell align="left" style={{ width: "20%" }}>Date</TableCell>
-            <TableCell align="left" style={{ width: "5%" }}>Category</TableCell>
-            {/* <TableCell align="left" style={{ width: "12%" }} sx={{ display: { xs: 'none', sm: 'block' } }}>Category</TableCell> */}
-            {/* <TableCell align="right" style={{ width: "5%" }}>Users</TableCell> */}
-            <TableCell style={{ width: "2%" }}></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody sx={{ backgroundColor: "black" }}>
-          {eventlist.map((row) => (
->>>>>>> uncoverse-app2/maine2
             <Row
               key={row.name}
               row={row}
