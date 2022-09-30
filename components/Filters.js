@@ -17,7 +17,7 @@ const Wrapper = styled("div")(({ theme }) => ({
 }));
 
 const FiltersContainer = styled("box")(({ theme }) => ({
-  margin: "0.5rem 0",
+  margin: "0.5rem 0rem 1rem 0rem",
   display: "flex",
   alignItems: "flex-start",
   flexDirection: "row",
@@ -29,9 +29,9 @@ const Filters = () => {
     <ThemeProvider>
         <Wrapper>
             <FiltersContainer>
+                <Searchbar/>
                 <PlatformFilter/>
                 <CategoryFilter/>
-                <Searchbar/>
             </FiltersContainer>
         </Wrapper>
     </ThemeProvider>

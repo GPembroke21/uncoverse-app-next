@@ -47,7 +47,7 @@ export default function PlatformFilter() {
         }}
         sx={{
           marginTop: "12.5px",
-          marginLeft: "-2.5px"
+          // marginLeft: "-2.5px"
         }}
       >
         <MenuItem onClick={handleClose} sx={{fontSize: "12px"}}>Platform1</MenuItem>
