@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Image from 'next/image';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -15,8 +16,8 @@ export default function TitlebarBelowImageList() {
     <ImageList sx={{ 
       width: "100%",
       gridAutoFlow: "column",
-      gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr)) !important",
-      gridAutoColumns: "minmax(150px, 1fr)",
+      gridTemplateColumns: "repeat(auto-fill,minmax(30vw, 1fr)) !important",
+      gridAutoColumns: "minmax(30vw, 1fr)",
       overflowX:'scroll',
       '&::-webkit-scrollbar':{
           width: 0,
@@ -50,27 +51,27 @@ export default function TitlebarBelowImageList() {
 
 const itemData = [
   {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+    img: '/adbar1.jpg',
     title: 'Most Active Metaverse',
     subtitle: 'Event name goes here',
   },
   {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+    img: '/adbar2.jpg',
     title: 'Creator Cafe',
     subtitle: 'Resources for creators',
   },
   {
-    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+    img: '/adbar1.jpg',
     title: 'Uncoverse Pod',
     subtitle: 'Perspectives on Web3',
   },
   {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+    img: '/adbar2.jpg',
     title: 'Top Categories',
     subtitle: 'Most active categories',
   },
   {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+    img: '/adbar1.jpg',
     title: 'Gaming',
     subtitle: 'Gaming subtitle',
   },

@@ -34,14 +34,12 @@ export default function Lander() {
       <CssBaseline />
       <Wrapper>
         <Header/>
-        <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
+          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <HeaderBottom/>
-        <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
+          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <AdBar/>
+        <Filters/>
           <Main>
-            <Box sx={{mb: "12px"}}>
-            <Filters/>
-            </Box>
             <EventsList2/>
           </Main>
       </Wrapper>
