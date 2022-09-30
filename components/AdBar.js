@@ -16,8 +16,8 @@ export default function TitlebarBelowImageList() {
     <ImageList sx={{ 
       width: "100%",
       gridAutoFlow: "column",
-      gridTemplateColumns: "repeat(auto-fill,minmax(30vw, 1fr)) !important",
-      gridAutoColumns: "minmax(30vw, 1fr)",
+      gridTemplateColumns: "repeat(auto-fill,minmax(30vw, 1fr) 200px 1fr) !important",
+      gridAutoColumns: "minmax(30vw, 1fr) 200px 1fr",
       overflowX:'scroll',
       '&::-webkit-scrollbar':{
           width: 0,

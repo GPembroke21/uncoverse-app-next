@@ -17,7 +17,7 @@ const Wrapper = styled("div")(({ theme }) => ({
 }));
 
 const FiltersContainer = styled("box")(({ theme }) => ({
-  margin: "0.5rem 0rem 1rem 0rem",
+  margin: "-2rem 0rem 1rem 0rem",
   display: "flex",
   alignItems: "flex-start",
   flexDirection: "row",
