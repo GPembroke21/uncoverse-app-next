@@ -13,11 +13,12 @@ import Box from "@mui/material/Box"
 import Searchbar from '../components/Searchbar'
 
 const Wrapper = styled("div")(({ theme }) => ({
-  padding: "0px 10px 0px 14px",
+  // padding: "0px 10px 0px 14px",
 }));
 
 const FiltersContainer = styled("box")(({ theme }) => ({
-  margin: "-2rem 0rem 1rem 0rem",
+  margin: "0rem 0rem 1rem 0rem",
+  padding: "0px 10px 0px 14px",
   display: "flex",
   alignItems: "flex-start",
   flexDirection: "row",
@@ -27,13 +28,11 @@ const FiltersContainer = styled("box")(({ theme }) => ({
 const Filters = () => {
   return (
     <ThemeProvider>
-        <Wrapper>
-            <FiltersContainer>
-                <Searchbar/>
-                <PlatformFilter/>
-                <CategoryFilter/>
-            </FiltersContainer>
-        </Wrapper>
+        <FiltersContainer>
+            <Searchbar/>
+            <PlatformFilter/>
+            <CategoryFilter/>
+        </FiltersContainer>
     </ThemeProvider>
   )
 }
