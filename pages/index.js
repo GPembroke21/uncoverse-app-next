@@ -24,7 +24,7 @@ const Wrapper = styled("div")(({ theme }) => ({
 }));
 
 const Main = styled("div")(({ theme }) => ({
-  minHeight: "100vh", 
+  minHeight: "100vh",
   color: "#ffffff",
 }));
 
@@ -74,17 +74,17 @@ export default function Lander() {
     <ThemeProvider>
       <CssBaseline />
       <Wrapper>
-        <Header/>
-        <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <HeaderBottom/>
-        <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <AdBar/>
-          <Main>
-            <Box sx={{mb: "12px"}}>
-            <Filters/>
-            </Box>
-            <EventsList2/>
-          </Main>
+        <Header />
+        <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
+        <HeaderBottom />
+        <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
+        <AdBar />
+        <Main>
+          <Box sx={{ mb: "12px" }}>
+            <Filters />
+          </Box>
+          <EventsList2 />
+        </Main>
       </Wrapper>
     </ThemeProvider>
   )

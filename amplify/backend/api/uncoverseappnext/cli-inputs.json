@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "uncoverseappnext",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "C:\\Users\\garet\\WebAppDev\\UncoverseReact\\uncoverse-app-next\\amplify\\backend\\api\\uncoverseappnext\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-09-27T00:52:37.184Z",
+      "keyDescription": "uncnextapi"
+    }
+  }
+}

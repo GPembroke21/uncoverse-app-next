@@ -67,22 +67,22 @@ const ConnectButton = styled("button")(({ theme }) => ({
 const Header = () => {
   return (
     <ThemeProvider>
-    <Wrapper>
-      <LogoContainer>
-        <Logo>
-          <IconButton disableRipple>
-            <Link href="/">
-              <Image src="/uv-logo.png" alt='Uncoverse Logo' width="30rem" height="30rem"/>
-            </Link>
-          </IconButton>
-        </Logo>
-          <Image src="/beta.png" alt='Uncoverse Logo' width="30rem" height="15rem"/>
-      </LogoContainer>
-      <RightContainer>
-        <ConnectButton>Connect</ConnectButton>
-        <ProfileDropdown/>
-      </RightContainer>
-    </Wrapper>
+      <Wrapper>
+        <LogoContainer>
+          <Logo>
+            <IconButton disableRipple>
+              <Link href="/">
+                <Image src="/uv-logo.png" alt='Uncoverse Logo' width="30rem" height="30rem" />
+              </Link>
+            </IconButton>
+          </Logo>
+          <Image src="/beta.png" alt='Uncoverse Logo' width="30rem" height="15rem" />
+        </LogoContainer>
+        <RightContainer>
+          <ConnectButton>Connect</ConnectButton>
+          <ProfileDropdown />
+        </RightContainer>
+      </Wrapper>
     </ThemeProvider>
   )
 }
