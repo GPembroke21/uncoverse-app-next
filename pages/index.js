@@ -17,14 +17,14 @@ import AdBar from '../components/AdBar'
 import Box from "@mui/material/Box"
 
 const Wrapper = styled("div")(({ theme }) => ({
-  height: "100vh",
+  // height: "100vh",
   overflow: "hidden",
   padding: "0 0",
   background: "#000000",
 }));
 
 const Main = styled("div")(({ theme }) => ({
-  minHeight: "100vh",
+  minHeight: "100vh", 
   color: "#ffffff",
 }));
 
@@ -33,17 +33,13 @@ export default function Lander() {
     <ThemeProvider>
       <CssBaseline />
       <Wrapper>
-        <Header />
-        <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
-        <HeaderBottom />
-        <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
-        <AdBar />
-        <Main>
-          <Box sx={{ mb: "12px" }}>
-            <Filters />
-          </Box>
-          <EventsList2 />
-        </Main>
+        <Header/>
+          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
+        <HeaderBottom/>
+          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
+        <AdBar/>
+        <Filters/>
+        <EventsList2/>
       </Wrapper>
     </ThemeProvider>
   )

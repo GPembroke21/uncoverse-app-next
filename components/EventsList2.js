@@ -172,7 +172,10 @@ export default function EventsList2() {
   }, [getFunction])
 
   return (
-    <TableContainer sx={{height:400}} style={{overflowX: 'auto'}}>
+    <TableContainer 
+      // sx={{height:400}} 
+      style={{overflowX: 'auto'}}
+    >
       <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem"}} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ borderBottom: "none" }}>

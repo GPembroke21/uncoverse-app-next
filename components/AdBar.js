@@ -7,7 +7,7 @@ import { styled } from "@mui/system"
 
 const AdBarContainer = styled("div")(({ theme }) => ({
   padding: "0rem 1rem",
-  margin: "-0.2rem 0rem -2.2rem 0rem",
+  // margin: "-0.2rem 0rem -2.2rem 0rem",
 }));
 
 export default function TitlebarBelowImageList() {
