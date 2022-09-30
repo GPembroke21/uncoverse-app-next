@@ -39,6 +39,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const imageLoader=({src})=>`${row.image}`;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -48,6 +49,16 @@ function Row(props) {
     setOpen(false);
   };
 
+const date = new Date(row.start_at);
+const formattedDate = date.toLocaleDateString('en-US', {
+  day: 'numeric', month: 'short'
+})
+
+const time = new Date(row.start_at);
+const formattedTime = date.toLocaleTimeString('en-US', {
+  timeZone: 'EST', timezoneName: 'short', timeStyle: 'short'
+})
+
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} /*onClick={() => setOpen(!open)}*/>
@@ -56,15 +67,30 @@ function Row(props) {
             <Image src="/DCLD_logo.png" alt='DCLD Logo' layout="fill" objectFit="contain" />
           </Box>
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)}>{row.name}</TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)}>{row.date}</TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)}>{row.time}</TableCell>
-        {/* <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-              <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'block' } }}>
-                  {row.category}
-              </TableCell>
-            </Box> */}
-        <TableCell align="right" onClick={() => setOpen(!open)}>{row.users}</TableCell>
+        <TableCell 
+          align="left" 
+          onClick={() => setOpen(!open)}
+          sx={{
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              // height: '3rem',
+              maxWidth: '1rem',
+              // display: "-webkit-box",
+              // "-webkit-box-orient": "vertical",
+              // "-webkit-line-clamp": "2",
+              overflow: 'hidden',
+              // lineHeight: 'auto',
+              // maxHeight: '10rem',
+          }}
+          >
+            {row.name}
+        </TableCell>
+        <TableCell align="left" onClick={() => setOpen(!open)}>{formattedDate}, {formattedTime}</TableCell>
+        <TableCell align="left" onClick={() => setOpen(!open)}>{row.categories}</TableCell>
+        {/* <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'block' } }}>
+            {row.category}
+        </TableCell> */}
+        {/* <TableCell align="right" onClick={() => setOpen(!open)}>{row.total_attendees}</TableCell> */}
         <TableCell align="right">
           <FavoriteButton />
         </TableCell>
@@ -128,24 +154,39 @@ const rows = [
 ];
 
 export default function EventsList2() {
+
+  const [eventlist, setEventList] = useState([]);
+
+  const getFunction = useCallback(async () => {
+      try {
+          const response = await fetch('https://events.decentraland.org/api/events')
+          const events = await response.json()
+          return setEventList(events.data)
+      } catch (error) {
+          console.log("Error loading API:", error)
+      }
+  }, [])
+
+  useEffect(() => {
+      getFunction()
+  }, [getFunction])
+
   return (
-    <TableContainer>
-      <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem" }} aria-label="simple table">
+    <TableContainer sx={{height:400}} style={{overflowX: 'auto'}}>
+      <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem"}} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ borderBottom: "none" }}>
-            <TableCell style={{ width: "5%" }}></TableCell>
-            <TableCell align="left" style={{ width: "30%" }}>Name</TableCell>
+            <TableCell style={{ width: "2%" }}></TableCell>
+            <TableCell align="left" style={{ width: "35%" }}>Name</TableCell>
             <TableCell align="left" style={{ width: "20%" }}>Date</TableCell>
-            <TableCell align="left" style={{ width: "18%" }}>Time</TableCell>
-            {/* <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                      <TableCell align="left" style={{ width: "12%" }}>Category</TableCell>
-                      </Box> */}
-            <TableCell align="right" style={{ width: "5%" }}>Users</TableCell>
-            <TableCell style={{ width: "5%" }}></TableCell>
+            <TableCell align="left" style={{ width: "5%" }}>Category</TableCell>
+            {/* <TableCell align="left" style={{ width: "12%" }} sx={{ display: { xs: 'none', sm: 'block' } }}>Category</TableCell> */}
+            {/* <TableCell align="right" style={{ width: "5%" }}>Users</TableCell> */}
+            <TableCell style={{ width: "2%" }}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody sx={{ backgroundColor: "black" }}>
-          {rows.map((row) => (
+          {eventlist.map((row) => (
             <Row
               key={row.name}
               row={row}
@@ -157,4 +198,3 @@ export default function EventsList2() {
     </TableContainer>
   )
 }
-
