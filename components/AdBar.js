@@ -7,7 +7,7 @@ import { styled } from "@mui/system"
 
 const AdBarContainer = styled("div")(({ theme }) => ({
   // padding: "0rem 1rem",
-  margin: "0rem 1rem"
+  margin: "0rem 1rem -1rem 1rem",
   // margin: "-0.2rem 0rem -2.2rem 0rem",
 }));
 
@@ -20,9 +20,9 @@ export default function TitlebarBelowImageList() {
       gridTemplateColumns: "repeat(auto-fill,minmax(30vw, 1fr) 200px 1fr) !important",
       gridAutoColumns: "minmax(30vw, 1fr) 200px 1fr",
       overflowX:'scroll',
-      '&::-webkit-scrollbar':{
-          width: 0,
-      }
+      // '&::-webkit-scrollbar':{
+      //     width: 0,
+      // }
       }}
       gap= {10}
       variant= 'standard'
