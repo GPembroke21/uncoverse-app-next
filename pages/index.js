@@ -37,7 +37,7 @@ export default function Lander() {
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <HeaderBottom/>
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <AdBar/>
+        {/* <AdBar/> */}
         <Filters/>
         <EventsList2/>
       </Wrapper>
