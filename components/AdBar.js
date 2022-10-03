@@ -9,10 +9,6 @@ const AdBarContainer = styled("div")(({ theme }) => ({
   // padding: "0rem 1rem",
   margin: "0rem 1rem -1rem 1rem",
   // margin: "-0.2rem 0rem -2.2rem 0rem",
-  scrollbarWidth: "none" /* Firefox */,
-  "&::-webkit-scrollbar": {
-    display: "none"
-  } /* Chrome */
 }));
 
 export default function TitlebarBelowImageList() {
@@ -27,6 +23,10 @@ export default function TitlebarBelowImageList() {
       // '&::-webkit-scrollbar':{
       //     width: 0,
       // }
+      scrollbarWidth: "none" /* Firefox */,
+      "&::-webkit-scrollbar": {
+        display: "none"
+      } /* Chrome */
       }}
       gap= {10}
       variant= 'standard'
