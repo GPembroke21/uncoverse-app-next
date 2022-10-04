@@ -178,7 +178,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: "white",
-          height: "0rem",
+          /*height: "0rem",*/
           /*'&:last-child td, &:last-child th': {
             borderRadius: "0px 10px 10px 0px"},
             '&:first-child td, &:first-child th': {

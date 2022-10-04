@@ -10,14 +10,23 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Image from 'next/image'
 import FavoriteButton from './buttons/FavoriteButton'
-import Slide from '@mui/material/Slide';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide'
+import Dialog from '@mui/material/Dialog'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
 import Divider from "@mui/material/Divider"
-import TableSortLabel from '@mui/material/TableSortLabel';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import TableSortLabel from '@mui/material/TableSortLabel'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import { styled } from "@mui/system"
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
+
+// const HiddenColumns = styled(Box)(({ theme }) => ({
+//   [theme.breakpoints.only("xs")]: {
+//     display: "none",
+//   },
+// }));
 
 function createData(name, date, time, users, category, image, location, description) {
   return {
@@ -91,6 +100,9 @@ const formattedTime = date.toLocaleTimeString('en-US', {
             {row.category}
         </TableCell> */}
         {/* <TableCell align="right" onClick={() => setOpen(!open)}>{row.total_attendees}</TableCell> */}
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'block' } }}>
+            {row.coordinates}
+        </TableCell>
         <TableCell align="right">
           <FavoriteButton />
         </TableCell>
@@ -185,6 +197,7 @@ export default function EventsList2() {
             <TableCell align="left" style={{ width: "5%" }}>Category</TableCell>
             {/* <TableCell align="left" style={{ width: "12%" }} sx={{ display: { xs: 'none', sm: 'block' } }}>Category</TableCell> */}
             {/* <TableCell align="right" style={{ width: "5%" }}>Users</TableCell> */}
+            <TableCell align="left" style={{ width: "8%" }} sx={{ display: { xs: 'none', sm: 'block' } }}>Location</TableCell>
             <TableCell style={{ width: "2%" }}></TableCell>
           </TableRow>
         </TableHead>

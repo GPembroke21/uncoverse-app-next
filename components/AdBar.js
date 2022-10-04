@@ -30,7 +30,6 @@ export default function TitlebarBelowImageList() {
       }}
       gap= {10}
       variant= 'standard'
-      cols= "5"
       rowHeight= "auto"
       >
       {itemData.map((item) => (
