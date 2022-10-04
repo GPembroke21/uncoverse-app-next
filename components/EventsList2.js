@@ -100,7 +100,7 @@ const formattedTime = date.toLocaleTimeString('en-US', {
             {row.category}
         </TableCell> */}
         {/* <TableCell align="right" onClick={() => setOpen(!open)}>{row.total_attendees}</TableCell> */}
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'block' } }}>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
             {row.coordinates}
         </TableCell>
         <TableCell align="right">
@@ -197,7 +197,7 @@ export default function EventsList2() {
             <TableCell align="left" style={{ width: "5%" }}>Category</TableCell>
             {/* <TableCell align="left" style={{ width: "12%" }} sx={{ display: { xs: 'none', sm: 'block' } }}>Category</TableCell> */}
             {/* <TableCell align="right" style={{ width: "5%" }}>Users</TableCell> */}
-            <TableCell align="left" style={{ width: "8%" }} sx={{ display: { xs: 'none', sm: 'block' } }}>Location</TableCell>
+            <TableCell align="left" style={{ width: "8%" }} sx={{ display: { xs: 'none', sm: 'revert' } }}>Location</TableCell>
             <TableCell style={{ width: "2%" }}></TableCell>
           </TableRow>
         </TableHead>

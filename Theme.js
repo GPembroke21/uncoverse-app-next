@@ -147,7 +147,7 @@ const theme = createTheme({
         root: {
           backgroundColor: "rgb(0, 0, 0)",
           border: "none",
-          padding: "0px 12px 0px 12px",
+          padding: "0em 1em 0em 1em",
         },
       },
     },
@@ -163,14 +163,14 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          fontSize: "min(2.3vw, 13px)",
+          fontSize: "min(2vw, 12px)",
           color: "white",
           borderBottom: "1px solid #2e2e2e",
           padding: "10px 5px",
         },
         head: {
           padding: "0px 5px",
-          fontSize: "min(2vw, 13px)",
+          fontSize: "min(2vw, 12px)",
         },
       },
     },
