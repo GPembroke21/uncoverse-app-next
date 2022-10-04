@@ -256,7 +256,8 @@ const theme = createTheme({
         subtitle: {
           color: "white",
           fontSize: "min(2.6vw, 13px)",
-          margin: "-0.2rem 0rem 0rem 0rem"
+          margin: "-0.2rem 0rem -0.2rem 0rem",
+          padding: "0px 0px 1px 0px"
         },
       },
     },

@@ -96,12 +96,11 @@ const formattedTime = date.toLocaleTimeString('en-US', {
         </TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)}>{formattedDate}, {formattedTime}</TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)}>{row.categories}</TableCell>
-        {/* <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {row.category}
-        </TableCell> */}
-        {/* <TableCell align="right" onClick={() => setOpen(!open)}>{row.total_attendees}</TableCell> */}
         <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
-            {row.coordinates}
+          {row.total_attendees}
+        </TableCell>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
+          {row.coordinates}
         </TableCell>
         <TableCell align="right">
           <FavoriteButton />
@@ -195,8 +194,7 @@ export default function EventsList2() {
             <TableCell align="left" style={{ width: "35%" }}>Name</TableCell>
             <TableCell align="left" style={{ width: "20%" }}>Date</TableCell>
             <TableCell align="left" style={{ width: "5%" }}>Category</TableCell>
-            {/* <TableCell align="left" style={{ width: "12%" }} sx={{ display: { xs: 'none', sm: 'block' } }}>Category</TableCell> */}
-            {/* <TableCell align="right" style={{ width: "5%" }}>Users</TableCell> */}
+            <TableCell align="left" style={{ width: "4%" }} sx={{ display: { xs: 'none', sm: 'revert' } }}>Users</TableCell>
             <TableCell align="left" style={{ width: "8%" }} sx={{ display: { xs: 'none', sm: 'revert' } }}>Location</TableCell>
             <TableCell style={{ width: "2%" }}></TableCell>
           </TableRow>
