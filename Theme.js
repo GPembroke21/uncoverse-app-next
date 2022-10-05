@@ -83,6 +83,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           transitionDuration: "0s",
+          fontFamily: "Helvetica Neue"
         },
       },
     },

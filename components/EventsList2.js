@@ -22,12 +22,6 @@ import { styled } from "@mui/system"
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 
-// const HiddenColumns = styled(Box)(({ theme }) => ({
-//   [theme.breakpoints.only("xs")]: {
-//     display: "none",
-//   },
-// }));
-
 function createData(name, date, time, users, category, image, location, description) {
   return {
     name,
@@ -70,7 +64,7 @@ const formattedTime = date.toLocaleTimeString('en-US', {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} /*onClick={() => setOpen(!open)}*/>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell component="th" scope="row" onClick={() => setOpen(!open)}>
           <Box position="relative" width="0.8rem" height="0.8rem" marginRight="-0.4rem">
             <Image src="/DCLD_logo.png" alt='DCLD Logo' layout="fill" objectFit="contain" />
@@ -183,10 +177,7 @@ export default function EventsList2() {
   }, [getFunction])
 
   return (
-    <TableContainer 
-      // sx={{height:400}} 
-      style={{overflowX: 'auto'}}
-    >
+    <TableContainer style={{overflowX: 'auto'}}>
       <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem"}} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ borderBottom: "none" }}>
