@@ -43,3 +43,120 @@ export const deleteTodo = /* GraphQL */ `
     }
   }
 `;
+export const createPlatform = /* GraphQL */ `
+  mutation CreatePlatform(
+    $input: CreatePlatformInput!
+    $condition: ModelPlatformConditionInput
+  ) {
+    createPlatform(input: $input, condition: $condition) {
+      id
+      name
+      imageId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePlatform = /* GraphQL */ `
+  mutation UpdatePlatform(
+    $input: UpdatePlatformInput!
+    $condition: ModelPlatformConditionInput
+  ) {
+    updatePlatform(input: $input, condition: $condition) {
+      id
+      name
+      imageId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePlatform = /* GraphQL */ `
+  mutation DeletePlatform(
+    $input: DeletePlatformInput!
+    $condition: ModelPlatformConditionInput
+  ) {
+    deletePlatform(input: $input, condition: $condition) {
+      id
+      name
+      imageId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createEvent = /* GraphQL */ `
+  mutation CreateEvent(
+    $input: CreateEventInput!
+    $condition: ModelEventConditionInput
+  ) {
+    createEvent(input: $input, condition: $condition) {
+      id
+      platformId
+      apiId
+      name
+      description
+      image
+      category
+      totalAttendees
+      dateTimeStart
+      dateTimeEnd
+      repeat
+      createdByUser
+      locator
+      url
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateEvent = /* GraphQL */ `
+  mutation UpdateEvent(
+    $input: UpdateEventInput!
+    $condition: ModelEventConditionInput
+  ) {
+    updateEvent(input: $input, condition: $condition) {
+      id
+      platformId
+      apiId
+      name
+      description
+      image
+      category
+      totalAttendees
+      dateTimeStart
+      dateTimeEnd
+      repeat
+      createdByUser
+      locator
+      url
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteEvent = /* GraphQL */ `
+  mutation DeleteEvent(
+    $input: DeleteEventInput!
+    $condition: ModelEventConditionInput
+  ) {
+    deleteEvent(input: $input, condition: $condition) {
+      id
+      platformId
+      apiId
+      name
+      description
+      image
+      category
+      totalAttendees
+      dateTimeStart
+      dateTimeEnd
+      repeat
+      createdByUser
+      locator
+      url
+      createdAt
+      updatedAt
+    }
+  }
+`;
