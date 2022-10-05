@@ -7,7 +7,7 @@ function MyApp() {
       <Box 
       paddingY={0} 
       paddingX={0}
-      px={{xs:0, sm:0, md:6, lg:8, xl:10}}
+      px={{xs:0, sm:0, md:"3em", lg:"4em", xl:"5em"}}
       >
         <Home />
       </Box>
