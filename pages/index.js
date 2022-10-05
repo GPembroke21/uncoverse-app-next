@@ -16,6 +16,10 @@ import EventsList2 from '../components/EventsList2'
 import AdBar from '../components/AdBar'
 import Box from "@mui/material/Box"
 import EventListTest from '../components/EventListTest'
+// import { Amplify} from 'aws-amplify';
+// import awsExports from '../src/aws-exports';
+
+// Amplify.configure({ ...awsExports, ssr: true });
 
 const Wrapper = styled("div")(({ theme }) => ({
   // height: "100vh",
