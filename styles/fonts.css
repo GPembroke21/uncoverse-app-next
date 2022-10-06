@@ -1,4 +1,4 @@
 @font-face {
     font-family: "HelveticaNeue";
-    src: url('/fonts/HelveticaNeue.ttc') format('truetype');
+    src: url('../public/fonts/HelveticaNeue.ttc') format('truetype');
 }
