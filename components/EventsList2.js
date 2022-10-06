@@ -94,8 +94,9 @@ function Row(props) {
           {row.name}
         </TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)}>{formattedDate}, {formattedTime}</TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '10rem', overflow: 'hidden' }}>
-          {row.category}</TableCell>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
+          {row.category}
+        </TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
           {row.totalAttendees}
         </TableCell>
