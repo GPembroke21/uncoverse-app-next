@@ -6,7 +6,7 @@ import { listEvents } from '../graphql/queries'
 Amplify.configure({ ...awsExports, ssr: true })
 
 
-export default function GetList(props) {
+export default function GetEvents(props) {
     const [request, setRequest] = useState({loading: false, data: null, error: false})
 
     const gqlQuery = {
