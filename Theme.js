@@ -62,6 +62,15 @@ const theme = createTheme({
       lineHeight: "1.5",
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1600,
+    },
+  },
   components: {
     MuiCssBaseline: {
       "@global": {
@@ -74,6 +83,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           transitionDuration: "0s",
+          fontFamily: "Helvetica Neue"
         },
       },
     },
@@ -138,7 +148,7 @@ const theme = createTheme({
         root: {
           backgroundColor: "rgb(0, 0, 0)",
           border: "none",
-          padding: "0px 12px 0px 12px",
+          padding: "0em 1em 0em 1em",
         },
       },
     },
@@ -154,14 +164,14 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          fontSize: "min(2.3vw, 13px)",
+          fontSize: "min(2vw, 12px)",
           color: "white",
           borderBottom: "1px solid #2e2e2e",
           padding: "10px 5px",
         },
         head: {
           padding: "0px 5px",
-          fontSize: "min(2vw, 13px)",
+          fontSize: "min(2vw, 12px)",
         },
       },
     },
@@ -169,7 +179,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: "white",
-          height: "0rem",
+          /*height: "0rem",*/
           /*'&:last-child td, &:last-child th': {
             borderRadius: "0px 10px 10px 0px"},
             '&:first-child td, &:first-child th': {
@@ -247,7 +257,8 @@ const theme = createTheme({
         subtitle: {
           color: "white",
           fontSize: "min(2.6vw, 13px)",
-          margin: "-0.2rem 0rem 0rem 0rem"
+          margin: "-0.2rem 0rem -0.2rem 0rem",
+          padding: "0px 0px 1px 0px"
         },
       },
     },

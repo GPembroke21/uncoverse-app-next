@@ -10,14 +10,17 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Image from 'next/image'
 import FavoriteButton from './buttons/FavoriteButton'
-import Slide from '@mui/material/Slide';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide'
+import Dialog from '@mui/material/Dialog'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
 import Divider from "@mui/material/Divider"
-import TableSortLabel from '@mui/material/TableSortLabel';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import TableSortLabel from '@mui/material/TableSortLabel'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import { styled } from "@mui/system"
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
 
 function createData(name, date, time, users, category, image, location, description) {
   return {
@@ -61,7 +64,7 @@ const formattedTime = date.toLocaleTimeString('en-US', {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} /*onClick={() => setOpen(!open)}*/>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell component="th" scope="row" onClick={() => setOpen(!open)}>
           <Box position="relative" width="0.8rem" height="0.8rem" marginRight="-0.4rem">
             <Image src="/DCLD_logo.png" alt='DCLD Logo' layout="fill" objectFit="contain" />
@@ -87,10 +90,12 @@ const formattedTime = date.toLocaleTimeString('en-US', {
         </TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)}>{formattedDate}, {formattedTime}</TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)}>{row.categories}</TableCell>
-        {/* <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {row.category}
-        </TableCell> */}
-        {/* <TableCell align="right" onClick={() => setOpen(!open)}>{row.total_attendees}</TableCell> */}
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
+          {row.total_attendees}
+        </TableCell>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
+          {row.coordinates}
+        </TableCell>
         <TableCell align="right">
           <FavoriteButton />
         </TableCell>
@@ -172,16 +177,16 @@ export default function EventsList2() {
   }, [getFunction])
 
   return (
-    <TableContainer sx={{height:400}} style={{overflowX: 'auto'}}>
+    <TableContainer style={{overflowX: 'auto'}}>
       <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem"}} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ borderBottom: "none" }}>
             <TableCell style={{ width: "2%" }}></TableCell>
             <TableCell align="left" style={{ width: "35%" }}>Name</TableCell>
-            <TableCell align="left" style={{ width: "20%" }}>Date</TableCell>
+            <TableCell align="left" style={{ width: "15%" }}>Date</TableCell>
             <TableCell align="left" style={{ width: "5%" }}>Category</TableCell>
-            {/* <TableCell align="left" style={{ width: "12%" }} sx={{ display: { xs: 'none', sm: 'block' } }}>Category</TableCell> */}
-            {/* <TableCell align="right" style={{ width: "5%" }}>Users</TableCell> */}
+            <TableCell align="left" style={{ width: "4%" }} sx={{ display: { xs: 'none', sm: 'revert' } }}>Users</TableCell>
+            <TableCell align="left" style={{ width: "8%" }} sx={{ display: { xs: 'none', sm: 'revert' } }}>Location</TableCell>
             <TableCell style={{ width: "2%" }}></TableCell>
           </TableRow>
         </TableHead>

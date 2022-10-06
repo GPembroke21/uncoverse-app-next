@@ -45,7 +45,7 @@ export default function CategoryFilter() {
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
-        sx={{marginTop: "12px"}}
+        sx={{marginTop: "12.4px"}}
       >
         <MenuItem onClick={handleClose} sx={{fontSize: "12px"}}>Category1</MenuItem>
         <MenuItem onClick={handleClose} sx={{fontSize: "12px"}}>Category2</MenuItem>

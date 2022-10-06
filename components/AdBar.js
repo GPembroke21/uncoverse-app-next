@@ -6,8 +6,9 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { styled } from "@mui/system"
 //hey
 const AdBarContainer = styled("div")(({ theme }) => ({
-  padding: "0rem 1rem",
-  margin: "-0.2rem 0rem -2.2rem 0rem",
+  // padding: "0rem 1rem",
+  margin: "0rem 1rem -1rem 1rem",
+  // margin: "-0.2rem 0rem -2.2rem 0rem",
 }));
 
 export default function TitlebarBelowImageList() {
@@ -16,16 +17,19 @@ export default function TitlebarBelowImageList() {
     <ImageList sx={{ 
       width: "100%",
       gridAutoFlow: "column",
-      gridTemplateColumns: "repeat(auto-fill,minmax(30vw, 1fr)) !important",
-      gridAutoColumns: "minmax(30vw, 1fr)",
+      gridTemplateColumns: "repeat(auto-fill,minmax(15em, 1fr)) !important",
+      gridAutoColumns: "minmax(15em, 1fr)",
       overflowX:'scroll',
-      '&::-webkit-scrollbar':{
-          width: 0,
-      }
+      // '&::-webkit-scrollbar':{
+      //     width: 0,
+      // }
+      scrollbarWidth: "none" /* Firefox */,
+      "&::-webkit-scrollbar": {
+        display: "none"
+      } /* Chrome */
       }}
       gap= {10}
       variant= 'standard'
-      cols= "5"
       rowHeight= "auto"
       >
       {itemData.map((item) => (

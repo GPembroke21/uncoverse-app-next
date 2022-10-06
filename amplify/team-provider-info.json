@@ -10,6 +10,12 @@
       "StackName": "amplify-uncoverseappnext-dev-205105",
       "StackId": "arn:aws:cloudformation:us-east-1:738572013375:stack/amplify-uncoverseappnext-dev-205105/78538380-3dfe-11ed-916f-0e2e23c1a04f",
       "AmplifyAppId": "db4mjp2e43zo9"
+    },
+    "categories": {
+      "auth": {
+        "userPoolGroups": {},
+        "uncoverseappnexte880bb60e880bb60": {}
+      }
     }
   }
 }
