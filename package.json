@@ -12,6 +12,7 @@
     "@aws-amplify/ui-react": "^3.5.4",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@material-table/core": "^0.2.44",
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.7",
     "aws-amplify": "^4.3.36",
