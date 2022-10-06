@@ -8,7 +8,6 @@ import Link from 'next/link'
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import Divider from "@mui/material/Divider"
-import GetPlats from '../src/requests/GetEvents'
 
 const Wrapper = styled("div")(({ theme }) => ({
   width: "calc(100%)",
@@ -64,8 +63,6 @@ const ConnectButton = styled("button")(({ theme }) => ({
     color: "#dd00ff",
   }
 }));
-
-const plats = GetPlats()
 
 const Header = () => {
   return (
