@@ -1,35 +1,36 @@
-import { useEffect, useState } from 'react';
-import { listPlatforms } from '../graphql/queries';
-import { Amplify, API, withSSRContext } from 'aws-amplify';
+import { useCallback, useEffect, useState } from 'react';
+import { Amplify, API } from 'aws-amplify'
 import awsExports from '../aws-exports';
+import { listEvents } from '../graphql/queries'
 
 Amplify.configure({ ...awsExports, ssr: true })
 
-export async function getServerSideProps({ req }) {
-    // 👇 Notice how the server uses `API` from `withSSRContext`, instead of the top-level `API`.
-    const SSR = withSSRContext({ req })
-    const { data } = await SSR.API.graphql({ query: listPlatforms });
 
-    return {
-        props: {
-            posts: data.listPlatforms.items
-        }
+export default function GetList(props) {
+    const [request, setRequest] = useState({loading: false, data: null, error: false})
+
+    const gqlQuery = {
+        query: listEvents, 
+        authMode: "AWS_IAM",
+        variables: {limit: 1000}
     }
+
+    const getFunction = useCallback(async () => {
+        try {
+            const response = await API.graphql(gqlQuery)
+            const objectKey = Object.keys(response.data).at(0)
+            setRequest({loading: false, data: response.data[objectKey].items, error: false})
+        } catch (error) {
+            console.log("Error loading API:", error)
+            setRequest({loading: false, data: null, error: true})
+        }
+    }, [])
+
+    useEffect(() => {
+        setRequest({loading: true, data: null, error: false})
+        getFunction()
+        return () => {setRequest({loading: false, data: null, error: false})}
+    }, [getFunction])
+
+    return request
 }
-
-export default function GetPlats(props) {
-    //    console.log(props)
-
-    return props
-}
-
-
-// export default function GetPlats({ posts = [] }) {
-//     const [posts, setPosts] = useState(posts);
-
-//     useEffect(() => {
-//         API.graphql({ query: listPlatforms }).then(({ data }) => setPosts(data.listPlatforms.items));
-//     }, [])
-
-//     return posts
-// }
