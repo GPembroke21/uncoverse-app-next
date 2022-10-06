@@ -69,15 +69,14 @@ const Header = () => {
     <ThemeProvider>
       <Wrapper>
         <LogoContainer>
-          <Logo>
-            <IconButton disableRipple>
-              <Link href="/">
+          <Link href="/" passHref>
+            <Logo>
+              <IconButton disableRipple>
                 <Image src="/uv-logo.png" alt='Uncoverse Logo' width="30rem" height="30rem" />
-              </Link>
-            </IconButton>
-          </Logo>
-          <Image src="/beta.png" alt='Uncoverse Logo' width="30rem" height="15rem"
-            onClick={() => console.log(plats)} />
+              </IconButton>
+            </Logo>
+          </Link>
+          <Image src="/beta.png" alt='Uncoverse Logo' width="30rem" height="15rem" />
         </LogoContainer>
         <RightContainer>
           <ConnectButton>Connect</ConnectButton>
