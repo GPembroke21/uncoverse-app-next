@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/fonts.css'
 import Box from "@mui/material/Box";
 import { styled } from "@mui/system";
 

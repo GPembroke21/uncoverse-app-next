@@ -15,10 +15,7 @@ const theme = createTheme({
   },
   },
   typography: {
-    fontFamily: [
-      "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue"
-    ].join(","),
+    fontFamily: "Helvetica Neue",
     h1: {
       font: "Helvetica Neue",
       fontSize: "min(3vw, 70px)",
