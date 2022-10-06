@@ -63,12 +63,12 @@ export default function ProfileDropdown() {
         <a>Guest</a>
         </MenuItem>
           <MenuItem onClick={handleClose} sx={{borderTopLeftRadius:"4px", borderTopRightRadius:"4px"}}>
-            <Link href="/account">
+            <Link href="/test">
               <a>Account</a>
             </Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link href="/account">
+            <Link href="/test">
               <a>Settings</a>
             </Link>
           </MenuItem>

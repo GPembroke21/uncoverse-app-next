@@ -28,7 +28,7 @@ const Main = styled("div")(({ theme }) => ({
   color: "#ffffff",
 }));
 
-export default function Lander() {
+export default function Test() {
   return (
     <ThemeProvider>
       <CssBaseline />
@@ -37,9 +37,6 @@ export default function Lander() {
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <HeaderBottom/>
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <AdBar/>
-        <Filters/>
-        <EventsList2/>
       </Wrapper>
     </ThemeProvider>
   )
