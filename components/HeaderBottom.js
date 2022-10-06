@@ -34,6 +34,7 @@ const Header = () => {
             <Typography variant="h4" sx={{color: "#5794f7"}}>&nbsp;10</Typography>
             <Typography variant="h4" style={{paddingLeft: "1rem"}}>Upcoming Events:</Typography>
             <Typography variant="h4" sx={{color: "#5794f7"}}>&nbsp;500</Typography>
+            <Typography variant="h4" sx={{color: "#5794f7"}}>&nbsp;TEST</Typography>
         </TickerContainer>
     </Wrapper>
     </ThemeProvider>
