@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {useEffect, useState, useCallback} from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import Table from '@mui/material/Table'
@@ -21,6 +21,8 @@ import FilterListIcon from '@mui/icons-material/FilterList'
 import { styled } from "@mui/system"
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
+import GetEvents from '../src/requests/GetEvents'
+import { platformLogos } from '../src/static/StaticVariables'
 
 function createData(name, date, time, users, category, image, location, description) {
   return {
@@ -42,7 +44,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-  const imageLoader=({src})=>`${row.image}`;
+  const imageLoader = ({ src }) => `${row.image}`;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -52,49 +54,55 @@ function Row(props) {
     setOpen(false);
   };
 
-const date = new Date(row.start_at);
-const formattedDate = date.toLocaleDateString('en-US', {
-  day: 'numeric', month: 'short'
-})
+  // console.log(props)
+  const date = new Date(row.dateTimeStart);
+  const formattedDate = date.toLocaleDateString('en-US', {
+    day: 'numeric', month: 'short'
+  })
 
-const time = new Date(row.start_at);
-const formattedTime = date.toLocaleTimeString('en-US', {
-  timeZone: 'EST', timezoneName: 'short', timeStyle: 'short'
-})
+  const time = new Date(row.dateTimeStart);
+  const formattedTime = date.toLocaleTimeString('en-US', {
+    timeZone: 'EST', timezoneName: 'short', timeStyle: 'short'
+  })
+
+  const platLogo = platformLogos[row.platformId]
 
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell component="th" scope="row" onClick={() => setOpen(!open)}>
           <Box position="relative" width="0.8rem" height="0.8rem" marginRight="-0.4rem">
-            <Image src="/DCLD_logo.png" alt='DCLD Logo' layout="fill" objectFit="contain" />
+            <Image src={platLogo} alt={row.platformId} layout="fill" objectFit="contain" />
           </Box>
         </TableCell>
-        <TableCell 
-          align="left" 
+        <TableCell
+          align="left"
           onClick={() => setOpen(!open)}
           sx={{
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis',
-              // height: '3rem',
-              maxWidth: '1rem',
-              // display: "-webkit-box",
-              // "-webkit-box-orient": "vertical",
-              // "-webkit-line-clamp": "2",
-              overflow: 'hidden',
-              // lineHeight: 'auto',
-              // maxHeight: '10rem',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            // height: '3rem',
+            maxWidth: '1rem',
+            // display: "-webkit-box",
+            // "-webkit-box-orient": "vertical",
+            // "-webkit-line-clamp": "2",
+            overflow: 'hidden',
+            // lineHeight: 'auto',
+            // maxHeight: '10rem',
           }}
-          >
-            {row.name}
+        >
+          {row.name}
         </TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)}>{formattedDate}, {formattedTime}</TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)}>{row.categories}</TableCell>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '10rem', overflow: 'hidden' }}>
+          {row.category}</TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
-          {row.total_attendees}
+          {row.totalAttendees}
         </TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
-          {row.coordinates}
+          <a href={row.url} target="_blank" rel="noreferrer noopener">
+            {row.locator}
+          </a>
         </TableCell>
         <TableCell align="right">
           <FavoriteButton />
@@ -120,27 +128,29 @@ const formattedTime = date.toLocaleTimeString('en-US', {
           </DialogContentText>
           <br />
           <DialogContentText sx={{ color: 'white' }}>
-            {row.start_at}
+            {formattedDate}, {formattedTime}
           </DialogContentText>
           <Divider />
           <DialogContentText sx={{ color: 'white' }}>
-            {row.categories}
+            {row.category}
           </DialogContentText>
           <Divider />
           <DialogContentText sx={{ color: 'white' }}>
-            {row.total_attendees}
+            {row.totalAttendees}
           </DialogContentText>
           <Divider />
           <DialogContentText sx={{ color: 'white' }}>
-            {row.coordinates}
+            <a href={row.url} target="_blank" rel="noreferrer noopener">
+              {row.locator}
+            </a>
           </DialogContentText>
           <Divider />
           <br />
-          <DialogContentText 
-            id="alert-dialog-slide-description" 
-            sx={{ fontSize: '1rem', color: 'white' }} 
-            style={{maxHeight: 200, overflow: 'auto'}}>
-              {row.description}
+          <DialogContentText
+            id="alert-dialog-slide-description"
+            sx={{ fontSize: '1rem', color: 'white' }}
+            style={{ maxHeight: 200, overflow: 'auto' }}>
+            {row.description}
           </DialogContentText>
         </DialogContent>
       </Dialog>
@@ -160,25 +170,29 @@ const rows = [
 
 export default function EventsList2() {
 
-  const [eventlist, setEventList] = useState([]);
+  // const [eventList, setEventList] = useState([]);
 
-  const getFunction = useCallback(async () => {
-      try {
-          const response = await fetch('https://events.decentraland.org/api/events')
-          const events = await response.json()
-          return setEventList(events.data)
-      } catch (error) {
-          console.log("Error loading API:", error)
-      }
-  }, [])
+  // const getFunction = useCallback(async () => {
+  //     try {
+  //         const response = await fetch('https://events.decentraland.org/api/events')
+  //         const events = await response.json()
+  //         return setEventList(events.data)
+  //     } catch (error) {
+  //         console.log("Error loading API:", error)
+  //     }
+  // }, [])
 
-  useEffect(() => {
-      getFunction()
-  }, [getFunction])
+  // useEffect(() => {
+  //     getFunction()
+  // }, [getFunction])
+
+
+  const eventList = GetEvents()
+
 
   return (
-    <TableContainer style={{overflowX: 'auto'}}>
-      <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem"}} aria-label="simple table">
+    <TableContainer style={{ overflowX: 'auto' }}>
+      <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem" }} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ borderBottom: "none" }}>
             <TableCell style={{ width: "2%" }}></TableCell>
@@ -190,15 +204,18 @@ export default function EventsList2() {
             <TableCell style={{ width: "2%" }}></TableCell>
           </TableRow>
         </TableHead>
-        <TableBody sx={{ backgroundColor: "black" }}>
-          {eventlist.map((row) => (
-            <Row
-              key={row.name}
-              row={row}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            />
-          ))}
-        </TableBody>
+        {eventList.data ?
+          <TableBody sx={{ backgroundColor: "black" }}>
+            {eventList.data.map((row) => (
+              <Row
+                key={row.id}
+                row={row}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              />
+            ))}
+          </TableBody> :
+          <TableBody />
+        }
       </Table>
     </TableContainer>
   )
