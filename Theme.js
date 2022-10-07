@@ -1,5 +1,6 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NextRequest } from "next/server";
+import Inter from "@fontsource/inter";
 
 const theme = createTheme({
   palette: {
@@ -15,45 +16,46 @@ const theme = createTheme({
   },
   },
   typography: {
-    fontFamily: "Helvetica Neue",
+    fontFamily:
+      "Inter",
     h1: {
-      font: "Helvetica Neue",
+      font: "Inter",
       fontSize: "min(3vw, 70px)",
       fontWeight: "bold",
       lineHeight: "1.15",
     },
     h2: {
-      font: "Helvetica Neue",
+      font: "Inter",
       fontSize: "min(3vw, 26.25px)",
       fontWeight: "200",
       lineHeight: "1.5",
     },
     h3: {
-      font: "Helvetica Neue",
+      font: "Inter",
       fontSize: "min(3vw, 20px)",
       fontWeight: "400",
       lineHeight: "1.5",
     },
     h4: {
-      font: "Helvetica Neue",
+      font: "Inter",
       fontSize: "min(2vw, 10px)",
-      fontWeight: "400",
+      fontWeight: "300",
       lineHeight: "1.5",
     },
     h5: {
-      font: "Helvetica Neue",
+      font: "Inter",
       fontSize: "16px",
       fontWeight: "300",
       lineHeight: "1.5",
     },
     h6: {
-      font: "Helvetica Neue",
+      font: "Inter",
       fontSize: "12px",
       fontWeight: "bold",
       lineHeight: "1.5",
     },
     h7: {
-      font: "Helvetica Neue",
+      font: "Inter",
       fontSize: "14px",
       fontWeight: "300",
       lineHeight: "1.5",
@@ -71,6 +73,7 @@ const theme = createTheme({
   components: {
     MuiCssBaseline: {
       "@global": {
+        '@font-face': [Inter],
         body: {
           backgroundImage:"",
         },
@@ -80,7 +83,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           transitionDuration: "0s",
-          fontFamily: "Helvetica Neue"
+          fontFamily: "Inter"
         },
       },
     },
