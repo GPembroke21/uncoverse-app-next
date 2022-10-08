@@ -19,6 +19,7 @@ import Divider from "@mui/material/Divider"
 import GetEvents from '../src/requests/GetEvents'
 import { platformLogos } from '../src/static/StaticVariables'
 import { styled } from "@mui/system"
+import InfopaneButtons from "./buttons/InfopaneButtons"
 
 const InfopaneRow = styled("div")(({ theme }) => ({
   display: "flex",
@@ -26,19 +27,6 @@ const InfopaneRow = styled("div")(({ theme }) => ({
   flexDirection: "row",
   alignItems: "center",
 }));
-
-function createData(name, date, time, users, category, image, location, description) {
-  return {
-    name,
-    date,
-    time,
-    users,
-    category,
-    image,
-    location,
-    description,
-  };
-}
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
@@ -124,7 +112,8 @@ function Row(props) {
           opacity: "100",
           backgroundColor: "black",
           width: '100vw',
-          height: '100vh'
+          height: '100vh',
+          mt: '-10px'
         }}
       >
         <DialogTitle sx={{ fontSize: '20px' }}>{row.name}</DialogTitle>
@@ -132,6 +121,7 @@ function Row(props) {
           <DialogContentText sx={{ color: 'white' }}>
             <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" />
           </DialogContentText>
+          <InfopaneButtons/>
           <br />
           <DialogContentText sx={{ color: 'white' }}>
             <InfopaneRow>
@@ -175,7 +165,7 @@ function Row(props) {
           <DialogContentText
             id="alert-dialog-slide-description"
             sx={{ fontSize: '1rem', color: 'white' }}
-            style={{ maxHeight: 200, overflow: 'auto' }}>
+            style={{ maxHeight: 280, overflow: 'auto' }}>
             {row.description}
           </DialogContentText>
         </DialogContent>
