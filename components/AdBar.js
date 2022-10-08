@@ -4,7 +4,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { styled } from "@mui/system"
-//hey
+
 const AdBarContainer = styled("div")(({ theme }) => ({
   // padding: "0rem 1rem",
   margin: "0rem 1rem -1rem 1rem",
@@ -33,7 +33,7 @@ export default function TitlebarBelowImageList() {
       rowHeight= "auto"
       >
       {itemData.map((item) => (
-        <ImageListItem key={item.img}>
+        <ImageListItem key={item.key}>
           <img
             src={`${item.img}?w=248&fit=crop&auto=format`}
             srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -55,26 +55,31 @@ export default function TitlebarBelowImageList() {
 
 const itemData = [
   {
+    key: 1,
     img: '/adbar1.jpg',
     title: 'Most Active Metaverse',
     subtitle: 'Event name goes here',
   },
   {
+    key: 2,
     img: '/adbar2.jpg',
     title: 'Creator Cafe',
     subtitle: 'Resources for creators',
   },
   {
+    key: 3,
     img: '/adbar1.jpg',
     title: 'Uncoverse Pod',
     subtitle: 'Perspectives on Web3',
   },
   {
+    key: 4,
     img: '/adbar2.jpg',
     title: 'Top Categories',
     subtitle: 'Most active categories',
   },
   {
+    key: 5,
     img: '/adbar1.jpg',
     title: 'Gaming',
     subtitle: 'Gaming subtitle',
