@@ -18,6 +18,14 @@ import DialogTitle from '@mui/material/DialogTitle'
 import Divider from "@mui/material/Divider"
 import GetEvents from '../src/requests/GetEvents'
 import { platformLogos } from '../src/static/StaticVariables'
+import { styled } from "@mui/system"
+
+const InfopaneRow = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "flex-start",
+  flexDirection: "row",
+  alignItems: "center",
+}));
 
 function createData(name, date, time, users, category, image, location, description) {
   return {
@@ -126,22 +134,41 @@ function Row(props) {
           </DialogContentText>
           <br />
           <DialogContentText sx={{ color: 'white' }}>
-            <Image src="/category.svg" alt='Category' width="12rem" height="12rem"/>
+            <InfopaneRow>
+              <Box sx={{marginRight:'10px'}}>
+                <Image src="/date.svg" alt='Category' width="12rem" height="12rem"/>
+              </Box>
             {formattedDate}, {formattedTime}
+            </InfopaneRow>
           </DialogContentText>
           <Divider />
           <DialogContentText sx={{ color: 'white' }}>
+            <InfopaneRow>
+              <Box sx={{marginRight:'10px'}}>
+                <Image src="/category.svg" alt='Category' width="12rem" height="12rem"/>
+              </Box>
             {row.category}
+            </InfopaneRow>
           </DialogContentText>
           <Divider />
           <DialogContentText sx={{ color: 'white' }}>
+            <InfopaneRow>
+              <Box sx={{marginRight:'10px'}}>
+                <Image src="/users.svg" alt='Category' width="12rem" height="12rem"/>
+              </Box>
             {row.totalAttendees}
+            </InfopaneRow>
           </DialogContentText>
           <Divider />
           <DialogContentText sx={{ color: 'white' }}>
+            <InfopaneRow>
+              <Box sx={{marginRight:'10px'}}>
+                <Image src="/location.svg" alt='Category' width="12rem" height="12rem"/>
+              </Box>
             <a href={row.url} target="_blank" rel="noreferrer noopener">
               {row.locator}
             </a>
+            </InfopaneRow>
           </DialogContentText>
           <Divider />
           <br />
