@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "uncoverseappnexte880bb60e880bb60": {}
+        "uncoverseappnexte880bb60e880bb60": {},
+        "userPoolGroups": {}
       }
     }
   }
