@@ -63,7 +63,7 @@ function Row(props) {
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell component="th" scope="row" onClick={() => setOpen(!open)}>
           <Box position="relative" width="max(1.8vw, 0.8rem)" height="max(1.8vw, 0.8rem)" maxWidth="3rem" maxHeight="3rem" marginRight="-0.4rem">
-            <Image src={platLogo} alt={row.platformId} layout="fill" objectFit="contain" />
+            <Image src={platLogo} alt={row.platformId} layout="fill" objectFit="contain" unoptimized={true} />
           </Box>
         </TableCell>
         <TableCell
@@ -119,45 +119,45 @@ function Row(props) {
         <DialogTitle sx={{ fontSize: '20px' }}>{row.name}</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ color: 'white' }}>
-            <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" />
+            <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} />
           </DialogContentText>
           <InfopaneButtons/>
           <br />
           <DialogContentText sx={{ color: 'white' }}>
             <InfopaneRow>
-              <Box sx={{marginRight:'10px'}}>
-                <Image src="/date.svg" alt='Category' width="12rem" height="12rem"/>
+              <Box sx={{ marginRight: '10px' }}>
+                <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-            {formattedDate}, {formattedTime}
+              {formattedDate}, {formattedTime}
             </InfopaneRow>
           </DialogContentText>
           <Divider />
           <DialogContentText sx={{ color: 'white' }}>
             <InfopaneRow>
-              <Box sx={{marginRight:'10px'}}>
-                <Image src="/category.svg" alt='Category' width="12rem" height="12rem"/>
+              <Box sx={{ marginRight: '10px' }}>
+                <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-            {row.category}
+              {row.category}
             </InfopaneRow>
           </DialogContentText>
           <Divider />
           <DialogContentText sx={{ color: 'white' }}>
             <InfopaneRow>
-              <Box sx={{marginRight:'10px'}}>
-                <Image src="/users.svg" alt='Category' width="12rem" height="12rem"/>
+              <Box sx={{ marginRight: '10px' }}>
+                <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-            {row.totalAttendees}
+              {row.totalAttendees}
             </InfopaneRow>
           </DialogContentText>
           <Divider />
           <DialogContentText sx={{ color: 'white' }}>
             <InfopaneRow>
-              <Box sx={{marginRight:'10px'}}>
-                <Image src="/location.svg" alt='Category' width="12rem" height="12rem"/>
+              <Box sx={{ marginRight: '10px' }}>
+                <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-            <a href={row.url} target="_blank" rel="noreferrer noopener">
-              {row.locator}
-            </a>
+              <a href={row.url} target="_blank" rel="noreferrer noopener">
+                {row.locator}
+              </a>
             </InfopaneRow>
           </DialogContentText>
           <Divider />
@@ -215,12 +215,12 @@ export default function EventsList2() {
             {eventList.data
               .sort((a, b) => a.dateTimeStart < b.dateTimeStart ? -1 : 1)
               .map((row) => (
-              <Row
-                key={row.id}
-                row={row}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              />
-            ))}
+                <Row
+                  key={row.id}
+                  row={row}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                />
+              ))}
           </TableBody> :
           <TableBody />
         }
