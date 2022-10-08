@@ -6,17 +6,21 @@ import { listEvents } from '../graphql/queries'
 Amplify.configure({ ...awsExports, ssr: true })
 
 
-export default function GetEvents(props) {
+export default function GetList(props) {
     const [request, setRequest] = useState({loading: false, data: null, error: false})
 
+    const queryVar = props.query
+    const queryLimit = props.limit
+
     const gqlQuery = {
-        query: listEvents, 
+        query: queryVar, 
         authMode: "AWS_IAM",
-        variables: {limit: 1000}
+        variables: {limit: queryLimit}
     }
 
     const getFunction = useCallback(async () => {
         try {
+            // const response = await API.graphql({query: queryVar, authMode: "AWS_IAM", variables: })
             const response = await API.graphql(gqlQuery)
             const objectKey = Object.keys(response.data).at(0)
             setRequest({loading: false, data: response.data[objectKey].items, error: false})

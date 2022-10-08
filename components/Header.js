@@ -8,7 +8,6 @@ import Link from 'next/link'
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import Divider from "@mui/material/Divider"
-import GetPlats from '../src/requests/GetEvents'
 
 const Wrapper = styled("div")(({ theme }) => ({
   width: "calc(100%)",
@@ -65,22 +64,19 @@ const ConnectButton = styled("button")(({ theme }) => ({
   }
 }));
 
-const plats = GetPlats()
-
 const Header = () => {
   return (
     <ThemeProvider>
       <Wrapper>
         <LogoContainer>
-          <Logo>
-            <IconButton disableRipple>
-              <Link href="/">
+          <Link href="/" passHref>
+            <Logo>
+              <IconButton disableRipple>
                 <Image src="/uv-logo.png" alt='Uncoverse Logo' width="30rem" height="30rem" />
-              </Link>
-            </IconButton>
-          </Logo>
-          <Image src="/beta.png" alt='Uncoverse Logo' width="30rem" height="15rem"
-            onClick={() => console.log(plats)} />
+              </IconButton>
+            </Logo>
+          </Link>
+          <Image src="/beta.png" alt='Uncoverse Logo' width="30rem" height="15rem" />
         </LogoContainer>
         <RightContainer>
           <ConnectButton>Connect</ConnectButton>
