@@ -37,7 +37,7 @@ const theme = createTheme({
     h4: {
       font: "Helvetica Neue",
       fontSize: "min(2vw, 10px)",
-      fontWeight: "300",
+      fontWeight: "400",
       lineHeight: "1.5",
     },
     h5: {

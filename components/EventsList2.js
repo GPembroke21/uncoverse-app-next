@@ -23,6 +23,7 @@ import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import GetEvents from '../src/requests/GetEvents'
 import { platformLogos } from '../src/static/StaticVariables'
+import MaterialTable from '@material-table/core'
 
 function createData(name, date, time, users, category, image, location, description) {
   return {
@@ -207,7 +208,9 @@ export default function EventsList2() {
         </TableHead>
         {eventList.data ?
           <TableBody sx={{ backgroundColor: "black" }}>
-            {eventList.data.map((row) => (
+            {eventList.data
+              .sort((a, b) => a.dateTimeStart < b.dateTimeStart ? -1 : 1)
+              .map((row) => (
               <Row
                 key={row.id}
                 row={row}
