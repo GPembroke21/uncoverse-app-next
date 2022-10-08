@@ -16,14 +16,8 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import Divider from "@mui/material/Divider"
-import TableSortLabel from '@mui/material/TableSortLabel'
-import FilterListIcon from '@mui/icons-material/FilterList'
-import { styled } from "@mui/system"
-import Paper from '@mui/material/Paper'
-import Grid from '@mui/material/Grid'
 import GetEvents from '../src/requests/GetEvents'
 import { platformLogos } from '../src/static/StaticVariables'
-import MaterialTable from '@material-table/core'
 
 function createData(name, date, time, users, category, image, location, description) {
   return {
@@ -72,7 +66,7 @@ function Row(props) {
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell component="th" scope="row" onClick={() => setOpen(!open)}>
-          <Box position="relative" width="0.8rem" height="0.8rem" marginRight="-0.4rem">
+          <Box position="relative" width="max(1.8vw, 0.8rem)" height="max(1.8vw, 0.8rem)" maxWidth="3rem" maxHeight="3rem" marginRight="-0.4rem">
             <Image src={platLogo} alt={row.platformId} layout="fill" objectFit="contain" />
           </Box>
         </TableCell>
@@ -94,14 +88,16 @@ function Row(props) {
         >
           {row.name}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)}>{formattedDate}, {formattedTime}</TableCell>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
+          {formattedDate}, {formattedTime}
+        </TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
           {row.category}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
           {row.totalAttendees}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' } }}>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
           <a href={row.url} target="_blank" rel="noreferrer noopener">
             {row.locator}
           </a>
@@ -130,6 +126,7 @@ function Row(props) {
           </DialogContentText>
           <br />
           <DialogContentText sx={{ color: 'white' }}>
+            <Image src="/category.svg" alt='Category' width="12rem" height="12rem"/>
             {formattedDate}, {formattedTime}
           </DialogContentText>
           <Divider />
@@ -159,16 +156,6 @@ function Row(props) {
     </React.Fragment>
   );
 }
-
-const rows = [
-  createData('Event1', "June 9th", "10:00 AM", 6, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
-  createData('Event2', "June 9th", "11:00 AM", 36, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
-  createData('Event3', "June 9th", "12:00 PM", 216, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
-  createData('Event4', "June 9th", "1:00 PM", 1296, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
-  createData('Event5', "June 9th", "2:00 PM", 7776, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
-  createData('Event6', "June 9th", "3:00 PM", 46656, "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
-  createData('Event7', "June 9th", "4:00 PM", "279K", "Circle Jerk", "img", "Decentraland 69, 420", "Description goes here"),
-];
 
 export default function EventsList2() {
 
