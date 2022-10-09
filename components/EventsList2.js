@@ -113,17 +113,18 @@ function Row(props) {
           backgroundColor: "black",
           width: '100vw',
           height: '100vh',
-          mt: '-10px'
         }}
+        // PaperProps={{ sx: { position: "fixed", top: 0, m: 0 } }}
       >
-        <DialogTitle sx={{ fontSize: '20px' }}>{row.name}</DialogTitle>
+        <DialogContent sx={{fontSize: '10px', color: 'white', mb: '-38px', mt:'-10px'}}>Metaverse_name</DialogContent>
+        <DialogTitle sx={{fontSize: '20px', mb: '-10px'}}>{row.name}</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ color: 'white' }}>
+          <DialogContentText sx={{ color: 'white', mb: '-10px' }}>
             <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} />
           </DialogContentText>
           <InfopaneButtons/>
-          <br />
-          <DialogContentText sx={{ color: 'white' }}>
+          {/* <br /> */}
+          <DialogContentText sx={{ color: 'white', mt: '15px' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
@@ -161,10 +162,10 @@ function Row(props) {
             </InfopaneRow>
           </DialogContentText>
           <Divider />
-          <br />
+          {/* <br /> */}
           <DialogContentText
             id="alert-dialog-slide-description"
-            sx={{ fontSize: '1rem', color: 'white' }}
+            sx={{ fontSize: '1rem', color: 'white', mt: '15px' }}
             style={{ maxHeight: 280, overflow: 'auto' }}>
             {row.description}
           </DialogContentText>

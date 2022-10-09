@@ -52,9 +52,17 @@ export default function ProfileDropdown() {
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
           open={open}
           onClose={handleClose}
-          sx={{marginLeft:"2px"}}
+          sx={{marginLeft:"1px"}}
           MenuListProps={{
             'aria-labelledby': 'basic-button',
           }}
