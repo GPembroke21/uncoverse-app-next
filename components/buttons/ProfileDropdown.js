@@ -3,7 +3,7 @@ import { styled } from "@mui/system"
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import ThemeProvider from "../Theme"
+import ThemeProvider from "../../Theme"
 import Link from 'next/link'
 
 const ProfileButton = styled("button")(({ theme }) => ({
@@ -71,13 +71,13 @@ export default function ProfileDropdown() {
         <a>Guest</a>
         </MenuItem>
           <MenuItem onClick={handleClose} sx={{borderTopLeftRadius:"4px", borderTopRightRadius:"4px"}}>
-            <Link href="/test">
-              <a>Account</a>
+            <Link href="/watchlist">
+              <a>Watchlist</a>
             </Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link href="/test">
-              <a>Settings</a>
+            <Link href="/account">
+              <a>Account</a>
             </Link>
           </MenuItem>
         </Menu>
