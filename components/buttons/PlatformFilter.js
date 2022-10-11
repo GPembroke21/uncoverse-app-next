@@ -46,7 +46,7 @@ export default function PlatformFilter() {
           'aria-labelledby': 'basic-button',
         }}
         sx={{
-          marginTop: "12.4px",
+          marginTop: "15px",
           // marginLeft: "-2.5px"
         }}
       >

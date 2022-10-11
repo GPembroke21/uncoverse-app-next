@@ -26,6 +26,22 @@ const Wrapper = styled("div")(({ theme }) => ({
 const Main = styled("div")(({ theme }) => ({
   minHeight: "100vh", 
   color: "#ffffff",
+  margin: "4vw 2em"
+}));
+
+const EditButton = styled("button")(({ theme }) => ({
+  fontFamily: "Helvetica Neue",
+  fontSize: "0.5rem",
+  fontWeight: "500",
+  textAlign: "center",
+  color: "white",
+  backgroundColor: "transparent",
+  border: "1px solid white",
+  borderRadius: "0.4rem",
+  width: "3rem",
+  padding: "0.46rem",
+  cursor: "pointer",
+  marginTop: "0.5rem",
 }));
 
 export default function Test() {
@@ -37,6 +53,24 @@ export default function Test() {
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <HeaderBottom/>
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
+        <Main>
+          <Grid
+            container
+            justifyContent="flex-start"
+            alignItems="center"
+            >
+            <Box position="relative" width="max(30vw, 0.8rem)" height="max(30vw, 0.8rem)" marginRight="10vw">
+              <Image src='/profile.svg' layout="fill" objectFit="contain" unoptimized={true} />
+            </Box>
+            <Box>
+              <Typography>Guest</Typography>
+              <Typography sx={{fontSize: '3vw', color: '#2e2e2e'}}>@guest69</Typography>
+              <Typography sx={{fontSize: '1.8vw'}}>Joined Uncoverse December 2022</Typography>
+              <EditButton>Edit</EditButton>
+            </Box>
+          </Grid>
+            <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px", marginTop: "4vw"}} />
+        </Main>
       </Wrapper>
     </ThemeProvider>
   )

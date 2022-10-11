@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from "@mui/system"
-import ProfileDropdown from './ProfileDropdown'
+import ProfileDropdown from './buttons/ProfileDropdown'
 import Image from 'next/image'
 import IconButton from '@mui/material/Button'
 import ThemeProvider from "../Theme"
