@@ -25,7 +25,7 @@ const Wrapper = styled("div")(({ theme }) => ({
 }));
 
 const Main = styled(Grid)(({ theme }) => ({
-  minHeight: "100vh", 
+  // minHeight: "100vh", 
   color: "#ffffff",
   justifyContent: "center",
   alignItems: "top",
@@ -43,16 +43,16 @@ export default function Watchlist() {
         <HeaderBottom/>
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <Main container>
-          <Grid item>
+          <Grid item sx={{margin: "auto"}}>
             <FavoriteEvents/>
           </Grid>
-          <Grid item>
+          <Grid item sx={{margin: "auto"}}>
             <FavoriteEvents/>
           </Grid>
-          <Grid item>
+          <Grid item sx={{margin: "auto"}}>
             <FavoriteEvents/>
           </Grid>
-          <Grid item>
+          <Grid item sx={{margin: "auto"}}>
             <FavoriteEvents/>
           </Grid>
         </Main>

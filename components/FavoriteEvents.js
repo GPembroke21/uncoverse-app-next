@@ -66,8 +66,8 @@ export default function RecipeReviewCard() {
       <CardActions disableSpacing sx={{height:'40px', backgroundColor: '#1a1c1f'}}>
         <Grid
           container
-          justifyContent="flex-start"
-          alignItems="center"
+          // justifyContent="flex-start"
+          // alignItems="center"
           marginLeft={1.2}
         >
           <Typography variant='h4'>Users: 69</Typography>
