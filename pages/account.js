@@ -59,7 +59,7 @@ export default function Test() {
             justifyContent="flex-start"
             alignItems="center"
             >
-            <Box position="relative" width="max(30vw, 0.8rem)" height="max(30vw, 0.8rem)" marginRight="10vw">
+            <Box position="relative" width="max(22vw, 0.8rem)" height="max(22vw, 0.8rem)" marginRight="8vw" marginLeft="4vw">
               <Image src='/profile.svg' layout="fill" objectFit="contain" unoptimized={true} />
             </Box>
             <Box>

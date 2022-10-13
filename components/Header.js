@@ -40,7 +40,7 @@ const RightContainer = styled("div")(({ theme }) => ({
 }));
 
 const ConnectButton = styled("button")(({ theme }) => ({
-  fontFamily: "Helvetica Neue",
+  fontFamily: "Inter",
   fontSize: "0.8rem",
   fontWeight: "500",
   textAlign: "center",

@@ -24,12 +24,16 @@ const Wrapper = styled("div")(({ theme }) => ({
   background: "#000000",
 }));
 
-const Main = styled("div")(({ theme }) => ({
+const Main = styled(Grid)(({ theme }) => ({
   minHeight: "100vh", 
   color: "#ffffff",
+  justifyContent: "center",
+  alignItems: "top",
+  direction: "column",
 }));
 
-export default function Test() {
+
+export default function Watchlist() {
   return (
     <ThemeProvider>
       <CssBaseline />
@@ -38,7 +42,20 @@ export default function Test() {
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <HeaderBottom/>
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <FavoriteEvents/>
+        <Main container>
+          <Grid item>
+            <FavoriteEvents/>
+          </Grid>
+          <Grid item>
+            <FavoriteEvents/>
+          </Grid>
+          <Grid item>
+            <FavoriteEvents/>
+          </Grid>
+          <Grid item>
+            <FavoriteEvents/>
+          </Grid>
+        </Main>
       </Wrapper>
     </ThemeProvider>
   )

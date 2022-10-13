@@ -7,7 +7,7 @@ import ThemeProvider from "../../Theme"
 import Link from 'next/link'
 
 const ProfileButton = styled("button")(({ theme }) => ({
-    fontFamily: "Helvetica Neue",
+    fontFamily: "Inter",
     fontSize: "0.8rem",
     fontWeight: "500",
     textAlign: "center",
