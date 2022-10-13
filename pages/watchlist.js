@@ -1,3 +1,6 @@
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -15,7 +18,7 @@ import Filters from '../components/Filters'
 import EventsList2 from '../components/EventsList2'
 import AdBar from '../components/AdBar'
 import Box from "@mui/material/Box"
-import FavoriteEvents from "../components/FavoriteEvents"
+import FavoriteEventCard from "../components/FavoriteEvents"
 
 const Wrapper = styled("div")(({ theme }) => ({
   // height: "100vh",
@@ -44,16 +47,16 @@ export default function Watchlist() {
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <Main container>
           <Grid item sx={{margin: "auto"}}>
-            <FavoriteEvents/>
+            <FavoriteEventCard/>
           </Grid>
           <Grid item sx={{margin: "auto"}}>
-            <FavoriteEvents/>
+            <FavoriteEventCard/>
           </Grid>
           <Grid item sx={{margin: "auto"}}>
-            <FavoriteEvents/>
+            <FavoriteEventCard/>
           </Grid>
           <Grid item sx={{margin: "auto"}}>
-            <FavoriteEvents/>
+            <FavoriteEventCard/>
           </Grid>
         </Main>
       </Wrapper>
