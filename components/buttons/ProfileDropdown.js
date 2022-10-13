@@ -70,7 +70,7 @@ export default function ProfileDropdown() {
         <MenuItem sx={{ borderBottom: "1px solid #282b2f"}} style={{ pointerEvents: 'none' }}>
         <a>Guest</a>
         </MenuItem>
-          <MenuItem onClick={handleClose} sx={{borderTopLeftRadius:"4px", borderTopRightRadius:"4px"}}>
+          <MenuItem onClick={handleClose}>
             <Link href="/watchlist">
               <a>Watchlist</a>
             </Link>

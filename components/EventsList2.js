@@ -62,7 +62,7 @@ function Row(props) {
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell component="th" scope="row" onClick={() => setOpen(!open)}>
-          <Box position="relative" width="max(1.8vw, 0.8rem)" height="max(1.8vw, 0.8rem)" maxWidth="3rem" maxHeight="3rem" marginRight="-0.4rem">
+          <Box position="relative" width="clamp(0.8rem, 1.8vw, 1.2rem)" height="clamp(0.8rem, 1.8vw, 1.2rem)" maxWidth="3rem" maxHeight="3rem" marginRight="-0.4rem">
             <Image src={platLogo} alt={row.platformId} layout="fill" objectFit="contain" unoptimized={true} />
           </Box>
         </TableCell>
