@@ -72,7 +72,7 @@ const Header = () => {
           <Link href="/" passHref>
             <Logo>
               <IconButton disableRipple>
-                <Image src="/uv-logo.png" alt='Uncoverse Logo' width="30rem" height="30rem" />
+                <Image src="/uv-logo.svg" alt='Uncoverse Logo' width="30rem" height="30rem"/>
               </IconButton>
             </Logo>
           </Link>

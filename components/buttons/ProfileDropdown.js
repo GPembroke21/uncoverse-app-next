@@ -76,8 +76,8 @@ export default function ProfileDropdown() {
             </Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link href="/account">
-              <a>Account</a>
+            <Link href="/profile">
+              <a>Profile</a>
             </Link>
           </MenuItem>
         </Menu>
