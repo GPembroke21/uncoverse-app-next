@@ -37,24 +37,20 @@ function Row(props) {
   const [open, setOpen] = React.useState(false);
   const imageLoader = ({ src }) => `${row.image}`;
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleClickOpen = () => { setOpen(true); };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleClose = () => { setOpen(false); };
 
-  // console.log(props)
-  const date = new Date(row.dateTimeStart);
-  const formattedDate = date.toLocaleDateString('en-US', {
-    day: 'numeric', month: 'short'
-  })
+  const currentTime = new Date();
+  const dateTimeStart = new Date(row.dateTimeStart);
+  const dateTimeEnd = new Date(row.dateTimeEnd);
+  const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+  const formattedEndDate = dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+  const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
+  const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
 
-  const time = new Date(row.dateTimeStart);
-  const formattedTime = date.toLocaleTimeString('en-US', {
-    timeZone: 'EST', timezoneName: 'short', timeStyle: 'short'
-  })
+
+  // if (dateTimeStart > currentTime) { console.log ("Upcoming", row.name, dateTimeStart, currentTime)}
 
   const platLogo = platformLogos[row.platformId]
 
@@ -66,26 +62,17 @@ function Row(props) {
             <Image src={platLogo} alt={row.platformId} layout="fill" objectFit="contain" unoptimized={true} />
           </Box>
         </TableCell>
-        <TableCell
-          align="left"
-          onClick={() => setOpen(!open)}
-          sx={{
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
-            // height: '3rem',
-            maxWidth: '1rem',
-            // display: "-webkit-box",
-            // "-webkit-box-orient": "vertical",
-            // "-webkit-line-clamp": "2",
-            overflow: 'hidden',
-            // lineHeight: 'auto',
-            // maxHeight: '10rem',
-          }}
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+          maxWidth: '1rem',
+          overflow: 'hidden',
+        }}
         >
           {row.name}
         </TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
-          {formattedDate}, {formattedTime}
+          {formattedStartDate}, {formattedStartTime}
         </TableCell>
         <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
           {row.category}
@@ -114,22 +101,22 @@ function Row(props) {
           width: '100vw',
           height: '100vh',
         }}
-        // PaperProps={{ sx: { position: "fixed", top: 0, m: 0 } }}
+      // PaperProps={{ sx: { position: "fixed", top: 0, m: 0 } }}
       >
-        <DialogContent sx={{fontSize: '10px', color: 'white', mb: '-38px', mt:'-10px'}}>Metaverse_name</DialogContent>
-        <DialogTitle sx={{fontSize: '20px', mb: '-10px'}}>{row.name}</DialogTitle>
+        <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-38px', mt: '-10px' }}>Metaverse_name</DialogContent>
+        <DialogTitle sx={{ fontSize: '20px', mb: '-10px' }}>{row.name}</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ color: 'white', mb: '-10px' }}>
             <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} />
           </DialogContentText>
-          <InfopaneButtons/>
+          <InfopaneButtons />
           {/* <br /> */}
           <DialogContentText sx={{ color: 'white', mt: '15px' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-              {formattedDate}, {formattedTime}
+              {formattedStartDate}, {formattedStartTime}
             </InfopaneRow>
           </DialogContentText>
           <Divider />
