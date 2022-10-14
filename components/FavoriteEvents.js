@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -14,10 +16,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import FavoriteButton from './buttons/FavoriteButton'
-import Divider from '@mui/material/Divider'
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
+import FavoriteButton from './buttons/FavoriteButton';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,7 +33,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function FavoriteEventCard() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -53,9 +56,9 @@ export default function RecipeReviewCard() {
       />
       <CardHeader
         action={
-          <IconButton>
+          <Grid margin={'6px 10px 0px 0px'}>
             <FavoriteButton/>
-          </IconButton>
+          </Grid>
         }
         title="Event Name"
         subheader="October 10, 2022"
@@ -66,8 +69,8 @@ export default function RecipeReviewCard() {
       <CardActions disableSpacing sx={{height:'40px', backgroundColor: '#1a1c1f'}}>
         <Grid
           container
-          justifyContent="flex-start"
-          alignItems="center"
+          // justifyContent="flex-start"
+          // alignItems="center"
           marginLeft={1.2}
         >
           <Typography variant='h4'>Users: 69</Typography>
