@@ -76,7 +76,7 @@ const Header = () => {
               </IconButton>
             </Logo>
           </Link>
-          <Image src="/beta.png" alt='Uncoverse Logo' width="30rem" height="15rem" />
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" />
         </LogoContainer>
         <RightContainer>
           <ConnectButton>Connect</ConnectButton>

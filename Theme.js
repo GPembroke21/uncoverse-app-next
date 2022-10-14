@@ -262,6 +262,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiCardHeader: {
+      styleOverrides: {
+        avatar: {
+          margin: '0px 12px 0px -3px',
+        },
+      },
+    },
   },
 });
 
