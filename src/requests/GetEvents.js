@@ -19,6 +19,8 @@ export default function GetEvents(props) {
         try {
             const response = await API.graphql(gqlQuery)
             const objectKey = Object.keys(response.data).at(0)
+            // console.log("fetch:", response.data[objectKey].items[0].dateTimeEnd)
+            // console.log("type:",typeof response.data[objectKey].items[0].dateTimeEnd)
             setRequest({loading: false, data: response.data[objectKey].items, error: false})
         } catch (error) {
             console.log("Error loading API:", error)
