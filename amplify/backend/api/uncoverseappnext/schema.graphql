@@ -4,13 +4,17 @@ type Todo @model @auth(rules: [{ allow: public, provider: iam }]){
   description: String
 }
 
-type Platform @model @auth(rules: [{ allow: public, provider: iam }]) {
+type Platform @model @auth(rules: [
+  { allow: public, provider: iam, operations: [read] }
+  { allow: private, provider: iam, operations: [read] } ]) {
   id: ID!
   name: String!
   imageId: String!
 }
 
-type Event @model @auth(rules: [{ allow: public, provider: iam }]) {
+type Event @model @auth(rules: [
+  { allow: public, provider: iam, operations: [read] }
+  { allow: private, provider: iam, operations: [read] } ]) {
   id: ID!
   platformId: ID!
   apiId: String
@@ -25,4 +29,11 @@ type Event @model @auth(rules: [{ allow: public, provider: iam }]) {
   createdByUser: String
   locator: String
   url: String
+}
+
+type Interaction @model @auth(rules: [ { allow: private, provider: iam, operations: [create, read, update] } ]) {
+  id: ID!
+  registeredUserId: String
+  eventId: String!
+  favorite: Boolean
 }
