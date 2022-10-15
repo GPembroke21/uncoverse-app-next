@@ -42,7 +42,9 @@ export default function FavoriteEventCard() {
 
   return (
     <Card sx={{ 
-      maxWidth: 336,
+      // maxWidth: 450,
+      // minWidth: 300,
+      width: 1,
       backgroundColor: "#282b2f",
       color: "white",
       borderRadius: "15px",
