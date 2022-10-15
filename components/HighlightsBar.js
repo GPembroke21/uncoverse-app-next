@@ -1,20 +1,13 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Head from 'next/head'
 import Image from 'next/image'
 import { styled } from "@mui/system"
 import ThemeProvider from "../Theme"
 import Grid from "@mui/material/Grid"
-import Link from 'next/link'
 import CssBaseline from '@mui/material/CssBaseline'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import Box from "@mui/material/Box"
 import Divider from '@mui/material/Divider';
 
 const Wrapper = styled("div")(({ theme }) => ({
@@ -30,7 +23,7 @@ const Main = styled(Grid)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "top",
   direction: "column",
-  marginTop: "4px"
+  marginTop: "4px",
 }));
 
 
@@ -38,7 +31,7 @@ export default function HighlightsBar() {
   return (
     <ThemeProvider>
     <CssBaseline />
-      <Wrapper>
+      <Wrapper sx={{ display: { xs: 'none', sm: 'revert' } }}>
         <Main container>
           <Grid item flexGrow={1} padding={'0em 0.25em 0em 0.9em'} sx={{margin: "auto"}}>
             <Card sx={{ 
@@ -58,12 +51,12 @@ export default function HighlightsBar() {
                 <CardContent>
                     <Grid container marginTop={-1} marginBottom={-1.5}>
                         <Grid item marginRight={2}>
-                            <Typography variant="body2" color="white">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
                                 1<br/>2<br/>3
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography variant="body2" color="white">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
                                 Event_Name<br/>Event_Name<br/>Event_Name
                             </Typography>
                         </Grid>
@@ -89,12 +82,12 @@ export default function HighlightsBar() {
                 <CardContent>
                     <Grid container marginTop={-1} marginBottom={-1.5}>
                         <Grid item marginRight={2}>
-                            <Typography variant="body2" color="white">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
                                 1<br/>2<br/>3
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography variant="body2" color="white">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
                                 Creator_Name<br/>Creator_Name<br/>Creator_Name
                             </Typography>
                         </Grid>
@@ -120,12 +113,12 @@ export default function HighlightsBar() {
                 <CardContent>
                     <Grid container marginTop={-1} marginBottom={-1.5}>
                         <Grid item marginRight={2}>
-                            <Typography variant="body2" color="white">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
                                 1<br/>2<br/>3
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography variant="body2" color="white">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
                                 Category<br/>Category<br/>Category
                             </Typography>
                         </Grid>

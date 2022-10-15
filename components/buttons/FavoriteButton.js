@@ -3,6 +3,8 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export default function FavoriteButton() {
 
@@ -15,7 +17,7 @@ export default function FavoriteButton() {
         onClick={() => { setFav(!fav) }} 
         style={{ padding: 0, marginLeft: "-0.4rem" }}
         >
-            <StarBorderRoundedIcon 
+            <FavoriteBorderIcon 
             style={{height: "clamp(0.8rem, 2vw, 1.1rem)", width: "clamp(0.8rem, 2vw, 1.1rem)"}}
             />
         </IconButton>
@@ -25,7 +27,7 @@ export default function FavoriteButton() {
         onClick={() => { setFav(!fav) }} 
         style={{ padding: 0, marginLeft: "-0.4rem" }}
         >
-            <StarRoundedIcon 
+            <FavoriteIcon 
             style={{height: "clamp(0.8rem, 2vw, 1.1rem)", width: "clamp(0.8rem, 2vw, 1.1rem)"}}
             />
         </IconButton>
