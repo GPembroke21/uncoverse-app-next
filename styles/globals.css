@@ -19,8 +19,41 @@ a {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
     background: black;
   }
+}
+
+.transition_a {
+  position: fixed;
+  background-color: #000000b7;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+}
+
+.transition_b {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  background-color: #ffffff;
+  width: 30rem;
+  max-width: 100vw;
+  height: 100%;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.auth_transition_b {
+  position: fixed;
+  top: 0;
+  left: 40%;
+  z-index: 50;
+  max-width: 100vw;
+  height: 100%;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }

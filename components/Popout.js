@@ -17,11 +17,11 @@ export default function Popout(props) {
         
 
     return (
-        <div>
+        <div onClick={() => console.log("ABC23")}>
             { logIn ?
-                <SignInForm signUpForm={() => setLogIn(false)}/>
+                <SignInForm signUpForm={() => setLogIn(false)} closeMenu={props.closeMenu}/>
                 :
-                <SignUpForm signInForm={() => setLogIn(true)}/>
+                <SignUpForm signInForm={() => setLogIn(true)} closeMenu={props.closeMenu}/>
             }
         </div>
     )

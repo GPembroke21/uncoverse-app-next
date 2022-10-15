@@ -9,6 +9,8 @@ import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import Divider from "@mui/material/Divider"
 import ConnectButton from './ConnectButton'
+import Navigation from './Navigation'
+import AuthPopup from './AuthPopup'
 
 const Wrapper = styled("div")(({ theme }) => ({
   width: "calc(100%)",
@@ -40,32 +42,29 @@ const RightContainer = styled("div")(({ theme }) => ({
   alignItems: "center",
 }));
 
-// const ConnectButton = styled("button")(({ theme }) => ({
-//   fontFamily: "Inter",
-//   fontSize: "0.8rem",
-//   fontWeight: "500",
-//   textAlign: "center",
-//   color: "white",
-//   backgroundColor: "transparent",
-//   border: "1px solid white",
-//   borderRadius: "0.4rem",
-//   width: "7rem",
-//   padding: "0.46rem",
-//   cursor: "pointer",
-//   marginRight: "1rem",
-//   /*backgroundImage: "linear-gradient(60deg, #eb6134, #FFC312, #e600ff)",
-//   backgroundSize: '200%',
-//   transition: "0.4s",
-//   "&:hover": {
-//     backgroundPosition: "right",
-//   }*/
-//   "&:hover": {
-//     border: "1px solid #dd00ff",
-//     color: "#dd00ff",
-//   }
-// }));
+const ConnectButtonStyled = styled("button")(({ theme }) => ({
+  fontFamily: "Inter",
+  fontSize: "0.8rem",
+  fontWeight: "500",
+  textAlign: "center",
+  color: "white",
+  backgroundColor: "transparent",
+  border: "1px solid white",
+  borderRadius: "0.4rem",
+  width: "7rem",
+  padding: "0.46rem",
+  cursor: "pointer",
+  marginRight: "1rem",
+  "&:hover": {
+    border: "1px solid #dd00ff",
+    color: "#dd00ff",
+  }
+}));
+
 
 const Header = () => {
+  const [headerOpen, setHeaderOpen] = React.useState(false)
+
   return (
     <ThemeProvider>
       <Wrapper>
@@ -73,19 +72,21 @@ const Header = () => {
           <Link href="/" passHref>
             <Logo>
               <IconButton disableRipple>
-                <Image src="/uv-logo.svg" alt='Uncoverse Logo' width="30rem" height="30rem"/>
+                <Image src="/uv-logo.svg" alt='Uncoverse Logo' width="30rem" height="30rem" />
               </IconButton>
             </Logo>
           </Link>
           <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" />
         </LogoContainer>
         <RightContainer>
-          {/* <ConnectButton>Connect</ConnectButton> */}
-          <ConnectButton />
+          <div>
+            <ConnectButtonStyled onClick={() => setHeaderOpen(!headerOpen)}>Connect</ConnectButtonStyled>
+            <AuthPopup open={headerOpen} setOpen={() => setHeaderOpen(!headerOpen)} />
+          </div>
           <ProfileDropdown />
         </RightContainer>
       </Wrapper>
-    </ThemeProvider>
+    </ThemeProvider >
   )
 }
 
