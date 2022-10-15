@@ -73,11 +73,11 @@ const Header = () => {
           <Link href="/" passHref>
             <Logo>
               <IconButton disableRipple>
-                <Image src="/uv-logo.png" alt='Uncoverse Logo' width="30rem" height="30rem" />
+                <Image src="/uv-logo.svg" alt='Uncoverse Logo' width="30rem" height="30rem"/>
               </IconButton>
             </Logo>
           </Link>
-          <Image src="/beta.png" alt='Uncoverse Logo' width="30rem" height="15rem" />
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" />
         </LogoContainer>
         <RightContainer>
           {/* <ConnectButton>Connect</ConnectButton> */}
