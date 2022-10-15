@@ -133,3 +133,39 @@ export const onDeleteEvent = /* GraphQL */ `
     }
   }
 `;
+export const onCreateInteraction = /* GraphQL */ `
+  subscription OnCreateInteraction {
+    onCreateInteraction {
+      id
+      registeredUserId
+      eventId
+      favorite
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateInteraction = /* GraphQL */ `
+  subscription OnUpdateInteraction {
+    onUpdateInteraction {
+      id
+      registeredUserId
+      eventId
+      favorite
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteInteraction = /* GraphQL */ `
+  subscription OnDeleteInteraction {
+    onDeleteInteraction {
+      id
+      registeredUserId
+      eventId
+      favorite
+      createdAt
+      updatedAt
+    }
+  }
+`;

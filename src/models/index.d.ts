@@ -16,6 +16,10 @@ type EventMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type InteractionMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class Todo {
   readonly id: string;
   readonly name: string;
@@ -55,4 +59,15 @@ export declare class Event {
   readonly updatedAt?: string;
   constructor(init: ModelInit<Event, EventMetaData>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event, EventMetaData>) => MutableModel<Event, EventMetaData> | void): Event;
+}
+
+export declare class Interaction {
+  readonly id: string;
+  readonly registeredUserId?: string;
+  readonly eventId: string;
+  readonly favorite?: boolean;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Interaction, InteractionMetaData>);
+  static copyOf(source: Interaction, mutator: (draft: MutableModel<Interaction, InteractionMetaData>) => MutableModel<Interaction, InteractionMetaData> | void): Interaction;
 }
