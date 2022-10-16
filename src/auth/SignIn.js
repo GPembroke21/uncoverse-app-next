@@ -61,7 +61,7 @@ export const SignInForm = (props) => {
 
     const paperStyle = { 
         padding: 20, 
-        height: '70vh', 
+        height: '35em', 
         width: '25rem', 
         maxWidth: '90vw', 
         margin: '3rem auto',
@@ -115,13 +115,13 @@ export const SignInForm = (props) => {
                 />
                 <SignInButton variant='contained' fullWidth>Sign In</SignInButton>
                 <Typography>
-                    <Link href="#" color="inherit">
+                    <Link href="#" color="inherit" sx={{'&:hover': {color : '#dd00ff'}}}>
                         Forgot password?
                     </Link>
                 </Typography>
                 <Typography style={{margin: '0.5rem 0'}} color='white'> 
                     Don't have an account? &nbsp;
-                    <Link href="#" onClick={props.signUpForm} color="inherit">Sign up here</Link>
+                    <Link href="#" onClick={props.signUpForm} color="inherit" sx={{'&:hover': {color : '#dd00ff'}}}>Sign up here</Link>
                 </Typography>
             </Paper>
         </Grid>
