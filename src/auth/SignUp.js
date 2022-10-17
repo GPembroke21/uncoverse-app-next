@@ -95,7 +95,7 @@ export async function resendConfirmationCode() {
 export const SignUpForm = (props) => {
     const paperStyle = { 
         padding: 20, 
-        height: '35em', 
+        height: '32em', 
         width: '25rem', 
         maxWidth: '90vw', 
         margin: '3rem auto',
@@ -111,12 +111,12 @@ export const SignUpForm = (props) => {
         <Grid style={bgColor} sx= {{borderRadius: "15px"}}>
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
-                    <Avatar style={avatarStyle}> <LockOutlined /> </Avatar>
+                    {/* <Avatar style={avatarStyle}> <LockOutlined /> </Avatar> */}
                     <Typography color="white" variant="h2">Sign Up</Typography>
                 </Grid>
                 <TextFields 
                     style={buttonStyle} 
-                    label="Email" 
+                    // label="Email" 
                     placeholder="Enter email" 
                     fullWidth 
                     required
@@ -125,7 +125,7 @@ export const SignUpForm = (props) => {
                 />
                 <TextFields 
                     style={buttonStyle} 
-                    label="Select password" 
+                    // label="Select password" 
                     placeholder="Select password" 
                     type='password' 
                     fullWidth 
@@ -135,7 +135,7 @@ export const SignUpForm = (props) => {
                 />
                 <TextFields 
                     style={buttonStyle} 
-                    label="Confirm password" 
+                    // label="Confirm password" 
                     placeholder="Confirm password" 
                     type='password' 
                     fullWidth 

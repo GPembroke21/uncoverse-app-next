@@ -61,7 +61,7 @@ export const SignInForm = (props) => {
 
     const paperStyle = { 
         padding: 20, 
-        height: '35em', 
+        height: '32em', 
         width: '25rem', 
         maxWidth: '90vw', 
         margin: '3rem auto',
@@ -76,12 +76,12 @@ export const SignInForm = (props) => {
         <Grid style={bgColor} sx= {{borderRadius: "15px"}}>
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
-                    <Avatar style={avatarStyle}> <LockOutlined /> </Avatar>
+                    {/* <Avatar style={avatarStyle}> <LockOutlined /> </Avatar> */}
                     <Typography color="white" variant="h2">Sign In</Typography>
                 </Grid>
                 <TextFields 
                     style={buttonStyle} 
-                    label="Email" 
+                    // label="Email" 
                     placeholder="Enter email" 
                     fullWidth 
                     required 
@@ -90,7 +90,7 @@ export const SignInForm = (props) => {
                 />
                 <TextFields 
                     style={buttonStyle} 
-                    label="Password" 
+                    // label="Password" 
                     placeholder="Enter password" 
                     type='password' 
                     fullWidth 
