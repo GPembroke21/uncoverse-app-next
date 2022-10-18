@@ -29,12 +29,12 @@ const Main = styled("div")(({ theme }) => ({
   color: "#ffffff",
 }));
 
-export default function Lander() {
+export default function Lander(props) {
   return (
     <ThemeProvider>
       <CssBaseline />
       <Wrapper>
-        <Header/>
+        <Header logInStatus={props.logInStatus}/>
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <HeaderBottom/>
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />

@@ -1,3 +1,4 @@
+import React from "react";
 import { Auth, Hub } from 'aws-amplify';
 import { Avatar, Button, FormControlLabel, Grid, Link, Paper, TextField, Typography } from "@mui/material";
 import { CheckBox, LockOutlined } from "@mui/icons-material";
@@ -17,8 +18,8 @@ const SignUpButton = styled(Button)(({ theme }) => ({
     cursor: "pointer",
     margin: "12px 0px",
     "&:hover": {
-      border: "1px solid #dd00ff",
-      color: "#dd00ff",
+        border: "1px solid #dd00ff",
+        color: "#dd00ff",
     }
 }));
 
@@ -26,37 +27,35 @@ const TextFields = styled(TextField)(({ theme }) => ({
     caretColor: "white",
     '& label.Mui-focused': {
         color: 'white',
-      },
-      '& .MuiInput-underline:after': {
+    },
+    '& .MuiInput-underline:after': {
         borderBottomColor: 'white',
-      },
-      '& .MuiOutlinedInput-root': {
+    },
+    '& .MuiOutlinedInput-root': {
         '& fieldset': {
-          borderColor: 'white',
-          
+            borderColor: 'white',
+
         },
         '&:hover fieldset': {
-          borderColor: 'white',
+            borderColor: 'white',
         },
         '&.Mui-focused fieldset': {
-          borderColor: 'white',
+            borderColor: 'white',
         },
-      },
-      "& .MuiInputLabel-root": {
-        color: 'white', 
-      },
+    },
+    "& .MuiInputLabel-root": {
+        color: 'white',
+    },
 }));
 
-export async function signUp() {
+async function signUp(props) {
     try {
         const { user } = await Auth.signUp({
-            password,
-            attributes: { email },
-            autoSignIn: {
-                enabled: true,
-            }
+            username: props.un,
+            password: props.pw,
+            attributes: { email: props.un },
+            autoSignIn: { enabled: true }
         });
-        console.log(user);
     } catch (error) {
         console.log('error signing up:', error);
     }
@@ -74,18 +73,18 @@ export function listenToAutoSignInEvent() {
     })
 }
 
-export async function confirmSignUp() {
+async function confirmSignUp(props) {
     try {
-        await Auth.confirmSignUp(username, code);
+        await Auth.confirmSignUp(props.un, props.code);
     } catch (error) {
         console.log('error confirming sign up', error);
     }
 }
 
 
-export async function resendConfirmationCode() {
+async function resendConfirmationCode(props) {
     try {
-        await Auth.resendSignUp(username);
+        await Auth.resendSignUp(props.un);
         console.log('code resent successfully');
     } catch (err) {
         console.log('error resending code: ', err);
@@ -93,63 +92,88 @@ export async function resendConfirmationCode() {
 }
 
 export const SignUpForm = (props) => {
-    const paperStyle = { 
-        padding: 20, 
-        height: '32em', 
-        width: '25rem', 
-        maxWidth: '90vw', 
+    const [confirming, setConfirming] = React.useState(false)
+    const [username, setUsername] = React.useState("")
+
+    const paperStyle = {
+        padding: 20,
+        height: '32em',
+        width: '25rem',
+        maxWidth: '90vw',
         margin: '3rem auto',
         border: "2px solid #2e2e2e",
-        borderRadius: "15px", 
+        borderRadius: "15px",
     }
-    const bgColor = {backgroundColor:"black"}
-    const avatarStyle = {backgroundColor:"white"}
-    const buttonStyle = {margin: '1rem 0'}
+
+    const handleChange = (event) => {
+        setUsername(event.target.value)
+    }
+
+    const handleSubmit = (event) => {
+        if (confirming == false) {
+            signUp({ un: event.target[0].value, pw: event.target[2].value }).then(response => setConfirming(true))
+        } else if (confirming) {
+            confirmSignUp({ un: event.target[0].value, code: event.target[4].value }).then(response => (props.closeMenu, setConfirming(true)))
+        }
+        event.preventDefault()
+    }
+
+    const bgColor = { backgroundColor: "black" }
+    const buttonStyle = { margin: '1rem 0' }
 
     return (
-    <ThemeProvider>
-        <Grid style={bgColor} sx= {{borderRadius: "15px"}}>
-            <Paper elevation={10} style={paperStyle}>
-                <Grid align='center'>
-                    {/* <Avatar style={avatarStyle}> <LockOutlined /> </Avatar> */}
-                    <Typography color="white" variant="h2">Sign Up</Typography>
-                </Grid>
-                <TextFields 
-                    style={buttonStyle} 
-                    // label="Email" 
-                    placeholder="Enter email" 
-                    fullWidth 
-                    required
-                    inputProps={{sx: {"&::placeholder": {color: "white"}}}}
-                    sx={{ input: { color: 'white' } }}
-                />
-                <TextFields 
-                    style={buttonStyle} 
-                    // label="Select password" 
-                    placeholder="Select password" 
-                    type='password' 
-                    fullWidth 
-                    required
-                    inputProps={{sx: {"&::placeholder": {color: "white"}}}}
-                    sx={{ input: { color: 'white' } }}
-                />
-                <TextFields 
-                    style={buttonStyle} 
-                    // label="Confirm password" 
-                    placeholder="Confirm password" 
-                    type='password' 
-                    fullWidth 
-                    required
-                    inputProps={{sx: {"&::placeholder": {color: "white"}}}}
-                    sx={{ input: { color: 'white' } }}
-                />
-                <SignUpButton type='submit' variant='contained' fullWidth>Sign Up</SignUpButton> 
-                <Typography style={{margin: '0.5rem 0'}} color='white'> 
-                    Already have an account? &nbsp;
-                    <Link href="#" onClick={props.signInForm} color="inherit" sx={{'&:hover': {color : '#dd00ff'}}}>Sign in here</Link>
-                </Typography>
-            </Paper>
-        </Grid>
-    </ThemeProvider>
+        <ThemeProvider>
+            <Grid style={bgColor} sx={{ borderRadius: "15px" }}>
+                <Paper elevation={10} style={paperStyle}>
+                    <Grid align='center'>
+                        <Typography color="white" variant="h2">Sign Up</Typography>
+                    </Grid>
+                    <form onSubmit={handleSubmit}>
+                        <TextFields
+                            style={buttonStyle}
+                            placeholder="Enter email"
+                            fullWidth
+                            required
+                            inputProps={{ sx: { "&::placeholder": { color: "white" } } }}
+                            sx={{ input: { color: 'white' } }}
+                            onChange={handleChange}
+                        />
+                        <TextFields
+                            style={buttonStyle}
+                            placeholder="Select password"
+                            type='password'
+                            fullWidth
+                            required
+                            inputProps={{ sx: { "&::placeholder": { color: "white" } } }}
+                            sx={{ input: { color: 'white' } }}
+                        />
+                        {confirming ?
+                            <div>
+                                <TextFields
+                                    style={buttonStyle}
+                                    placeholder="Enter confirmation code"
+                                    fullWidth
+                                    required
+                                    inputProps={{ sx: { "&::placeholder": { color: "white" } } }}
+                                    sx={{ input: { color: 'white' } }}
+                                />
+                                <Typography style={{ margin: '0.5rem 0' }} color='white'>Confirmation code sent. &nbsp; 
+                                    <Link href="#" color="inherit" sx={{ '&:hover': { color: '#dd00ff' } }}
+                                        onClick={() => resendConfirmationCode({un: username})}>
+                                        Resend code?
+                                    </Link>
+                                </Typography>
+                            </div> : <div></div>
+                        }
+                        <SignUpButton type='submit' variant='contained' fullWidth>Sign Up</SignUpButton>
+                    </form>
+                    <Typography style={{ margin: '0.5rem 0' }} color='white'>
+                        Already have an account? &nbsp;
+                        {/* <Link href="#" onClick={() => setConfirming(!confirming)} color="inherit" sx={{ '&:hover': { color: '#dd00ff' } }}>Sign in here</Link> */}
+                        <Link href="#" onClick={props.signInForm} color="inherit" sx={{ '&:hover': { color: '#dd00ff' } }}>Sign in here</Link>
+                    </Typography>
+                </Paper>
+            </Grid>
+        </ThemeProvider>
     );
 }
