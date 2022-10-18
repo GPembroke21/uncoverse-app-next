@@ -1,6 +1,6 @@
 import React from "react";
 import { Auth } from 'aws-amplify';
-import { Avatar, Button, FormControlLabel, Grid, Link, Paper, TextField, Typography } from "@mui/material";
+import { Avatar, Button, FormControlLabel, Grid, Link, Paper, TextField, Typography, Box } from "@mui/material";
 import { CheckBox, LockOutlined } from "@mui/icons-material";
 import { styled } from "@mui/system";
 import ThemeProvider from "../../Theme";
@@ -61,7 +61,7 @@ export const SignInForm = (props) => {
 
     const paperStyle = { 
         padding: 20, 
-        height: '32em', 
+        height: 'auto', 
         width: '25rem', 
         maxWidth: '90vw', 
         margin: '3rem auto',
@@ -77,7 +77,7 @@ export const SignInForm = (props) => {
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
                     {/* <Avatar style={avatarStyle}> <LockOutlined /> </Avatar> */}
-                    <Typography color="white" variant="h2">Sign In</Typography>
+                    <Typography color="white" variant="h2" fontSize='35px' fontWeight='700'>Sign In</Typography>
                 </Grid>
                 <TextFields 
                     style={buttonStyle} 

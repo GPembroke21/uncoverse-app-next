@@ -95,7 +95,7 @@ export async function resendConfirmationCode() {
 export const SignUpForm = (props) => {
     const paperStyle = { 
         padding: 20, 
-        height: '32em', 
+        height: 'auto', 
         width: '25rem', 
         maxWidth: '90vw', 
         margin: '3rem auto',
@@ -112,7 +112,7 @@ export const SignUpForm = (props) => {
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
                     {/* <Avatar style={avatarStyle}> <LockOutlined /> </Avatar> */}
-                    <Typography color="white" variant="h2">Sign Up</Typography>
+                    <Typography color="white" variant="h2" fontSize='35px' fontWeight='700'>Sign Up</Typography>
                 </Grid>
                 <TextFields 
                     style={buttonStyle} 

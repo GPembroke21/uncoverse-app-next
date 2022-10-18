@@ -4,12 +4,18 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { styled } from "@mui/system"
+import { NoEncryption } from '@mui/icons-material';
 
 const AdBarContainer = styled("div")(({ theme }) => ({
   // padding: "0rem 1rem",
   margin: "0rem 1rem -1rem 1rem",
   // margin: "-0.2rem 0rem -2.2rem 0rem",
 }));
+
+const scrollDirection = {
+  left: 'linear-gradient(to left, black calc(100% - 48px), transparent 100%)',
+  right: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)',
+}
 
 export default function TitlebarBelowImageList() {
   return (
@@ -20,6 +26,9 @@ export default function TitlebarBelowImageList() {
       gridTemplateColumns: "repeat(auto-fill,minmax(15em, 1fr)) !important",
       gridAutoColumns: "minmax(15em, 1fr)",
       overflowX:'scroll',
+      maskImage: scrollDirection[scroll.status] ?? 'none',
+      // maskImage: 'linear-gradient(to left, black calc(100% - 48px), transparent 100%)',
+      // maskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)',
       // '&::-webkit-scrollbar':{
       //     width: 0,
       // }
