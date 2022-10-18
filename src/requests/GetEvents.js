@@ -12,7 +12,7 @@ export default function GetEvents(props) {
     const gqlQuery = {
         query: listEvents, 
         authMode: "AWS_IAM",
-        variables: {limit: 1000}
+        variables: {limit: 40}
     }
 
     const getFunction = useCallback(async () => {

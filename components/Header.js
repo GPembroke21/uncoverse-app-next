@@ -5,11 +5,6 @@ import Image from 'next/image'
 import IconButton from '@mui/material/Button'
 import ThemeProvider from "../Theme"
 import Link from 'next/link'
-import Button from "@mui/material/Button"
-import Typography from "@mui/material/Typography"
-import Divider from "@mui/material/Divider"
-import ConnectButton from './ConnectButton'
-import Navigation from './Navigation'
 import AuthPopup from './AuthPopup'
 
 const Wrapper = styled("div")(({ theme }) => ({
@@ -62,7 +57,7 @@ const ConnectButtonStyled = styled("button")(({ theme }) => ({
 }));
 
 
-const Header = () => {
+const Header = (props) => {
   const [headerOpen, setHeaderOpen] = React.useState(false)
 
   return (
@@ -76,14 +71,17 @@ const Header = () => {
               </IconButton>
             </Logo>
           </Link>
-          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" />
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem"/>
         </LogoContainer>
         <RightContainer>
-          <div>
-            <ConnectButtonStyled onClick={() => setHeaderOpen(!headerOpen)}>Connect</ConnectButtonStyled>
-            <AuthPopup open={headerOpen} setOpen={() => setHeaderOpen(!headerOpen)} />
-          </div>
-          <ProfileDropdown />
+          {!props.logInStatus ?
+            <div>
+              <ConnectButtonStyled onClick={() => setHeaderOpen(!headerOpen)}>Connect</ConnectButtonStyled>
+              <AuthPopup open={headerOpen} setOpen={() => setHeaderOpen(!headerOpen)} />
+            </div>
+            :
+            <ProfileDropdown confirmClosed={() => setHeaderOpen(false)}/>
+          }
         </RightContainer>
       </Wrapper>
     </ThemeProvider >
