@@ -15,7 +15,7 @@ import Filters from '../components/Filters'
 import EventsList2 from '../components/EventsList2'
 import AdBar from '../components/AdBar'
 import Box from "@mui/material/Box"
-import HighlightsBar from '../components/HighlightsBar'
+import HighlightsBar from '../components/TrendingBar'
 
 const Wrapper = styled("div")(({ theme }) => ({
   // height: "100vh",

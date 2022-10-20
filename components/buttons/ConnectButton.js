@@ -2,8 +2,8 @@ import { styled } from "@mui/system"
 import React from "react";
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
-import Popout from "./Popout";
-import Infopane from "./LanderPopup";
+import Popout from "../Popout";
+import Infopane from "../LanderPopup";
 
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="bottom" ref={ref} {...props} />; });
 

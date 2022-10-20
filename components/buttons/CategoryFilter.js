@@ -26,10 +26,12 @@ export default function CategoryFilter() {
         sx={{
           color: "white", 
           backgroundColor: "#2e2e2e", 
-          fontSize: "8px", 
+          fontSize: "clamp(8px, 1vw, 14px)", 
           borderRadius: '25px',
-          padding: '0px 10px 0px 10px',
-          marginRight: '10px'
+          // padding: '0px 10px 0px 10px',
+          marginRight: '10px',
+          height: "2.5em",
+          width: "11em"
         }}
         style={{
             backgroundColor: "#2e2e2e", 
@@ -47,9 +49,9 @@ export default function CategoryFilter() {
         }}
         sx={{marginTop: "15px"}}
       >
-        <MenuItem onClick={handleClose} sx={{fontSize: "12px"}}>Category1</MenuItem>
-        <MenuItem onClick={handleClose} sx={{fontSize: "12px"}}>Category2</MenuItem>
-        <MenuItem onClick={handleClose} sx={{fontSize: "12px"}}>Category3</MenuItem>
+        <MenuItem onClick={handleClose} sx={{fontSize: "clamp(8px, 1vw, 14px)"}}>Category1</MenuItem>
+        <MenuItem onClick={handleClose} sx={{fontSize: "clamp(8px, 1vw, 14px)"}}>Category2</MenuItem>
+        <MenuItem onClick={handleClose} sx={{fontSize: "clamp(8px, 1vw, 14px)"}}>Category3</MenuItem>
       </Menu>
     </div>
   );
