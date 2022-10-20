@@ -100,7 +100,7 @@ export const SignUpForm = (props) => {
         height: 'auto',
         width: '25rem',
         maxWidth: '90vw',
-        margin: '3rem auto',
+        // margin: '3rem auto',
         border: "2px solid #2e2e2e",
         borderRadius: "15px",
     }

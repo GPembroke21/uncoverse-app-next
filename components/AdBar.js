@@ -23,9 +23,9 @@ export default function TitlebarBelowImageList() {
     imageListEl?.addEventListener(
       "scroll",
       () => {
-        // console.log("position left is", imageListEl.scrollLeft);
-        // console.log("scroll width", imageListEl.scrollWidth);
-        // console.log("client width", imageListEl.clientWidth);
+        console.log("position left is", imageListEl.scrollLeft);
+        console.log("scroll width", imageListEl.scrollWidth);
+        console.log("client width", imageListEl.clientWidth);
         setHorizontalScroll(imageListEl?.scrollLeft);
         setScrollWidth(imageListEl?.scrollWidth);
         setClientWidth(imageListEl?.clientWidth);
