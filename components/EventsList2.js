@@ -97,16 +97,16 @@ function Row(props) {
         sx={{
           opacity: "100",
           backgroundColor: "black",
-          width: '100vw',
+          width: { xs: '100vw', sm: '50vw' },
+          maxWidth: { xs: '100vw', sm: '1000px' },
           height: '100vh',
+          borderRight: '2px solid #2e2e2e',
         }}
       // PaperProps={{ sx: { position: "fixed", top: 0, m: 0 } }}
       >
-        <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-38px', mt: '-10px' }}>Metaverse_name</DialogContent>
-        <DialogTitle sx={{ fontSize: '20px', mb: '-10px' }}>{row.name}</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ color: 'white', mb: '-10px' }}>
-            <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} />
+          <DialogContentText sx={{ mb: '-10px' }}>
+              <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{borderRadius: '8px'}}/>
           </DialogContentText>
           <InfopaneButtons />
           {/* <br /> */}
