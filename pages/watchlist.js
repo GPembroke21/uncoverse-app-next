@@ -49,6 +49,13 @@ const Item = styled(Grid)(({ theme }) => ({
       // marginRight: 0,
     },
   },
+  [theme.breakpoints.up('md')]: {
+    width: 'calc(100% * (1/3) + 0px + 0px)',
+    "> div": {
+      // marginLeft: 0,
+      // marginRight: 0,
+    },
+  },
 }));
 
 
