@@ -126,7 +126,7 @@ export const SignUpForm = (props) => {
             <Grid style={bgColor} sx={{ borderRadius: "15px" }}>
                 <Paper elevation={10} style={paperStyle}>
                     <Grid align='center'>
-                        <Typography color="white" variant="h2">Sign Up</Typography>
+                        <Typography color="white" fontSize="clamp(24px, 4vw, 36px)" fontWeight="bold">Sign Up</Typography>
                     </Grid>
                     <form onSubmit={handleSubmit}>
                         <TextFields

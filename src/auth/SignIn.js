@@ -107,7 +107,7 @@ export const SignInForm = (props) => {
                     {!forgotPassword ?
                         <div>
                             <Grid align='center'>
-                                <Typography color="white" variant="h2">Sign In</Typography>
+                                <Typography color="white" fontSize="clamp(24px, 4vw, 36px)" fontWeight="bold">Sign In</Typography>
                             </Grid>
                             <form onSubmit={handleSubmit}>
                                 <TextFields

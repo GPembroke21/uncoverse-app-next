@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -104,6 +105,8 @@ function Row(props) {
         }}
       // PaperProps={{ sx: { position: "fixed", top: 0, m: 0 } }}
       >
+      <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-10px' }}>Metaverse_name</DialogContent>
+      <DialogTitle sx={{ fontSize: '20px', mb: '-5px', lineHeight: '90%' }}>{row.name}</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ mb: '-10px' }}>
               <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{borderRadius: '8px'}}/>
@@ -151,7 +154,7 @@ function Row(props) {
           {/* <br /> */}
           <DialogContentText
             id="alert-dialog-slide-description"
-            sx={{ fontSize: '1rem', color: 'white', mt: '15px' }}
+            sx={{ fontSize: '1rem', color: 'white', mt: '15px', lineHeight: '99%' }}
             style={{ maxHeight: 280, overflow: 'auto' }}>
             {row.description}
           </DialogContentText>
