@@ -15,7 +15,7 @@ import Filters from '../components/Filters'
 import EventsList2 from '../components/EventsList2'
 import AdBar from '../components/AdBar'
 import Box from "@mui/material/Box"
-import HighlightsBar from '../components/TrendingBar'
+import TrendingBar from '../components/TrendingBar'
 
 const Wrapper = styled("div")(({ theme }) => ({
   // height: "100vh",
@@ -39,7 +39,7 @@ export default function Lander(props) {
         <HeaderBottom/>
           <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
         <AdBar/>
-        <HighlightsBar/>
+        <TrendingBar/>
         <Filters/>
         <EventsList2/>
       </Wrapper>

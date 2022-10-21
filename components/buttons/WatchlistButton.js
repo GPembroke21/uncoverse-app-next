@@ -8,7 +8,7 @@ export default function BasicButtons() {
     <Stack spacing={2} direction="row" sx={{display: { xs: 'none', sm: 'revert' }}}>
         <Button 
         variant="contained"
-        endIcon={<FavoriteIcon sx={{ width: '0.7em', height: '0.7em' }}/>}
+        endIcon={<FavoriteIcon sx={{ width: '0.5em', height: '0.5em' }}/>}
         sx={{
             color: "white", 
             backgroundColor: "#2e2e2e", 

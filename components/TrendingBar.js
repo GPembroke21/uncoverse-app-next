@@ -37,7 +37,7 @@ export default function HighlightsBar() {
             <Card sx={{ 
             width: 1,
             color: "white",
-            borderRadius: "15px",
+            borderRadius: "12px",
             border: '1px solid #40454d',
             }}>
                 <CardHeader sx={{height: "20px"}}
@@ -45,13 +45,13 @@ export default function HighlightsBar() {
                         <Image src="/trendingevents.svg" alt='Top Events' width="15rem" height="15rem" />
                     }
                     title="Trending Events"
-                    titleTypographyProps={{ fontSize: 'clamp(10px, 1.3vw, 14px)' }}
+                    titleTypographyProps={{ fontSize: 'clamp(10px, 1.25vw, 13px)' }}
                 />
                 <Divider sx={{background:'#40454d'}}/>
                 <CardContent>
                     <Grid container marginTop={-1} marginBottom={-1.5}>
                         <Grid item marginRight={2}>
-                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.25vw, 13px)">
                                 1<br/>2<br/>3
                             </Typography>
                         </Grid>
@@ -68,7 +68,7 @@ export default function HighlightsBar() {
             <Card sx={{ 
             width: 1,
             color: "white",
-            borderRadius: "15px",
+            borderRadius: "12px",
             border: '1px solid #40454d',
             }}>
                 <CardHeader sx={{height: "20px"}}
@@ -99,7 +99,7 @@ export default function HighlightsBar() {
             <Card sx={{ 
             width: 1,
             color: "white",
-            borderRadius: "15px",
+            borderRadius: "12px",
             border: '1px solid #40454d',
             }}>
                 <CardHeader sx={{height: "20px"}}

@@ -112,7 +112,7 @@ export const SignInForm = (props) => {
                             <form onSubmit={handleSubmit}>
                                 <TextFields
                                     style={buttonStyle}
-                                    label="Email"
+                                    // label="Email"
                                     placeholder="Enter email"
                                     fullWidth
                                     required
@@ -121,7 +121,7 @@ export const SignInForm = (props) => {
                                 />
                                 <TextFields
                                     style={buttonStyle}
-                                    label="Password"
+                                    // label="Password"
                                     placeholder="Enter password"
                                     type='password'
                                     fullWidth
@@ -148,7 +148,7 @@ export const SignInForm = (props) => {
                                 <form onSubmit={handleReset}>
                                     <TextFields
                                         style={buttonStyle}
-                                        label="Email"
+                                        // label="Email"
                                         placeholder="Enter email"
                                         fullWidth
                                         required
@@ -160,7 +160,7 @@ export const SignInForm = (props) => {
                                 <form onSubmit={handleResetConfirm}>
                                     <TextFields
                                         style={buttonStyle}
-                                        label="Email"
+                                        // label="Email"
                                         placeholder="Enter email"
                                         fullWidth
                                         required
@@ -177,7 +177,7 @@ export const SignInForm = (props) => {
                                     />
                                     <TextFields
                                         style={buttonStyle}
-                                        label="New password"
+                                        // label="New password"
                                         placeholder="Enter new password"
                                         type='password'
                                         fullWidth
