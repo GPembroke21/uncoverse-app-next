@@ -6,3 +6,5 @@ export const platformLogos = {
     'SAND': '/SAND_logo.png',
     'RBLX': '/RBLX_logo.png',
 }
+
+export const favoriteEvents = {}

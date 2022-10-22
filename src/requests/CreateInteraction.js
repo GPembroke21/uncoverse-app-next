@@ -1,10 +1,14 @@
 import { useCallback, useEffect } from 'react';
 import { API } from 'aws-amplify'
 import { createInteraction } from '../graphql/mutations'
+import { favoriteEvents } from '../static/StaticVariables';
 
+
+const appendToArray = (item, state) => favoriteEvents[item] = state 
 
 export default function CreateInteraction(props) {
     
+
     const interact = {
         id: "akskjfkjasfkasf",
         registeredUserId: "haefjasflkasflksa01",
