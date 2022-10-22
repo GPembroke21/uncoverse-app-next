@@ -169,7 +169,6 @@ export const SignUpForm = (props) => {
                     </form>
                     <Typography style={{ margin: '0.5rem 0' }} color='white'>
                         Already have an account? &nbsp;
-                        {/* <Link href="#" onClick={() => setConfirming(!confirming)} color="inherit" sx={{ '&:hover': { color: '#dd00ff' } }}>Sign in here</Link> */}
                         <Link href="#" onClick={props.signInForm} color="inherit" sx={{ '&:hover': { color: '#dd00ff' } }}>Sign in here</Link>
                     </Typography>
                 </Paper>

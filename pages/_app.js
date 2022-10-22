@@ -1,54 +1,64 @@
 import '../styles/globals.css'
-import Box from "@mui/material/Box"
-import { styled } from "@mui/system"
-import { Amplify } from 'aws-amplify'
-import awsExports from '../src/aws-exports'
-import { Hub } from 'aws-amplify';
+import ThemeProvider from '../Theme'
 import React from "react";
+import { Box, Divider, CssBaseline } from "@mui/material";
+import { styled } from "@mui/system"
+import { Amplify, Hub, Auth } from 'aws-amplify'
+import awsExports from '../src/aws-exports'
+import GetAuth from '../src/auth/GetAuth'
+import Header from '../components/Header'
+import HeaderBottom from '../components/HeaderBottom'
+import GetEvents from '../src/requests/GetEvents'
 
 Amplify.configure({ ...awsExports, ssr: true })
+const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto" }));
 
-const Wrapper = styled("div")(({ theme }) => ({
-  maxWidth: 1600,
-  margin: "0 auto",
-  // [theme.breakpoints.down("sm")]: {
-  //   maxWidth: "100%",
-  // },
-}));
+
 
 function MyApp({ Component, pageProps }) {
   const [logInStatus, setLogInStatus] = React.useState(false)
-  
+  const loginCreds = GetAuth({ status: logInStatus })
+  const eventList = GetEvents()
+
+  React.useEffect(() => {
+    Auth.currentCredentials().then(credentials => setLogInStatus(credentials.authenticated))
+    return () => { }
+  }, [])
+
   Hub.listen('auth', (data) => {
     switch (data.payload.event) {
       case 'signIn':
-        // console.log('user signed in'); 
+        console.log('user signed in1'); 
         setLogInStatus(true); break;
       case 'signUp':
-        // console.log('user signed up'); 
+        console.log('user signed up1'); 
         setLogInStatus(false); break;
       case 'signOut':
-        // console.log('user signed out'); 
+        console.log('user signed out1'); 
         setLogInStatus(false); break;
       case 'signIn_failure':
-        // console.log('user sign in failed'); 
+        console.log('user sign in failed1'); 
         setLogInStatus(false); break;
-      case 'configured':
-        // console.log('the Auth module is configured'); 
-        setLogInStatus(false);
     }
   });
 
   return (
-    <Wrapper>
-      <Box
-        paddingY={0}
-        paddingX={0}
-        px={{ xs: 0, sm: 0, md: "3em", lg: "4em", xl: "5em" }}
-      >
-        <Component {...pageProps} logInStatus={logInStatus}/>
-      </Box>
-    </Wrapper>
+    <ThemeProvider>
+      <CssBaseline />
+      <Wrapper>
+        <Box
+          paddingY={0}
+          paddingX={0}
+          px={{ xs: 0, sm: 0, md: "3em", lg: "4em", xl: "5em" }}
+        >
+          <Header eventList={eventList} loginCreds={loginCreds} />
+          <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
+          <HeaderBottom />
+          <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
+          <Component {...pageProps} eventList={eventList} loginCreds={loginCreds} />
+        </Box>
+      </Wrapper>
+    </ThemeProvider>
   );
 }
 

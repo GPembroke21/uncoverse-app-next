@@ -1,17 +1,8 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Image from 'next/image'
-import Header from '../components/Header'
-import HeaderBottom from '../components/HeaderBottom'
+import React from 'react';
 import { styled } from "@mui/system"
-import Divider from "@mui/material/Divider"
 import Grid from "@mui/material/Grid"
-import ThemeProvider from "../Theme"
-import CssBaseline from '@mui/material/CssBaseline'
-import Box from "@mui/material/Box"
-import Stack from "@mui/material/Stack"
 import FavoriteEventCard from "../components/FavoriteEvents"
+import { favoriteEvents } from '../src/static/StaticVariables';
 
 const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
@@ -31,7 +22,7 @@ const Main = styled(Grid)(({ theme }) => ({
 
 const Item = styled(Grid)(({ theme }) => ({
   // margin: 'auto',
-  padding: '0em 1em 0em 1em', 
+  padding: '0em 1em 0em 1em',
   marginBottom: -16,
   width: 'calc(95% * (1/3) + 18px + 0px)',
   [theme.breakpoints.between('xs', 'sm')]: {
@@ -59,33 +50,17 @@ const Item = styled(Grid)(({ theme }) => ({
 }));
 
 
-export default function Watchlist() {
+export default function Watchlist(props) {
   return (
-    <ThemeProvider>
-    <CssBaseline />
-      <Wrapper>
-        <Header/>
-          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <HeaderBottom/>
-          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <Main container>
-          <Item item>
-            <FavoriteEventCard/>
+    <Wrapper>
+      <Main container>
+        {Object.keys(favoriteEvents).map((keyName, i) => (
+          <Item key={i} item>
+            <FavoriteEventCard item={props.eventList.data[favoriteEvents[keyName]['i']]} />
           </Item>
-          <Item item>
-            <FavoriteEventCard/>
-          </Item>
-          <Item item>
-            <FavoriteEventCard/>
-          </Item>
-          <Item item>
-            <FavoriteEventCard/>
-          </Item>
-          <Item item>
-            <FavoriteEventCard/>
-          </Item>
-        </Main>
-      </Wrapper>
-    </ThemeProvider>
+        ))}
+          {/* <button onClick={() => console.log(props.eventList.data[0])}>000</button> */}
+      </Main>
+    </Wrapper>
   )
 }

@@ -77,9 +77,13 @@ export default function ProfileDropdown(props) {
         <MenuItem sx={{ borderBottom: "1px solid #282b2f" }} style={{ pointerEvents: 'none' }}>
           <a>Guest</a>
         </MenuItem>
-        <MenuItem onClick={handleClose} 
-        sx={{ display: { xs: 'grid', sm: 'none' } }}
-        >
+        <MenuItem onClick={handleClose}>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          {/* sx={{ display: { xs: 'grid', sm: 'none' } }} > */}
           <Link href="/watchlist">
             <a>Watchlist</a>
           </Link>

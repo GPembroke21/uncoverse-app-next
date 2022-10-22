@@ -1,6 +1,4 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -8,19 +6,13 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteButton from './buttons/FavoriteButton';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-
+import Image from 'next/image'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -33,15 +25,20 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function FavoriteEventCard() {
-  const [expanded, setExpanded] = React.useState(false);
+export default function FavoriteEventCard(props) {
+  const { item } = props
+  const [expanded, setExpanded] = React.useState(false)
+  const handleExpandClick = () => setExpanded(!expanded)
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const dateTimeStart = new Date(item.dateTimeStart);
+  const dateTimeEnd = new Date(item.dateTimeEnd);
+  const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+  const formattedEndDate = dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+  const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
+  const dateA = formattedStartDate + " - " + formattedEndDate
 
   return (
-    <Card sx={{ 
+    <Card sx={{
       // maxWidth: 450,
       // minWidth: 300,
       width: 1,
@@ -49,35 +46,39 @@ export default function FavoriteEventCard() {
       color: "white",
       borderRadius: "15px",
       border: '1px solid #40454d',
-      margin:"20px 0px"
-      }}>
+      margin: "20px 0px"
+    }}>
       <CardMedia
         component="img"
         height="194"
-        image="/adbar2.jpg"
+        // image="/adbar2.jpg"
+        image={item.image}
       />
-      <CardHeader
-        action={
-          <Grid margin={'6px 10px 0px 0px'}>
-            <FavoriteButton/>
-          </Grid>
-        }
-        title="Event Name"
-        subheader="October 10, 2022"
-        subheaderTypographyProps={{ color: 'white' }}
-        sx={{mb:"-5px"}}
-      />
-      <Divider sx={{background:'#40454d'}}/>
-      <CardActions disableSpacing sx={{height:'40px', backgroundColor: '#1a1c1f'}}>
+      <a href={item.url} target="_blank" rel="noreferrer noopener">
+        <CardHeader
+          action={
+            <Grid margin={'6px 10px 0px 0px'}>
+              <FavoriteButton />
+            </Grid>
+          }
+          title={item.name}
+          subheader={dateA}
+          subheaderTypographyProps={{ color: 'white' }}
+          sx={{ mb: "-5px" }}
+        >
+        </CardHeader>
+      </a>
+      <Divider sx={{ background: '#40454d' }} />
+      <CardActions disableSpacing sx={{ height: '40px', backgroundColor: '#1a1c1f' }}>
         <Grid
           container
           // justifyContent="flex-start"
           // alignItems="center"
           marginLeft={1.2}
         >
-          <Typography variant='h4'>Users: 69</Typography>
-          <Typography variant='h4' sx={{color:'#40454d', fontWeight:'700'}} >&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
-          <Typography variant='h4'>Category</Typography>
+          <Typography variant='h4'>Users: {item.totalAttendees}</Typography>
+          <Typography variant='h4' sx={{ color: '#40454d', fontWeight: '700' }} >&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+          <Typography variant='h4'>{item.category}</Typography>
         </Grid>
         <ExpandMore
           expand={expanded}
@@ -88,17 +89,10 @@ export default function FavoriteEventCard() {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit  sx={{backgroundColor: '#1a1c1f'}}>
-        <CardContent sx={{margin: "-20px 0px 0px 0px"}} >
+      <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ backgroundColor: '#1a1c1f' }}>
+        <CardContent sx={{ margin: "-20px 0px 0px 0px" }} >
           <Typography variant='h4'>
-            Description:
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-            medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-            occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-            large plate and set aside, leaving chicken and chorizo in the pan. Add
-            pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-            stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+            {item.description}
           </Typography>
         </CardContent>
       </Collapse>
