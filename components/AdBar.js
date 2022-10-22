@@ -52,19 +52,19 @@ export default function TitlebarBelowImageList() {
         :
       horizontalScroll > 0
         ? [
-            "linear-gradient(to left, black calc(100% - 48px), transparent 100%)",
-            "linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)"
+            "linear-gradient(to left, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)",
+            "linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)",
           ]
         :
       horizontalScroll === 0
         ? [
             "linear-gradient(to right, black calc(100% - 48px), transparent 100%)",
           ]
-        :
-      scrollWidth === (null)
-        ? [
-            "none"
-          ]
+      //   :
+      // scrollWidth === (null)
+      //   ? [
+      //       "none"
+      //     ]
         : [""],
       scrollbarWidth: "none" /* Firefox */,
       "&::-webkit-scrollbar": {
