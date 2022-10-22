@@ -30,10 +30,6 @@ export default function FavoriteEventCard(props) {
   const [expanded, setExpanded] = React.useState(false)
   const handleExpandClick = () => setExpanded(!expanded)
 
-  // const imageLoader = ({ src }) => `${item.image}`
-  console.log("ppp", props)
-
-  const currentTime = new Date();
   const dateTimeStart = new Date(item.dateTimeStart);
   const dateTimeEnd = new Date(item.dateTimeEnd);
   const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
