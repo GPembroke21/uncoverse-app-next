@@ -22,7 +22,7 @@ const Wrapper = styled("div")(({ theme }) => ({
 }));
 
 const Main = styled(Grid)(({ theme }) => ({
-//   minHeight: "100vh",
+  //   minHeight: "100vh",
   maxHeight: '50em',
   color: "#ffffff",
   margin: "4vw 2em",
@@ -40,140 +40,125 @@ const Main = styled(Grid)(({ theme }) => ({
 }));
 
 const EditButton = styled(Button)(({ theme }) => ({
-    fontFamily: "Inter",
-    fontSize: "0.8rem",
-    fontWeight: "500",
-    textAlign: "center",
-    color: "white",
-    backgroundColor: "transparent",
-    border: "1px solid white",
-    borderRadius: "4px",
-    padding: "0.46rem",
-    cursor: "pointer",
-    margin: "12px 0px",
-    width: "min(40vw, 200px)",
-    height: "55px",
-    "&:hover": {
-      border: "1px solid #dd00ff",
-      color: "#dd00ff",
-    }
+  fontFamily: "Inter",
+  fontSize: "0.8rem",
+  fontWeight: "500",
+  textAlign: "center",
+  color: "white",
+  backgroundColor: "transparent",
+  border: "1px solid white",
+  borderRadius: "4px",
+  padding: "0.46rem",
+  cursor: "pointer",
+  margin: "12px 0px",
+  width: "min(40vw, 200px)",
+  height: "55px",
+  "&:hover": {
+    border: "1px solid #dd00ff",
+    color: "#dd00ff",
+  }
 }));
 
 const SaveButton = styled(Button)(({ theme }) => ({
-    fontFamily: "Inter",
-    fontSize: "0.8rem",
-    fontWeight: "500",
-    textAlign: "center",
-    color: "white",
-    backgroundColor: "transparent",
-    border: "1px solid white",
-    borderRadius: "4px",
-    padding: "0.46rem",
-    cursor: "pointer",
-    margin: "40px 0px",
-    // width: "min(40vw, 200px)",
-    height: "55px",
-    "&:hover": {
-      border: "1px solid #dd00ff",
-      color: "#dd00ff",
-    }
+  fontFamily: "Inter",
+  fontSize: "0.8rem",
+  fontWeight: "500",
+  textAlign: "center",
+  color: "white",
+  backgroundColor: "transparent",
+  border: "1px solid white",
+  borderRadius: "4px",
+  padding: "0.46rem",
+  cursor: "pointer",
+  margin: "40px 0px",
+  // width: "min(40vw, 200px)",
+  height: "55px",
+  "&:hover": {
+    border: "1px solid #dd00ff",
+    color: "#dd00ff",
+  }
 }));
 
 const TextFields = styled(TextField)(({ theme }) => ({
-    caretColor: "white",
-    '& label.Mui-focused': {
-        color: 'white',
-      },
-      '& .MuiInput-underline:after': {
-        borderBottomColor: 'white',
-      },
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: 'white',
-          
-        },
-        '&:hover fieldset': {
-          borderColor: 'white',
-        },
-        '&.Mui-focused fieldset': {
-          borderColor: 'white',
-        },
-      },
-      "& .MuiInputLabel-root": {
-        color: 'white', 
-      },
+  caretColor: "white",
+  '& label.Mui-focused': {
+    color: 'white',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'white',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'white',
+
+    },
+    '&:hover fieldset': {
+      borderColor: 'white',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'white',
+    },
+  },
+  "& .MuiInputLabel-root": {
+    color: 'white',
+  },
 }));
 
-export default function Test() {
+export default function Profile(props) {
   return (
-    <ThemeProvider>
-      <CssBaseline />
-      <Wrapper>
-        <Header/>
-          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <HeaderBottom/>
-          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <Main container>
-            <Grid
-            // justifyContent="center"
-            // alignItems="flex-start"
-            // flexDirection="column"
-            marginRight="25px"
-            >
-                <Grid item position="relative" width="min(40vw, 200px)" height="min(40vw, 200px)" marginBottom="13px">
-                    <Image src='/profile.svg' layout="fill" objectFit="contain" unoptimized={true} />
-                </Grid>
-                <Grid item>
-                    <EditButton>Edit Avatar</EditButton>
-                </Grid>
-            </Grid>
-            {/* <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px", marginTop: "4vw"}} /> */}
-            <Grid
-            alignItems="flex-start"
-            flexDirection="column"
-            >
-                <Grid item marginBottom={1} marginTop={0}>
-                    <Typography>Display Name</Typography>
-                </Grid>
-                <Grid item>
-                    <TextFields
-                        placeholder="Guest" 
-                        fullWidth 
-                        required 
-                        inputProps={{sx: {"&::placeholder": {color: "white"}}}}
-                        sx={{ input: { color: 'white' } }}
-                    />
-                </Grid>
-                <Grid item marginBottom={1} marginTop={1}>
-                    <Typography>UserName</Typography>
-                </Grid>
-                <Grid item>
-                    <TextFields
-                        placeholder="@guest69" 
-                        fullWidth 
-                        required 
-                        inputProps={{sx: {"&::placeholder": {color: "white"}}}}
-                        sx={{ input: { color: 'white' } }}
-                    />
-                </Grid>
-                <Grid item marginBottom={1} marginTop={1}>
-                    <Typography>Email</Typography>
-                </Grid>
-                <Grid item>
-                    <TextFields
-                        placeholder="guest69@gmail.com" 
-                        fullWidth 
-                        required 
-                        inputProps={{sx: {"&::placeholder": {color: "white"}}}}
-                        sx={{ input: { color: 'white' } }}
-                    />
-                </Grid>
-                <Grid item>
-                    <SaveButton fullWidth>Save</SaveButton>
-                </Grid>
-            </Grid>
-        </Main>
-      </Wrapper>
-    </ThemeProvider>
+    <Wrapper>
+      <Main container>
+        <Grid marginRight="25px">
+          <Grid item position="relative" width="min(40vw, 200px)" height="min(40vw, 200px)" marginBottom="13px">
+            <Image src='/profile.svg' layout="fill" objectFit="contain" unoptimized={true} />
+          </Grid>
+          <Grid item>
+            <EditButton>Edit Avatar</EditButton>
+          </Grid>
+        </Grid>
+        {/* <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px", marginTop: "4vw"}} /> */}
+        <Grid alignItems="flex-start" flexDirection="column">
+          <Grid item marginBottom={1} marginTop={0}>
+            <Typography>Display Name</Typography>
+          </Grid>
+          <Grid item>
+            <TextFields
+              placeholder="Guest"
+              fullWidth
+              required
+              inputProps={{ sx: { "&::placeholder": { color: "white" } } }}
+              sx={{ input: { color: 'white' } }}
+            />
+          </Grid>
+          <Grid item marginBottom={1} marginTop={1}>
+            <Typography>UserName</Typography>
+          </Grid>
+          <Grid item>
+            <TextFields
+              placeholder="@guest69"
+              fullWidth
+              required
+              inputProps={{ sx: { "&::placeholder": { color: "white" } } }}
+              sx={{ input: { color: 'white' } }}
+            />
+          </Grid>
+          <Grid item marginBottom={1} marginTop={1}>
+            <Typography>Email</Typography>
+          </Grid>
+          <Grid item>
+            <TextFields
+              placeholder="guest69@gmail.com"
+              fullWidth
+              required
+              inputProps={{ sx: { "&::placeholder": { color: "white" } } }}
+              sx={{ input: { color: 'white' } }}
+            />
+          </Grid>
+          <Grid item>
+            <SaveButton fullWidth>Save</SaveButton>
+          </Grid>
+        </Grid>
+      </Main>
+    </Wrapper>
   )
 }

@@ -4,29 +4,36 @@ import { createInteraction } from '../graphql/mutations'
 import { favoriteEvents } from '../static/StaticVariables';
 
 
-const appendToArray = (item, state) => favoriteEvents[item] = state 
+const appendToArray = (item, index, state) => favoriteEvents[item] = {i: index, s: state}
+
+function StoreInteraction(props) {
+
+    appendToArray(props.eventId, props.state)
+    const interationId = props.logInCreds.id + props.eventId
+    const interact = {
+        id: props.logInCreds.id,
+        registeredUserId: props.logInCreds.id,
+        eventId: props.eventId,
+        favorite: true
+    };
+
+    // const getFunction = useCallback(async () => {
+    //     try {
+    //         const newInteraction = await API.graphql({ query: createInteraction, variables: {input: interact}, authMode: 'AWS_IAM'})
+    //         console.log("Created new interaction:", newInteraction)
+    //     } catch (error) {
+    //         console.log("Error loading API:", error)
+    //     }
+    // }, [])
+
+    // useEffect(() => {
+    //     getFunction()
+    //     return () => {}
+    // }, [getFunction])
+
+}
 
 export default function CreateInteraction(props) {
     
-
-    const interact = {
-        id: "akskjfkjasfkasf",
-        registeredUserId: "haefjasflkasflksa01",
-        eventId: "asafasasa1231",
-        favorite: true
-      };
-
-    const getFunction = useCallback(async () => {
-        try {
-            const newInteraction = await API.graphql({ query: createInteraction, variables: {input: interact}, authMode: 'AWS_IAM'})
-        } catch (error) {
-            console.log("Error loading API:", error)
-        }
-    }, [])
-
-    useEffect(() => {
-        getFunction()
-        return () => {}
-    }, [getFunction])
-
+    appendToArray(props.eventId, props.index, props.state)
 }

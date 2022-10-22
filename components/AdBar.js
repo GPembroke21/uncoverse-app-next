@@ -75,7 +75,7 @@ export default function TitlebarBelowImageList() {
       variant= 'standard'
       rowHeight= "auto"
       >
-      {console.log("pos", horizontalScroll)}
+      {/* {console.log("pos", horizontalScroll)} */}
       {itemData.map((item) => (
         <ImageListItem key={item.key}>
           <img

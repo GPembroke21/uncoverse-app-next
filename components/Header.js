@@ -6,7 +6,8 @@ import IconButton from '@mui/material/Button'
 import ThemeProvider from "../Theme"
 import Link from 'next/link'
 import AuthPopup from './AuthPopup'
-import { Box } from '@mui/material'
+import { signOut } from '../src/auth/SignOut'
+import { favoriteEvents } from '../src/static/StaticVariables'
 
 const Wrapper = styled("div")(({ theme }) => ({
   width: "calc(100%)",
@@ -72,10 +73,11 @@ const Header = (props) => {
               </IconButton>
             </Logo>
           </Link>
-          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem"/>
+          {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => signOut()}/> */}
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(favoriteEvents, props.loginCreds)}/>
         </LogoContainer>
         <RightContainer>
-          {!props.logInStatus ?
+          {!props.loginCreds.signedIn ?
             <div>
               <ConnectButtonStyled onClick={() => setHeaderOpen(!headerOpen)}>Connect</ConnectButtonStyled>
               <AuthPopup open={headerOpen} setOpen={() => setHeaderOpen(!headerOpen)} />

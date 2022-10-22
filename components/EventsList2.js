@@ -37,9 +37,7 @@ function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const imageLoader = ({ src }) => `${row.image}`;
-
   const handleClickOpen = () => { setOpen(true); };
-
   const handleClose = () => { setOpen(false); };
 
   const currentTime = new Date();
@@ -86,9 +84,11 @@ function Row(props) {
           </a>
         </TableCell>
         <TableCell align="right">
-          <FavoriteButton />
+          <FavoriteButton eventId={row.id} ind={props.ind}/>
         </TableCell>
       </TableRow>
+
+
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -105,15 +105,15 @@ function Row(props) {
         }}
       // PaperProps={{ sx: { position: "fixed", top: 0, m: 0 } }}
       >
-      <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-10px' }}>Metaverse_name</DialogContent>
-      <DialogTitle sx={{ fontSize: '20px', mb: '-5px', lineHeight: '90%' }}>{row.name}</DialogTitle>
+        <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-10px' }}>Metaverse_name</DialogContent>
+        <DialogTitle sx={{ fontSize: '20px', mb: '-5px', lineHeight: '90%' }}>{row.name}</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ mb: '-10px' }}>
-              <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{borderRadius: '8px'}}/>
+            <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px' }} />
           </DialogContentText>
           <InfopaneButtons />
           {/* <br /> */}
-          <DialogContentText sx={{ color: 'white', mt: '15px' }}>
+          <DialogContentText component={'span'} sx={{ color: 'white', mt: '15px' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
@@ -122,7 +122,7 @@ function Row(props) {
             </InfopaneRow>
           </DialogContentText>
           <Divider />
-          <DialogContentText sx={{ color: 'white' }}>
+          <DialogContentText component={'span'} sx={{ color: 'white' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
@@ -131,7 +131,7 @@ function Row(props) {
             </InfopaneRow>
           </DialogContentText>
           <Divider />
-          <DialogContentText sx={{ color: 'white' }}>
+          <DialogContentText component={'span'} sx={{ color: 'white' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
@@ -140,7 +140,7 @@ function Row(props) {
             </InfopaneRow>
           </DialogContentText>
           <Divider />
-          <DialogContentText sx={{ color: 'white' }}>
+          <DialogContentText component={'span'} sx={{ color: 'white' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
@@ -164,30 +164,12 @@ function Row(props) {
   );
 }
 
-export default function EventsList2() {
-
-  // const [eventList, setEventList] = useState([]);
-
-  // const getFunction = useCallback(async () => {
-  //     try {
-  //         const response = await fetch('https://events.decentraland.org/api/events')
-  //         const events = await response.json()
-  //         return setEventList(events.data)
-  //     } catch (error) {
-  //         console.log("Error loading API:", error)
-  //     }
-  // }, [])
-
-  // useEffect(() => {
-  //     getFunction()
-  // }, [getFunction])
-
-
-  const eventList = GetEvents()
-
-
+export default function EventsList2(props) {
+  
+  // const eventList = GetEvents()
+  
   return (
-    <TableContainer style={{ overflowX: 'auto' }}>
+    <TableContainer style={{ overflowX: 'auto' }}> <button onClick={() => console.log(props)}></button>
       <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem" }} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ borderBottom: "none" }}>
@@ -200,14 +182,15 @@ export default function EventsList2() {
             <TableCell style={{ width: "2%" }}></TableCell>
           </TableRow>
         </TableHead>
-        {eventList.data ?
+        {props.eventList.data ?
           <TableBody sx={{ backgroundColor: "black" }}>
-            {eventList.data
+            {props.eventList.data
               .sort((a, b) => a.dateTimeStart < b.dateTimeStart ? -1 : 1)
-              .map((row) => (
+              .map((row, i) => (
                 <Row
                   key={row.id}
                   row={row}
+                  ind={i}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 />
               ))}

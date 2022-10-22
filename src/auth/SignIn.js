@@ -1,7 +1,6 @@
 import React from "react";
 import { Auth } from 'aws-amplify';
-import { Avatar, Button, FormControlLabel, Grid, Link, Paper, TextField, Typography, Box } from "@mui/material";
-import { CheckBox, LockOutlined } from "@mui/icons-material";
+import { Button, Grid, Link, Paper, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import ThemeProvider from "../../Theme";
 
@@ -60,6 +59,9 @@ async function submitForgotPassword(props) {
     }
 }
 
+
+
+
 export const SignInForm = (props) => {
     const [username, setUsername] = React.useState("")
     const [forgotPassword, setForgotPassword] = React.useState(false)
@@ -95,15 +97,16 @@ export const SignInForm = (props) => {
         border: "2px solid #2e2e2e",
         borderRadius: "15px",
     }
-    const gridStyle = { 
+    const gridStyle = {
         backgroundColor: "black",
     }
-    const buttonStyle = { margin: '1rem 0' }
+    const buttonStyle = { margin: '1rem 0', color: "black" }
+
 
     return (
         <ThemeProvider>
-            <Grid style={gridStyle} sx={{ borderRadius: "15px"}}>
-                <Paper elevation={10} style={paperStyle} sx={{}}>
+            <Grid style={gridStyle} sx={{ borderRadius: "15px" }}>
+                <Paper elevation={10} style={paperStyle}>
                     {!forgotPassword ?
                         <div>
                             <Grid align='center'>
@@ -168,7 +171,7 @@ export const SignInForm = (props) => {
                                         sx={{ input: { color: 'white' } }}
                                     />
                                     <TextFields
-                                        style={buttonStyle}
+                                        // style={buttonStyle}
                                         placeholder="Enter confirmation code"
                                         fullWidth
                                         required
@@ -198,5 +201,5 @@ export const SignInForm = (props) => {
                 </Paper>
             </Grid>
         </ThemeProvider>
-    );
+    )
 }
