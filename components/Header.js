@@ -6,6 +6,7 @@ import IconButton from '@mui/material/Button'
 import ThemeProvider from "../Theme"
 import Link from 'next/link'
 import AuthPopup from './AuthPopup'
+import { Box } from '@mui/material'
 
 const Wrapper = styled("div")(({ theme }) => ({
   width: "calc(100%)",
@@ -49,7 +50,7 @@ const ConnectButtonStyled = styled("button")(({ theme }) => ({
   width: "7rem",
   padding: "0.46rem",
   cursor: "pointer",
-  marginRight: "1rem",
+  // marginRight: "1rem",
   "&:hover": {
     border: "1px solid #dd00ff",
     color: "#dd00ff",

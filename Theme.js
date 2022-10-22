@@ -164,7 +164,7 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          fontSize: "clamp(8px, 1.2vw, 14px)",
+          fontSize: "clamp(8px, 1.25vw, 14px)",
           color: "white",
           borderBottom: "1px solid #2e2e2e",
           padding: "10px 5px",
@@ -251,12 +251,14 @@ const theme = createTheme({
       styleOverrides: {
         title: {
           color: "#737373",
-          fontSize: "min(2.9vw, 13px)",
+          // fontSize: "min(2.9vw, 13px)",
+          fontSize: "clamp(10px, 1.25vw, 13px)",
           margin: "-0.2rem 0rem 0rem 0rem"
         },
         subtitle: {
           color: "white",
-          fontSize: "min(2.6vw, 13px)",
+          // fontSize: "min(2.6vw, 13px)",
+          fontSize: "clamp(10px, 1.25vw, 13px)",
           margin: "-0.2rem 0rem -0.2rem 0rem",
           padding: "0px 0px 1px 0px"
         },
@@ -266,6 +268,16 @@ const theme = createTheme({
       styleOverrides: {
         avatar: {
           margin: '0px 12px 0px -3px',
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        input: {
+          "&:-webkit-autofill": {
+            "-webkit-box-shadow": "0 0 0 100px black inset",
+            "-webkit-text-fill-color": "white",
+          },
         },
       },
     },

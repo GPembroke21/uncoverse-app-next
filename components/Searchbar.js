@@ -10,20 +10,39 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 export default function CustomizedInputBase() {
   return (
-    <Paper
-      component="form"
-      sx={{ mt: "4px", mr: "10px", display: 'flex', alignItems: 'center', width: '10em', height: '1em' }}
-    >
+    // <Paper
+    //   component="form"
+    //   sx={{ 
+    //     mt: "3.5px", 
+    //     mr: "10px", 
+    //     display: 'flex', 
+    //     alignItems: 'center', 
+    //     // width: '10em', 
+    //     // height: '1em' 
+    //   }}
+    // >
       <InputBase
-        sx={{ flex: 1, color: "white", fontSize: "12px", backgroundColor: "#2e2e2e", borderRadius: "25px", height: 20, paddingLeft: 1 }}
+        sx={{ 
+          flex: 1, 
+          color: "white", 
+          fontSize: "clamp(8px, 1vw, 14px)", 
+          backgroundColor: "#2e2e2e", 
+          borderRadius: "25px", 
+          height: "2.5em",
+          width: "11em",
+          maxWidth: '500px',
+          // mt: "3px",
+          marginRight: "10px",
+          paddingLeft: 1.5,
+        }}
         placeholder="Search"
         inputProps={{ 'aria-label': 'search' }}
         endAdornment={ 
           <IconButton type="button" aria-label="search">
-            <SearchIcon sx={{ width: '12px', height: '12px' }}/>
+            <SearchIcon sx={{ width: '0.5em', height: '0.5em' }}/>
           </IconButton>
         }
       />
-    </Paper>
+    // </Paper>
   );
 }

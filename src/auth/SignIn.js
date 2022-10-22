@@ -1,6 +1,6 @@
 import React from "react";
 import { Auth } from 'aws-amplify';
-import { Avatar, Button, FormControlLabel, Grid, Link, Paper, TextField, Typography } from "@mui/material";
+import { Avatar, Button, FormControlLabel, Grid, Link, Paper, TextField, Typography, Box } from "@mui/material";
 import { CheckBox, LockOutlined } from "@mui/icons-material";
 import { styled } from "@mui/system";
 import ThemeProvider from "../../Theme";
@@ -88,29 +88,31 @@ export const SignInForm = (props) => {
 
     const paperStyle = {
         padding: 20,
-        height: '32em',
+        height: 'auto',
         width: '25rem',
         maxWidth: '90vw',
-        margin: '3rem auto',
+        // margin: '3rem auto',
         border: "2px solid #2e2e2e",
         borderRadius: "15px",
     }
-    const bgColor = { backgroundColor: "black" }
+    const gridStyle = { 
+        backgroundColor: "black",
+    }
     const buttonStyle = { margin: '1rem 0' }
 
     return (
         <ThemeProvider>
-            <Grid style={bgColor} sx={{ borderRadius: "15px" }}>
-                <Paper elevation={10} style={paperStyle}>
+            <Grid style={gridStyle} sx={{ borderRadius: "15px"}}>
+                <Paper elevation={10} style={paperStyle} sx={{}}>
                     {!forgotPassword ?
                         <div>
                             <Grid align='center'>
-                                <Typography color="white" variant="h2">Sign In</Typography>
+                                <Typography color="white" fontSize="clamp(24px, 4vw, 36px)" fontWeight="bold">Sign In</Typography>
                             </Grid>
                             <form onSubmit={handleSubmit}>
                                 <TextFields
                                     style={buttonStyle}
-                                    label="Email"
+                                    // label="Email"
                                     placeholder="Enter email"
                                     fullWidth
                                     required
@@ -119,7 +121,7 @@ export const SignInForm = (props) => {
                                 />
                                 <TextFields
                                     style={buttonStyle}
-                                    label="Password"
+                                    // label="Password"
                                     placeholder="Enter password"
                                     type='password'
                                     fullWidth
@@ -146,7 +148,7 @@ export const SignInForm = (props) => {
                                 <form onSubmit={handleReset}>
                                     <TextFields
                                         style={buttonStyle}
-                                        label="Email"
+                                        // label="Email"
                                         placeholder="Enter email"
                                         fullWidth
                                         required
@@ -158,7 +160,7 @@ export const SignInForm = (props) => {
                                 <form onSubmit={handleResetConfirm}>
                                     <TextFields
                                         style={buttonStyle}
-                                        label="Email"
+                                        // label="Email"
                                         placeholder="Enter email"
                                         fullWidth
                                         required
@@ -175,7 +177,7 @@ export const SignInForm = (props) => {
                                     />
                                     <TextFields
                                         style={buttonStyle}
-                                        label="New password"
+                                        // label="New password"
                                         placeholder="Enter new password"
                                         type='password'
                                         fullWidth

@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { styled } from "@mui/system"
+import { NoEncryption } from '@mui/icons-material';
 
 const AdBarContainer = styled("div")(({ theme }) => ({
   // padding: "0rem 1rem",
@@ -12,17 +13,59 @@ const AdBarContainer = styled("div")(({ theme }) => ({
 }));
 
 export default function TitlebarBelowImageList() {
+  const [horizontalScroll, setHorizontalScroll] = useState(0);
+  const [scrollWidth, setScrollWidth] = useState();
+  const [clientWidth, setClientWidth] = useState();
+
+  useEffect(() => {
+    const imageListEl = document.querySelector("#imageList");
+
+    imageListEl?.addEventListener(
+      "scroll",
+      () => {
+        console.log("position left is", imageListEl.scrollLeft);
+        console.log("scroll width", imageListEl.scrollWidth);
+        console.log("client width", imageListEl.clientWidth);
+        setHorizontalScroll(imageListEl?.scrollLeft);
+        setScrollWidth(imageListEl?.scrollWidth);
+        setClientWidth(imageListEl?.clientWidth);
+      },
+      { passive: true }
+    );
+  }, [horizontalScroll], [scrollWidth], [clientWidth]);
+
   return (
     <AdBarContainer>
-    <ImageList sx={{ 
+    <ImageList
+      id="imageList"
+      sx={{ 
       width: "100%",
       gridAutoFlow: "column",
       gridTemplateColumns: "repeat(auto-fill,minmax(15em, 1fr)) !important",
       gridAutoColumns: "minmax(15em, 1fr)",
       overflowX:'scroll',
-      // '&::-webkit-scrollbar':{
-      //     width: 0,
-      // }
+      maskImage:
+      scrollWidth === (clientWidth + horizontalScroll)
+        ? [
+            "linear-gradient(to left, black calc(100% - 48px), transparent 100%)",
+          ]
+        :
+      horizontalScroll > 0
+        ? [
+            "linear-gradient(to left, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)",
+            "linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)",
+          ]
+        :
+      horizontalScroll === 0
+        ? [
+            "linear-gradient(to right, black calc(100% - 48px), transparent 100%)",
+          ]
+      //   :
+      // scrollWidth === (null)
+      //   ? [
+      //       "none"
+      //     ]
+        : [""],
       scrollbarWidth: "none" /* Firefox */,
       "&::-webkit-scrollbar": {
         display: "none"
@@ -32,6 +75,7 @@ export default function TitlebarBelowImageList() {
       variant= 'standard'
       rowHeight= "auto"
       >
+      {console.log("pos", horizontalScroll)}
       {itemData.map((item) => (
         <ImageListItem key={item.key}>
           <img

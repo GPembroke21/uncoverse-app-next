@@ -11,6 +11,7 @@ import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import Box from "@mui/material/Box"
 import Searchbar from '../components/Searchbar'
+import WatchlistButton from './buttons/WatchlistButton'
 
 const Wrapper = styled("div")(({ theme }) => ({
   // padding: "0px 10px 0px 14px",
@@ -32,6 +33,7 @@ const Filters = () => {
             <Searchbar/>
             <PlatformFilter/>
             <CategoryFilter/>
+            <WatchlistButton/>
         </FiltersContainer>
     </ThemeProvider>
   )

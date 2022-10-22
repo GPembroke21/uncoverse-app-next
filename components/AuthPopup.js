@@ -14,7 +14,9 @@ export default function AuthPopup(props) {
 
     const menuTransitions = useTransition(props.open, {
         from: { opacity: 0 },
-        enter: { opacity: 1, transform: 'translateX(-39%)'},
+        enter: { opacity: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'
+            // transform: 'translateX(-39%)'
+        },
         leave: { opacity: 0 },
     })
 
