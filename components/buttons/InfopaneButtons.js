@@ -34,7 +34,7 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
 
 export default function InfopaneButtons() {
     return (
-        <ButtonContainer container sx={{mt:"20px", mb:'-5px'}}>
+        <ButtonContainer container>
             <Grid item flexGrow={1} marginRight={1}>
                 <InfopaneButton fullWidth variant="contained">Favorite Event</InfopaneButton>
             </Grid>

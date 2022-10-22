@@ -29,6 +29,21 @@ const InfopaneRow = styled("div")(({ theme }) => ({
   alignItems: "center",
 }));
 
+const InfopaneInfo = styled(Grid)(({ theme }) => ({
+  border: '1px solid white', 
+  borderRadius: '12px',
+  marginTop: '15px',
+  padding: '5px 10px'
+}));
+
+const InfopaneDescription = styled(Grid)(({ theme }) => ({
+  border: '1px solid white', 
+  borderRadius: '12px',
+  marginTop: '15px',
+  // padding: '5px 10px',
+  // maxHeight: '100%',
+}));
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
 });
@@ -95,67 +110,73 @@ function Row(props) {
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
+        direction="column"
         sx={{
           opacity: "100",
           backgroundColor: "black",
-          width: { xs: '100vw', sm: '50vw' },
+          width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' },
           maxWidth: { xs: '100vw', sm: '1000px' },
           height: '100vh',
           borderRight: '2px solid #2e2e2e',
         }}
       // PaperProps={{ sx: { position: "fixed", top: 0, m: 0 } }}
+        PaperProps={{ sx: {margin: { xs: '24px 24px', sm: '0px 24px' }} }}
       >
-      <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-10px' }}>Metaverse_name</DialogContent>
+      <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-5px' }}>Metaverse_name</DialogContent>
       <DialogTitle sx={{ fontSize: '20px', mb: '-5px', lineHeight: '90%' }}>{row.name}</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ mb: '-10px' }}>
+          <DialogContentText sx={{ mb: '10px' }}>
               <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{borderRadius: '8px'}}/>
           </DialogContentText>
-          <InfopaneButtons />
+          <InfopaneButtons/>
           {/* <br /> */}
-          <DialogContentText sx={{ color: 'white', mt: '15px' }}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {formattedStartDate}, {formattedStartTime}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider />
-          <DialogContentText sx={{ color: 'white' }}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {row.category}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider />
-          <DialogContentText sx={{ color: 'white' }}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {row.totalAttendees}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider />
-          <DialogContentText sx={{ color: 'white' }}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              <a href={row.url} target="_blank" rel="noreferrer noopener">
-                {row.locator}
-              </a>
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider />
+          <InfopaneInfo>
+            {/* <DialogContentText>
+              Info
+            </DialogContentText> */}
+            <DialogContentText>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {formattedStartDate}, {formattedStartTime}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
+            <DialogContentText>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {row.category}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
+            <DialogContentText>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {row.totalAttendees}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
+            <DialogContentText>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                <a href={row.url} target="_blank" rel="noreferrer noopener">
+                  {row.locator}
+                </a>
+              </InfopaneRow>
+            </DialogContentText>
+          </InfopaneInfo>
           {/* <br /> */}
           <DialogContentText
             id="alert-dialog-slide-description"
-            sx={{ fontSize: '1rem', color: 'white', mt: '15px', lineHeight: '99%' }}
-            style={{ maxHeight: 280, overflow: 'auto' }}>
+            sx={{ lineHeight: '150%'}}
+            style={{ maxHeight: 10, overflow: 'auto' }}>
             {row.description}
           </DialogContentText>
         </DialogContent>

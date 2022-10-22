@@ -281,6 +281,14 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialogContentText: {
+      styleOverrides: {
+        root: {
+          fontSize: "clamp(10px, 1.5vw, 16px)",
+          color: 'white',
+        },
+      },
+    },   
   },
 });
 
