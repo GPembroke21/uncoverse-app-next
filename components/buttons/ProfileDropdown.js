@@ -77,11 +77,11 @@ export default function ProfileDropdown(props) {
         <MenuItem sx={{ borderBottom: "1px solid #282b2f" }} style={{ pointerEvents: 'none' }}>
           <a>Guest</a>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        {/* <MenuItem onClick={handleClose}>
           <Link href="/">
             <a>Home</a>
           </Link>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={handleClose}>
           {/* sx={{ display: { xs: 'grid', sm: 'none' } }} > */}
           <Link href="/watchlist">
@@ -93,11 +93,11 @@ export default function ProfileDropdown(props) {
             <a>Profile</a>
           </Link>
         </MenuItem>
-        <MenuItem onClick={handleCloseAndSignOut}>
+        {/* <MenuItem onClick={handleCloseAndSignOut}>
           <Link href="/">
             <a>Sign Out</a>
           </Link>
-        </MenuItem>
+        </MenuItem> */}
       </Menu>
     </ThemeProvider>
   );

@@ -25,7 +25,7 @@ export default function BasicButtons() {
           }}
         >
           <Link href="/watchlist">
-            Watchlist
+            Favorites
           </Link>
         </Button>
     </Stack>

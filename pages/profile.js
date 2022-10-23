@@ -13,6 +13,7 @@ import Link from 'next/link'
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
+import { signOut } from '../src/auth/SignOut'
 
 const Wrapper = styled("div")(({ theme }) => ({
   // height: "100vh",
@@ -79,6 +80,26 @@ const SaveButton = styled(Button)(({ theme }) => ({
   }
 }));
 
+const SignOutButton = styled(Button)(({ theme }) => ({
+  fontFamily: "Inter",
+  fontSize: "0.8rem",
+  fontWeight: "500",
+  textAlign: "center",
+  color: "white",
+  backgroundColor: "transparent",
+  border: "1px solid white",
+  borderRadius: "4px",
+  padding: "0.46rem",
+  cursor: "pointer",
+  margin: "0px 0px",
+  // width: "min(40vw, 200px)",
+  height: "55px",
+  "&:hover": {
+    border: "1px solid red",
+    color: "red",
+  }
+}));
+
 const TextFields = styled(TextField)(({ theme }) => ({
   caretColor: "white",
   '& label.Mui-focused': {
@@ -105,6 +126,11 @@ const TextFields = styled(TextField)(({ theme }) => ({
 }));
 
 export default function Profile(props) {
+
+  const handleCloseAndSignOut = () => {
+    signOut();
+  };
+
   return (
     <Wrapper>
       <Main container>
@@ -156,6 +182,11 @@ export default function Profile(props) {
           </Grid>
           <Grid item>
             <SaveButton fullWidth>Save</SaveButton>
+          </Grid>
+          <Grid item>
+            <Link href="/">
+            <SignOutButton fullWidth onClick={handleCloseAndSignOut}>Sign Out</SignOutButton>
+            </Link>
           </Grid>
         </Grid>
       </Main>
