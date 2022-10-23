@@ -40,7 +40,7 @@ const InfopaneDescription = styled(Grid)(({ theme }) => ({
   border: '1px solid white', 
   borderRadius: '12px',
   marginTop: '15px',
-  // padding: '5px 10px',
+  padding: '5px 10px',
   // maxHeight: '100%',
 }));
 
@@ -123,14 +123,15 @@ function Row(props) {
         PaperProps={{ sx: {margin: { xs: '24px 24px', sm: '0px 24px' }} }}
       >
         <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-10px' }}>Metaverse_name</DialogContent>
-        <DialogTitle sx={{ fontSize: '20px', mb: '-5px', lineHeight: '90%' }}>{row.name}</DialogTitle>
+        <DialogTitle sx={{ fontSize: '20px', fontWeight: 'bold', mb: '-5px', lineHeight: '100%' }}>{row.name}</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ mb: '-10px' }}>
+          <DialogContentText sx={{ mb: '10px' }}>
             <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px' }} />
           </DialogContentText>
           <InfopaneButtons/>
           {/* <br /> */}
-          <DialogContentText component={'span'} sx={{ color: 'white', mt: '15px' }}>
+          <InfopaneInfo>
+          <DialogContentText component={'span'} sx={{mt: '15px' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
@@ -138,8 +139,8 @@ function Row(props) {
               {formattedStartDate}, {formattedStartTime}
             </InfopaneRow>
           </DialogContentText>
-          <Divider />
-          <DialogContentText component={'span'} sx={{ color: 'white' }}>
+          <Divider sx={{margin: '3px 0px'}}/>
+          <DialogContentText component={'span'}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
@@ -147,8 +148,8 @@ function Row(props) {
               {row.category}
             </InfopaneRow>
           </DialogContentText>
-          <Divider />
-          <DialogContentText component={'span'} sx={{ color: 'white' }}>
+          <Divider sx={{margin: '3px 0px'}}/>
+          <DialogContentText component={'span'}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
@@ -156,8 +157,8 @@ function Row(props) {
               {row.totalAttendees}
             </InfopaneRow>
           </DialogContentText>
-          <Divider />
-          <DialogContentText component={'span'} sx={{ color: 'white' }}>
+          <Divider sx={{margin: '3px 0px'}}/>
+          <DialogContentText component={'span'}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
@@ -167,14 +168,16 @@ function Row(props) {
               </a>
             </InfopaneRow>
           </DialogContentText>
-          <Divider />
+          </InfopaneInfo>
           {/* <br /> */}
-          <DialogContentText
-            id="alert-dialog-slide-description"
-            sx={{ lineHeight: '150%'}}
-            style={{ maxHeight: 10, overflow: 'auto' }}>
-            {row.description}
-          </DialogContentText>
+          <InfopaneDescription>
+            <DialogContentText
+              id="alert-dialog-slide-description"
+              sx={{ lineHeight: '150%'}}
+              style={{ maxHeight: 60, overflow: 'auto' }}>
+              {row.description}
+            </DialogContentText>
+          </InfopaneDescription>
         </DialogContent>
       </Dialog>
     </React.Fragment>
