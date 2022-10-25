@@ -39,8 +39,6 @@ export default function FavoriteEventCard(props) {
 
   return (
     <Card sx={{
-      // maxWidth: 450,
-      // minWidth: 300,
       width: 1,
       backgroundColor: "#282b2f",
       color: "white",
@@ -51,17 +49,17 @@ export default function FavoriteEventCard(props) {
       <CardMedia
         component="img"
         height="194"
-        // image="/adbar2.jpg"
         image={item.image}
       />
       <a href={item.url} target="_blank" rel="noreferrer noopener">
         <CardHeader
-          action={
-            <Grid margin={'6px 10px 0px 0px'}>
-              <FavoriteButton />
-            </Grid>
-          }
+          // action={
+          //   <Grid margin={'6px 10px 0px 0px'}>
+          //     <FavoriteButton />
+          //   </Grid>
+          // }
           title={item.name}
+          titleTypographyProps={{ fontWeight: 'bold' }}
           subheader={dateA}
           subheaderTypographyProps={{ color: 'white' }}
           sx={{ mb: "-5px" }}
@@ -70,15 +68,16 @@ export default function FavoriteEventCard(props) {
       </a>
       <Divider sx={{ background: '#40454d' }} />
       <CardActions disableSpacing sx={{ height: '40px', backgroundColor: '#1a1c1f' }}>
+        <Grid marginLeft={'12px'}>
+            <FavoriteButton />
+        </Grid>
         <Grid
           container
-          // justifyContent="flex-start"
-          // alignItems="center"
           marginLeft={1.2}
         >
           <Typography variant='h4'>Users: {item.totalAttendees}</Typography>
           <Typography variant='h4' sx={{ color: '#40454d', fontWeight: '700' }} >&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
-          <Typography variant='h4'>{item.category}</Typography>
+          <Typography variant='h4' sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '7rem', overflow: 'hidden'}}>{item.category}</Typography>
         </Grid>
         <ExpandMore
           expand={expanded}

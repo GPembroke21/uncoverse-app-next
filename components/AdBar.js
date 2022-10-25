@@ -45,6 +45,9 @@ export default function TitlebarBelowImageList() {
       gridAutoColumns: "minmax(15em, 1fr)",
       overflowX:'scroll',
       maskImage:
+      scrollWidth === clientWidth
+        ? [""]
+        :
       scrollWidth === (clientWidth + horizontalScroll)
         ? [
             "linear-gradient(to left, black calc(100% - 48px), transparent 100%)",
