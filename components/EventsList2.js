@@ -22,57 +22,6 @@ import { styled } from "@mui/system"
 import InfopaneButtons from "./buttons/InfopaneButtons"
 import InfoPane from './InfoPane'
 
-const InfopaneRow = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "flex-start",
-  flexDirection: "row",
-  alignItems: "center",
-}));
-
-const InfopaneButtonContainer = styled(Grid)(({ theme }) => ({
-  [theme.breakpoints.down("xs")]: {
-    flexDirection: "column",
-    "> div": {
-      marginLeft: 0,
-      marginRight: 0,
-    },
-  },
-}));
-
-const InfopaneButton = styled(Button)(({ theme }) => ({
-  fontFamily: "Inter",
-  fontSize: "min(2vw, 12px)",
-  fontWeight: "500",
-  textAlign: "center",
-  color: "white",
-  backgroundColor: "transparent",
-  border: "1px solid white",
-  borderRadius: "0.4rem",
-  // width: "20vw",
-  padding: "0.46rem",
-  cursor: "pointer",
-  marginRight: "1rem",
-  "&:hover": {
-    border: "1px solid #dd00ff",
-    color: "#dd00ff",
-  }
-}));
-
-const InfopaneInfo = styled(Grid)(({ theme }) => ({
-  border: '1px solid white',
-  borderRadius: '12px',
-  marginTop: '15px',
-  padding: '5px 10px'
-}));
-
-const InfopaneDescription = styled(Grid)(({ theme }) => ({
-  border: '1px solid white',
-  borderRadius: '12px',
-  marginTop: '15px',
-  padding: '5px 10px',
-  // maxHeight: '100%',
-}));
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
 });
@@ -158,7 +107,7 @@ export default function EventsList2(props) {
           </TableRow>
         </TableHead>
         {props.eventList.data ?
-          <TableBody sx={{ backgroundColor: "black" }}>
+          <TableBody sx={{ backgroundColor: "transparent" }}>
             {props.eventList.data
               .sort((a, b) => a.dateTimeStart < b.dateTimeStart ? -1 : 1)
               .map((row, i) => (

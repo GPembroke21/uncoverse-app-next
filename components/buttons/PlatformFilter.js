@@ -25,7 +25,7 @@ export default function PlatformFilter() {
         endIcon={<KeyboardArrowDownIcon />}
         sx={{
           color: "white", 
-          backgroundColor: "#2e2e2e", 
+          backgroundColor: "#252425", 
           fontSize: "clamp(8px, 1vw, 14px)", 
           borderRadius: '25px',
           // padding: '0px 10px 0px 10px',
@@ -34,7 +34,7 @@ export default function PlatformFilter() {
           width: "11em"
         }}
         style={{
-          backgroundColor: "#2e2e2e", 
+          backgroundColor: "#252425", 
         }}
       >
         Platform

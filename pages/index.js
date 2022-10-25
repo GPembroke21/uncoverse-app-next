@@ -7,7 +7,7 @@ import TrendingBar from '../components/TrendingBar'
 const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
   padding: "0 0",
-  background: "#000000",
+  background: "transparent",
 }));
 
 export default function Index(props) {

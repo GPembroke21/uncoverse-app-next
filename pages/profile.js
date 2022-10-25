@@ -19,7 +19,7 @@ const Wrapper = styled("div")(({ theme }) => ({
   // height: "100vh",
   overflow: "hidden",
   padding: "0 0",
-  background: "#000000",
+  background: "transparent",
 }));
 
 const Main = styled(Grid)(({ theme }) => ({

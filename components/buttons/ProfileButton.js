@@ -47,58 +47,13 @@ export default function ProfileDropdown(props) {
       <ProfileButton
         disableRipple
         id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
         sx={{ marginRight: "-9px" }}
         style={{ backgroundColor: 'transparent' }}
       >
-        G
+        <Link href="/profile">
+            G
+        </Link>
       </ProfileButton>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={open}
-        onClose={handleClose}
-        sx={{ marginLeft: "1px" }}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <MenuItem sx={{ borderBottom: "1px solid #282b2f" }} style={{ pointerEvents: 'none' }}>
-          <a>Guest</a>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          {/* sx={{ display: { xs: 'grid', sm: 'none' } }} > */}
-          <Link href="/watchlist">
-            <a>Watchlist</a>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link href="/profile">
-            <a>Profile</a>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link href="/">
-            <a>Settings</a>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleCloseAndSignOut}>
-          <Link href="/">
-            <a>Sign Out</a>
-          </Link>
-        </MenuItem>
-      </Menu>
     </ThemeProvider>
   );
 }

@@ -15,6 +15,7 @@ const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
   padding: "0 0",
   background: "#000000",
+  boxShadow: "3",
 }));
 
 const Main = styled(Grid)(({ theme }) => ({

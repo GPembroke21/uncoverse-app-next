@@ -1,6 +1,7 @@
 import React from 'react'
 import { styled } from "@mui/system"
 import ProfileDropdown from './buttons/ProfileDropdown'
+import ProfileButton from './buttons/ProfileButton'
 import Image from 'next/image'
 import IconButton from '@mui/material/Button'
 import ThemeProvider from "../Theme"
@@ -8,6 +9,8 @@ import Link from 'next/link'
 import AuthPopup from './AuthPopup'
 import { signOut } from '../src/auth/SignOut'
 import { favoriteEvents } from '../src/static/StaticVariables'
+import WatchlistButton from './buttons/WatchlistButton'
+import Typography from '@mui/material/Typography'
 
 const Wrapper = styled("div")(({ theme }) => ({
   width: "calc(100%)",
@@ -83,7 +86,11 @@ const Header = (props) => {
               <AuthPopup open={headerOpen} setOpen={() => setHeaderOpen(!headerOpen)} />
             </div>
             :
-            <ProfileDropdown confirmClosed={() => setHeaderOpen(false)}/>
+            <div>
+              <WatchlistButton/>
+              {/* <Typography variant='h4' sx={{ color: '#40454d', fontWeight: '700' }} >&nbsp;&nbsp;|&nbsp;&nbsp;</Typography> */}
+              <ProfileButton confirmClosed={() => setHeaderOpen(false)}/>
+            </div>
           }
         </RightContainer>
       </Wrapper>

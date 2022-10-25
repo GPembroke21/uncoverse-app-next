@@ -5,7 +5,7 @@ import CategoryFilter from './buttons/CategoryFilter'
 import ClearFilters from './buttons/ClearFilters'
 import ThemeProvider from "../Theme"
 import Searchbar from '../components/Searchbar'
-import WatchlistButton from './buttons/WatchlistButton'
+import FavoritesButton from './buttons/FavoritesButton'
 
 const FiltersContainer = styled("div")(({ theme }) => ({
   margin: "14px 0px",
@@ -23,7 +23,7 @@ const Filters = () => {
         <Searchbar />
         <PlatformFilter />
         <CategoryFilter />
-        <WatchlistButton />
+        <FavoritesButton />
       </FiltersContainer>
     </ThemeProvider>
   )

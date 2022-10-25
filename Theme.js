@@ -5,7 +5,7 @@ import Inter from "@fontsource/inter";
 const theme = createTheme({
   palette: {
     background: {
-      default: "#000000",
+      default: "#070007",
   },
   primary: {
     main: "#000000",
@@ -146,7 +146,7 @@ const theme = createTheme({
     MuiTableContainer: {
       styleOverrides: {
         root: {
-          backgroundColor: "rgb(0, 0, 0)",
+          backgroundColor: "transparent",
           border: "none",
           padding: "0em 1em 0em 1em",
         },
@@ -155,7 +155,7 @@ const theme = createTheme({
     MuiTable: {
       styleOverrides: {
         root: {
-          backgroundColor: "rgb(0, 0, 0)",
+          backgroundColor: "transparent",
           /*borderSpacing: "0.1rem",
           borderCollapse: "separate",*/
         },
