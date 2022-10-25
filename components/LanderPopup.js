@@ -14,7 +14,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
 });
 
-export default function InfoPane() {
+export default function LanderPopup() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
