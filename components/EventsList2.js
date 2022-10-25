@@ -20,13 +20,42 @@ import Divider from "@mui/material/Divider"
 import GetEvents from '../src/requests/GetEvents'
 import { platformLogos } from '../src/static/StaticVariables'
 import { styled } from "@mui/system"
-import InfopaneButtons from "./buttons/InfopaneButtons"
+import Button from "@mui/material/Button"
 
 const InfopaneRow = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "flex-start",
   flexDirection: "row",
   alignItems: "center",
+}));
+
+const InfopaneButtonContainer = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down("xs")]: {
+    flexDirection: "column",
+    "> div": {
+      marginLeft: 0,
+      marginRight: 0,
+    },
+  },
+}));
+
+const InfopaneButton = styled(Button)(({ theme }) => ({
+  fontFamily: "Inter",
+  fontSize: "min(2vw, 12px)",
+  fontWeight: "500",
+  textAlign: "center",
+  color: "white",
+  backgroundColor: "transparent",
+  border: "1px solid white",
+  borderRadius: "0.4rem",
+  // width: "20vw",
+  padding: "0.46rem",
+  cursor: "pointer",
+  marginRight: "1rem",
+  "&:hover": {
+    border: "1px solid #dd00ff",
+    color: "#dd00ff",
+  }
 }));
 
 const InfopaneInfo = styled(Grid)(({ theme }) => ({
@@ -119,55 +148,64 @@ function Row(props) {
           height: '100vh',
           borderRight: '2px solid #2e2e2e',
         }}
-      // PaperProps={{ sx: { position: "fixed", top: 0, m: 0 } }}
         PaperProps={{ sx: {margin: { xs: '24px 24px', sm: '0px 24px' }} }}
       >
-        <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-10px' }}>Metaverse_name</DialogContent>
-        <DialogTitle sx={{ fontSize: '20px', fontWeight: 'bold', mb: '-5px', lineHeight: '100%' }}>{row.name}</DialogTitle>
-        <DialogContent>
+        <DialogContent>   
+          <DialogContentText sx={{ fontSize: '10px', color: 'white' }}>{row.platformId}</DialogContentText>
+          <DialogContentText sx={{ fontSize: '20px', fontWeight: 'bold', mb: '12px', lineHeight: '100%' }}>{row.name}</DialogContentText>
           <DialogContentText sx={{ mb: '10px' }}>
             <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px' }} />
           </DialogContentText>
-          <InfopaneButtons/>
-          {/* <br /> */}
+          <InfopaneButtonContainer container>
+            <Grid item flexGrow={1} marginRight={1}>
+                <InfopaneButton fullWidth variant="contained">
+                  Favorite Event
+                </InfopaneButton>
+            </Grid>
+            <Grid item flexGrow={1} marginLeft={1}>
+                <InfopaneButton fullWidth variant="contained">
+                  <a href={row.url} target="_blank" rel="noreferrer noopener">
+                  Jump to Event
+                  </a>
+                </InfopaneButton>
+            </Grid>
+          </InfopaneButtonContainer>
           <InfopaneInfo>
-          <DialogContentText component={'span'} sx={{mt: '15px' }}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {formattedStartDate}, {formattedStartTime}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider sx={{margin: '3px 0px'}}/>
-          <DialogContentText component={'span'}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {row.category}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider sx={{margin: '3px 0px'}}/>
-          <DialogContentText component={'span'}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {row.totalAttendees}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider sx={{margin: '3px 0px'}}/>
-          <DialogContentText component={'span'}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              <a href={row.url} target="_blank" rel="noreferrer noopener">
+            <DialogContentText component={'span'} sx={{mt: '15px' }}>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {formattedStartDate}, {formattedStartTime}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
+            <DialogContentText component={'span'}>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {row.category}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
+            <DialogContentText component={'span'}>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {row.totalAttendees}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
+            <DialogContentText component={'span'}>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
                 {row.locator}
-              </a>
-            </InfopaneRow>
-          </DialogContentText>
+              </InfopaneRow>
+            </DialogContentText>
           </InfopaneInfo>
           {/* <br /> */}
           <InfopaneDescription>

@@ -2,6 +2,17 @@ import * as React from 'react'
 import { styled } from "@mui/system"
 import Grid from '@mui/material/Grid'
 import Button from "@mui/material/Button"
+import Link from 'next/link'
+
+const ButtonContainer = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down("xs")]: {
+    flexDirection: "column",
+    "> div": {
+      marginLeft: 0,
+      marginRight: 0,
+    },
+  },
+}));
 
 const InfopaneButton = styled(Button)(({ theme }) => ({
     fontFamily: "Inter",
@@ -20,17 +31,7 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
       border: "1px solid #dd00ff",
       color: "#dd00ff",
     }
-  }));
-  
-  const ButtonContainer = styled(Grid)(({ theme }) => ({
-    [theme.breakpoints.down("xs")]: {
-      flexDirection: "column",
-      "> div": {
-        marginLeft: 0,
-        marginRight: 0,
-      },
-    },
-  }));
+}));
 
 export default function InfopaneButtons() {
     return (
@@ -39,7 +40,9 @@ export default function InfopaneButtons() {
                 <InfopaneButton fullWidth variant="contained">Favorite Event</InfopaneButton>
             </Grid>
             <Grid item flexGrow={1} marginLeft={1}>
-                <InfopaneButton fullWidth variant="contained">Jump to Event</InfopaneButton>
+                <InfopaneButton fullWidth variant="contained">
+                  Jump to Event
+                </InfopaneButton>
             </Grid>
         </ButtonContainer>
     )
