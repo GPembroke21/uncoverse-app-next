@@ -17,10 +17,10 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import Divider from "@mui/material/Divider"
-import GetEvents from '../src/requests/GetEvents'
 import { platformLogos } from '../src/static/StaticVariables'
 import { styled } from "@mui/system"
-import Button from "@mui/material/Button"
+import InfopaneButtons from "./buttons/InfopaneButtons"
+import InfoPane from './InfoPane'
 
 const InfopaneRow = styled("div")(({ theme }) => ({
   display: "flex",
@@ -59,14 +59,14 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
 }));
 
 const InfopaneInfo = styled(Grid)(({ theme }) => ({
-  border: '1px solid white', 
+  border: '1px solid white',
   borderRadius: '12px',
   marginTop: '15px',
   padding: '5px 10px'
 }));
 
 const InfopaneDescription = styled(Grid)(({ theme }) => ({
-  border: '1px solid white', 
+  border: '1px solid white',
   borderRadius: '12px',
   marginTop: '15px',
   padding: '5px 10px',
@@ -91,6 +91,7 @@ function Row(props) {
   const formattedEndDate = dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
   const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
   const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
+  const dateStyled = formattedStartDate + ", " + { formattedStartTime }
 
   // if (dateTimeStart > currentTime) { console.log ("Upcoming", row.name, dateTimeStart, currentTime)}
 
@@ -109,125 +110,41 @@ function Row(props) {
           textOverflow: 'ellipsis',
           maxWidth: '1rem',
           overflow: 'hidden',
+          cursor: 'pointer'
         }}
         >
           {row.name}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {formattedStartDate}, {formattedStartTime}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {row.category}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {row.totalAttendees}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden' }}>
+        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           <a href={row.url} target="_blank" rel="noreferrer noopener">
             {row.locator}
           </a>
         </TableCell>
         <TableCell align="right">
-          <FavoriteButton eventId={row.id} ind={props.ind}/>
+          <FavoriteButton eventId={row.id} ind={props.ind} sx={{ cursor: 'pointer' }} />
         </TableCell>
       </TableRow>
 
-
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-        direction="column"
-        sx={{
-          opacity: "100",
-          backgroundColor: "black",
-          width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' },
-          maxWidth: { xs: '100vw', sm: '1000px' },
-          height: '100vh',
-          borderRight: '2px solid #2e2e2e',
-        }}
-        PaperProps={{ sx: {margin: { xs: '24px 24px', sm: '0px 24px' }} }}
-      >
-        <DialogContent>   
-          <DialogContentText sx={{ fontSize: '10px', color: 'white' }}>{row.platformId}</DialogContentText>
-          <DialogContentText sx={{ fontSize: '20px', fontWeight: 'bold', mb: '12px', lineHeight: '100%' }}>{row.name}</DialogContentText>
-          <DialogContentText sx={{ mb: '10px' }}>
-            <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px' }} />
-          </DialogContentText>
-          <InfopaneButtonContainer container>
-            <Grid item flexGrow={1} marginRight={1}>
-                <InfopaneButton fullWidth variant="contained">
-                  Favorite Event
-                </InfopaneButton>
-            </Grid>
-            <Grid item flexGrow={1} marginLeft={1}>
-                <InfopaneButton fullWidth variant="contained">
-                  <a href={row.url} target="_blank" rel="noreferrer noopener">
-                  Jump to Event
-                  </a>
-                </InfopaneButton>
-            </Grid>
-          </InfopaneButtonContainer>
-          <InfopaneInfo>
-            <DialogContentText component={'span'} sx={{mt: '15px' }}>
-              <InfopaneRow>
-                <Box sx={{ marginRight: '10px' }}>
-                  <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-                </Box>
-                {formattedStartDate}, {formattedStartTime}
-              </InfopaneRow>
-            </DialogContentText>
-            <Divider sx={{margin: '3px 0px'}}/>
-            <DialogContentText component={'span'}>
-              <InfopaneRow>
-                <Box sx={{ marginRight: '10px' }}>
-                  <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-                </Box>
-                {row.category}
-              </InfopaneRow>
-            </DialogContentText>
-            <Divider sx={{margin: '3px 0px'}}/>
-            <DialogContentText component={'span'}>
-              <InfopaneRow>
-                <Box sx={{ marginRight: '10px' }}>
-                  <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-                </Box>
-                {row.totalAttendees}
-              </InfopaneRow>
-            </DialogContentText>
-            <Divider sx={{margin: '3px 0px'}}/>
-            <DialogContentText component={'span'}>
-              <InfopaneRow>
-                <Box sx={{ marginRight: '10px' }}>
-                  <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-                </Box>
-                {row.locator}
-              </InfopaneRow>
-            </DialogContentText>
-          </InfopaneInfo>
-          {/* <br /> */}
-          <InfopaneDescription>
-            <DialogContentText
-              id="alert-dialog-slide-description"
-              sx={{ lineHeight: '150%'}}
-              style={{ maxHeight: 60, overflow: 'auto' }}>
-              {row.description}
-            </DialogContentText>
-          </InfopaneDescription>
-        </DialogContent>
-      </Dialog>
+      <InfoPane handleCloseFunction={handleClose} row={row} dateStyled={dateStyled} openState={open} />
     </React.Fragment>
   );
 }
 
 export default function EventsList2(props) {
-  
+
   // const eventList = GetEvents()
-  
+
   return (
-    <TableContainer style={{ overflowX: 'auto' }}> <button onClick={() => console.log(props)}></button>
+    <TableContainer style={{ overflowX: 'auto' }}>
       <Table sx={{ minWidth: 200, borderTop: "1px solid #2e2e2e", borderSpacing: "0px 0.1rem" }} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ borderBottom: "none" }}>

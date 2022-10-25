@@ -74,8 +74,7 @@ const Header = (props) => {
               </IconButton>
             </Logo>
           </Link>
-          {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => signOut()}/> */}
-          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(favoriteEvents, props.loginCreds)}/>
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log()}/>
         </LogoContainer>
         <RightContainer>
           {!props.loginCreds.signedIn ?
