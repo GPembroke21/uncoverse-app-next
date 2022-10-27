@@ -112,10 +112,10 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "0.8rem",
-          backgroundColor: "transparent",
+          backgroundColor: "#252425",
           color: "white",
           '&:hover': {
-            backgroundColor: "#282b2f",
+            backgroundColor: "#252425",
           },
         },
       },

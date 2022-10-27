@@ -1,8 +1,9 @@
 import { styled } from "@mui/system"
-import Filters from '../components/Filters'
+import FiltersBar from '../components/FiltersBar'
 import EventsList2 from '../components/EventsList2'
 import AdBar from '../components/AdBar'
 import TrendingBar from '../components/TrendingBar'
+import Filters from '../components/FiltersDropdown'
 
 const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
@@ -13,9 +14,9 @@ const Wrapper = styled("div")(({ theme }) => ({
 export default function Index(props) {
   return (
     <Wrapper>
-      <AdBar />
-      <TrendingBar />
-      <Filters />
+      <AdBar/>
+      <TrendingBar/>
+      <FiltersBar/>
       <EventsList2 eventList={props.eventList} />
     </Wrapper>
   )

@@ -82,7 +82,6 @@ function Row(props) {
           <FavoriteButton eventId={row.id} ind={props.ind} sx={{ cursor: 'pointer' }} />
         </TableCell>
       </TableRow>
-
       <InfoPane handleCloseFunction={handleClose} row={row} dateStyled={dateStyled} openState={open} />
     </React.Fragment>
   );

@@ -51,6 +51,7 @@ export default function PlatformFilter() {
           marginTop: "15px",
           // marginLeft: "-2.5px"
         }}
+        PaperProps={{ sx:{backgroundColor: '#252425'} }}
       >
         <MenuItem onClick={handleClose} sx={{fontSize: "clamp(8px, 1vw, 14px)"}}>Platform1</MenuItem>
         <MenuItem onClick={handleClose} sx={{fontSize: "clamp(8px, 1vw, 14px)"}}>Platform2</MenuItem>

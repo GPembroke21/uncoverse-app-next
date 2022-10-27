@@ -3,6 +3,7 @@ import { styled } from "@mui/system"
 import Grid from '@mui/material/Grid'
 import Button from "@mui/material/Button"
 import Link from 'next/link'
+import FavoriteButton from './FavoriteButton'
 
 const ButtonContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.down("xs")]: {
@@ -37,7 +38,13 @@ export default function InfopaneButtons() {
     return (
         <ButtonContainer container>
             <Grid item flexGrow={1} marginRight={1}>
-                <InfopaneButton fullWidth variant="contained">Favorite Event</InfopaneButton>
+                <InfopaneButton 
+                  fullWidth 
+                  variant="contained"
+                  endIcon={<FavoriteButton/>}
+                  >
+                    Favorite
+                </InfopaneButton>
             </Grid>
             <Grid item flexGrow={1} marginLeft={1}>
                 <InfopaneButton fullWidth variant="contained">

@@ -19,14 +19,15 @@ export default function BasicButtons() {
             marginRight: '10px',
             height: "2.5em",
             width: "11em",
+            "&:hover": {
+              color: "#dd00ff",
+            },
           }}
           style={{
             backgroundColor: "#252425", 
           }}
         >
-          <Link href="/watchlist">
             Favorites
-          </Link>
         </Button>
     </Stack>
   );

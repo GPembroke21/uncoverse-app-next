@@ -1,8 +1,8 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button } from '@mui/material';
 import Image from 'next/image'
 import FavoriteButton from './buttons/FavoriteButton'
-import InfopaneButtons from "./buttons/InfopaneButtons"
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from "@mui/system"
 
 const InfopaneRow = styled("div")(({ theme }) => ({
@@ -22,9 +22,37 @@ const InfopaneInfo = styled(Grid)(({ theme }) => ({
 const InfopaneDescription = styled(Grid)(({ theme }) => ({
   border: '1px solid white', 
   borderRadius: '12px',
-  marginTop: '15px',
+  margin: '15px 0px 0px 0px',
   padding: '5px 10px',
-  // maxHeight: '100%',
+  maxHeight: '20%', 
+  overflow: 'auto' 
+}));
+
+const ButtonContainer = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down("xs")]: {
+    flexDirection: "column",
+    "> div": {
+      marginLeft: 0,
+      marginRight: 0,
+    },
+  },
+}));
+
+const InfopaneButton = styled(Button)(({ theme }) => ({
+    fontFamily: "Inter",
+    fontSize: "min(2vw, 12px)",
+    fontWeight: "500",
+    textAlign: "center",
+    color: "white",
+    backgroundColor: "transparent",
+    border: "1px solid white",
+    borderRadius: "0.4rem",
+    padding: "0.46rem",
+    cursor: "pointer",
+    "&:hover": {
+      border: "1px solid #dd00ff",
+      color: "#dd00ff",
+    }
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
@@ -49,17 +77,37 @@ export default function InfoPane(props) {
           width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' },
           maxWidth: { xs: '100vw', sm: '1000px' },
           height: '100vh',
-          borderRight: '2px solid #2e2e2e'
+          borderRight: '2px solid #2e2e2e',
         }}
         PaperProps={{ sx: {margin: { xs: '24px 24px', sm: '0px 24px' }} }}
       >
-        <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-10px', cursor: 'pointer' }}>Metaverse_name</DialogContent>
+        <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-10px', cursor: 'pointer' }}>CreatorName</DialogContent>
         <DialogTitle sx={{ fontSize: '20px', fontWeight: 'bold', mb: '-5px', lineHeight: '100%', cursor: 'pointer' }}>{props.row.name}</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{height: '100vh'}}>
           <DialogContentText sx={{ mb: '10px' }}>
             <Image loader={imageLoader} src={props.row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} />
           </DialogContentText>
-          <InfopaneButtons/>
+          <ButtonContainer container>
+            <Grid item flex={1, 0, '40%'} marginRight={1}>
+                <InfopaneButton 
+                  fullWidth
+                  variant="contained" 
+                  endIcon={
+                  <Box sx={{ marginLeft: '10px' }}>
+                    <FavoriteButton/>
+                  </Box>}
+                  >
+                    Favorite
+                </InfopaneButton>
+            </Grid>
+            <Grid item flex={1, 0, '40%'} marginLeft={1}>
+                <InfopaneButton fullWidth variant="contained">
+                <a href={props.row.url} target="_blank" rel="noreferrer noopener">
+                  Jump to Event
+                </a>
+                </InfopaneButton>
+            </Grid>
+          </ButtonContainer>
           <InfopaneInfo>
           <DialogContentText component={'span'} sx={{mt: '15px', cursor: 'pointer' }}>
             <InfopaneRow>
@@ -93,18 +141,18 @@ export default function InfoPane(props) {
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-              <a href={props.row.url} target="_blank" rel="noreferrer noopener">
+                {props.row.platformId}
                 {props.row.locator}
-              </a>
             </InfopaneRow>
           </DialogContentText>
           </InfopaneInfo>
           {/* <br /> */}
           <InfopaneDescription>
             <DialogContentText
-              id="alert-dialog-slide-description"
-              sx={{ lineHeight: '150%', cursor: 'pointer'}}
-              style={{ maxHeight: 60, overflow: 'auto' }}>
+              // id="alert-dialog-slide-description"
+              sx={{ lineHeight: '150%', cursor: 'pointer' }}
+              style={{ maxHeight: '50%', overflow: 'auto'}}
+              >
               {props.row.description}
             </DialogContentText>
           </InfopaneDescription>
