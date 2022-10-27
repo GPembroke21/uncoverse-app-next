@@ -19,7 +19,7 @@ const InfopaneInfo = styled(Grid)(({ theme }) => ({
   padding: '5px 10px'
 }));
 
-const InfopaneDescription = styled(Grid)(({ theme }) => ({
+const InfopaneDescription = styled("div")(({ theme }) => ({
   border: '1px solid white', 
   borderRadius: '12px',
   margin: '15px 0px 0px 0px',
@@ -81,9 +81,9 @@ export default function InfoPane(props) {
         }}
         PaperProps={{ sx: {margin: { xs: '24px 24px', sm: '0px 24px' }} }}
       >
-        <DialogContent sx={{ fontSize: '10px', color: 'white', mb: '-34px', mt: '-10px', cursor: 'pointer' }}>CreatorName</DialogContent>
-        <DialogTitle sx={{ fontSize: '20px', fontWeight: 'bold', mb: '-5px', lineHeight: '100%', cursor: 'pointer' }}>{props.row.name}</DialogTitle>
         <DialogContent sx={{height: '100vh'}}>
+        <DialogContentText sx={{ padding: '0px 0px', fontSize: '10px', color: 'white',mt: '-10px', cursor: 'pointer' }}>CreatorName</DialogContentText>
+        <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '5px', lineHeight: '100%', cursor: 'pointer' }}>{props.row.name}</DialogTitle>
           <DialogContentText sx={{ mb: '10px' }}>
             <Image loader={imageLoader} src={props.row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} />
           </DialogContentText>
@@ -149,9 +149,9 @@ export default function InfoPane(props) {
           {/* <br /> */}
           <InfopaneDescription>
             <DialogContentText
-              // id="alert-dialog-slide-description"
+              id="alert-dialog-slide-description"
               sx={{ lineHeight: '150%', cursor: 'pointer' }}
-              style={{ maxHeight: '50%', overflow: 'auto'}}
+              style={{ maxHeight: '100%', overflow: 'auto'}}
               >
               {props.row.description}
             </DialogContentText>

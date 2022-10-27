@@ -35,9 +35,11 @@ const FiltersButton = styled(Button)(({ theme }) => ({
 
 const Filters = () => {
   const [isShown, setIsShown] = useState(false);
+  const [buttonColor, setButtonColor] = useState("white");
 
   const handleClick = event => {
     setIsShown(current => !current);
+    buttonColor === "white" ? setButtonColor("#dd00ff") : setButtonColor("white");
   };
 
   return (
@@ -46,9 +48,10 @@ const Filters = () => {
         <Searchbar />
         {/* <PlatformFilter />
         <CategoryFilter /> */}
-        <FiltersButton onClick={handleClick}
+        <FiltersButton 
+          onClick={handleClick}
           endIcon={<TuneIcon sx={{ width: '0.6em', height: '0.6em'}}/>}         
-          style={{backgroundColor: "#252425"}}>
+          style={{backgroundColor: "#252425", color: buttonColor}}>
             Filters
         </FiltersButton>
         <FavoritesButton />
