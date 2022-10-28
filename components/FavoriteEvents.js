@@ -44,7 +44,7 @@ export default function FavoriteEventCard(props) {
       color: "white",
       borderRadius: "15px",
       border: '1px solid #40454d',
-      margin: "20px 0px"
+      margin: "20px 0px",
     }}>
       <CardMedia
         component="img"

@@ -134,14 +134,14 @@ export default function Profile(props) {
   return (
     <Wrapper>
       <Main container>
-        <Grid marginRight="25px">
+        {/* <Grid marginRight="25px">
           <Grid item position="relative" width="min(40vw, 200px)" height="min(40vw, 200px)" marginBottom="13px">
             <Image src='/profile.svg' layout="fill" objectFit="contain" unoptimized={true} />
           </Grid>
           <Grid item>
             <EditButton>Edit Avatar</EditButton>
           </Grid>
-        </Grid>
+        </Grid> */}
         {/* <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px", marginTop: "4vw"}} /> */}
         <Grid alignItems="flex-start" flexDirection="column">
           <Grid item marginBottom={1} marginTop={0}>

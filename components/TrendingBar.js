@@ -27,7 +27,6 @@ const Main = styled(Grid)(({ theme }) => ({
   marginTop: "4px",
 }));
 
-
 export default function HighlightsBar() {
   return (
     <ThemeProvider>
@@ -43,7 +42,7 @@ export default function HighlightsBar() {
             }}>
                 <CardHeader sx={{height: "20px", mt: '4px'}}
                     avatar={
-                        <Image src="/trendingevents.svg" alt='Top Events' width="15rem" height="15rem" />
+                        <Image src="/trendingevents.svg" alt='Top Events' width="15rem" height="15rem"/>
                     }
                     title="Trending Events"
                     titleTypographyProps={{ fontSize: 'clamp(10px, 1.25vw, 13px)', fontWeight: 'bold' }}
@@ -52,7 +51,7 @@ export default function HighlightsBar() {
                 <CardContent>
                     <Grid container marginTop={-2} marginBottom={-1.5}>
                         <Grid item marginRight={2}>
-                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#5d5a5d">
                                 1<br/>2<br/>3
                             </Typography>
                         </Grid>
@@ -83,7 +82,7 @@ export default function HighlightsBar() {
                 <CardContent>
                     <Grid container marginTop={-2} marginBottom={-1.5}>
                         <Grid item marginRight={2}>
-                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#5d5a5d">
                                 1<br/>2<br/>3
                             </Typography>
                         </Grid>
@@ -114,7 +113,7 @@ export default function HighlightsBar() {
                 <CardContent>
                     <Grid container marginTop={-2} marginBottom={-1.5}>
                         <Grid item marginRight={2}>
-                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
+                            <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#5d5a5d">
                                 1<br/>2<br/>3
                             </Typography>
                         </Grid>

@@ -27,7 +27,7 @@ export default function CustomizedInputBase() {
           color: "white", 
           fontSize: "clamp(8px, 1vw, 14px)", 
           backgroundColor: "#252425", 
-          borderRadius: "25px", 
+          borderRadius: "7px", 
           height: "2.5em",
           width: "11em",
           maxWidth: '500px',

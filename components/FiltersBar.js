@@ -24,7 +24,7 @@ const FiltersButton = styled(Button)(({ theme }) => ({
   color: "white", 
   backgroundColor: "#252425", 
   fontSize: "clamp(8px, 1vw, 14px)", 
-  borderRadius: '25px',
+  borderRadius: '7px',
   marginRight: '10px',
   height: "2.5em",
   width: "11em",

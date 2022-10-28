@@ -56,7 +56,7 @@ export default function Watchlist(props) {
       <Main container>
         {Object.keys(favoriteEvents).map((keyName, i) => (
           <Item key={i} item>
-            <FavoriteEventCard item={props.eventList.data[favoriteEvents[keyName]['i']]} />
+            <FavoriteEventCard item={props.eventList.data[favoriteEvents[keyName]['i']]}/>
           </Item>
         ))}
           {/* <button onClick={() => console.log(props.eventList.data[0])}>000</button> */}

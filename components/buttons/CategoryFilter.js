@@ -27,7 +27,7 @@ export default function CategoryFilter() {
           color: "white", 
           backgroundColor: "#252425", 
           fontSize: "clamp(8px, 1vw, 14px)", 
-          borderRadius: '25px',
+          borderRadius: '7px',
           // padding: '0px 10px 0px 10px',
           marginRight: '10px',
           height: "2.5em",

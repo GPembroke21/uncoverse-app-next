@@ -250,7 +250,7 @@ const theme = createTheme({
     MuiImageListItemBar: {
       styleOverrides: {
         title: {
-          color: "#737373",
+          color: "#827d82",
           // fontSize: "min(2.9vw, 13px)",
           fontSize: "clamp(10px, 1.25vw, 13px)",
           margin: "-0.2rem 0rem 0rem 0rem"

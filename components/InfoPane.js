@@ -12,6 +12,9 @@ const InfopaneRow = styled("div")(({ theme }) => ({
   alignItems: "center",
 }));
 
+const InfopaneHead = styled(Grid)(({ theme }) => ({
+}));
+
 const InfopaneInfo = styled(Grid)(({ theme }) => ({
   border: '1px solid white', 
   borderRadius: '12px',
@@ -19,12 +22,12 @@ const InfopaneInfo = styled(Grid)(({ theme }) => ({
   padding: '5px 10px'
 }));
 
-const InfopaneDescription = styled("div")(({ theme }) => ({
+const InfopaneDescription = styled('div')(({ theme }) => ({
   border: '1px solid white', 
   borderRadius: '12px',
   margin: '15px 0px 0px 0px',
   padding: '5px 10px',
-  maxHeight: '20%', 
+  height: 'auto',
   overflow: 'auto' 
 }));
 
@@ -44,15 +47,20 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
     fontWeight: "500",
     textAlign: "center",
     color: "white",
-    backgroundColor: "transparent",
-    border: "1px solid white",
+    backgroundColor: "#252425",
+    // border: "1px solid white",
     borderRadius: "0.4rem",
     padding: "0.46rem",
     cursor: "pointer",
     "&:hover": {
-      border: "1px solid #dd00ff",
+      // border: "1px solid #dd00ff",
       color: "#dd00ff",
-    }
+      backgroundColor: "#121213",
+    },
+    "&:active": {
+      color: "#dd00ff",
+      backgroundColor: "#000000"
+    },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
@@ -70,7 +78,7 @@ export default function InfoPane(props) {
         keepMounted
         onClose={props.handleCloseFunction}
         aria-describedby="alert-dialog-slide-description"
-        direction="column"
+        flexDirection="column"
         sx={{
           opacity: "100",
           backgroundColor: "black",
@@ -81,14 +89,16 @@ export default function InfoPane(props) {
         }}
         PaperProps={{ sx: {margin: { xs: '24px 24px', sm: '0px 24px' }} }}
       >
-        <DialogContent sx={{height: '100vh'}}>
-        <DialogContentText sx={{ padding: '0px 0px', fontSize: '10px', color: 'white',mt: '-10px', cursor: 'pointer' }}>CreatorName</DialogContentText>
-        <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '5px', lineHeight: '100%', cursor: 'pointer' }}>{props.row.name}</DialogTitle>
-          <DialogContentText sx={{ mb: '10px' }}>
-            <Image loader={imageLoader} src={props.row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} />
-          </DialogContentText>
+        <DialogContent sx={{height: '100vh', display: 'flex', flexDirection: 'column'}}>
+          <InfopaneHead>
+            <DialogContentText sx={{ padding: '0px 0px', fontSize: '10px', color: 'white',mt: '-10px' }}>CreatorName</DialogContentText>
+            <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '5px', lineHeight: '100%' }}>{props.row.name}</DialogTitle>
+            <DialogContentText sx={{ mb: '10px' }}>
+              <Image loader={imageLoader} src={props.row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} />
+            </DialogContentText>
+          </InfopaneHead>
           <ButtonContainer container>
-            <Grid item flex={1, 0, '40%'} marginRight={1}>
+            <Grid item marginRight={1} sx={{flex: '1 0 40%'}}>
                 <InfopaneButton 
                   fullWidth
                   variant="contained" 
@@ -100,7 +110,7 @@ export default function InfoPane(props) {
                     Favorite
                 </InfopaneButton>
             </Grid>
-            <Grid item flex={1, 0, '40%'} marginLeft={1}>
+            <Grid item marginLeft={1} sx={{flex: '1 0 40%'}}>
                 <InfopaneButton fullWidth variant="contained">
                 <a href={props.row.url} target="_blank" rel="noreferrer noopener">
                   Jump to Event
@@ -109,49 +119,49 @@ export default function InfoPane(props) {
             </Grid>
           </ButtonContainer>
           <InfopaneInfo>
-          <DialogContentText component={'span'} sx={{mt: '15px', cursor: 'pointer' }}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {props.dateStyled}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider sx={{margin: '3px 0px'}}/>
-          <DialogContentText component={'span'}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {props.row.category}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider sx={{margin: '3px 0px'}}/>
-          <DialogContentText component={'span'}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {props.row.totalAttendees}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider sx={{margin: '3px 0px'}}/>
-          <DialogContentText component={'span'}>
-            <InfopaneRow>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-                {props.row.platformId}
-                {props.row.locator}
-            </InfopaneRow>
-          </DialogContentText>
+            <DialogContentText component={'span'} sx={{mt: '15px', cursor: 'pointer' }}>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {props.dateStyled}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
+            <DialogContentText component={'span'}>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {props.row.category}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
+            <DialogContentText component={'span'}>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {props.row.totalAttendees}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
+            <DialogContentText component={'span'}>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                  {props.row.platformId}
+                  {props.row.locator}
+              </InfopaneRow>
+            </DialogContentText>
           </InfopaneInfo>
           {/* <br /> */}
           <InfopaneDescription>
             <DialogContentText
               id="alert-dialog-slide-description"
               sx={{ lineHeight: '150%', cursor: 'pointer' }}
-              style={{ maxHeight: '100%', overflow: 'auto'}}
+              style={{ flex: 1, overflow: 'auto'}}
               >
               {props.row.description}
             </DialogContentText>
