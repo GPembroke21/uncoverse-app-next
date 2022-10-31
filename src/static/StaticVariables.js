@@ -9,3 +9,20 @@ export const platformLogos = {
 
 export const favoriteEvents = {}
 export const favoriteEventsArray = []
+
+export const categoryList = [
+    'Meetup',
+    'Talks',
+    'Music',
+    'Art',
+    'Information',
+    'Party',
+    'Movies',
+    'Crypto',
+    'Games',
+    'Sports',
+    'Fashion',
+    'Exhibition',
+    'Explore',
+    'NFT'
+]

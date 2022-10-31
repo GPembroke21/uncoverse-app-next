@@ -1,8 +1,5 @@
 import * as React from 'react'
-import { useEffect, useState, useCallback } from 'react'
-import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -12,25 +9,12 @@ import TableRow from '@mui/material/TableRow'
 import Image from 'next/image'
 import FavoriteButton from './buttons/FavoriteButton'
 import Slide from '@mui/material/Slide'
-import Dialog from '@mui/material/Dialog'
-import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
-import DialogTitle from '@mui/material/DialogTitle'
-import Divider from "@mui/material/Divider"
 import { platformLogos } from '../src/static/StaticVariables'
-import { styled } from "@mui/system"
-import InfopaneButtons from "./buttons/InfopaneButtons"
 import InfoPane from './InfoPane'
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="right" ref={ref} {...props} />;
-});
 
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-  const imageLoader = ({ src }) => `${row.image}`;
-  const handleClickOpen = () => { setOpen(true); };
   const handleClose = () => { setOpen(false); };
 
   const currentTime = new Date();
