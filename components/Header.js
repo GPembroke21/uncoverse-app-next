@@ -11,6 +11,7 @@ import { signOut } from '../src/auth/SignOut'
 import { favoriteEvents } from '../src/static/StaticVariables'
 import WatchlistButton from './buttons/WatchlistButton'
 import Typography from '@mui/material/Typography'
+import { favoriteEventsArray } from '../src/static/StaticVariables'
 
 const Wrapper = styled("div")(({ theme }) => ({
   width: "calc(100%)",
@@ -77,7 +78,7 @@ const Header = (props) => {
               </IconButton>
             </Logo>
           </Link>
-          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log()}/>
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(favoriteEventsArray)}/>
         </LogoContainer>
         <RightContainer>
           {!props.loginCreds.signedIn ?

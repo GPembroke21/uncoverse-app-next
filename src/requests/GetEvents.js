@@ -8,6 +8,7 @@ Amplify.configure({ ...awsExports, ssr: true })
 
 export default function GetEvents(props) {
     const [request, setRequest] = useState({loading: false, data: null, error: false})
+    const [nextToken, setNextToken] = useState()
 
     const gqlQuery = {
         query: listEvents, 

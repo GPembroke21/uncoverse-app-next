@@ -8,3 +8,4 @@ export const platformLogos = {
 }
 
 export const favoriteEvents = {}
+export const favoriteEventsArray = []

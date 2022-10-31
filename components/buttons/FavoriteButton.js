@@ -5,7 +5,7 @@ import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import CreateInteraction from '../../src/requests/CreateInteraction'
+import { CreateInteraction, StoreInteraction } from '../../src/requests/CreateInteraction'
 import { favoriteEvents } from '../../src/static/StaticVariables'
 
 
@@ -17,7 +17,7 @@ export default function FavoriteButton(props) {
     <Stack direction="row" spacing={0}>
       {(!fav || !fav['s']) &&
         <IconButton aria-label="delete"
-          onClick={() => { setFav({'i': props.ind, 's': true}), CreateInteraction({ eventId: props.eventId, index: props.ind, state: true }) }}
+          onClick={() => { setFav({'i': props.ind, 's': true}), StoreInteraction({ eventId: props.eventId, index: props.ind, state: true }) }}
           style={{ padding: 0, marginLeft: "-0.4rem" }}
         >
           <FavoriteBorderIcon
@@ -27,7 +27,7 @@ export default function FavoriteButton(props) {
       }
       {fav && fav['s'] &&
         <IconButton aria-label="delete"
-          onClick={() => { setFav({'i': props.ind, 's': false}), CreateInteraction({ eventId: props.eventId, index: props.ind, state: false }) }}
+          onClick={() => { setFav({'i': props.ind, 's': false}), StoreInteraction({ eventId: props.eventId, index: props.ind, state: false }) }}
           style={{ padding: 0, marginLeft: "-0.4rem" }}
         >
           <FavoriteIcon
