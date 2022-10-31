@@ -12,6 +12,8 @@ import { favoriteEvents } from '../src/static/StaticVariables'
 import WatchlistButton from './buttons/WatchlistButton'
 import Typography from '@mui/material/Typography'
 import { favoriteEventsArray } from '../src/static/StaticVariables'
+import { useLoginContext, useEventsContext, useEventsContextUpdate } from './ContextProvider'
+
 
 const Wrapper = styled("div")(({ theme }) => ({
   width: "calc(100%)",
@@ -66,6 +68,9 @@ const ConnectButtonStyled = styled("button")(({ theme }) => ({
 
 const Header = (props) => {
   const [headerOpen, setHeaderOpen] = React.useState(false)
+  const loginCreds = useLoginContext()
+  const eventsDeets = useEventsContext()
+  const eventsUpdate = useEventsContextUpdate()
 
   return (
     <ThemeProvider>
@@ -78,10 +83,11 @@ const Header = (props) => {
               </IconButton>
             </Logo>
           </Link>
-          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(props.eventList.data)}/>
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(eventsDeets)}/>
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={eventsUpdate}/>
         </LogoContainer>
         <RightContainer>
-          {!props.loginCreds.signedIn ?
+          {!loginCreds.signedIn ?
             <div>
               <ConnectButtonStyled onClick={() => setHeaderOpen(!headerOpen)}>Connect</ConnectButtonStyled>
               <AuthPopup open={headerOpen} setOpen={() => setHeaderOpen(!headerOpen)} />
@@ -89,9 +95,8 @@ const Header = (props) => {
             :
             <div>
               <WatchlistButton/>
-              {/* <Typography variant='h4' sx={{ color: '#40454d', fontWeight: '700' }} >&nbsp;&nbsp;|&nbsp;&nbsp;</Typography> */}
               <ProfileButton confirmClosed={() => setHeaderOpen(false)}/>
-            </div>
+            </div> 
           }
         </RightContainer>
       </Wrapper>
