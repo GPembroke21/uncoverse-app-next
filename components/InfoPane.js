@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card } from '@mui/material';
 import Image from 'next/image'
 import FavoriteButton from './buttons/FavoriteButton'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -13,6 +13,16 @@ const InfopaneRow = styled("div")(({ theme }) => ({
 }));
 
 const InfopaneHead = styled(Grid)(({ theme }) => ({
+}));
+
+const InfopaneImage = styled(Card)(({ theme }) => ({
+  position: 'relative',
+}));
+
+const FavoriteButtonContainer = styled("div")(({ theme }) => ({
+  position: 'absolute',
+  top: '1em',
+  right: '1em',
 }));
 
 const InfopaneInfo = styled(Grid)(({ theme }) => ({
@@ -47,15 +57,15 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
     fontWeight: "500",
     textAlign: "center",
     color: "white",
-    backgroundColor: "#252425",
-    // border: "1px solid white",
+    // backgroundColor: "#252425",
+    border: "1px solid white",
     borderRadius: "0.4rem",
     padding: "0.46rem",
     cursor: "pointer",
     "&:hover": {
-      // border: "1px solid #dd00ff",
+      border: "1px solid #dd00ff",
       color: "#dd00ff",
-      backgroundColor: "#121213",
+      // backgroundColor: "#121213",
     },
     "&:active": {
       color: "#dd00ff",
@@ -91,34 +101,43 @@ export default function InfoPane(props) {
       >
         <DialogContent sx={{height: '100vh', display: 'flex', flexDirection: 'column'}}>
           <InfopaneHead>
-            <DialogContentText sx={{ padding: '0px 0px', fontSize: '10px', color: 'white',mt: '-10px' }}>CreatorName</DialogContentText>
-            <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '5px', lineHeight: '100%' }}>{props.row.name}</DialogTitle>
+            <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '10px', mt: '-10px', lineHeight: '100%' }}>{props.row.name}</DialogTitle>
             <DialogContentText sx={{ mb: '10px' }}>
-              <Image loader={imageLoader} src={props.row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} />
+              <InfopaneImage>
+                {/* <Box position='absolute' sx={{padding: '0px 0px', left: '2.5em', zIndex:'1'}}>
+                  <FavoriteButton/>
+                </Box> */}
+                <Image loader={imageLoader} src={props.row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative'/>
+                <FavoriteButtonContainer>
+                  <FavoriteButton/>
+                </FavoriteButtonContainer>
+              </InfopaneImage>
             </DialogContentText>
           </InfopaneHead>
           <ButtonContainer container>
             <Grid item marginRight={1} sx={{flex: '1 0 40%'}}>
-                <InfopaneButton 
-                  fullWidth
-                  variant="contained" 
-                  endIcon={
-                  <Box sx={{ marginLeft: '10px' }}>
-                    <FavoriteButton/>
-                  </Box>}
-                  >
-                    Favorite
-                </InfopaneButton>
-            </Grid>
-            <Grid item marginLeft={1} sx={{flex: '1 0 40%'}}>
                 <InfopaneButton fullWidth variant="contained">
                 <a href={props.row.url} target="_blank" rel="noreferrer noopener">
                   Jump to Event
                 </a>
                 </InfopaneButton>
             </Grid>
+            <Grid item marginLeft={1} sx={{flex: '1 0 40%'}}>
+                <InfopaneButton fullWidth variant="contained">
+                    Share Event
+                </InfopaneButton>
+            </Grid>
           </ButtonContainer>
           <InfopaneInfo>
+          <DialogContentText component={'span'} sx={{mt: '15px', cursor: 'pointer' }}>
+              <InfopaneRow>
+                <Box sx={{ marginRight: '10px' }}>
+                  <Image src="/creator.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                {props.row.createdByUser}
+              </InfopaneRow>
+            </DialogContentText>
+            <Divider sx={{margin: '3px 0px'}}/>
             <DialogContentText component={'span'} sx={{mt: '15px', cursor: 'pointer' }}>
               <InfopaneRow>
                 <Box sx={{ marginRight: '10px' }}>

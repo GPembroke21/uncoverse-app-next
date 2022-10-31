@@ -12,7 +12,6 @@ const theme = createTheme({
   },
   secondary: {
     main: "#ffffff",
-    mainGradient: "linear-gradient(to right, tomato, cyan)",
   },
   },
   typography: {

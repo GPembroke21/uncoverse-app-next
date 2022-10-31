@@ -66,6 +66,8 @@ const ConnectButtonStyled = styled("button")(({ theme }) => ({
 const Header = (props) => {
   const [headerOpen, setHeaderOpen] = React.useState(false)
 
+  // console.log(props.eventList)
+
   return (
     <ThemeProvider>
       <Wrapper>
