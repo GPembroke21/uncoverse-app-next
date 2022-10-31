@@ -5,6 +5,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { styled } from "@mui/system"
 import { NoEncryption } from '@mui/icons-material';
+import { categoryList } from "../src/static/StaticVariables";
 
 const AdBarContainer = styled("div")(({ theme }) => ({
   // padding: "0rem 1rem",

@@ -1,21 +1,30 @@
 import { useCallback, useEffect } from 'react';
 import { API } from 'aws-amplify'
 import { createInteraction } from '../graphql/mutations'
-import { favoriteEvents } from '../static/StaticVariables';
+import { favoriteEvents, favoriteEventsArray } from '../static/StaticVariables';
 
 
-const appendToArray = (item, index, state) => favoriteEvents[item] = {i: index, s: state}
+const appendToArray = (item, index, state) => favoriteEvents[item] = { i: index, s: state }
+const removeItemAll = (arr, value) => {
+    var i = 0;
+    while (i < arr.length) { if (arr[i] === value) { arr.splice(i, 1) } else { ++i } }
+    return arr
+}
 
-function StoreInteraction(props) {
 
-    appendToArray(props.eventId, props.state)
-    const interationId = props.logInCreds.id + props.eventId
-    const interact = {
-        id: props.logInCreds.id,
-        registeredUserId: props.logInCreds.id,
-        eventId: props.eventId,
-        favorite: true
-    };
+export function StoreInteraction(props) {
+    if (props.state) favoriteEventsArray.push(props.eventId)
+    else if (!props.state) removeItemAll(favoriteEventsArray, props.eventId)
+
+    console.log(props)
+    appendToArray(props.eventId, props.index, props.state)
+
+    // const interact = {
+    //     id: props.logInCreds.id,
+    //     registeredUserId: props.logInCreds.id,
+    //     eventId: favoriteEventsArray.toString(),
+    //     favorite: true
+    // };
 
     // const getFunction = useCallback(async () => {
     //     try {
@@ -33,7 +42,7 @@ function StoreInteraction(props) {
 
 }
 
-export default function CreateInteraction(props) {
-    
+export function CreateInteraction(props) {
+
     appendToArray(props.eventId, props.index, props.state)
 }
