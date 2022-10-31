@@ -72,6 +72,8 @@ const Header = (props) => {
   const eventsDeets = useEventsContext()
   const eventsUpdate = useEventsContextUpdate()
 
+  // console.log(props.eventList)
+
   return (
     <ThemeProvider>
       <Wrapper>

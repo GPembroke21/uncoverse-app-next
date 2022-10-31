@@ -3,7 +3,6 @@ import {useState} from 'react'
 import { styled } from "@mui/system"
 import PlatformFilter from './buttons/PlatformFilter'
 import CategoryFilter from './buttons/CategoryFilter'
-import ClearFilters from './buttons/ClearFilters'
 import ThemeProvider from "../Theme"
 import Searchbar from './Searchbar'
 import FavoritesButton from './buttons/FavoritesButton'
