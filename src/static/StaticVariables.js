@@ -7,6 +7,9 @@ export const platformLogos = {
     'RBLX': '/RBLX_logo.png',
 }
 
+export const eventsIdArray = []
+export const eventsArray = []
+
 export const favoriteEvents = {}
 export const favoriteEventsArray = []
 

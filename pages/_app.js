@@ -15,7 +15,7 @@ Amplify.configure({ ...awsExports, ssr: true })
 const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto" }));
 
 function MyApp({ Component, pageProps }) {
-  const eventList = GetEvents()
+  // const eventList = GetEvents()
 
   return (
     <ThemeProvider>
@@ -27,11 +27,13 @@ function MyApp({ Component, pageProps }) {
             paddingX={0}
             px={{ xs: 0, sm: 0, md: "3em", lg: "4em", xl: "5em" }}
           >
-            <Header eventList={eventList} />
+            {/* <Header eventList={eventList} /> */}
+            <Header />
             <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
             <HeaderBottom />
             <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
-            <Component {...pageProps} eventList={eventList} />
+            {/* <Component {...pageProps} eventList={eventList} /> */}
+            <Component {...pageProps} />
           </Box>
         </Wrapper>
       </ContextProvider>

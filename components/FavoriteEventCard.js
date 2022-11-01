@@ -29,7 +29,8 @@ export default function FavoriteEventCard(props) {
   const { item } = props
   const [expanded, setExpanded] = React.useState(false)
   const handleExpandClick = () => setExpanded(!expanded)
-
+  const [favoriteToggle, setFavoriteToggle] = React.useState(false)
+  
   const dateTimeStart = new Date(item.dateTimeStart);
   const dateTimeEnd = new Date(item.dateTimeEnd);
   const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
@@ -69,7 +70,7 @@ export default function FavoriteEventCard(props) {
       <Divider sx={{ background: '#40454d' }} />
       <CardActions disableSpacing sx={{ height: '40px', backgroundColor: '#1a1c1f' }}>
         <Grid marginLeft={'12px'}>
-            <FavoriteButton />
+            <FavoriteButton eventId={item.id} ind={props.ind} sx={{ cursor: 'pointer' }} toggle={favoriteToggle} setToggle={(state) => setFavoriteToggle(state)}/>
         </Grid>
         <Grid
           container

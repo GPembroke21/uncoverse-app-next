@@ -1,8 +1,9 @@
 import React from 'react';
 import { styled } from "@mui/system"
 import Grid from "@mui/material/Grid"
-import FavoriteEventCard from "../components/FavoriteEvents"
+import FavoriteEventCard from "../components/FavoriteEventCard"
 import { favoriteEvents } from '../src/static/StaticVariables';
+import { useEventsContext } from '../components/ContextProvider';
 
 const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
@@ -51,15 +52,19 @@ const Item = styled(Grid)(({ theme }) => ({
 
 
 export default function Watchlist(props) {
+  const eventsContext = useEventsContext()
   return (
     <Wrapper>
       <Main container>
         {Object.keys(favoriteEvents).map((keyName, i) => (
-          <Item key={i} item>
-            <FavoriteEventCard item={props.eventList.data[favoriteEvents[keyName]['i']]}/>
-          </Item>
+          <div key={i}>
+            { (favoriteEvents[keyName]['s']) &&
+              <Item>
+                <FavoriteEventCard item={eventsContext[favoriteEvents[keyName]['i']]} />
+              </Item>}
+          </div>
         ))}
-          {/* <button onClick={() => console.log(props.eventList.data[0])}>000</button> */}
+        {/* <button onClick={() => console.log(eventsContext[0])}>000</button> */}
       </Main>
     </Wrapper>
   )

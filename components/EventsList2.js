@@ -9,13 +9,15 @@ import TableRow from '@mui/material/TableRow'
 import Image from 'next/image'
 import FavoriteButton from './buttons/FavoriteButton'
 import Slide from '@mui/material/Slide'
-import { platformLogos } from '../src/static/StaticVariables'
+import { platformLogos, eventsArray } from '../src/static/StaticVariables'
 import InfoPane from './InfoPane'
+import { useLoginContext, useEventsContext, useEventsContextUpdate } from './ContextProvider'
 
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const handleClose = () => { setOpen(false); };
+  const [favoriteToggle, setFavoriteToggle] = React.useState(false)
 
   const currentTime = new Date();
   const dateTimeStart = new Date(row.dateTimeStart);
@@ -29,6 +31,7 @@ function Row(props) {
   // if (dateTimeStart > currentTime) { console.log ("Upcoming", row.name, dateTimeStart, currentTime)}
 
   const platLogo = platformLogos[row.platformId]
+  const favoritesBtn = <FavoriteButton eventId={row.id} ind={props.ind} sx={{ cursor: 'pointer' }} toggle={favoriteToggle} setToggle={(state) => setFavoriteToggle(state)}/>
 
   return (
     <React.Fragment>
@@ -63,17 +66,16 @@ function Row(props) {
           </a>
         </TableCell>
         <TableCell align="right">
-          <FavoriteButton eventId={row.id} ind={props.ind} sx={{ cursor: 'pointer' }} />
+          {favoritesBtn}
         </TableCell>
       </TableRow>
-      <InfoPane handleCloseFunction={handleClose} row={row} dateStyled={dateStyled} openState={open} />
+      <InfoPane handleCloseFunction={handleClose} row={row} dateStyled={dateStyled} openState={open} ind={props.ind} favoritesBtn={favoritesBtn}/>
     </React.Fragment>
   );
 }
 
-export default function EventsList2(props) {
-
-  // const eventList = GetEvents()
+export default function EventsList2() {
+  const eventsContext = useEventsContext()
 
   return (
     <TableContainer style={{ overflowX: 'auto' }}>
@@ -89,9 +91,9 @@ export default function EventsList2(props) {
             <TableCell style={{ width: "2%" }}></TableCell>
           </TableRow>
         </TableHead>
-        {props.eventList.data ?
+        {(!eventsContext.length == 0) ?
           <TableBody sx={{ backgroundColor: "transparent" }}>
-            {props.eventList.data
+            {eventsContext
               .sort((a, b) => a.dateTimeStart < b.dateTimeStart ? -1 : 1)
               .map((row, i) => (
                 <Row

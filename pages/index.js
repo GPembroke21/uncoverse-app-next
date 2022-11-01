@@ -17,7 +17,8 @@ export default function Index(props) {
       <AdBar/>
       <TrendingBar/>
       <FiltersBar/>
-      <EventsList2 eventList={props.eventList} />
+      {/* <EventsList2 eventList={props.eventList} /> */}
+      <EventsList2 />
     </Wrapper>
   )
 }

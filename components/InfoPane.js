@@ -88,7 +88,7 @@ export default function InfoPane(props) {
         keepMounted
         onClose={props.handleCloseFunction}
         aria-describedby="alert-dialog-slide-description"
-        flexDirection="column"
+        // flexDirection="column"
         sx={{
           opacity: "100",
           backgroundColor: "black",
@@ -102,14 +102,15 @@ export default function InfoPane(props) {
         <DialogContent sx={{height: '100vh', display: 'flex', flexDirection: 'column'}}>
           <InfopaneHead>
             <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '10px', mt: '-10px', lineHeight: '100%' }}>{props.row.name}</DialogTitle>
-            <DialogContentText sx={{ mb: '10px' }}>
+            <DialogContentText component={'span'} sx={{ mb: '10px' }}>
               <InfopaneImage>
                 {/* <Box position='absolute' sx={{padding: '0px 0px', left: '2.5em', zIndex:'1'}}>
                   <FavoriteButton/>
                 </Box> */}
                 <Image loader={imageLoader} src={props.row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative'/>
                 <FavoriteButtonContainer>
-                  <FavoriteButton/>
+                  {/* <FavoriteButton eventId={props.row.id} ind={props.ind} sx={{ cursor: 'pointer' }}/> */}
+                  {props.favoritesBtn}
                 </FavoriteButtonContainer>
               </InfopaneImage>
             </DialogContentText>
@@ -175,7 +176,6 @@ export default function InfoPane(props) {
               </InfopaneRow>
             </DialogContentText>
           </InfopaneInfo>
-          {/* <br /> */}
           <InfopaneDescription>
             <DialogContentText
               id="alert-dialog-slide-description"

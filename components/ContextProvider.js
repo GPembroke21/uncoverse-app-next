@@ -2,6 +2,7 @@ import { useState, useContext, createContext, useEffect } from 'react'
 import { Auth, Hub } from 'aws-amplify'
 import GetAuth from '../src/auth/GetAuth'
 import GetEvents from '../src/requests/GetEvents'
+import { eventsIdArray } from '../src/static/StaticVariables'
 
 const LoginContext = createContext()
 const EventsContext = createContext()
@@ -14,8 +15,8 @@ export function useEventsContextUpdate() { return useContext(EventsContextUpdate
 
 export function ContextProvider({ children }) {
     const [loginStatus, setLoginStatus] = useState(() => false)
-    const [loginCreds, setLoginCreds] = useState({id: "", signedIn: false})
-    
+    const [loginCreds, setLoginCreds] = useState({ id: "", signedIn: false })
+
     useEffect(() => {
         Auth.currentCredentials().then(credentials => setLoginStatus(credentials.authenticated))
         return () => { }
@@ -23,7 +24,7 @@ export function ContextProvider({ children }) {
 
     useEffect(() => {
         Auth.currentCredentials().then(credentials => setLoginCreds({
-            id: credentials.accessKeyId,
+            id: credentials.identityId,
             signedIn: credentials.authenticated
         }))
         return () => { }
@@ -47,18 +48,26 @@ export function ContextProvider({ children }) {
     });
 
     // function toggleGetEvents() { setEventList(prevEventList => ({...prevEventList, GetEvents}))}
-    
-    const [getMoreEvents, setGetMoreEvents] = useState(false)
-    const eventList = GetEvents({getAgain: getMoreEvents})
-    const [events, setEvents] = useState(null)
+
+    const [getMoreEvents, setGetMoreEvents] = useState(() => { false })
+    const eventList = GetEvents(getMoreEvents)
+    const [events, setEvents] = useState([])
     const updateEventList = () => setGetMoreEvents(prevValue => !prevValue)
 
     useEffect(() => {
-        console.log("Use Effect 123")
-        setEvents(eventList.data)
+        if (eventList.data) {
+            for (let i = 0; i < eventList.data.length; i++) {
+                if (!eventsIdArray.includes(eventList.data[i].id)) { 
+                    eventsIdArray.push(eventList.data[i].id)
+                    setEvents(prevValues => [...prevValues, eventList.data[i]]) 
+                }
+            }
+        }
         return () => { }
     }, [eventList.data])
 
+    // const [favoriteEvents, setFavoriteEvents] = useState({})
+    // const updateFavoriteEvents = () => setFavoriteEvents(prevVal => !prevVal)
 
 
     return (

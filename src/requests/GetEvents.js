@@ -2,39 +2,82 @@ import { useCallback, useEffect, useState } from 'react';
 import { Amplify, API } from 'aws-amplify'
 import awsExports from '../aws-exports';
 import { listEvents } from '../graphql/queries'
+import { eventsArray, eventsIdArray } from '../static/StaticVariables'
 
 Amplify.configure({ ...awsExports, ssr: true })
 
+// const appendToArray = data => {
+//     for (let i = 0; i < data.length; i++) {
+//         const id = data[i].id
+//         if (!eventsIdArray.includes(id)) {
+//             eventsIdArray.push(id)
+//             eventsArray.push(data[i])
+//         }
+//     }
+// }
 
-export default function GetEvents(props) {
-    const [request, setRequest] = useState({loading: false, data: null, error: false})
-    const [nextToken, setNextToken] = useState(() => {null})
+// export default function GetEvents(nextTokenVar) {
+//     const [nextToken, setNextToken] = useState(nextTokenVar)
 
-    const gqlQuery = {
-        query: listEvents, 
-        authMode: "AWS_IAM",
-        variables: {limit: 40, nextToken: nextToken}
+//     const getFunction = useCallback(async () => {
+//         const gqlQuery = {
+//             query: listEvents,
+//             authMode: "AWS_IAM",
+//             variables: { limit: 40, nextToken: nextToken }
+//         }
+//         try {
+//             console.log("gqlQuery", gqlQuery)
+//             const response = await API.graphql(gqlQuery)
+//             const objectKey = Object.keys(response.data).at(0)
+//             setNextToken(response.data[objectKey].nextToken)
+//             appendToArray(response.data[objectKey].items)
+//         } catch (error) {
+//             console.log("Error loading API:", error)
+//         }
+//     }, [])
+
+//     useEffect(() => {
+//         getFunction()
+//         return () => { }
+//     }, [getFunction, getMoreEvents])
+
+//     return nextToken
+// }
+
+const nextToken = [null]
+
+export default function GetEvents(getMoreEvents) {
+    const [request, setRequest] = useState(() => { nextToken.splice(0, 0, null); return { data: null, error: false} })
+    // const [nextToken, setNextToken] = useState(null)
+
+    const gqlQuery = () => {
+        return {
+            query: listEvents,
+            authMode: "AWS_IAM",
+            variables: { limit: 40, nextToken: nextToken.at(0)}
+        }
     }
 
     const getFunction = useCallback(async () => {
         try {
-            const response = await API.graphql(gqlQuery)
+            const response = await API.graphql(gqlQuery())
             const objectKey = Object.keys(response.data).at(0)
-            console.log("fetched")
             // if (response.data.listEvents.items.length === 0 && response.data.listEvents.nextToken !== null) { setNextToken(response.data.listEvents.nextToken) }
-            setNextToken(response.data[objectKey].nextToken)
-            setRequest({loading: false, data: response.data[objectKey].items, error: false})
+            nextToken.splice(0, 0, response.data[objectKey].nextToken)
+            // appendToArray(response.data[objectKey].items)
+            // console.log("Next fetched: ", response.data.listEvents.nextToken)
+            setRequest({ data: response.data[objectKey].items, error: false})
         } catch (error) {
             console.log("Error loading API:", error)
-            setRequest({loading: false, data: null, error: true})
+            setRequest(() => { return { data: null, error: true}})
         }
     }, [])
 
     useEffect(() => {
-        setRequest({loading: true, data: null, error: false})
         getFunction()
-        return () => {setRequest({loading: false, data: null, error: false})}
-    }, [getFunction])
+        // console.log("Function running!!")
+        return () => { setRequest({ data: null, error: false})}
+    }, [getFunction, getMoreEvents])
 
     return request
 }
