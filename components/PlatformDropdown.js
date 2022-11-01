@@ -38,10 +38,11 @@ const PlatformButton = styled(Button)(({ theme }) => ({
   color: "white", 
   backgroundColor: "#252425", 
   fontSize: "clamp(8px, 1vw, 14px)", 
+  padding: '0px 10px',
   borderRadius: '7px',
   marginRight: '10px',
   height: "2.5em",
-  width: "11em",
+  // width: "11em",
   "&:hover": {
     color: "#dd00ff",
     backgroundColor: "#252425",
@@ -87,10 +88,10 @@ const PlatformsDropdown = () => {
           <PlatformsContainer>
             <PlatformButton onClick={handleClick1} style={{color: buttonColor1}}>Decentraland</PlatformButton>
             <PlatformButton onClick={handleClick2} style={{color: buttonColor2}}>Somnium</PlatformButton>
-            <PlatformButton onClick={handleClick3} style={{color: buttonColor3}}>CRVX</PlatformButton>
-            <PlatformButton onClick={handleClick4} style={{color: buttonColor4}}>Meta</PlatformButton>
+            <PlatformButton onClick={handleClick3} style={{color: buttonColor3}}>Voxels</PlatformButton>
             <PlatformButton onClick={handleClick5} style={{color: buttonColor5}}>Sandbox</PlatformButton>
-            <PlatformButton onClick={handleClick6} style={{color: buttonColor6}}>Roblox</PlatformButton>
+            {/* <PlatformButton onClick={handleClick4} style={{color: buttonColor4}}>Meta</PlatformButton> */}
+            {/* <PlatformButton onClick={handleClick6} style={{color: buttonColor6}}>Roblox</PlatformButton> */}
           </PlatformsContainer>
       </Wrapper>
     </ThemeProvider>
