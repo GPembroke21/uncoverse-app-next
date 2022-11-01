@@ -179,7 +179,18 @@ export default function InfoPane(props) {
           <InfopaneDescription>
             <DialogContentText
               id="alert-dialog-slide-description"
-              sx={{ lineHeight: '150%', cursor: 'pointer' }}
+              sx={{ 
+                lineHeight: '150%', 
+                cursor: 'pointer',
+                width: '100%', 
+                overflow: "auto",
+                msOverflowStyle: "none",
+                scrollbarWidth: "none",
+                '&::-webkit-scrollbar': {
+                display: "none",
+                width: 0,
+                },
+              }}
               style={{ flex: 1, overflow: 'auto'}}
               >
               {props.row.description}

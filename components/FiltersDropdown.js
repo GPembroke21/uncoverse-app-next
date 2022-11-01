@@ -68,18 +68,18 @@ const FiltersDropdown = () => {
     <Wrapper>
     <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
         <FiltersContainer>
-            <FilterButton 
-            onClick={handleClick} 
-            style={{color: buttonColor, backgroundColor: "#252425"}}
-            >
-              Category
-            </FilterButton>
-            <FilterButton 
+          <FilterButton 
             onClick={handleClick2} 
             style={{color: buttonColor2, backgroundColor: "#252425"}}
-            >
-              Platform
-            </FilterButton>
+          >
+            Platform
+          </FilterButton>
+          <FilterButton 
+            onClick={handleClick} 
+            style={{color: buttonColor, backgroundColor: "#252425"}}
+          >
+            Category
+          </FilterButton>
         </FiltersContainer>
         {isShown && (<CategoriesDropdown/>)}
         {isShown2 && (<PlatformDropdown/>)}
