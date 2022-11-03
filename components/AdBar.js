@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Image from 'next/image';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
+import React, { useEffect, useState } from "react"
+import Image from 'next/image'
+import ImageList from '@mui/material/ImageList'
+import ImageListItem from '@mui/material/ImageListItem'
+import ImageListItemBar from '@mui/material/ImageListItemBar'
 import { styled } from "@mui/system"
-import { NoEncryption } from '@mui/icons-material';
-import { categoryList } from "../src/static/StaticVariables";
+import { NoEncryption } from '@mui/icons-material'
+import { categoryList } from "../src/static/StaticVariables"
+import Link from 'next/link'
 
 const AdBarContainer = styled("div")(({ theme }) => ({
-  // padding: "0rem 1rem",
   margin: "0rem 1rem -1rem 1rem",
-  // margin: "-0.2rem 0rem -2.2rem 0rem",
 }));
 
 export default function TitlebarBelowImageList() {
@@ -64,22 +63,16 @@ export default function TitlebarBelowImageList() {
         ? [
             "linear-gradient(to right, black calc(100% - 48px), transparent 100%)",
           ]
-      //   :
-      // scrollWidth === (null)
-      //   ? [
-      //       "none"
-      //     ]
         : [""],
-      scrollbarWidth: "none" /* Firefox */,
+      scrollbarWidth: "none",
       "&::-webkit-scrollbar": {
         display: "none"
-      } /* Chrome */
+      }
       }}
       gap= {10}
       variant= 'standard'
       rowHeight= "auto"
       >
-      {/* {console.log("pos", horizontalScroll)} */}
       {itemData.map((item) => (
         <ImageListItem key={item.key}>
           <img
@@ -89,11 +82,13 @@ export default function TitlebarBelowImageList() {
             loading="lazy"
             style={{borderRadius: 10}}
           />
+          <a href={item.link} target={"_blank"}>
           <ImageListItemBar
             title={item.title}
             subtitle={<span>{item.subtitle}</span>}
             position="below"
           />
+          </a>
         </ImageListItem>
       ))}
     </ImageList>
@@ -104,32 +99,37 @@ export default function TitlebarBelowImageList() {
 const itemData = [
   {
     key: 1,
-    img: '/adbar1.jpg',
-    title: 'Most Active Metaverse',
-    subtitle: 'Event name goes here',
+    img: '/adbar1.png',
+    title: 'Virtual real estate insights',
+    subtitle: 'Who is buying metaverse land?  ',
+    link: "https://parcel.so/learn/who-is-buying-virtual-land-in-the-metaverse"
   },
   {
     key: 2,
-    img: '/adbar2.jpg',
-    title: 'Creator Cafe',
-    subtitle: 'Resources for creators',
+    img: '/adbar2.png',
+    title: 'Key metrics to consider',
+    subtitle: 'How to think about metaverse DAU',
+    link: 'https://decentraland.org/blog/announcements/how-many-dau-does-decentraland-have/'
   },
   {
     key: 3,
-    img: '/adbar1.jpg',
-    title: 'Uncoverse Pod',
-    subtitle: 'Perspectives on Web3',
+    img: '/adbar3.png',
+    title: 'Creator café',
+    subtitle: 'Exploring content creation',
+    link: 'https://medium.com/@uncoverse'
   },
   {
     key: 4,
-    img: '/adbar2.jpg',
-    title: 'Top Categories',
-    subtitle: 'Most active categories',
+    img: '/adbar4.png',
+    title: 'Gaming',
+    subtitle: 'Road to bridge sports to Web3',
+    link: 'https://coinmarketcap.com/community/articles/40774'
   },
   {
     key: 5,
-    img: '/adbar1.jpg',
-    title: 'Gaming',
-    subtitle: 'Gaming subtitle',
+    img: '/adbar5.png',
+    title: 'Where we see growth',
+    subtitle: 'What is behind increased activity',
+    link: 'https://dappradar.com/blog/the-sandbox-is-crowded-whats-behind-the-metaverse-steep-increase-in-activity'
   },
 ];

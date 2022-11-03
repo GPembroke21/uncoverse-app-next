@@ -5,22 +5,12 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import TextField from '@mui/material/TextField';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import InputAdornment from '@mui/material/InputAdornment';
 
 export default function CustomizedInputBase() {
   return (
-    // <Paper
-    //   component="form"
-    //   sx={{ 
-    //     mt: "3.5px", 
-    //     mr: "10px", 
-    //     display: 'flex', 
-    //     alignItems: 'center', 
-    //     // width: '10em', 
-    //     // height: '1em' 
-    //   }}
-    // >
       <InputBase
         sx={{ 
           flex: 1, 
@@ -31,7 +21,6 @@ export default function CustomizedInputBase() {
           height: "2.5em",
           width: "11em",
           maxWidth: '500px',
-          // mt: "3px",
           marginRight: "10px",
           paddingLeft: 1.5,
         }}
@@ -43,6 +32,5 @@ export default function CustomizedInputBase() {
           </IconButton>
         }
       />
-    // </Paper>
   );
 }
