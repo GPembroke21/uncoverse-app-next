@@ -3,28 +3,23 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import useStoreInteraction from '../../src/requests/CreateInteraction'
-import { favoriteEvents } from '../../src/static/StaticVariables'
 import AuthPopup from '../AuthPopup';
-import { useLoginContext } from '../ContextProvider';
+import { useLoginContext, useFavoritesContext, useFavoritesContextUpdate } from '../ContextProvider';
 
 export default function FavoriteButton(props) {
   const loginCreds = useLoginContext()
-  const [fav, setFav] = React.useState(() => {if (favoriteEvents[props.eventId] && favoriteEvents[props.eventId]['s']) { props.setToggle(true) }; return favoriteEvents[props.eventId]})
+  const favoritesContext = useFavoritesContext()
+  const favoritesContextUpdate = useFavoritesContextUpdate()
   const [authOpen, setAuthOpen] = React.useState(false)
 
   const handleClick = () => {
     if (!loginCreds.signedIn && !authOpen) {
       setAuthOpen(true)
     } else if (loginCreds.signedIn) {
-      if ((!fav || !fav['s']) && !props.toggle) {
-        setFav({ 'i': props.ind, 's': true })
-        props.setToggle(true)
-        useStoreInteraction({ eventId: props.eventId, index: props.ind, state: true, creds: loginCreds })
-      } else if ((fav && fav['s']) || props.toggle) {
-        setFav({ 'i': props.ind, 's': false })
-        props.setToggle(false)
-        useStoreInteraction({ eventId: props.eventId, index: props.ind, state: false, creds: loginCreds })
+      if (!favoritesContext.includes(props.eventId)) {
+        favoritesContextUpdate.addFavorite(props.eventId)
+      } else if (favoritesContext.includes(props.eventId)) {
+        favoritesContextUpdate.removeFavorite(props.eventId)
       }
     }
   }
@@ -36,7 +31,7 @@ export default function FavoriteButton(props) {
         style={{ padding: 0, marginLeft: "-0.4rem" }}
       >
         {
-          (!props.toggle) ?
+          (!favoritesContext.includes(props.eventId)) ?
             <FavoriteBorderIcon
               style={{ height: "clamp(0.8rem, 2vw, 1.1rem)", width: "clamp(0.8rem, 2vw, 1.1rem)" }}
             /> :
@@ -51,3 +46,14 @@ export default function FavoriteButton(props) {
     </Stack>
   );
 }
+
+// const [fav, setFav] = React.useState(() => { if (favoriteEvents[props.eventId] && favoriteEvents[props.eventId]['s']) { props.setToggle(true) }; return favoriteEvents[props.eventId] })
+// if ((!fav || !fav['s']) && !props.toggle) {
+//   setFav({ 'i': props.ind, 's': true })
+//   props.setToggle(true)
+//   useStoreInteraction({ eventId: props.eventId, index: props.ind, state: true, creds: loginCreds })
+// } else if ((fav && fav['s']) || props.toggle) {
+//   setFav({ 'i': props.ind, 's': false })
+//   props.setToggle(false)
+//   useStoreInteraction({ eventId: props.eventId, index: props.ind, state: false, creds: loginCreds })
+// }

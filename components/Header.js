@@ -1,19 +1,13 @@
 import React from 'react'
 import { styled } from "@mui/system"
-import ProfileDropdown from './buttons/ProfileDropdown'
 import ProfileButton from './buttons/ProfileButton'
 import Image from 'next/image'
 import IconButton from '@mui/material/Button'
 import ThemeProvider from "../Theme"
 import Link from 'next/link'
 import AuthPopup from './AuthPopup'
-import { signOut } from '../src/auth/SignOut'
-import { favoriteEvents } from '../src/static/StaticVariables'
 import WatchlistButton from './buttons/WatchlistButton'
-import Typography from '@mui/material/Typography'
-import { favoriteEventsArray } from '../src/static/StaticVariables'
-import { useLoginContext, useEventsContext, useEventsContextUpdate } from './ContextProvider'
-import { eventsArray, eventsIdArray } from '../src/static/StaticVariables'
+import { useLoginContext, useEventsContext, useEventsContextUpdate, useFavoritesContext, useFavoritesContextUpdate } from './ContextProvider'
 import { Auth } from 'aws-amplify'
 
 const Wrapper = styled("div")(({ theme }) => ({
@@ -72,7 +66,7 @@ const Header = (props) => {
   const loginCreds = useLoginContext()
   // const eventsDeets = useEventsContext()
   const eventsUpdate = useEventsContextUpdate()
-
+  const favorites = useFavoritesContext()
   const printCreds = () => Auth.currentCredentials().then(credentials => console.log(credentials))
 
   return (
@@ -86,8 +80,8 @@ const Header = (props) => {
               </IconButton>
             </Logo>
           </Link>
-          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={eventsUpdate}/>
-          {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log()}/> */}
+          {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={eventsUpdate}/> */}
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(favorites)}/>
         </LogoContainer>
         <RightContainer>
           {!loginCreds.signedIn ?

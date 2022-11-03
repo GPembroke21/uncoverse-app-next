@@ -3,7 +3,7 @@ import { styled } from "@mui/system"
 import Grid from "@mui/material/Grid"
 import FavoriteEventCard from "../components/FavoriteEventCard"
 import { favoriteEvents } from '../src/static/StaticVariables';
-import { useEventsContext } from '../components/ContextProvider';
+import { useEventsContext, useFavoritesContext } from '../components/ContextProvider';
 
 const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
@@ -53,19 +53,35 @@ const Item = styled(Grid)(({ theme }) => ({
 
 export default function Watchlist(props) {
   const eventsContext = useEventsContext()
+  const favoritesContext = useFavoritesContext()
+
+  const getFavoriteEvent = eventId => {
+    for (let i = 0; i < eventsContext.length; i++) {
+      if (eventsContext[i].id === eventId) return eventsContext[i]
+    }
+  }
+
   return (
     <Wrapper>
       <Main container>
-        {Object.keys(favoriteEvents).map((keyName, i) => (
-          <div key={i}>
-            { (favoriteEvents[keyName]['s']) &&
-              <Item>
-                <FavoriteEventCard item={eventsContext[favoriteEvents[keyName]['i']]} />
-              </Item>}
-          </div>
+        {favoritesContext.map((keyName, i) => (
+          <Item item key={i}>
+            <FavoriteEventCard item={getFavoriteEvent(keyName)} />
+          </Item>
         ))}
         {/* <button onClick={() => console.log(eventsContext[0])}>000</button> */}
       </Main>
     </Wrapper>
   )
 }
+
+
+
+// {Object.keys(favoriteEvents).map((keyName, i) => (
+//   <div key={i}>
+//     { (favoriteEvents[keyName]['s']) &&
+//       <Item>
+//         <FavoriteEventCard item={eventsContext[favoriteEvents[keyName]['i']]} />
+//       </Item>}
+//   </div>
+// ))}
