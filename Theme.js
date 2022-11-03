@@ -252,12 +252,13 @@ const theme = createTheme({
           color: "#827d82",
           // fontSize: "min(2.9vw, 13px)",
           fontSize: "clamp(10px, 1.25vw, 13px)",
+          fontWeight: "900",
           margin: "-0.2rem 0rem 0rem 0rem"
         },
         subtitle: {
           color: "white",
           // fontSize: "min(2.6vw, 13px)",
-          fontSize: "clamp(10px, 1.25vw, 13px)",
+          fontSize: "clamp(10px, 1.45vw, 13px)",
           margin: "-0.2rem 0rem -0.2rem 0rem",
           padding: "0px 0px 1px 0px"
         },
