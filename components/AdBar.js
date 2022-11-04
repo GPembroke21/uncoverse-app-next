@@ -76,20 +76,22 @@ export default function TitlebarBelowImageList() {
       >
       {/* {console.log("pos", horizontalScroll)} */}
       {itemData.map((item) => (
-        <ImageListItem key={item.key}>
-          <img
-            src={`${item.img}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-            style={{borderRadius: 10}}
-          />
-          <ImageListItemBar
-            title={item.title}
-            subtitle={<span>{item.subtitle}</span>}
-            position="below"
-          />
-        </ImageListItem>
+        <a key={item.key} href={item.link} target={"_blank"}>
+          <ImageListItem>
+            <img
+              src={`${item.img}?w=248&fit=crop&auto=format`}
+              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.title}
+              loading="lazy"
+              style={{borderRadius: 10}}
+            />
+            <ImageListItemBar
+              title={item.title}
+              subtitle={<span>{item.subtitle}</span>}
+              position="below"
+            />
+          </ImageListItem>
+        </a>
       ))}
     </ImageList>
     </AdBarContainer>
@@ -101,34 +103,34 @@ const itemData = [
     img: '/oldadbar1.jpg',
     title: 'Virtual real estate insights',
     subtitle: 'Who is buying metaverse land?  ',
-    // link: "https://parcel.so/learn/who-is-buying-virtual-land-in-the-metaverse"
+    link: "https://parcel.so/learn/who-is-buying-virtual-land-in-the-metaverse"
   },
   {
     key: 2,
     img: '/oldadbar1.jpg',
     title: 'Key metrics to consider',
     subtitle: 'How to think about metaverse DAU',
-    // link: 'https://decentraland.org/blog/announcements/how-many-dau-does-decentraland-have/'
+    link: 'https://decentraland.org/blog/announcements/how-many-dau-does-decentraland-have/'
   },
   {
     key: 3,
     img: '/oldadbar1.jpg',
     title: 'Creator café',
     subtitle: 'Exploring content creation',
-    // link: 'https://medium.com/@uncoverse'
+    link: 'https://medium.com/@uncoverse'
   },
   {
     key: 4,
     img: '/oldadbar1.jpg',
     title: 'Gaming',
     subtitle: 'Road to bridge sports to Web3',
-    // link: 'https://coinmarketcap.com/community/articles/40774'
+    link: 'https://coinmarketcap.com/community/articles/40774'
   },
   {
     key: 5,
     img: '/oldadbar1.jpg',
     title: 'Where we see growth',
     subtitle: 'What is behind increased activity',
-    // link: 'https://dappradar.com/blog/the-sandbox-is-crowded-whats-behind-the-metaverse-steep-increase-in-activity'
+    link: 'https://dappradar.com/blog/the-sandbox-is-crowded-whats-behind-the-metaverse-steep-increase-in-activity'
   },
 ];
