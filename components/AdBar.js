@@ -77,7 +77,7 @@ export default function TitlebarBelowImageList() {
       {/* {console.log("pos", horizontalScroll)} */}
       {itemData.map((item) => (
         <a key={item.key} href={item.link} target={"_blank"}>
-          <ImageListItem>
+          <ImageListItem style={{width: '100%', height: '100%'}}>
             <img
               src={`${item.img}?w=248&fit=crop&auto=format`}
               srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -100,7 +100,7 @@ export default function TitlebarBelowImageList() {
 
 const itemData = [
   {
-    img: '/oldadbar1.jpg',
+    img: '/AdBar1.png',
     title: 'Virtual real estate insights',
     subtitle: 'Who is buying metaverse land?  ',
     link: "https://parcel.so/learn/who-is-buying-virtual-land-in-the-metaverse"
@@ -114,21 +114,21 @@ const itemData = [
   },
   {
     key: 3,
-    img: '/oldadbar1.jpg',
+    img: '/AdBar3.png',
     title: 'Creator café',
     subtitle: 'Exploring content creation',
     link: 'https://medium.com/@uncoverse'
   },
   {
     key: 4,
-    img: '/oldadbar1.jpg',
+    img: '/AdBar4.png',
     title: 'Gaming',
     subtitle: 'Road to bridge sports to Web3',
     link: 'https://coinmarketcap.com/community/articles/40774'
   },
   {
     key: 5,
-    img: '/oldadbar1.jpg',
+    img: '/AdBar5.png',
     title: 'Where we see growth',
     subtitle: 'What is behind increased activity',
     link: 'https://dappradar.com/blog/the-sandbox-is-crowded-whats-behind-the-metaverse-steep-increase-in-activity'
