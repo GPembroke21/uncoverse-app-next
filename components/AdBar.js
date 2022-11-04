@@ -70,7 +70,9 @@ export default function TitlebarBelowImageList() {
       >
         {itemData.map((item) => (
           // <a key={item.key} href={item.link} target={"_blank"}>
-            <ImageListItem key={item.key} style={{ height: '100%', width: "100%" }}>
+            <ImageListItem key={item.key} 
+            // style={{ height: '100%', width: "100%" }}
+            >
               <img
                 src={`${item.img}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
