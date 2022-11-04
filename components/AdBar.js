@@ -69,15 +69,15 @@ export default function TitlebarBelowImageList() {
         rowHeight="auto"
       >
         {itemData.map((item) => (
-          <a key={item.key} href={item.link} target={"_blank"}>
-            <ImageListItem style={{ height: '100%', width: "100%" }}>
-              <Image
+          // <a key={item.key} href={item.link} target={"_blank"}>
+            <ImageListItem key={item.key} style={{ height: '100%', width: "100%" }}>
+              <img
                 src={`${item.img}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.title}
-                // loading="lazy"
-                width='100%'
-                height='100%'
+                loading="lazy"
+                // width='100%'
+                // height='100%'
                 style={{ borderRadius: 10 }}
               />
               <ImageListItemBar
@@ -86,7 +86,7 @@ export default function TitlebarBelowImageList() {
                 position="below"
               />
             </ImageListItem>
-          </a>
+          // </a>
         ))}
       </ImageList>
     </AdBarContainer>
