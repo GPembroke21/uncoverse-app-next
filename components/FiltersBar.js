@@ -1,8 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
 import { styled } from "@mui/system"
-import PlatformFilter from './buttons/PlatformFilter'
-import CategoryFilter from './buttons/CategoryFilter'
 import ThemeProvider from "../Theme"
 import Searchbar from './Searchbar'
 import FavoritesButton from './buttons/FavoritesButton'
@@ -45,8 +43,6 @@ const Filters = () => {
     <ThemeProvider>
       <FiltersContainer>
         <Searchbar />
-        {/* <PlatformFilter />
-        <CategoryFilter /> */}
         <FiltersButton 
           onClick={handleClick}
           endIcon={<TuneIcon sx={{ width: '0.6em', height: '0.6em'}}/>}         

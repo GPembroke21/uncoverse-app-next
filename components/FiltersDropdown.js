@@ -9,8 +9,6 @@ import Link from 'next/link'
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import Divider from "@mui/material/Divider"
-import CategoryFilter from './buttons/CategoryFilter'
-import PlatformFilter from './buttons/PlatformFilter'
 import CategoriesDropdown from './CategoriesDropdown'
 import PlatformDropdown from './PlatformDropdown'
 
