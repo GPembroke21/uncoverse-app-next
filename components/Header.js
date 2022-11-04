@@ -7,67 +7,26 @@ import ThemeProvider from "../Theme"
 import Link from 'next/link'
 import AuthPopup from './AuthPopup'
 import WatchlistButton from './buttons/WatchlistButton'
-import { useLoginContext, useEventsContext, useEventsContextUpdate, useFavoritesContext, useFavoritesContextUpdate } from './ContextProvider'
 import { Auth } from 'aws-amplify'
+import { useLoginContext, useEventsContext, useEventsContextUpdate, useFavoritesContext, useFavoritesContextUpdate, useFiltersContext } from './ContextProvider'
 
-const Wrapper = styled("div")(({ theme }) => ({
-  width: "calc(100%)",
-  padding: "0px 10px 0px 0px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-}));
-
-const LogoContainer = styled("div")(({ theme }) => ({
-  margin: "0.5rem 0",
-  display: "flex",
-  alignItems: "flex-start",
-  flexDirection: "row",
-  alignItems: "center",
-}));
-
-const Logo = styled("div")(({ theme }) => ({
-  objectFit: "contain",
-  marginLeft: "-0.1rem",
-  marginRight: "-0.5rem",
-}));
-
-const RightContainer = styled("div")(({ theme }) => ({
-  margin: "0.5rem 0.9rem",
-  display: "flex",
-  alignItems: "flex-start",
-  flexDirection: "row",
-  alignItems: "center",
-}));
-
-const ConnectButtonStyled = styled("button")(({ theme }) => ({
-  fontFamily: "Inter",
-  fontSize: "0.8rem",
-  fontWeight: "500",
-  textAlign: "center",
-  color: "white",
-  backgroundColor: "transparent",
-  border: "1px solid white",
-  borderRadius: "0.4rem",
-  width: "7rem",
-  padding: "0.46rem",
-  cursor: "pointer",
-  // marginRight: "1rem",
-  marginRight: '-10px',
-  "&:hover": {
-    border: "1px solid #dd00ff",
-    color: "#dd00ff",
-  }
-}));
+const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0px 10px 0px 0px", display: "flex", alignItems: "center", justifyContent: "space-between"}))
+const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
+const Logo = styled("div")(({ theme }) => ({ objectFit: "contain", marginLeft: "-0.1rem", marginRight: "-0.5rem"}))
+const RightContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0.9rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
+const ConnectButtonStyled = styled("button")(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white",
+  backgroundColor: "transparent", border: "1px solid white", borderRadius: "0.4rem", width: "7rem", padding: "0.46rem", cursor: "pointer", marginRight: '-10px',
+  "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" }}));
 
 
 const Header = (props) => {
   const [headerOpen, setHeaderOpen] = React.useState(false)
   const loginCreds = useLoginContext()
+  const filtersContext = useFiltersContext()
   // const eventsDeets = useEventsContext()
-  const eventsUpdate = useEventsContextUpdate()
-  const favorites = useFavoritesContext()
-  const printCreds = () => Auth.currentCredentials().then(credentials => console.log(credentials))
+  // const eventsUpdate = useEventsContextUpdate()
+  // const favorites = useFavoritesContext()
+  // const printCreds = () => Auth.currentCredentials().then(credentials => console.log(credentials))
 
   return (
     <ThemeProvider>
@@ -81,7 +40,7 @@ const Header = (props) => {
             </Logo>
           </Link>
           {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={eventsUpdate}/> */}
-          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(favorites)}/>
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(filtersContext)}/>
         </LogoContainer>
         <RightContainer>
           {!loginCreds.signedIn ?

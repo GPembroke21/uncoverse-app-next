@@ -3,7 +3,6 @@ import FiltersBar from '../components/FiltersBar'
 import EventsList2 from '../components/EventsList2'
 import AdBar from '../components/AdBar'
 import TrendingBar from '../components/TrendingBar'
-import Footer from '../components/Footer'
 
 const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
@@ -19,9 +18,7 @@ export default function Index(props) {
       <AdBar/>
       <TrendingBar/>
       <FiltersBar/>
-      {/* <EventsList2 eventList={props.eventList} /> */}
       <EventsList2 />
-      <Footer/>
     </Wrapper>
   )
 }

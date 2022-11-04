@@ -6,49 +6,10 @@ import { eventsArray, eventsIdArray } from '../static/StaticVariables'
 
 Amplify.configure({ ...awsExports, ssr: true })
 
-// const appendToArray = data => {
-//     for (let i = 0; i < data.length; i++) {
-//         const id = data[i].id
-//         if (!eventsIdArray.includes(id)) {
-//             eventsIdArray.push(id)
-//             eventsArray.push(data[i])
-//         }
-//     }
-// }
-
-// export default function GetEvents(nextTokenVar) {
-//     const [nextToken, setNextToken] = useState(nextTokenVar)
-
-//     const getFunction = useCallback(async () => {
-//         const gqlQuery = {
-//             query: listEvents,
-//             authMode: "AWS_IAM",
-//             variables: { limit: 40, nextToken: nextToken }
-//         }
-//         try {
-//             console.log("gqlQuery", gqlQuery)
-//             const response = await API.graphql(gqlQuery)
-//             const objectKey = Object.keys(response.data).at(0)
-//             setNextToken(response.data[objectKey].nextToken)
-//             appendToArray(response.data[objectKey].items)
-//         } catch (error) {
-//             console.log("Error loading API:", error)
-//         }
-//     }, [])
-
-//     useEffect(() => {
-//         getFunction()
-//         return () => { }
-//     }, [getFunction, getMoreEvents])
-
-//     return nextToken
-// }
-
 const nextToken = [null]
 
 export default function GetEvents(getMoreEvents) {
     const [request, setRequest] = useState(() => { nextToken.splice(0, 0, null); return { data: null, error: false} })
-    // const [nextToken, setNextToken] = useState(null)
 
     const gqlQuery = () => {
         return {
@@ -81,3 +42,13 @@ export default function GetEvents(getMoreEvents) {
 
     return request
 }
+
+// const appendToArray = data => {
+//     for (let i = 0; i < data.length; i++) {
+//         const id = data[i].id
+//         if (!eventsIdArray.includes(id)) {
+//             eventsIdArray.push(id)
+//             eventsArray.push(data[i])
+//         }
+//     }
+// }

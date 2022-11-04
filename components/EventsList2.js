@@ -11,13 +11,12 @@ import FavoriteButton from './buttons/FavoriteButton'
 import Slide from '@mui/material/Slide'
 import { platformLogos, eventsArray } from '../src/static/StaticVariables'
 import InfoPane from './InfoPane'
-import { useLoginContext, useEventsContext, useEventsContextUpdate } from './ContextProvider'
+import { useFiltersContext, useEventsContext } from './ContextProvider'
 
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const handleClose = () => { setOpen(false); };
-  const [favoriteToggle, setFavoriteToggle] = React.useState(false)
 
   const currentTime = new Date();
   const dateTimeStart = new Date(row.dateTimeStart);
@@ -31,7 +30,7 @@ function Row(props) {
   // if (dateTimeStart > currentTime) { console.log ("Upcoming", row.name, dateTimeStart, currentTime)}
 
   const platLogo = platformLogos[row.platformId]
-  const favoritesBtn = <FavoriteButton eventId={row.id} ind={props.ind} sx={{ cursor: 'pointer' }} toggle={favoriteToggle} setToggle={(state) => setFavoriteToggle(state)}/>
+  const favoritesBtn = <FavoriteButton eventId={row.id} sx={{ cursor: 'pointer' }}/>
 
   return (
     <React.Fragment>
@@ -69,13 +68,18 @@ function Row(props) {
           {favoritesBtn}
         </TableCell>
       </TableRow>
-      <InfoPane handleCloseFunction={handleClose} row={row} dateStyled={dateStyled} openState={open} ind={props.ind} favoritesBtn={favoritesBtn}/>
+      <InfoPane handleCloseFunction={handleClose} row={row} dateStyled={dateStyled} openState={open} favoritesBtn={favoritesBtn}/>
     </React.Fragment>
   );
 }
 
 export default function EventsList2() {
   const eventsContext = useEventsContext()
+  const filtersContext = useFiltersContext()
+
+  const filteredArray = array => {
+    return array //.platformId === "CRVX"
+  }
 
   return (
     <TableContainer style={{ overflowX: 'auto' }}>
@@ -94,6 +98,7 @@ export default function EventsList2() {
         {(!eventsContext.length == 0) ?
           <TableBody sx={{ backgroundColor: "transparent" }}>
             {eventsContext
+              .filter(array => filteredArray(array))
               .sort((a, b) => a.dateTimeStart < b.dateTimeStart ? -1 : 1)
               .map((row, i) => (
                 <Row

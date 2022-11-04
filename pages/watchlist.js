@@ -2,7 +2,6 @@ import React from 'react';
 import { styled } from "@mui/system"
 import Grid from "@mui/material/Grid"
 import FavoriteEventCard from "../components/FavoriteEventCard"
-import { favoriteEvents } from '../src/static/StaticVariables';
 import { useEventsContext, useFavoritesContext } from '../components/ContextProvider';
 
 const Wrapper = styled("div")(({ theme }) => ({
@@ -74,14 +73,3 @@ export default function Watchlist(props) {
     </Wrapper>
   )
 }
-
-
-
-// {Object.keys(favoriteEvents).map((keyName, i) => (
-//   <div key={i}>
-//     { (favoriteEvents[keyName]['s']) &&
-//       <Item>
-//         <FavoriteEventCard item={eventsContext[favoriteEvents[keyName]['i']]} />
-//       </Item>}
-//   </div>
-// ))}
