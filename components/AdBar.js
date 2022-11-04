@@ -11,6 +11,7 @@ export default function TitlebarBelowImageList() {
   const [horizontalScroll, setHorizontalScroll] = useState(0);
   const [scrollWidth, setScrollWidth] = useState();
   const [clientWidth, setClientWidth] = useState();
+  const imageLoader = ({ src }) => `${src}?w=248&fit=crop&auto=format`
 
   useEffect(() => {
     const imageListEl = document.querySelector("#imageList");
@@ -71,9 +72,11 @@ export default function TitlebarBelowImageList() {
         {itemData.map((item) => (
           <a key={item.key} href={item.link} target={"_blank"}>
             <ImageListItem style={{ height: '100%', width: "100%" }}>
-              <Image
+              <Image 
+              // loader={imageLoader(item.img)} 
+                unoptimized={true} 
                 src={`${item.img}?w=248&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                // srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.title}
                 // loading="lazy"
                 width='100%'
