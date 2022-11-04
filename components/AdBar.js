@@ -71,13 +71,13 @@ export default function TitlebarBelowImageList() {
         {itemData.map((item) => (
           <a key={item.key} href={item.link} target={"_blank"}>
             <ImageListItem style={{ height: '100%', width: "100%" }}>
-              <img
+              <Image
                 src={item.img}
                 srcSet={item.img}
                 alt={item.title}
                 loading="lazy"
-                // width='100%'
-                // height='100%'
+                width='100%'
+                height='100%'
                 style={{ borderRadius: 10 }}
               />
               <ImageListItemBar
