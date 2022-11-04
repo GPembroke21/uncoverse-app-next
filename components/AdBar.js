@@ -24,9 +24,9 @@ export default function TitlebarBelowImageList() {
     imageListEl?.addEventListener(
       "scroll",
       () => {
-        console.log("position left is", imageListEl.scrollLeft);
-        console.log("scroll width", imageListEl.scrollWidth);
-        console.log("client width", imageListEl.clientWidth);
+        // console.log("position left is", imageListEl.scrollLeft);
+        // console.log("scroll width", imageListEl.scrollWidth);
+        // console.log("client width", imageListEl.clientWidth);
         setHorizontalScroll(imageListEl?.scrollLeft);
         setScrollWidth(imageListEl?.scrollWidth);
         setClientWidth(imageListEl?.clientWidth);
@@ -64,16 +64,11 @@ export default function TitlebarBelowImageList() {
         ? [
             "linear-gradient(to right, black calc(100% - 48px), transparent 100%)",
           ]
-      //   :
-      // scrollWidth === (null)
-      //   ? [
-      //       "none"
-      //     ]
         : [""],
-      scrollbarWidth: "none" /* Firefox */,
+      scrollbarWidth: "none",
       "&::-webkit-scrollbar": {
         display: "none"
-      } /* Chrome */
+      }
       }}
       gap= {10}
       variant= 'standard'
@@ -103,33 +98,37 @@ export default function TitlebarBelowImageList() {
 
 const itemData = [
   {
-    key: 1,
-    img: '/oldadbar1.jpg',
-    title: 'Most Active Metaverse',
-    subtitle: 'Event name goes here',
+    img: '/adbar1.png',
+    title: 'Virtual real estate insights',
+    subtitle: 'Who is buying metaverse land?  ',
+    // link: "https://parcel.so/learn/who-is-buying-virtual-land-in-the-metaverse"
   },
   {
     key: 2,
-    img: '/oldadbar2.jpg',
-    title: 'Creator Cafe',
-    subtitle: 'Resources for creators',
+    img: '/adbar2.png',
+    title: 'Key metrics to consider',
+    subtitle: 'How to think about metaverse DAU',
+    // link: 'https://decentraland.org/blog/announcements/how-many-dau-does-decentraland-have/'
   },
   {
     key: 3,
-    img: '/oldadbar1.jpg',
-    title: 'Uncoverse Pod',
-    subtitle: 'Perspectives on Web3',
+    img: '/adbar3.png',
+    title: 'Creator café',
+    subtitle: 'Exploring content creation',
+    // link: 'https://medium.com/@uncoverse'
   },
   {
     key: 4,
-    img: '/oldadbar2.jpg',
-    title: 'Top Categories',
-    subtitle: 'Most active categories',
+    img: '/adbar4.png',
+    title: 'Gaming',
+    subtitle: 'Road to bridge sports to Web3',
+    // link: 'https://coinmarketcap.com/community/articles/40774'
   },
   {
     key: 5,
-    img: '/oldadbar1.jpg',
-    title: 'Gaming',
-    subtitle: 'Gaming subtitle',
+    img: '/adbar5.png',
+    title: 'Where we see growth',
+    subtitle: 'What is behind increased activity',
+    // link: 'https://dappradar.com/blog/the-sandbox-is-crowded-whats-behind-the-metaverse-steep-increase-in-activity'
   },
 ];
