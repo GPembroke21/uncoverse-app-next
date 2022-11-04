@@ -3,6 +3,7 @@ import ImageList from '@mui/material/ImageList'
 import ImageListItem from '@mui/material/ImageListItem'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
 import { styled } from "@mui/system"
+import Image from "next/image"
 
 const AdBarContainer = styled("div")(({ theme }) => ({ margin: "0rem 1rem -1rem 1rem" }))
 
@@ -70,11 +71,13 @@ export default function TitlebarBelowImageList() {
         {itemData.map((item) => (
           <a key={item.key} href={item.link} target={"_blank"}>
             <ImageListItem style={{ height: '100%', width: "100%" }}>
-              <img
+              <Image
                 src={`${item.img}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.title}
-                loading="lazy"
+                // loading="lazy"
+                width='100%'
+                height='100%'
                 style={{ borderRadius: 10 }}
               />
               <ImageListItemBar
