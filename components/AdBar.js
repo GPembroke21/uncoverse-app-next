@@ -98,35 +98,35 @@ export default function TitlebarBelowImageList() {
 
 const itemData = [
   {
-    img: '/adbar1.png',
+    img: '/adbar1.jpg',
     title: 'Virtual real estate insights',
     subtitle: 'Who is buying metaverse land?  ',
     // link: "https://parcel.so/learn/who-is-buying-virtual-land-in-the-metaverse"
   },
   {
     key: 2,
-    img: '/adbar2.png',
+    img: '/adbar2.jpg',
     title: 'Key metrics to consider',
     subtitle: 'How to think about metaverse DAU',
     // link: 'https://decentraland.org/blog/announcements/how-many-dau-does-decentraland-have/'
   },
   {
     key: 3,
-    img: '/adbar3.png',
+    img: '/adbar3.jpg',
     title: 'Creator café',
     subtitle: 'Exploring content creation',
     // link: 'https://medium.com/@uncoverse'
   },
   {
     key: 4,
-    img: '/adbar4.png',
+    img: '/adbar4.jpg',
     title: 'Gaming',
     subtitle: 'Road to bridge sports to Web3',
     // link: 'https://coinmarketcap.com/community/articles/40774'
   },
   {
     key: 5,
-    img: '/adbar5.png',
+    img: '/adbar5.jpg',
     title: 'Where we see growth',
     subtitle: 'What is behind increased activity',
     // link: 'https://dappradar.com/blog/the-sandbox-is-crowded-whats-behind-the-metaverse-steep-increase-in-activity'
