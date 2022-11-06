@@ -7,6 +7,15 @@ export const platformLogos = {
     'RBLX': '/RBLX_logo.png',
 }
 
+export const platformsList = [
+    'DCLD',
+    'SOMN',
+    'CRVX',
+    'META',
+    'SAND',
+    'RBLX',
+]
+
 export const platformsDict = {
     'DCLD': 'Decentraland',
     'SOMN': 'Somnium',

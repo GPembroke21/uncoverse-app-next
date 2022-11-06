@@ -17,6 +17,7 @@ export default function TitlebarBelowImageList() {
   const [horizontalScroll, setHorizontalScroll] = useState(0);
   const [scrollWidth, setScrollWidth] = useState();
   const [clientWidth, setClientWidth] = useState();
+  const imageLoader = ({ src }) => `${src}?w=248&fit=crop&auto=format`
 
   useEffect(() => {
     const imageListEl = document.querySelector("#imageList");
