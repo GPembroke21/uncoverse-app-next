@@ -15,7 +15,7 @@ export default function GetEvents(getMoreEvents) {
         return {
             query: listEvents,
             authMode: "AWS_IAM",
-            variables: { limit: 40, nextToken: nextToken.at(0)}
+            variables: { limit: 250, nextToken: nextToken.at(0)}
         }
     }
 

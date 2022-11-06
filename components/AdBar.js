@@ -76,8 +76,8 @@ export default function TitlebarBelowImageList() {
       rowHeight= "auto"
       >
       {/* {console.log("pos", horizontalScroll)} */}
-      {itemData.map((item) => (
-        <a key={item.key} href={item.link} target={"_blank"}>
+      {itemData.map((item, index) => (
+        <a key={index} href={item.link} target={"_blank"}>
           <ImageListItem style={{width: '100%', height: '100%'}}>
             <img
               src={`${item.img}?w=248&fit=crop&auto=format`}

@@ -1,6 +1,5 @@
 import { useState, useContext, createContext, useEffect } from 'react'
 import { Auth, Hub } from 'aws-amplify'
-import GetAuth from '../src/auth/GetAuth'
 import GetEvents from '../src/requests/GetEvents'
 import { eventsIdArray } from '../src/static/StaticVariables'
 import GetInteractions from '../src/requests/GetInteractions'
@@ -14,6 +13,7 @@ const FavoritesContextUpdate = createContext()
 const FiltersSearchContext = createContext()
 const FiltersPlatformsContext = createContext()
 const FiltersCategoriesContext = createContext()
+const FiltersFavoritesContext = createContext()
 const FiltersContextUpdate = createContext()
 
 export function useLoginContext() { return useContext(LoginContext) }
@@ -24,6 +24,7 @@ export function useFavoritesContextUpdate() { return useContext(FavoritesContext
 export function useFiltersSearchContext() { return useContext(FiltersSearchContext) }
 export function useFiltersPlatformsContext() { return useContext(FiltersPlatformsContext) }
 export function useFiltersCategoriesContext() { return useContext(FiltersCategoriesContext) }
+export function useFiltersFavoritesContext() { return useContext(FiltersFavoritesContext) }
 export function useFiltersContextUpdate() { return useContext(FiltersContextUpdate) }
 
 export function ContextProvider({ children }) {
@@ -39,7 +40,7 @@ export function ContextProvider({ children }) {
     const userInteractions = GetInteractions(interactionsId)
     const [favoriteEvents, setFavoriteEvents] = useState(() => [])
     const updateFavoriteEvents = {
-        addFavorite: item => { console.log("adding fav...");
+        addFavorite: item => {
             if (favoriteEvents && !favoriteEvents.includes(item)) {
                 setFavoriteEvents(prevArray => {
                     useStoreInteraction({ creds: loginCreds, favArray: [...prevArray, item] })
@@ -47,7 +48,7 @@ export function ContextProvider({ children }) {
                 })
             }
         },
-        removeFavorite: item => { console.log("removing fav...");
+        removeFavorite: item => {
             if (favoriteEvents && favoriteEvents.includes(item)) {
                 const newArray = favoriteEvents.filter(i => i !== item)
                 useStoreInteraction({ creds: loginCreds, favArray: newArray })
@@ -58,11 +59,17 @@ export function ContextProvider({ children }) {
     const [filtersSearch, setFiltersSearch] = useState("")
     const [filtersPlatforms, setFiltersPlatform] = useState([])
     const [filtersCategories, setFiltersCategories] = useState([])
+    const [filtersFavorites, setFiltersFavorites] = useState(false)
     const updateFilters = {
-        updateSearch: item => { setFiltersSearch(item) },
-        updatePlatform: item => { setFiltersPlatform(item) },
-        updateCategory: item => { setFiltersCategories(item) },
-        clearFilters: () => { setFiltersSearch(""), setFiltersPlatform([]), setFiltersCategories([]) }
+        updateSearch: item => { 
+            if (filtersPlatforms && filtersPlatforms.length !== 0) {setFiltersPlatform([])}; 
+            if (filtersCategories && filtersCategories.length !== 0) {setFiltersCategories([])}; 
+            if (filtersFavorites) {setFiltersFavorites(false)}; 
+            setFiltersSearch(item) },
+        updatePlatform: item => { if (filtersSearch && filtersSearch !== "") {setFiltersSearch("")}; setFiltersPlatform(item) },
+        updateCategory: item => { if (filtersSearch && filtersSearch !== "") {setFiltersSearch("")}; setFiltersCategories(item) },
+        toggleFavorites: () => { if (filtersSearch && filtersSearch !== "") {setFiltersSearch("")}; setFiltersFavorites(!filtersFavorites) },
+        clearFilters: () => { setFiltersSearch(""), setFiltersPlatform([]), setFiltersCategories([]), setFiltersFavorites(false) },
     }
 
     useEffect(() => {
@@ -124,13 +131,15 @@ export function ContextProvider({ children }) {
                     <FavoritesContext.Provider value={favoriteEvents}>
                         <FavoritesContextUpdate.Provider value={updateFavoriteEvents}>
                             <FiltersSearchContext.Provider value={filtersSearch}>
-                            <FiltersPlatformsContext.Provider value={filtersPlatforms}>
-                            <FiltersCategoriesContext.Provider value={filtersCategories}>
-                                <FiltersContextUpdate.Provider value={updateFilters}>
-                                    {children}
-                                </FiltersContextUpdate.Provider>
-                            </FiltersCategoriesContext.Provider>
-                            </FiltersPlatformsContext.Provider>
+                                <FiltersPlatformsContext.Provider value={filtersPlatforms}>
+                                    <FiltersCategoriesContext.Provider value={filtersCategories}>
+                                        <FiltersFavoritesContext.Provider value={filtersFavorites}>
+                                            <FiltersContextUpdate.Provider value={updateFilters}>
+                                                {children}
+                                            </FiltersContextUpdate.Provider>
+                                        </FiltersFavoritesContext.Provider>
+                                    </FiltersCategoriesContext.Provider>
+                                </FiltersPlatformsContext.Provider>
                             </FiltersSearchContext.Provider>
                         </FavoritesContextUpdate.Provider>
                     </FavoritesContext.Provider>

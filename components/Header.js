@@ -8,7 +8,7 @@ import Link from 'next/link'
 import AuthPopup from './AuthPopup'
 import WatchlistButton from './buttons/WatchlistButton'
 import { Auth } from 'aws-amplify'
-import { useLoginContext, useFiltersContextUpdate, useFiltersPlatformsContext, useFiltersCategoriesContext } from './ContextProvider'
+import { useLoginContext, useFiltersContextUpdate, useFiltersPlatformsContext, useFiltersCategoriesContext, useFiltersSearchContext } from './ContextProvider'
 
 const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0px 10px 0px 0px", display: "flex", alignItems: "center", justifyContent: "space-between"}))
 const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
@@ -28,6 +28,7 @@ const Header = (props) => {
   const clearFilters = useFiltersContextUpdate()
   // const favorites = useFavoritesContext()
   // const printCreds = () => Auth.currentCredentials().then(credentials => console.log(credentials))
+  const searchFilter = useFiltersSearchContext()
 
   return (
     <ThemeProvider>
@@ -41,7 +42,8 @@ const Header = (props) => {
             </Logo>
           </Link>
           {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={eventsUpdate}/> */}
-          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => clearFilters.clearFilters()}/>
+          {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => clearFilters.clearFilters()}/> */}
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(searchFilter)}/>
         </LogoContainer>
         <RightContainer>
           {!loginCreds.signedIn ?
