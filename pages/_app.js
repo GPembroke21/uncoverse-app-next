@@ -9,6 +9,7 @@ import awsExports from '../src/aws-exports'
 import Header from '../components/Header'
 import HeaderBottom from '../components/HeaderBottom'
 import Footer from '../components/Footer'
+import LanderPopup from '../components/LanderPopup'
       
 Amplify.configure({ ...awsExports, ssr: true })
 const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto" }));
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider>
       <ContextProvider>
         <CssBaseline />
+        <LanderPopup/>
         <Wrapper>
           <Box
             paddingY={0}
