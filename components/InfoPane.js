@@ -2,6 +2,7 @@ import React from 'react';
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card } from '@mui/material';
 import Image from 'next/image'
 import { styled } from "@mui/system"
+import FavoriteButton from './buttons/FavoriteButton';
 
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({}));
@@ -18,7 +19,19 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
 
 export default function InfoPane(props) {
-  const imageLoader = ({ src }) => `${props.row.image}`
+  if (!props.info) return
+  console.log("Loading InfoPane...")
+  const row = props.info
+  const imageLoader = ({ src }) => `${row.image}`
+  
+  const currentTime = new Date();
+  const dateTimeStart = new Date(row.dateTimeStart);
+  const dateTimeEnd = new Date(row.dateTimeEnd);
+  const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+  const formattedEndDate = (dateTimeEnd.toLocaleDateString('en-US', { year: 'numeric' }) == currentTime.toLocaleDateString('en-US', { year: 'numeric' })) ? dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) : dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+  const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
+  const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
+  const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ending " + (formattedEndDate + " @ " + formattedEndTime + ")")) : (formattedStartDate + " @ " + formattedStartTime + " - " + formattedEndDate + " @ " + formattedEndTime)
 
   return (
     <Dialog
@@ -39,12 +52,12 @@ export default function InfoPane(props) {
     >
       <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <InfopaneHead>
-          <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '10px', mt: '-10px', lineHeight: '100%' }}>{props.row.name}</DialogTitle>
+          <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '10px', mt: '-10px', lineHeight: '100%' }}>{row.name}</DialogTitle>
           <DialogContentText component={'span'} sx={{ mb: '10px' }}>
             <InfopaneImage>
-              <Image loader={imageLoader} src={props.row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />
+              <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />
               <FavoriteButtonContainer>
-                {props.favoritesBtn}
+                <FavoriteButton eventId={row.id} sx={{ cursor: 'pointer' }} />
               </FavoriteButtonContainer>
             </InfopaneImage>
           </DialogContentText>
@@ -52,7 +65,7 @@ export default function InfoPane(props) {
         <ButtonContainer container>
           <Grid item marginRight={1} sx={{ flex: '1 0 40%' }}>
             <InfopaneButton fullWidth variant="contained">
-              <a href={props.row.url} target="_blank" rel="noreferrer noopener">
+              <a href={row.url} target="_blank" rel="noreferrer noopener">
                 Jump to Event
               </a>
             </InfopaneButton>
@@ -69,7 +82,7 @@ export default function InfoPane(props) {
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/creator.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-              {props.row.createdByUser}
+              {row.createdByUser}
             </InfopaneRow>
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
@@ -78,7 +91,7 @@ export default function InfoPane(props) {
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-              {props.dateStyled}
+              {dateStyledInfo}
             </InfopaneRow>
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
@@ -87,7 +100,7 @@ export default function InfoPane(props) {
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-              {props.row.category}
+              {row.category}
             </InfopaneRow>
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
@@ -96,7 +109,7 @@ export default function InfoPane(props) {
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-              {props.row.totalAttendees}
+              {row.totalAttendees}
             </InfopaneRow>
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
@@ -105,8 +118,8 @@ export default function InfoPane(props) {
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-              {props.row.platformId}
-              {props.row.locator}
+              {row.platformId}
+              {row.locator}
             </InfopaneRow>
           </DialogContentText>
         </InfopaneInfo>
@@ -127,7 +140,7 @@ export default function InfoPane(props) {
             }}
             style={{ flex: 1, overflow: 'auto' }}
           >
-            {props.row.description}
+            {row.description}
           </DialogContentText>
         </InfopaneDescription>
       </DialogContent>
