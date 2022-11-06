@@ -11,7 +11,7 @@ import FavoriteButton from './buttons/FavoriteButton'
 import Slide from '@mui/material/Slide'
 import { platformLogos, eventsArray } from '../src/static/StaticVariables'
 import InfoPane from './InfoPane'
-import { useFiltersContext, useEventsContext } from './ContextProvider'
+import { useFiltersPlatformsContext, useEventsContext, useFiltersCategoriesContext } from './ContextProvider'
 
 function Row(props) {
   const { row } = props;
@@ -30,7 +30,7 @@ function Row(props) {
   // if (dateTimeStart > currentTime) { console.log ("Upcoming", row.name, dateTimeStart, currentTime)}
 
   const platLogo = platformLogos[row.platformId]
-  const favoritesBtn = <FavoriteButton eventId={row.id} sx={{ cursor: 'pointer' }}/>
+  const favoritesBtn = <FavoriteButton eventId={row.id} sx={{ cursor: 'pointer' }} />
 
   return (
     <React.Fragment>
@@ -68,17 +68,30 @@ function Row(props) {
           {favoritesBtn}
         </TableCell>
       </TableRow>
-      <InfoPane handleCloseFunction={handleClose} row={row} dateStyled={dateStyled} openState={open} favoritesBtn={favoritesBtn}/>
+      <InfoPane handleCloseFunction={handleClose} row={row} dateStyled={dateStyled} openState={open} favoritesBtn={favoritesBtn} />
     </React.Fragment>
   );
 }
 
 export default function EventsList2() {
   const eventsContext = useEventsContext()
-  const filtersContext = useFiltersContext()
+  const filtersPlatformsContext = useFiltersPlatformsContext()
+  const filtersCategoriesContext = useFiltersCategoriesContext()
 
   const filteredArray = array => {
-    return array //.platformId === "CRVX"
+    if (filtersPlatformsContext.length === 0 && filtersCategoriesContext.length === 0) {
+      return array
+    } else if (filtersPlatformsContext.length !== 0 && filtersCategoriesContext.length === 0) {
+      if (filtersPlatformsContext.includes(array.platformId)) return array
+    } else if (filtersPlatformsContext.length === 0 && filtersCategoriesContext.length !== 0) {
+      const catArr = array.category.split(";")
+      for (let i = 0; i < catArr.length; i++) { if (filtersCategoriesContext.includes(catArr[i].trim())) return array }
+    } else if (filtersPlatformsContext.length !== 0 && filtersCategoriesContext.length !== 0) {
+      if (filtersPlatformsContext.includes(array.platformId)) {
+        const catArr = array.category.split(";")
+        for (let i = 0; i < catArr.length; i++) { if (filtersCategoriesContext.includes(catArr[i].trim())) return array }
+      }
+    }
   }
 
   return (

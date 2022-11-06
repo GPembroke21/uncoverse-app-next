@@ -8,7 +8,7 @@ import Link from 'next/link'
 import AuthPopup from './AuthPopup'
 import WatchlistButton from './buttons/WatchlistButton'
 import { Auth } from 'aws-amplify'
-import { useLoginContext, useEventsContext, useEventsContextUpdate, useFavoritesContext, useFavoritesContextUpdate, useFiltersContext } from './ContextProvider'
+import { useLoginContext, useFiltersContextUpdate, useFiltersPlatformsContext, useFiltersCategoriesContext } from './ContextProvider'
 
 const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0px 10px 0px 0px", display: "flex", alignItems: "center", justifyContent: "space-between"}))
 const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
@@ -22,9 +22,10 @@ const ConnectButtonStyled = styled("button")(({ theme }) => ({ fontFamily: "Inte
 const Header = (props) => {
   const [headerOpen, setHeaderOpen] = React.useState(false)
   const loginCreds = useLoginContext()
-  const filtersContext = useFiltersContext()
+  const filtersContext = useFiltersPlatformsContext()
+  const catContext = useFiltersCategoriesContext()
   // const eventsDeets = useEventsContext()
-  // const eventsUpdate = useEventsContextUpdate()
+  const clearFilters = useFiltersContextUpdate()
   // const favorites = useFavoritesContext()
   // const printCreds = () => Auth.currentCredentials().then(credentials => console.log(credentials))
 
@@ -40,7 +41,7 @@ const Header = (props) => {
             </Logo>
           </Link>
           {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={eventsUpdate}/> */}
-          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log(filtersContext)}/>
+          <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => clearFilters.clearFilters()}/>
         </LogoContainer>
         <RightContainer>
           {!loginCreds.signedIn ?

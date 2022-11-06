@@ -11,7 +11,9 @@ const EventsContext = createContext()
 const EventsContextUpdate = createContext()
 const FavoritesContext = createContext()
 const FavoritesContextUpdate = createContext()
-const FiltersContext = createContext()
+const FiltersSearchContext = createContext()
+const FiltersPlatformsContext = createContext()
+const FiltersCategoriesContext = createContext()
 const FiltersContextUpdate = createContext()
 
 export function useLoginContext() { return useContext(LoginContext) }
@@ -19,7 +21,9 @@ export function useEventsContext() { return useContext(EventsContext) }
 export function useEventsContextUpdate() { return useContext(EventsContextUpdate) }
 export function useFavoritesContext() { return useContext(FavoritesContext) }
 export function useFavoritesContextUpdate() { return useContext(FavoritesContextUpdate) }
-export function useFiltersContext() { return useContext(FiltersContext) }
+export function useFiltersSearchContext() { return useContext(FiltersSearchContext) }
+export function useFiltersPlatformsContext() { return useContext(FiltersPlatformsContext) }
+export function useFiltersCategoriesContext() { return useContext(FiltersCategoriesContext) }
 export function useFiltersContextUpdate() { return useContext(FiltersContextUpdate) }
 
 export function ContextProvider({ children }) {
@@ -33,9 +37,9 @@ export function ContextProvider({ children }) {
 
     const [interactionsId, setInteractionsId] = useState(() => null)
     const userInteractions = GetInteractions(interactionsId)
-    const [favoriteEvents, setFavoriteEvents] = useState([])
+    const [favoriteEvents, setFavoriteEvents] = useState(() => [])
     const updateFavoriteEvents = {
-        addFavorite: item => {
+        addFavorite: item => { console.log("adding fav...");
             if (favoriteEvents && !favoriteEvents.includes(item)) {
                 setFavoriteEvents(prevArray => {
                     useStoreInteraction({ creds: loginCreds, favArray: [...prevArray, item] })
@@ -43,7 +47,7 @@ export function ContextProvider({ children }) {
                 })
             }
         },
-        removeFavorite: item => {
+        removeFavorite: item => { console.log("removing fav...");
             if (favoriteEvents && favoriteEvents.includes(item)) {
                 const newArray = favoriteEvents.filter(i => i !== item)
                 useStoreInteraction({ creds: loginCreds, favArray: newArray })
@@ -51,10 +55,14 @@ export function ContextProvider({ children }) {
             }
         }
     }
-    const [filters, setFilters] = useState([])
+    const [filtersSearch, setFiltersSearch] = useState("")
+    const [filtersPlatforms, setFiltersPlatform] = useState([])
+    const [filtersCategories, setFiltersCategories] = useState([])
     const updateFilters = {
-        addPlatform: item => { },//setFilters(prior => [...prior, item]) },
-        removePlatform: item => { }//setFilters(filters.filter(i => i !== item)) }
+        updateSearch: item => { setFiltersSearch(item) },
+        updatePlatform: item => { setFiltersPlatform(item) },
+        updateCategory: item => { setFiltersCategories(item) },
+        clearFilters: () => { setFiltersSearch(""), setFiltersPlatform([]), setFiltersCategories([]) }
     }
 
     useEffect(() => {
@@ -68,8 +76,8 @@ export function ContextProvider({ children }) {
             if (credentials.authenticated) {
                 setInteractionsId(prevValue => { if (prevValue !== credentials.identityId) return credentials.identityId })
             } else if (!credentials.authenticated) {
-                setInteractionsId(prevValue => { if (!prevValue) return null })
-                setFavoriteEvents(prevValue => { if (prevValue.length !== 0) return [] })
+                setInteractionsId(prev => { if (!prev) return null })
+                setFavoriteEvents(prevValue => { if (!prevValue || prevValue.length !== 0) return [] })
             }
         })
         return () => { }
@@ -115,11 +123,15 @@ export function ContextProvider({ children }) {
                 <EventsContextUpdate.Provider value={updateEventList}>
                     <FavoritesContext.Provider value={favoriteEvents}>
                         <FavoritesContextUpdate.Provider value={updateFavoriteEvents}>
-                            <FiltersContext.Provider value={filters}>
+                            <FiltersSearchContext.Provider value={filtersSearch}>
+                            <FiltersPlatformsContext.Provider value={filtersPlatforms}>
+                            <FiltersCategoriesContext.Provider value={filtersCategories}>
                                 <FiltersContextUpdate.Provider value={updateFilters}>
                                     {children}
                                 </FiltersContextUpdate.Provider>
-                            </FiltersContext.Provider>
+                            </FiltersCategoriesContext.Provider>
+                            </FiltersPlatformsContext.Provider>
+                            </FiltersSearchContext.Provider>
                         </FavoritesContextUpdate.Provider>
                     </FavoritesContext.Provider>
                 </EventsContextUpdate.Provider>
