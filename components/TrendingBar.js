@@ -20,7 +20,7 @@ export default function TrendingBar() {
     const filtersContextUpdate = useFiltersContextUpdate()
     const eventsContext = useEventsContext()
     // const [topCreators, setTopCreators] = React.useState([])
-    const topThreeEvents = eventsContext.filter(array => { if ((array.dateTimeEnd > currentTime.toISOString()) && array.totalAttendees) { return array } })
+    const topThreeEvents = eventsContext.filter(array => { if ((array.dateTimeEnd > currentTime.toISOString()) && (array.dateTimeStart < currentTime.toISOString())&& array.totalAttendees) { return array } })
         .sort((a, b) => a.totalAttendees < b.totalAttendees ? 1 : -1).slice(0, 3);
     const [infoPaneInfo, setInfoPaneInfo] = React.useState(null)
     const [open, setOpen] = React.useState(false)
@@ -153,7 +153,7 @@ export default function TrendingBar() {
                                         <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" style={{ cursor: 'pointer' }}>
                                             <span onClick={() => handleClickCategory("Music")} style={styleCategoryButton("Music")}>Music <br /> </span>
                                             <span onClick={() => handleClickCategory("Information")} style={styleCategoryButton("Information")}>Information <br /></span>
-                                            <span onClick={() => handleClickCategory("Art")} style={styleCategoryButton("NFT")}>NFT <br /></span>
+                                            <span onClick={() => handleClickCategory("NFT")} style={styleCategoryButton("NFT")}>NFT <br /></span>
                                         </Typography>
                                     </Grid>
                                 </Grid>

@@ -10,9 +10,10 @@ const currentTime = new Date();
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => { setOpen(false); };
-
+  const handleClick = () => {
+    props.setInfoPaneInfoClick(row)
+    props.handleInfoPaneOpen()
+  }
 
   const dateTimeStart = new Date(row.dateTimeStart);
   const dateTimeEnd = new Date(row.dateTimeEnd);
@@ -26,43 +27,45 @@ function Row(props) {
   // if (dateTimeStart > currentTime) { console.log ("Upcoming", row.name, dateTimeStart, currentTime)}
 
   const platLogo = platformLogos[row.platformId]
-  const favoritesBtn = <FavoriteButton eventId={row.id} sx={{ cursor: 'pointer' }} />
 
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell component="th" scope="row" onClick={() => setOpen(!open)}>
+        <TableCell component="th" scope="row" onClick={handleClick}>
           <Box position="relative" width="clamp(0.8rem, 1.8vw, 1.2rem)" height="clamp(0.8rem, 1.8vw, 1.2rem)" maxWidth="3rem" maxHeight="3rem" marginRight="-0.4rem">
             <Image src={platLogo} alt={row.platformId} layout="fill" objectFit="contain" unoptimized={true} />
           </Box>
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
+        <TableCell align="left" onClick={handleClick} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {row.name}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
+        <TableCell align="left" onClick={handleClick} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {dateStyled}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
+        <TableCell align="left" onClick={handleClick} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {row.category}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
+        <TableCell align="left" onClick={handleClick} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {row.totalAttendees}
         </TableCell>
-        <TableCell align="left" onClick={() => setOpen(!open)} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
+        <TableCell align="left" onClick={handleClick} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           <a href={row.url} target="_blank" rel="noreferrer noopener">
             {row.locator}
           </a>
         </TableCell>
         <TableCell align="right">
-          {favoritesBtn}
+          <FavoriteButton eventId={row.id} sx={{ cursor: 'pointer' }} />
         </TableCell>
       </TableRow>
-      <InfoPane handleCloseFunction={handleClose} row={row} dateStyled={dateStyledInfo} openState={open} favoritesBtn={favoritesBtn} />
     </React.Fragment>
   );
 }
 
 export default function EventsList2() {
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => { setOpen(false); };
+  const [infoPaneInfo, setInfoPaneInfo] = React.useState(null)
+
   const eventsContext = useEventsContext()
   const filtersPlatformsContext = useFiltersPlatformsContext()
   const filtersCategoriesContext = useFiltersCategoriesContext()
@@ -71,12 +74,12 @@ export default function EventsList2() {
   const favoritesContext = useFavoritesContext()
 
   const filteredArray = array => {
+    if (array.dateTimeEnd < currentTime.toISOString()) { return }
     if (filtersSearchContext && filtersSearchContext.length !== 0) {
       if (array.name.toLowerCase().includes(filtersSearchContext)) { return array}
       else { return }
     }
     if (filtersFavoritesContext && favoritesContext && !favoritesContext.includes(array.id)) return
-    if (array.dateTimeEnd < currentTime.toISOString()) { return }
     if (filtersPlatformsContext.length === 0 && filtersCategoriesContext.length === 0) {
       return array
     } else if (filtersPlatformsContext.length !== 0 && filtersCategoriesContext.length === 0) {
@@ -117,12 +120,15 @@ export default function EventsList2() {
                   row={row}
                   ind={i}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  setInfoPaneInfoClick={() => setInfoPaneInfo(row)}
+                  handleInfoPaneOpen={() => setOpen(!open)}
                 />
               ))}
           </TableBody> :
           <TableBody />
         }
       </Table>
+      <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open}/>
     </TableContainer>
   )
 }
