@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButton from './buttons/FavoriteButton';
 
+const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
+
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({}));
 const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative' }));
@@ -20,7 +22,6 @@ const Transition = React.forwardRef(function Transition(props, ref) { return <Sl
 
 export default function InfoPane(props) {
   if (!props.info) return
-  console.log("Loading InfoPane...")
   const row = props.info
   const imageLoader = ({ src }) => `${row.image}`
   
@@ -71,7 +72,7 @@ export default function InfoPane(props) {
             </InfopaneButton>
           </Grid>
           <Grid item marginLeft={1} sx={{ flex: '1 0 40%' }}>
-            <InfopaneButton fullWidth variant="contained">
+            <InfopaneButton fullWidth variant="contained" onClick={() => navigator.clipboard.writeText(urlBase + row.id)}>
               Share Event
             </InfopaneButton>
           </Grid>

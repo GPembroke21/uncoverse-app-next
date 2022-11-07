@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { Amplify, API } from 'aws-amplify'
 import awsExports from '../aws-exports';
 import { listEvents } from '../graphql/queries'
-import { eventsArray, eventsIdArray } from '../static/StaticVariables'
 
 Amplify.configure({ ...awsExports, ssr: true })
 
@@ -15,7 +14,7 @@ export default function GetEvents(getMoreEvents) {
         return {
             query: listEvents,
             authMode: "AWS_IAM",
-            variables: { limit: 250, nextToken: nextToken.at(0)}
+            variables: { limit: 500, nextToken: nextToken.at(0)}
         }
     }
 

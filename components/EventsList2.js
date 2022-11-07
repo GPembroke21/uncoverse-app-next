@@ -10,8 +10,7 @@ const currentTime = new Date();
 
 function Row(props) {
   const { row } = props;
-  const handleClick = () => { 
-    console.log(props)
+  const handleClick = () => {
     props.setInfoPaneInfoClick(row)
     props.handleInfoPaneOpen()
   }
