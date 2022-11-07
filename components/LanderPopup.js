@@ -74,6 +74,7 @@ const InfoBoxContainer = styled(Grid)(({ theme }) => ({
     alignItems: "center",
     padding: "0.2rem 0rem",
     marginTop: "8vw",
+    maxWidth: "1400px",
     // [theme.breakpoints.between('xs', 'sm')]: {
     //   flexGrow: '1',
     // },
@@ -128,7 +129,7 @@ export default function Home(props) {
             TransitionComponent={Transition}
             sx={{
               backgroundColor: "black",
-              padding: "0rem 2rem",
+              padding: "0rem 1rem 0rem 2rem",
             }}
             >
             <IconButton

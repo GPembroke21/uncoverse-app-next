@@ -187,6 +187,17 @@ const theme = createTheme({
         },
       },
     },
+    MuiTablePagination: {
+      styleOverrides: {
+        root: {
+          borderBottom: "none",
+        },
+        toolbar: {
+        },
+        spacer: {
+        },
+      },
+    },
     MuiCard: {
       styleOverrides: {
         root: {

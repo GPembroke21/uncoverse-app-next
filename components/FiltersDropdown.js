@@ -15,15 +15,47 @@ import { platformsDict, categoryList, platformsList } from '../src/static/Static
 import { useFiltersCategoriesContext, useFiltersPlatformsContext, useFiltersContextUpdate } from './ContextProvider'
 
 
-const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0rem 1rem" }));
-const FiltersContainer = styled("div")(({ theme }) => ({ margin: "0.6rem 0rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }))
-const FilterButton = styled(Button)(({ theme }) => ({
-  color: "white", backgroundColor: "#252425", fontSize: "clamp(8px, 1vw, 14px)", padding: '0px 10px',
-  borderRadius: '7px', marginRight: '10px', height: "2.5em", "&:hover": { color: "#dd00ff", backgroundColor: "#252425" }
+const Wrapper = styled("div")(({ theme }) => ({ 
+  width: "calc(100%)", 
+  padding: "0rem 1rem" 
 }));
+
+const FiltersContainer = styled("div")(({ theme }) => ({ 
+  margin: "0.6rem 0rem", 
+  display: "flex", 
+  alignItems: "flex-start", 
+  flexDirection: "row", 
+  alignItems: "center" 
+}));
+
+const FilterButton = styled(Button)(({ theme }) => ({
+  color: "white", 
+  backgroundColor: "#252425", 
+  fontSize: "clamp(8px, 1vw, 14px)", 
+  padding: '0px 10px',
+  borderRadius: '7px', 
+  marginRight: '10px', 
+  height: "2.5em",
+  "&:hover": { 
+    color: "#dd00ff", 
+    backgroundColor: "#252425" 
+  }
+}));
+
 const DropdownContainer = styled("div")(({ theme }) => ({
-  margin: "0.6rem 0rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center",
-  width: "100%", overflow: "auto", msOverflowStyle: "none", scrollbarWidth: "none", '&::-webkit-scrollbar': { display: "none", width: 0 }
+  margin: "0.6rem 0rem", 
+  display: "flex", 
+  alignItems: "flex-start", 
+  flexDirection: "row", 
+  alignItems: "center",
+  width: "100%", 
+  overflow: "auto", 
+  msOverflowStyle: "none", 
+  scrollbarWidth: "none", 
+  '&::-webkit-scrollbar': { 
+    display: "none", 
+    width: 0 
+  }
 }));
 
 export default function FiltersDropdown() {
@@ -41,8 +73,8 @@ export default function FiltersDropdown() {
     if (filtersCategoriesContext && filtersCategoriesContext.includes(cat)) { filtersContextUpdate.updateCategory(filtersCategoriesContext.filter(i => i !== cat)) }
     else if (filtersCategoriesContext) { filtersContextUpdate.updateCategory(filtersCategoriesContext.concat(cat)) }
   }
-
-  const stylePlatformButton = plat => { return (filtersPlatormsContext && filtersPlatormsContext.includes(plat)) ? { color: "#dd00ff" } : { color: "white" } }
+ 
+  const stylePlatformButton = plat => { return (filtersPlatormsContext && filtersPlatormsContext.includes(plat)) ? { color: "#dd00ff" }: { color: "white" } }
   const styleCategoryButton = cat => { return (filtersCategoriesContext && filtersCategoriesContext.includes(cat)) ? { color: "#dd00ff" } : { color: "white" } }
 
   const handleClick = filterType => {

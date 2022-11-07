@@ -44,16 +44,16 @@ export default function ProfileDropdown(props) {
 
   return (
     <ThemeProvider>
-      <ProfileButton
-        disableRipple
-        id="basic-button"
-        sx={{ marginRight: "-9px" }}
-        style={{ backgroundColor: 'transparent' }}
-      >
-        <Link href="/profile">
+      <Link href="/profile">
+        <ProfileButton
+          disableRipple
+          id="basic-button"
+          sx={{ marginRight: "-9px" }}
+          style={{ backgroundColor: 'transparent' }}
+        >
             G
-        </Link>
-      </ProfileButton>
+        </ProfileButton>
+      </Link>
     </ThemeProvider>
   );
 }
