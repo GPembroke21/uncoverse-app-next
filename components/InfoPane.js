@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card } from '@mui/material';
+import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, Popper, Fade, ClickAwayListener } from '@mui/material';
 import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButton from './buttons/FavoriteButton';
@@ -18,9 +18,37 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
   border: "1px solid white", borderRadius: "0.4rem", padding: "0.46rem", cursor: "pointer", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" },
   "&:active": { color: "#dd00ff", backgroundColor: "#000000" },
 }));
+
+const LinkCopiedPopper = styled(Popper)(({ theme }) => ({
+  zIndex:"1500",
+  backgroundColor: "transparent",
+  color: "white",
+  fontSize: "12px"
+  // border: "1px solid white", 
+  // borderRadius: "0.4rem", 
+  // padding: "0.46rem",
+}));
+
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
 
 export default function InfoPane(props) {
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen((previousOpen) => !previousOpen);
+    navigator.clipboard.writeText(urlBase + row.id);
+    setTimeout(() => setAnchorEl(null), 3000);
+  };
+
+  const handleClickAway = () => {
+    setOpen(false);
+  };
+
+  const canBeOpen = open && Boolean(anchorEl);
+  const id = canBeOpen ? 'transition-popper' : undefined;
+
   if (!props.info) return
   const row = props.info
   const imageLoader = ({ src }) => `${row.image}`
@@ -71,11 +99,22 @@ export default function InfoPane(props) {
               </a>
             </InfopaneButton>
           </Grid>
-          <Grid item marginLeft={1} sx={{ flex: '1 0 40%' }}>
-            <InfopaneButton fullWidth variant="contained" onClick={() => navigator.clipboard.writeText(urlBase + row.id)}>
-              Share Event
-            </InfopaneButton>
-          </Grid>
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <Grid item marginLeft={1} sx={{ flex: '1 0 40%' }}>
+              <InfopaneButton fullWidth aria-describedby={id} variant="contained" onClick={handleClick}>
+                Share Event
+              </InfopaneButton>
+              <LinkCopiedPopper id={id} open={open} anchorEl={anchorEl} transition>
+                {({ TransitionProps }) => (
+                  <Fade {...TransitionProps} timeout={350}>
+                    <Box sx={{ border: 1, p: 1 , bgcolor: 'black', color: "white", border: "1px solid white", borderRadius: "0.4rem", mt: '15px'}}>
+                      Link Copied
+                    </Box>
+                  </Fade>
+                )}
+              </LinkCopiedPopper>
+            </Grid>
+          </ClickAwayListener>
         </ButtonContainer>
         <InfopaneInfo>
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
