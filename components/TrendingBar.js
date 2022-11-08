@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { styled } from "@mui/system"
 import ThemeProvider from "../Theme"
 import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
 import CssBaseline from '@mui/material/CssBaseline'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,8 +12,21 @@ import Typography from '@mui/material/Typography';
 import { useEventsContext, useFiltersCategoriesContext, useFiltersContextUpdate } from './ContextProvider';
 import InfoPane from './InfoPane';
 
-const Wrapper = styled("div")(({ theme }) => ({ overflow: "hidden", padding: "0 0", background: "transparent", boxShadow: "3" }));
-const Main = styled(Grid)(({ theme }) => ({ color: "#ffffff", justifyContent: "center", alignItems: "top", direction: "column", marginTop: "4px" }));
+const Wrapper = styled("div")(({ theme }) => ({ 
+    overflow: "hidden", 
+    padding: "0 0", 
+    background: "transparent", 
+    boxShadow: "3" 
+}));
+
+const Main = styled(Grid)(({ theme }) => ({ 
+    color: "#ffffff", 
+    justifyContent: "center", 
+    alignItems: "top", 
+    direction: "row", 
+    marginTop: "4px" 
+}));
+
 const currentTime = new Date();
 
 export default function TrendingBar() {
@@ -42,7 +56,7 @@ export default function TrendingBar() {
             <CssBaseline />
             <Wrapper sx={{ display: { xs: 'none', sm: 'revert' } }}>
                 <Main container>
-                    <Grid item flexGrow={1} padding={'0em 0.25em 0em 0.9em'} sx={{ margin: "auto" }}>
+                    <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.9em'} sx={{ margin: "auto" }} zeroMinWidth>
                         <Card sx={{
                             width: 1,
                             color: "white",
@@ -59,14 +73,14 @@ export default function TrendingBar() {
                             />
                             {/* <Divider sx={{background:'#40454d'}}/> */}
                             <CardContent>
-                                <Grid container marginTop={-2} marginBottom={-1.5}>
+                                <Grid container marginTop={-2} marginBottom={-1.5} wrap="nowrap">
                                     <Grid item marginRight={2}>
                                         <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#5d5a5d">
                                             1<br />2<br />3
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)">
+                                    {/* <Grid item> */}
+                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" sx={{whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}}>
                                             {eventsContext.length === 0 ? <span>Loading..</span> :
                                                 <span>
                                                     {
@@ -79,12 +93,12 @@ export default function TrendingBar() {
                                                 </span>
                                             }
                                         </Typography>
-                                    </Grid>
+                                    {/* </Grid> */}
                                 </Grid>
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item flexGrow={1} padding={'0em 0.25em 0em 0.25em'} sx={{ margin: "auto" }}>
+                    <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.25em'} sx={{ margin: "auto" }}>
                         <Card sx={{
                             width: 1,
                             color: "white",
@@ -127,7 +141,7 @@ export default function TrendingBar() {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item flexGrow={1} padding={'0em 0.9em 0em 0.25em'} sx={{ margin: "auto" }}>
+                    <Grid item xs flexGrow={1} padding={'0em 0.9em 0em 0.25em'} sx={{ margin: "auto" }}>
                         <Card sx={{
                             width: 1,
                             color: "white",

@@ -43,7 +43,7 @@ const TextContainer = styled(Grid)(({ theme }) => ({
   flexDirection: "column",
   alignItems: "flex-start",
   marginTop: "8vw",
-  marginBottom: "4vw"
+  marginBottom: "8vw"
 }));
 
 const LogoBar = styled(Grid)(({ theme }) => ({
@@ -57,8 +57,8 @@ const LogoBar = styled(Grid)(({ theme }) => ({
 
 const Logo = styled(Box)(({ theme }) => ({
   position: 'relative',
-  height: "clamp(2rem, 3vw, 3rem)",
-  width: "clamp(2rem, 3vw, 3rem)",
+  height: "clamp(2rem, 4vw, 4rem)",
+  width: "clamp(2rem, 4vw, 4rem)",
   border: "1px solid #252425",
   borderRadius: "25px",
   backgroundColor: '#252425',
@@ -176,7 +176,7 @@ export default function Home(props) {
                     <Image src= '/META_logo.png' layout='fill' objectFit="contain" unoptimized={true}/>
                 </Logo>
             </LogoBar>
-            <InfoBoxContainer>
+            {/* <InfoBoxContainer>
                 <InfoBox>
                     <Title>
                         <EventAvailableIcon style={{color: 'white', width: "25px", height: '25px', marginRight: "6px"}}/>
@@ -204,7 +204,7 @@ export default function Home(props) {
                         <Typography sx={{fontSize: "clamp(12px, 2vw, 14px)", fontWeight:'100'}}>something something something something something something something something</Typography>
                     </Subtitle>
                 </InfoBox>
-            </InfoBoxContainer>
+            </InfoBoxContainer> */}
             </Dialog>
         </Wrapper>
   )

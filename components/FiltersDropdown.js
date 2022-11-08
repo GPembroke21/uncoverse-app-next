@@ -7,6 +7,7 @@ import IconButton from '@mui/material/Button'
 import ThemeProvider from "../Theme"
 import Link from 'next/link'
 import Button from "@mui/material/Button"
+import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import Divider from "@mui/material/Divider"
 import CategoriesDropdown from './CategoriesDropdown'
@@ -16,7 +17,7 @@ import { useFiltersCategoriesContext, useFiltersPlatformsContext, useFiltersCont
 
 
 const Wrapper = styled("div")(({ theme }) => ({ 
-  width: "calc(100%)", 
+  width: "100%", 
   padding: "0rem 1rem" 
 }));
 
@@ -36,6 +37,8 @@ const FilterButton = styled(Button)(({ theme }) => ({
   borderRadius: '7px', 
   marginRight: '10px', 
   height: "2.5em",
+  maxWidth: "fit-content",
+  minWidth: "fit-content",
   "&:hover": { 
     color: "#dd00ff", 
     backgroundColor: "#252425" 
@@ -48,13 +51,28 @@ const DropdownContainer = styled("div")(({ theme }) => ({
   alignItems: "flex-start", 
   flexDirection: "row", 
   alignItems: "center",
-  width: "100%", 
+  width: "100%",
   overflow: "auto", 
   msOverflowStyle: "none", 
   scrollbarWidth: "none", 
   '&::-webkit-scrollbar': { 
     display: "none", 
     width: 0 
+  }
+}));
+
+const ClearFilterButton = styled(Button)(({ theme }) => ({
+  color: "white", 
+  backgroundColor: "#252425", 
+  fontSize: "clamp(8px, 1vw, 14px)", 
+  padding: '0px 10px',
+  borderRadius: '7px', 
+  marginRight: '10px', 
+  height: "2.5em",
+  width: "11em",
+  "&:hover": { 
+    color: "#dd00ff", 
+    backgroundColor: "#252425" 
   }
 }));
 
@@ -109,10 +127,11 @@ export default function FiltersDropdown() {
         <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
         <FiltersContainer>
           {Object.keys(filterShown).map((filter, index) => (
-            <FilterButton key={index} onClick={() => handleClick(filter)} style={{ color: filterShown[filter] ? "#dd00ff" : "white", width: "11em" }}>
+            <FilterButton key={index} onClick={() => handleClick(filter)} style={{ color: filterShown[filter] ? "#dd00ff" : "white", width: "11em", maxWidth: "11em", minWidth: "11em" }}>
               {filter}
             </FilterButton>
           ))}
+          <ClearFilterButton>Clear Filters</ClearFilterButton>
         </FiltersContainer>
         {(filterShown.Platform || filterShown.Category) && <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />}
         {filterShown.Category && categoryDropdown}
