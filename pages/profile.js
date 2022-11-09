@@ -1,138 +1,91 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Header from '../components/Header'
-import HeaderBottom from '../components/HeaderBottom'
 import { styled } from "@mui/system"
 import Button from "@mui/material/Button"
-import Divider from "@mui/material/Divider"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
-import ThemeProvider from "../Theme"
 import Link from 'next/link'
-import CssBaseline from '@mui/material/CssBaseline'
-import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import { signOut } from '../src/auth/SignOut'
-
-const Wrapper = styled("div")(({ theme }) => ({
-  // height: "100vh",
-  overflow: "hidden",
-  padding: "0 0",
-  background: "transparent",
-}));
+import { useLoginContext } from "../components/ContextProvider"
+import React from 'react'
+import { Auth } from "aws-amplify"
 
 const Main = styled(Grid)(({ theme }) => ({
-  //   minHeight: "100vh",
-  maxHeight: '50em',
-  color: "#ffffff",
-  margin: "4vw 2em",
-  flexDirection: "row",
-  justifyContent: "center",
-  [theme.breakpoints.down("sm")]: {
+  maxHeight: '50em', color: "#ffffff", margin: "4vw 2em", flexDirection: "row",
+  justifyContent: "center", [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
-    justifyContent: "left",
-    "> div": {
-      marginLeft: 0,
-      marginRight: 0,
-      paddingRight: "60px",
-    },
-  },
+    justifyContent: "left", "> div": { marginLeft: 0, marginRight: 0, paddingRight: "60px" }
+  }
 }));
 
 const EditButton = styled(Button)(({ theme }) => ({
-  fontFamily: "Inter",
-  fontSize: "0.8rem",
-  fontWeight: "500",
-  textAlign: "center",
-  color: "white",
-  backgroundColor: "transparent",
-  border: "1px solid white",
-  borderRadius: "4px",
-  padding: "0.46rem",
-  cursor: "pointer",
-  margin: "12px 0px",
-  width: "min(40vw, 200px)",
-  height: "55px",
-  "&:hover": {
-    border: "1px solid #dd00ff",
-    color: "#dd00ff",
-  }
+  fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white",
+  backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem",
+  cursor: "pointer", margin: "12px 0px", width: "min(40vw, 200px)",
+  height: "55px", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" }
 }));
 
 const SaveButton = styled(Button)(({ theme }) => ({
-  fontFamily: "Inter",
-  fontSize: "0.8rem",
-  fontWeight: "500",
-  textAlign: "center",
-  color: "white",
-  backgroundColor: "transparent",
-  border: "1px solid white",
-  borderRadius: "4px",
-  padding: "0.46rem",
-  cursor: "pointer",
-  margin: "40px 0px",
-  // width: "min(40vw, 200px)",
-  height: "55px",
-  "&:hover": {
-    border: "1px solid #dd00ff",
-    color: "#dd00ff",
-  }
+  fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white",
+  backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem",
+  cursor: "pointer", margin: "40px 0px", height: "55px", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" }
 }));
 
 const SignOutButton = styled(Button)(({ theme }) => ({
-  fontFamily: "Inter",
-  fontSize: "0.8rem",
-  fontWeight: "500",
-  textAlign: "center",
-  color: "white",
-  backgroundColor: "transparent",
-  border: "1px solid white",
-  borderRadius: "4px",
-  padding: "0.46rem",
-  cursor: "pointer",
-  margin: "0px 0px",
-  // width: "min(40vw, 200px)",
-  height: "55px",
-  "&:hover": {
-    border: "1px solid red",
-    color: "red",
-  }
+  fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white",
+  backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem",
+  cursor: "pointer", margin: "0px 0px", height: "55px", "&:hover": { border: "1px solid red", color: "red" }
 }));
 
 const TextFields = styled(TextField)(({ theme }) => ({
-  caretColor: "white",
-  '& label.Mui-focused': {
-    color: 'white',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: 'white',
-  },
+  caretColor: "white", '& label.Mui-focused': { color: 'white' },
+  '& .MuiInput-underline:after': { borderBottomColor: 'white' },
   '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'white',
-
-    },
-    '&:hover fieldset': {
-      borderColor: 'white',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'white',
-    },
+    '& fieldset': { borderColor: 'white' },
+    '&:hover fieldset': { borderColor: 'white' },
+    '&.Mui-focused fieldset': { borderColor: 'white' },
   },
-  "& .MuiInputLabel-root": {
-    color: 'white',
-  },
+  "& .MuiInputLabel-root": { color: 'white' },
 }));
 
 export default function Profile(props) {
+  let loginCreds = useLoginContext()
+  const [request, setRequest] = React.useState(() => null)
+
+  const getFunction = React.useCallback(async () => {
+    try {
+      let user = await Auth.currentAuthenticatedUser();
+      console.log(user)
+      setRequest(user)
+    } catch (error) {
+      console.log("Error fetching u_deets:", error)
+      setRequest(() => null)
+    }
+  }, [])
+
+  React.useEffect(() => { getFunction(); return () => { } }, [getFunction])
+
+  async function addAttribute(name) {
+    try {
+      let result = await Auth.updateUserAttributes(user, { 'name': name });
+      console.log(result)
+    } catch (err) {
+      console.log('error adding attributes:', err)
+    }
+  }
 
   const handleCloseAndSignOut = () => {
     signOut();
   };
 
+  const handleSubmit = event => {
+    event.preventDefault()
+    addAttribute('Gareth Pem')
+  };
+
+
+
   return (
-    <Wrapper>
+    <form onSubmit={handleSubmit} style={{ overflow: "hidden", padding: "0 0", background: "transparent" }}>
       <Main container>
         {/* <Grid marginRight="25px">
           <Grid item position="relative" width="min(40vw, 200px)" height="min(40vw, 200px)" marginBottom="13px">
@@ -181,15 +134,15 @@ export default function Profile(props) {
             />
           </Grid>
           <Grid item>
-            <SaveButton fullWidth>Save</SaveButton>
+            <SaveButton type='submit' fullWidth>Save</SaveButton>
           </Grid>
           <Grid item>
             <Link href="/">
-            <SignOutButton fullWidth onClick={handleCloseAndSignOut}>Sign Out</SignOutButton>
+              <SignOutButton fullWidth onClick={handleCloseAndSignOut}>Sign Out</SignOutButton>
             </Link>
           </Grid>
         </Grid>
       </Main>
-    </Wrapper>
+    </form>
   )
 }
