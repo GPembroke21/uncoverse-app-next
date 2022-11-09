@@ -3,7 +3,7 @@ import { Auth, Hub } from 'aws-amplify'
 import GetEvents from '../src/requests/GetEvents'
 import { eventsIdArray } from '../src/static/StaticVariables'
 import GetInteractions from '../src/requests/GetInteractions'
-import useStoreInteraction from '../src/requests/CreateInteraction'
+import StoreInteraction from '../src/requests/CreateInteraction'
 
 const LoginContext = createContext()
 const EventsContext = createContext()
@@ -43,7 +43,7 @@ export function ContextProvider({ children }) {
         addFavorite: item => {
             if (favoriteEvents && !favoriteEvents.includes(item)) {
                 setFavoriteEvents(prevArray => {
-                    useStoreInteraction({ creds: loginCreds, favArray: [...prevArray, item] })
+                    StoreInteraction({ creds: loginCreds, favArray: [...prevArray, item] })
                     return [...prevArray, item]
                 })
             }
@@ -51,7 +51,7 @@ export function ContextProvider({ children }) {
         removeFavorite: item => {
             if (favoriteEvents && favoriteEvents.includes(item)) {
                 const newArray = favoriteEvents.filter(i => i !== item)
-                useStoreInteraction({ creds: loginCreds, favArray: newArray })
+                StoreInteraction({ creds: loginCreds, favArray: newArray })
                 setFavoriteEvents(newArray)
             }
         }

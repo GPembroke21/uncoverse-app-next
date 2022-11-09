@@ -1,7 +1,7 @@
 import { API } from 'aws-amplify'
 import { createInteraction, updateInteraction } from '../graphql/mutations'
 
-export default function useStoreInteraction(props) {
+export default function StoreInteraction(props) {
     if (!props.creds.signedIn) return
 
     const interact = { 

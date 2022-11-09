@@ -11,7 +11,7 @@ const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative' }));
 const InfopaneInfo = styled(Grid)(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', marginTop: '15px', padding: '5px 10px' }));
 const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto' }));
 
-export default function event() {
+export default function Event() {
     const router = useRouter()
     const eventDetails = GetEvent(router.query)
     

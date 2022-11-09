@@ -7,7 +7,6 @@ Amplify.configure({ ...awsExports, ssr: true })
 
 export default function GetEvent(eventId) {
     const [request, setRequest] = useState(() => { return { data: null, error: false } })
-    if (!eventId || eventId == {}) return request
 
     const getFunction = useCallback(async (eventId) => {
         const gqlQuery = () => {
@@ -30,6 +29,7 @@ export default function GetEvent(eventId) {
     }, [])
 
     useEffect(() => {
+        if (!eventId || eventId == {}) return request
         getFunction(eventId)
         return () => { setRequest({ data: null, error: false }) }
     }, [getFunction, eventId])

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, } from '@mui/material';
+import {useState} from 'react';
+import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, } from '@mui/material'; //Popper, Fade, ClickAwayListener 
 import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButton from './buttons/FavoriteButton';
@@ -19,16 +20,40 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
   "&:active": { color: "#dd00ff", backgroundColor: "#000000" },
 }));
 
+// const LinkCopiedPopper = styled(Popper)(({ theme }) => ({ zIndex:"1500", backgroundColor: "transparent", color: "white", fontSize: "12px" }));
+
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
 
 export default function InfoPane(props) {
+  const [open, setOpen] = React.useState(false);
+  React.useEffect(()=> { setOpen(false); return () => {}},[props.openState])
   if (!props.info) return
   const row = props.info
   const imageLoader = ({ src }) => `${row.image}`
-  const [open, setOpen] = React.useState(false);
+  
+  // const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = () => { setOpen(true); navigator.clipboard.writeText(urlBase + row.id) };
-  React.useEffect(()=> { setOpen(false); return () => {}},[props.openState])
+  // const initialText = 'Share Event';
+  // const [buttonText, setButtonText] = useState(initialText)
+
+  const handleClick = () => {
+    // setAnchorEl(event.currentTarget);
+    setOpen(true);
+    navigator.clipboard.writeText(urlBase + row.id);
+    // setButtonText('Link Copied');
+    // setTimeout(() => setAnchorEl(null), 3000);
+  };
+
+  // setTimeout(() => {
+  //   setButtonText(initialText);
+  // }, 1000);
+
+  // const handleClickAway = () => {
+  //   setOpen(false);
+  // };
+
+  // const canBeOpen = open && Boolean(anchorEl);
+  // const id = canBeOpen ? 'transition-popper' : undefined;
   
   const currentTime = new Date();
   const dateTimeStart = new Date(row.dateTimeStart);
