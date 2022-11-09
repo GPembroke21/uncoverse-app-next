@@ -54,10 +54,10 @@ export default function Profile(props) {
   const getFunction = React.useCallback(async () => {
     try {
       let user = await Auth.currentAuthenticatedUser();
-      console.log(user)
+      // console.log(user)
       setRequest(user)
     } catch (error) {
-      console.log("Error fetching u_deets:", error)
+      // console.log("Error fetching u_deets:", error)
       setRequest(() => null)
     }
   }, [])
@@ -79,7 +79,7 @@ export default function Profile(props) {
 
   const handleSubmit = event => {
     event.preventDefault()
-    addAttribute('Gareth Pem')
+    // addAttribute('Gareth Pem')
   };
 
 
