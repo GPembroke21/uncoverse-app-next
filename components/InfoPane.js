@@ -1,6 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
-import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, Popper, Fade, ClickAwayListener } from '@mui/material';
+import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, } from '@mui/material';
 import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButton from './buttons/FavoriteButton';
@@ -20,47 +19,16 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
   "&:active": { color: "#dd00ff", backgroundColor: "#000000" },
 }));
 
-const LinkCopiedPopper = styled(Popper)(({ theme }) => ({
-  zIndex:"1500",
-  backgroundColor: "transparent",
-  color: "white",
-  fontSize: "12px"
-  // border: "1px solid white", 
-  // borderRadius: "0.4rem", 
-  // padding: "0.46rem",
-}));
-
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
 
 export default function InfoPane(props) {
-  const [open, setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const initialText = 'Share Event';
-  const [buttonText, setButtonText] = useState(initialText)
-
-  const handleClick = () => {
-    // setAnchorEl(event.currentTarget);
-    // setOpen((previousOpen) => !previousOpen);
-    navigator.clipboard.writeText(urlBase + row.id);
-    setButtonText('Link Copied');
-    // setTimeout(() => setAnchorEl(null), 3000);
-  };
-
-  setTimeout(() => {
-    setButtonText(initialText);
-  }, 1000);
-
-  // const handleClickAway = () => {
-  //   setOpen(false);
-  // };
-
-  const canBeOpen = open && Boolean(anchorEl);
-  const id = canBeOpen ? 'transition-popper' : undefined;
-
   if (!props.info) return
   const row = props.info
   const imageLoader = ({ src }) => `${row.image}`
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => { setOpen(true); navigator.clipboard.writeText(urlBase + row.id) };
+  React.useEffect(()=> { setOpen(false); return () => {}},[props.openState])
   
   const currentTime = new Date();
   const dateTimeStart = new Date(row.dateTimeStart);
@@ -110,8 +78,8 @@ export default function InfoPane(props) {
           </Grid>
           {/* <ClickAwayListener onClickAway={handleClickAway}> */}
             <Grid item marginLeft={1} sx={{ flex: '1 0 40%' }}>
-              <InfopaneButton fullWidth aria-describedby={id} variant="contained" onClick={handleClick}>
-                {buttonText}
+              <InfopaneButton fullWidth aria-describedby="infopane-link-button" variant="contained" onClick={handleClick}>
+                {open ? "Link copied" : "Share Event"}
               </InfopaneButton>
               {/* <LinkCopiedPopper id={id} open={open} anchorEl={anchorEl} transition>
                 {({ TransitionProps }) => (
