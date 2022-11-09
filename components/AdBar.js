@@ -47,6 +47,11 @@ export default function TitlebarBelowImageList() {
       gridAutoColumns: "minmax(15em, 1fr)",
       overflowX:'scroll',
       maskImage:
+      horizontalScroll === 0
+        ? [
+            "linear-gradient(to right, black calc(100% - 48px), transparent 100%)",
+          ]
+        :
       scrollWidth === clientWidth
         ? [""]
         :
@@ -59,11 +64,6 @@ export default function TitlebarBelowImageList() {
         ? [
             "linear-gradient(to left, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)",
             "linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)",
-          ]
-        :
-      horizontalScroll === 0
-        ? [
-            "linear-gradient(to right, black calc(100% - 48px), transparent 100%)",
           ]
         : [""],
       scrollbarWidth: "none",

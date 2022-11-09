@@ -14,7 +14,7 @@ const InfopaneInfo = styled(Grid)(({ theme }) => ({ border: '1px solid white', b
 const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto' }));
 const ButtonContainer = styled(Grid)(({ theme }) => ({ [theme.breakpoints.down("xs")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0 }, }, }));
 const InfopaneButton = styled(Button)(({ theme }) => ({
-  fontFamily: "Inter", fontSize: "min(2vw, 12px)", fontWeight: "500", textAlign: "center", color: "white",
+  fontFamily: "Inter", fontSize: "min(2vw, 12px)", fontWeight: "500", textAlign: "center", color: "white", background: "transparent",
   border: "1px solid white", borderRadius: "0.4rem", padding: "0.46rem", cursor: "pointer", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" },
   "&:active": { color: "#dd00ff", backgroundColor: "#000000" },
 }));

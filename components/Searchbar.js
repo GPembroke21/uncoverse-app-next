@@ -22,7 +22,7 @@ export default function Searchbar() {
 
   return (
     <form onSubmit={handleSubmit}
-      style={{ flex: 1, color: "white", fontSize: "clamp(8px, 1vw, 14px)", backgroundColor: "#252425", borderRadius: "7px", height: "2.5em", width: "11em", maxWidth: '500px', marginRight: "10px", paddingLeft: 1.5 }}
+      style={{ flex: 1, color: "white", fontSize: "clamp(8px, 1vw, 14px)", backgroundColor: "#252425", borderRadius: "7px", height: "2.5em", maxWidth: "400px", marginRight: "10px", paddingLeft: 1.5 }}
     >
       <InputBase
         // sx={{ flex: 1, color: "white", fontSize: "clamp(8px, 1vw, 14px)", backgroundColor: "#252425", borderRadius: "7px", height: "2.5em", width: "11em", maxWidth: '500px', marginRight: "10px", paddingLeft: 1.5 }}

@@ -5,14 +5,14 @@ import Inter from "@fontsource/inter";
 const theme = createTheme({
   palette: {
     background: {
-      default: "#070007",
-  },
-  primary: {
-    main: "#000000",
-  },
-  secondary: {
-    main: "#ffffff",
-  },
+      default: "#120C18",
+    },
+    primary: {
+      main: "#3A3641",
+    },
+    secondary: {
+      main: "#67626E",
+    },
   },
   typography: {
     fontFamily:
@@ -260,17 +260,17 @@ const theme = createTheme({
     MuiImageListItemBar: {
       styleOverrides: {
         title: {
-          color: "#827d82",
+          color: "white",
           // fontSize: "min(2.9vw, 13px)",
-          fontSize: "clamp(10px, 1.25vw, 13px)",
-          fontWeight: "900",
+          fontSize: "clamp(12px, 1.45vw, 14px)",
+          fontWeight: "200",
           margin: "-0.2rem 0rem 0rem 0rem"
         },
         subtitle: {
-          color: "white",
+          color: "#67626E",
           // fontSize: "min(2.6vw, 13px)",
-          fontSize: "clamp(10px, 1.45vw, 13px)",
-          margin: "-0.2rem 0rem -0.2rem 0rem",
+          fontSize: "clamp(10px, 1.25vw, 14px)",
+          margin: "0rem 0rem -0.2rem 0rem",
           padding: "0px 0px 1px 0px"
         },
       },
