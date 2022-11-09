@@ -195,7 +195,7 @@ export const SignInForm = (props) => {
 
                     }
                     <Typography style={{ margin: '0.5rem 0' }} color='white'>
-                        Don't have an account? &nbsp;
+                        Don't have an account? {' '}
                         <Link href="#" onClick={props.signUpForm} color="inherit" sx={{ '&:hover': { color: '#dd00ff' } }}>Sign up here</Link>
                     </Typography>
                 </Paper>

@@ -161,19 +161,19 @@ export default function Home(props) {
             </TextContainer>
             <LogoBar>
                 <Logo>
-                    <Image src= '/DCLD_logo.png' layout='fill' objectFit="contain" unoptimized={true}/>
+                    <Image src= '/DCLD_logo.png' alt="Decentraland" layout='fill' objectFit="contain" unoptimized={true}/>
                 </Logo>
                 <Logo>
-                    <Image src= '/CRVX_logo.png' layout='fill' objectFit="contain" unoptimized={true}/>
+                    <Image src= '/CRVX_logo.png' alt="Voxels" layout='fill' objectFit="contain" unoptimized={true}/>
                 </Logo>
                 <Logo>
-                    <Image src= '/SAND_logo.png' layout='fill' objectFit="contain" unoptimized={true}/>
+                    <Image src= '/SAND_logo.png' alt="Sandbox" layout='fill' objectFit="contain" unoptimized={true}/>
                 </Logo>
                 <Logo>
-                    <Image src= '/SOMN_logo.png' layout='fill' objectFit="contain" unoptimized={true}/>
+                    <Image src= '/SOMN_logo.png' alt="Somnium" layout='fill' objectFit="contain" unoptimized={true}/>
                 </Logo>
                 <Logo>
-                    <Image src= '/META_logo.png' layout='fill' objectFit="contain" unoptimized={true}/>
+                    <Image src= '/META_logo.png' alt="Meta" layout='fill' objectFit="contain" unoptimized={true}/>
                 </Logo>
             </LogoBar>
             {/* <InfoBoxContainer>

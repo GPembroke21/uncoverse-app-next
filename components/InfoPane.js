@@ -84,7 +84,7 @@ export default function InfoPane(props) {
           <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '10px', mt: '-10px', lineHeight: '100%' }}>{row.name}</DialogTitle>
           <DialogContentText component={'span'} sx={{ mb: '10px' }}>
             <InfopaneImage>
-              <Image loader={imageLoader} src={row.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />
+              <Image loader={imageLoader} src={row.image} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />
               <FavoriteButtonContainer>
                 <FavoriteButton eventId={row.id} sx={{ cursor: 'pointer' }} />
               </FavoriteButtonContainer>
@@ -120,7 +120,7 @@ export default function InfoPane(props) {
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
-                <Image src="/creator.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                <Image src="/creator.svg" alt='Creator' width="12rem" height="12rem" unoptimized={true} />
               </Box>
               {row.createdByUser}
             </InfopaneRow>
@@ -129,7 +129,7 @@ export default function InfoPane(props) {
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
-                <Image src="/date.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                <Image src="/date.svg" alt='Date' width="12rem" height="12rem" unoptimized={true} />
               </Box>
               {dateStyledInfo}
             </InfopaneRow>
@@ -156,7 +156,7 @@ export default function InfoPane(props) {
           <DialogContentText component={'span'}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
-                <Image src="/location.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                <Image src="/location.svg" alt='Location' width="12rem" height="12rem" unoptimized={true} />
               </Box>
               {row.platformId}
               {row.locator}
