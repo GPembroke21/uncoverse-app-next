@@ -7,8 +7,8 @@ import ThemeProvider from "../../Theme"
 import { styled } from "@mui/system"
 
 const WatchlistButton = styled(Button)(({ theme }) => ({
-    color: "white", 
-    backgroundColor: '#252425', 
+    color: "#f5f3f7", 
+    backgroundColor: '#21172a', 
     fontSize: "clamp(8px, 1vw, 14px)", 
     borderRadius: '6px',
     // border: "1px solid white",
@@ -19,12 +19,12 @@ const WatchlistButton = styled(Button)(({ theme }) => ({
     "&:hover": {
         // border: "1px solid #dd00ff",
         color: "#dd00ff",
-        backgroundColor: "#121213"
+        backgroundColor: "#1c1425"
     },
     "&:active": {
       // border: "1px solid #dd00ff",
       color: "#dd00ff",
-      backgroundColor: "#000000"
+      backgroundColor: "#120C18"
     },
 }));
 

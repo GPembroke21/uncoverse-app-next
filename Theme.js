@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NextRequest } from "next/server";
-import Inter from "@fontsource/inter";
+import Inter from "typeface-inter";
+
 
 const theme = createTheme({
   palette: {
@@ -8,10 +9,13 @@ const theme = createTheme({
       default: "#120C18",
     },
     primary: {
-      main: "#3A3641",
+      main: "#21172a",
     },
     secondary: {
-      main: "#67626E",
+      main: "#33283e",
+    },
+    info: {
+      main: "#756c7c",
     },
   },
   typography: {
@@ -260,16 +264,17 @@ const theme = createTheme({
     MuiImageListItemBar: {
       styleOverrides: {
         title: {
-          color: "white",
+          color: "#f5f3f7",
           // fontSize: "min(2.9vw, 13px)",
           fontSize: "clamp(12px, 1.45vw, 14px)",
-          fontWeight: "200",
+          fontWeight: "400",
           margin: "-0.2rem 0rem 0rem 0rem"
         },
         subtitle: {
-          color: "#67626E",
+          color: "#756c7c",
           // fontSize: "min(2.6vw, 13px)",
           fontSize: "clamp(10px, 1.25vw, 14px)",
+          fontWeight: "300",
           margin: "0rem 0rem -0.2rem 0rem",
           padding: "0px 0px 1px 0px"
         },

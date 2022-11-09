@@ -20,6 +20,7 @@ const SignUpButton = styled(Button)(({ theme }) => ({
     "&:hover": {
         border: "1px solid #dd00ff",
         color: "#dd00ff",
+        backgroundColor: "transparent",
     }
 }));
 

@@ -38,13 +38,13 @@ export default function Filters() {
         <FiltersButton
           onClick={() => setIsShown(!isShown)}
           endIcon={<TuneIcon sx={{ width: '0.6em', height: '0.6em' }} />}
-          style={{ backgroundColor: "#252425", color: isShown ? "#dd00ff" : "white" }}>
+          style={{ backgroundColor: "#21172a", color: isShown ? "#dd00ff" : "white" }}>
           Filters
         </FiltersButton>
         <FiltersButton
           variant="contained"
           endIcon={<FavoriteIcon sx={{ width: '0.5em', height: '0.5em' }} />}
-          style={{ backgroundColor: "#252425", color: favoritesFilter ? "#dd00ff" : "white" }}
+          style={{ backgroundColor: "#21172a", color: favoritesFilter ? "#dd00ff" : "white" }}
           onClick={handleClick}
         >
           Favorites

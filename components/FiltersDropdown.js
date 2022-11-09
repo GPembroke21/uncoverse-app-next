@@ -31,7 +31,7 @@ const FiltersContainer = styled("div")(({ theme }) => ({
 
 const FilterButton = styled(Button)(({ theme }) => ({
   color: "white", 
-  backgroundColor: "#252425", 
+  backgroundColor: "#21172a", 
   fontSize: "clamp(8px, 1vw, 14px)", 
   padding: '0px 10px',
   borderRadius: '7px', 
@@ -41,7 +41,7 @@ const FilterButton = styled(Button)(({ theme }) => ({
   minWidth: "fit-content",
   "&:hover": { 
     color: "#dd00ff", 
-    backgroundColor: "#252425" 
+    backgroundColor: "#21172a" 
   }
 }));
 
@@ -63,7 +63,7 @@ const DropdownContainer = styled("div")(({ theme }) => ({
 
 const ClearFilterButton = styled(Button)(({ theme }) => ({
   color: "white", 
-  backgroundColor: "#252425", 
+  backgroundColor: "#21172a", 
   fontSize: "clamp(8px, 1vw, 14px)", 
   padding: '0px 10px',
   borderRadius: '7px', 

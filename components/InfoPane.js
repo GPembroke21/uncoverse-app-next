@@ -83,7 +83,7 @@ export default function InfoPane(props) {
     >
       <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <InfopaneHead>
-          <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '10px', mt: '-10px', lineHeight: '100%' }}>{row.name}</DialogTitle>
+          <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: '900', mb: '10px', mt: '0px', lineHeight: '100%' }}>{row.name}</DialogTitle>
           <DialogContentText component={'span'} sx={{ mb: '10px' }}>
             <InfopaneImage>
               <Image loader={imageLoader} src={row.image} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />

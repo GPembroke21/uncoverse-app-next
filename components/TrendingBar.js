@@ -61,21 +61,22 @@ export default function TrendingBar() {
                             width: 1,
                             color: "white",
                             borderRadius: "10px",
-                            border: '1px solid #40454d',
+                            // border: '1px solid #40454d',
+                            bgcolor: "#1c1425"
                         }}>
                             <CardHeader sx={{ height: "20px", mt: '4px', mb: '4px' }}
                                 avatar={
                                     <Image src="/trendingevents.svg" alt='Top Events' width="15rem" height="15rem" />
                                 }
                                 title="Trending Events"
-                                titleTypographyProps={{ fontSize: 'clamp(12px, 1.45vw, 16px)', fontWeight: 'bold' }}
+                                titleTypographyProps={{ fontSize: 'clamp(12px, 1.45vw, 16px)', fontWeight: '600', color: "#f5f3f7" }}
                             // onClick={() => console.log(topThreeEvents)}
                             />
                             {/* <Divider sx={{background:'#40454d'}}/> */}
                             <CardContent>
                                 <Grid container marginTop={-2} marginBottom={-1.5} wrap="nowrap">
                                     <Grid item marginRight={2}>
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#67626E" lineHeight="175%">
+                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#948b9c" lineHeight="175%">
                                             1<br />2<br />3
                                         </Typography>
                                     </Grid>
@@ -103,21 +104,22 @@ export default function TrendingBar() {
                             width: 1,
                             color: "white",
                             borderRadius: "10px",
-                            border: '1px solid #40454d',
+                            // border: '1px solid #40454d',
+                            bgcolor: "#1c1425"
                         }}>
                             <CardHeader sx={{ height: "20px", mt: '4px', mb: '4px' }}
                                 avatar={
                                     <Image src="/topcreators.svg" alt='Top Creators' width="15rem" height="15rem" />
                                 }
                                 title="Top Creators"
-                                titleTypographyProps={{ fontSize: 'clamp(12px, 1.45vw, 16px)', fontWeight: 'bold' }}
+                                titleTypographyProps={{ fontSize: 'clamp(12px, 1.45vw, 16px)', fontWeight: '600', color: "#f5f3f7" }}
                             // onClick={() => console.log(topCreators())}
                             />
                             {/* <Divider sx={{background:'#40454d'}}/> */}
                             <CardContent>
                                 <Grid container marginTop={-2} marginBottom={-1.5}>
                                     <Grid item marginRight={2}>
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#67626E" lineHeight="175%">
+                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#948b9c" lineHeight="175%">
                                             1<br />2<br />3
                                         </Typography>
                                     </Grid>
@@ -146,20 +148,21 @@ export default function TrendingBar() {
                             width: 1,
                             color: "white",
                             borderRadius: "10px",
-                            border: '1px solid #40454d',
+                            // border: '1px solid #40454d',
+                            bgcolor: "#1c1425"
                         }}>
                             <CardHeader sx={{ height: "20px", mt: '4px', mb: '4px' }}
                                 avatar={
                                     <Image src="/topcategories.svg" alt='Top Categories' width="15rem" height="15rem" />
                                 }
                                 title="Top Categories"
-                                titleTypographyProps={{ fontSize: 'clamp(12px, 1.45vw, 16px)', fontWeight: 'bold' }}
+                                titleTypographyProps={{ fontSize: 'clamp(12px, 1.45vw, 16px)', fontWeight: '600', color: "#f5f3f7" }}
                             />
                             {/* <Divider sx={{background:'#40454d'}}/> */}
                             <CardContent>
                                 <Grid container marginTop={-2} marginBottom={-1.5}>
                                     <Grid item marginRight={2}>
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#67626E" lineHeight="175%">
+                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color="#948b9c" lineHeight="175%">
                                             1<br />2<br />3
                                         </Typography>
                                     </Grid>
