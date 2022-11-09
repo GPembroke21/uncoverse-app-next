@@ -34,7 +34,7 @@ export default function event() {
                     <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: 'bold', mb: '10px', mt: '-10px', lineHeight: '100%' }}>{eventDetails.data.name}</DialogTitle>
                     <DialogContentText component={'span'} sx={{ mb: '10px' }}>
                         <InfopaneImage>
-                            <Image loader={`${eventDetails.data.image}`} src={eventDetails.data.image} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />
+                            <Image loader={`${eventDetails.data.image}`} src={eventDetails.data.image} alt={eventDetails.data.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />
                         </InfopaneImage>
                     </DialogContentText>
                 </InfopaneHead>

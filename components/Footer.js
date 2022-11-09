@@ -56,18 +56,18 @@ const Filters = () => {
         </LogoContainer>
         <SocialsContainer>
           <Social>
-            <a href="https://twitter.com" target={"_blank"}>
-              <Image src="/twitterlogo.svg" width="15rem" height="15rem" />
+            <a href="https://twitter.com" target="_blank" rel="noreferrer">
+              <Image src="/twitterlogo.svg" alt="twitter" width="15rem" height="15rem" />
             </a>
           </Social>
           <Social>
-            <a href="https://telegram.com" target={"_blank"}>
-              <Image src="/telegramlogo.svg" width="15rem" height="15rem" />
+            <a href="https://telegram.com" target="_blank" rel="noreferrer">
+              <Image src="/telegramlogo.svg" alt="telegram" width="15rem" height="15rem" />
             </a>
           </Social>
           <Social>
-            <a href="https://medium.com/@uncoverse" target={"_blank"}>
-              <Image src="/mediumlogo.svg" width="15rem" height="15rem" />
+            <a href="https://medium.com/@uncoverse" target="_blank" rel="noreferrer">
+              <Image src="/mediumlogo.svg" alt="medium" width="15rem" height="15rem" />
             </a>
           </Social>
         </SocialsContainer>
