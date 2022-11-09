@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider>
       <ContextProvider>
         <CssBaseline />
-        <LanderPopup/>
+        {/* <LanderPopup/> */}
         <Wrapper>
           <Box
             paddingY={0}

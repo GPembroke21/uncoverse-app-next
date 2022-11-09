@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState} from 'react';
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, Popper, Fade, ClickAwayListener } from '@mui/material';
 import Image from 'next/image'
 import { styled } from "@mui/system"
@@ -15,7 +16,7 @@ const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid w
 const ButtonContainer = styled(Grid)(({ theme }) => ({ [theme.breakpoints.down("xs")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0 }, }, }));
 const InfopaneButton = styled(Button)(({ theme }) => ({
   fontFamily: "Inter", fontSize: "min(2vw, 12px)", fontWeight: "500", textAlign: "center", color: "white", background: "transparent",
-  border: "1px solid white", borderRadius: "0.4rem", padding: "0.46rem", cursor: "pointer", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" },
+  border: "1px solid white", borderRadius: "0.4rem", padding: "0.46rem", cursor: "pointer", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff", background: "transparent" },
   "&:active": { color: "#dd00ff", backgroundColor: "#000000" },
 }));
 
@@ -35,16 +36,24 @@ export default function InfoPane(props) {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    setOpen((previousOpen) => !previousOpen);
+  const initialText = 'Share Event';
+  const [buttonText, setButtonText] = useState(initialText)
+
+  const handleClick = () => {
+    // setAnchorEl(event.currentTarget);
+    // setOpen((previousOpen) => !previousOpen);
     navigator.clipboard.writeText(urlBase + row.id);
-    setTimeout(() => setAnchorEl(null), 3000);
+    setButtonText('Link Copied');
+    // setTimeout(() => setAnchorEl(null), 3000);
   };
 
-  const handleClickAway = () => {
-    setOpen(false);
-  };
+  setTimeout(() => {
+    setButtonText(initialText);
+  }, 1000);
+
+  // const handleClickAway = () => {
+  //   setOpen(false);
+  // };
 
   const canBeOpen = open && Boolean(anchorEl);
   const id = canBeOpen ? 'transition-popper' : undefined;
@@ -99,12 +108,12 @@ export default function InfoPane(props) {
               </a>
             </InfopaneButton>
           </Grid>
-          <ClickAwayListener onClickAway={handleClickAway}>
+          {/* <ClickAwayListener onClickAway={handleClickAway}> */}
             <Grid item marginLeft={1} sx={{ flex: '1 0 40%' }}>
               <InfopaneButton fullWidth aria-describedby={id} variant="contained" onClick={handleClick}>
-                Share Event
+                {buttonText}
               </InfopaneButton>
-              <LinkCopiedPopper id={id} open={open} anchorEl={anchorEl} transition>
+              {/* <LinkCopiedPopper id={id} open={open} anchorEl={anchorEl} transition>
                 {({ TransitionProps }) => (
                   <Fade {...TransitionProps} timeout={350}>
                     <Box sx={{ border: 1, p: 1 , bgcolor: 'black', color: "white", border: "1px solid white", borderRadius: "0.4rem", mt: '15px'}}>
@@ -112,9 +121,9 @@ export default function InfoPane(props) {
                     </Box>
                   </Fade>
                 )}
-              </LinkCopiedPopper>
+              </LinkCopiedPopper> */}
             </Grid>
-          </ClickAwayListener>
+          {/* </ClickAwayListener> */}
         </ButtonContainer>
         <InfopaneInfo>
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
