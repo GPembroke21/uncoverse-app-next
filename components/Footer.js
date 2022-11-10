@@ -11,7 +11,8 @@ const Wrapper = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "space-between",
   flexDirection: "row",
-  borderTop: '1px solid #252425'
+  borderTop: '1px solid #252425',
+  cursor: 'default'
 }));
 
 const LogoContainer = styled("div")(({ theme }) => ({
