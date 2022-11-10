@@ -73,13 +73,13 @@ export default function InfoPane(props) {
       aria-describedby="alert-dialog-slide-description"
       sx={{
         opacity: "100",
-        backgroundColor: "black",
+        backgroundColor: "#120C18",
         width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' },
         maxWidth: { xs: '100vw', sm: '1000px' },
         height: '100vh',
         borderRight: '2px solid #2e2e2e',
       }}
-      PaperProps={{ sx: { margin: { xs: '24px 24px', sm: '0px 24px' } } }}
+      PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } } }}
     >
       <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <InfopaneHead>

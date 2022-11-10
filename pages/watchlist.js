@@ -1,8 +1,11 @@
 import React from 'react';
 import { styled } from "@mui/system"
 import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
 import FavoriteEventCard from "../components/FavoriteEventCard"
 import { useEventsContext, useFavoritesContext } from '../components/ContextProvider';
+import Image from 'next/image'
 
 const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
@@ -49,6 +52,17 @@ const Item = styled(Grid)(({ theme }) => ({
   },
 }));
 
+const EmptyStateContainer = styled(Grid)(({ theme }) => ({
+  color: "#ffffff",
+  display: "flex",
+  flexDirection: "column",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  alignItems: "center",
+  marginLeft: 0,
+  marginRight: 0,
+}));
+
 
 export default function Watchlist(props) {
   const eventsContext = useEventsContext()
@@ -62,6 +76,15 @@ export default function Watchlist(props) {
 
   return (
     <Wrapper>
+    {(!favoritesContext || favoritesContext.length == 0) ?
+      <EmptyStateContainer container sx= {{height: { xs: '80vh', sm: '75vh' }}}>
+        {/* <Box position="relative" width="clamp(5rem, 25vw, 12rem)" height="clamp(5rem, 25vw, 12rem)">
+            <Image src="/emptystate.svg" layout="fill" objectFit="contain"/>
+        </Box> */}
+        <Typography variant="h1" sx={{fontSize: "clamp(30px, 3vw, 70px)"}}>So much empty….</Typography>
+        <Typography variant="h2" sx={{fontSize: "clamp(15px, 2vw, 30px)"}}>Favorite some events to get started</Typography>
+      </EmptyStateContainer>
+      :
       <Main container>
         {favoritesContext.map((keyName, i) => (
           <Item item key={i}>
@@ -70,6 +93,7 @@ export default function Watchlist(props) {
         ))}
         {/* <button onClick={() => console.log(eventsContext[0])}>000</button> */}
       </Main>
+    }
     </Wrapper>
   )
 }

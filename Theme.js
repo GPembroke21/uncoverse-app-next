@@ -175,6 +175,7 @@ const theme = createTheme({
         head: {
           padding: "0px 5px",
           fontSize: "min(2vw, 12px)",
+          cursor: 'default'
         },
       },
     },
@@ -182,6 +183,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: "white",
+          borderBottom: "1px solid #2e2e2e",
           /*height: "0rem",*/
           /*'&:last-child td, &:last-child th': {
             borderRadius: "0px 10px 10px 0px"},

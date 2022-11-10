@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography"
 import { useEventsContext } from './ContextProvider'
 
 const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0px 10px 0px 0px", display: "flex", alignItems: "center", justifyContent: "space-between" }));
-const TickerContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 1rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
+const TickerContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 1rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center", cursor: 'default' }));
 const currentTime = new Date();
 
 const Header = () => {
