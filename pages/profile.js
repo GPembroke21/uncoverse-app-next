@@ -11,7 +11,8 @@ import { Auth } from "aws-amplify"
 import { Box } from "@mui/material";
 import GetUser from "../src/auth/GetUser";
 
-const Main = styled(Grid)(({ theme }) => ({ maxHeight: '50em', color: "#ffffff", margin: "4vw 2em", flexDirection: "row", justifyContent: "center", [theme.breakpoints.down("sm")]: { flexDirection: "column", justifyContent: "left", "> div": { marginLeft: 0, marginRight: 0, paddingRight: "60px" } } }))
+// const Main = styled(Grid)(({ theme }) => ({ maxHeight: '50em', color: "#ffffff", margin: "4vw 2em", flexDirection: "row", justifyContent: "center", [theme.breakpoints.down("sm")]: { flexDirection: "column", justifyContent: "left", "> div": { marginLeft: 0, marginRight: 0, paddingRight: "60px" } } }))
+const Main = styled(Grid)(({ theme }) => ({ color: "transparent", margin: "4vw 2em", flexDirection: "row", justifyContent: "center", [theme.breakpoints.down("sm")]: { flexDirection: "column", justifyContent: "left", "> div": { marginLeft: 0, marginRight: 0, paddingRight: "60px" } } }))
 const EditButton = styled(Button)(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white", backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem", cursor: "pointer", margin: "12px 0px", width: "min(40vw, 200px)", height: "55px", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" } }))
 const SaveButton = styled(Button)(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white", backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem", cursor: "pointer", margin: "40px 0px", height: "55px", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" } }))
 const SignOutButton = styled(Button)(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white", backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem", cursor: "pointer", margin: "0px 0px", height: "55px", "&:hover": { border: "1px solid red", color: "red" } }))
@@ -83,7 +84,7 @@ export default function Profile(props) {
 
   return (
     <form onSubmit={handleSubmit} style={{ overflow: "hidden", padding: "0 0", background: "transparent" }}>
-      <Main container>
+      <Main container sx= {{height: { xs: '77vh', sm: '62vh' }}}>
         <Grid alignItems="flex-start" flexDirection="column">
           <Grid item marginBottom={1} marginTop={0}>
             <Typography onClick={() => console.log(email, request)}>Display Name  &nbsp; <EditIcon sx={{ fontSize: "1rem" }} onClick={handleEditName} /></Typography>

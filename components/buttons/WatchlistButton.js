@@ -10,13 +10,12 @@ import { styled } from "@mui/system"
 const WatchlistButton = styled(Button)(({ theme }) => ({
     color: "#f5f3f7", 
     backgroundColor: '#21172a', 
-    fontSize: "clamp(8px, 1vw, 14px)", 
+    fontSize: "clamp(8px, 1vw, 12px)", 
     borderRadius: '6px',
-    // border: "1px solid white",
     padding: "0.46rem",
     marginRight: '10px',
-    // height: "2.5em",
     width: "11em",
+    height: "2rem",
     "&:hover": {
         color: "#dd00ff",
         backgroundColor: "#1c1425"

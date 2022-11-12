@@ -167,7 +167,7 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          fontSize: "clamp(12px, 1.25vw, 14px)",
+          fontSize: "clamp(12px, 1.25vw, 18px)",
           color: "white",
           borderBottom: "1px solid #2e2e2e",
           padding: "10px 5px",

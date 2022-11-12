@@ -24,7 +24,7 @@ const style = {
   maxWidth: "90vw",
   bgcolor: '#120C18',
   border: "2px solid #24192e",
-  borderRadius: "15px",
+  borderRadius: "12px",
   boxShadow: 24,
   p: 4,
 };

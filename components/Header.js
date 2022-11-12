@@ -16,13 +16,14 @@ const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", displa
 const Logo = styled("div")(({ theme }) => ({ objectFit: "contain", marginLeft: "-0.1rem", marginRight: "-0.5rem"}))
 const RightContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0.9rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
 const ConnectButtonStyled = styled(Button)(({ theme }) => ({ 
-  fontSize: "clamp(8px, 1vw, 14px)",  
+  fontSize: "clamp(8px, 1vw, 12px)",  
   fontWeight: "500", 
   textAlign: "center", 
   color: "#f5f3f7", 
   backgroundColor: '#21172a', 
   borderRadius: "0.4rem", 
-  width: "7rem", 
+  width: "9rem",
+  height: "2rem", 
   padding: "0.46rem", 
   cursor: "pointer", 
   marginRight: '-10px',

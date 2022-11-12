@@ -8,16 +8,47 @@ import FavoriteButton from './buttons/FavoriteButton';
 const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
 
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
-const InfopaneHead = styled(Grid)(({ theme }) => ({}));
-const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative' }));
+const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px"}));
+const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative'}));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
 const InfopaneInfo = styled(Grid)(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', marginTop: '15px', padding: '5px 10px' }));
 const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto' }));
 const ButtonContainer = styled(Grid)(({ theme }) => ({ [theme.breakpoints.down("xs")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0 }, }, }));
+// const InfopaneButton = styled(Button)(({ theme }) => ({
+//   fontFamily: "Inter", 
+//   fontSize: "min(2vw, 12px)", 
+//   fontWeight: "500", 
+//   textAlign: "center", 
+//   color: "white", 
+//   background: "transparent",
+//   border: "1px solid white", 
+//   borderRadius: "0.4rem", 
+//   padding: "0.46rem", 
+//   cursor: "pointer", 
+//   "&:hover": { 
+//     border: "1px solid #dd00ff", 
+//     color: "#dd00ff", 
+//     background: "transparent" },
+//   "&:active": { 
+//     color: "#dd00ff", 
+//     backgroundColor: "#000000" },
+// }));
+
 const InfopaneButton = styled(Button)(({ theme }) => ({
-  fontFamily: "Inter", fontSize: "min(2vw, 12px)", fontWeight: "500", textAlign: "center", color: "white", background: "transparent",
-  border: "1px solid white", borderRadius: "0.4rem", padding: "0.46rem", cursor: "pointer", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff", background: "transparent" },
-  "&:active": { color: "#dd00ff", backgroundColor: "#000000" },
+  color: "#f5f3f7", 
+  backgroundColor: '#21172a', 
+  fontSize: "clamp(8px, 1vw, 14px)", 
+  borderRadius: '6px',
+  padding: "0.46rem",
+  marginRight: '10px',
+  "&:hover": {
+      color: "#dd00ff",
+      backgroundColor: "#1c1425"
+  },
+  "&:active": {
+    color: "#dd00ff",
+    backgroundColor: "#120C18"
+  },
 }));
 
 // const LinkCopiedPopper = styled(Popper)(({ theme }) => ({ zIndex:"1500", backgroundColor: "transparent", color: "white", fontSize: "12px" }));
