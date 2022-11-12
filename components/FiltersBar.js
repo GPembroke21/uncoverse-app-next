@@ -37,13 +37,13 @@ export default function Filters() {
         <Searchbar />
         <FiltersButton
           onClick={() => setIsShown(!isShown)}
-          endIcon={<TuneIcon sx={{ width: '0.6em', height: '0.6em' }} />}
+          endIcon={<TuneIcon sx={{ width: '0.7em', height: '0.7em' }} />}
           style={{ backgroundColor: "#21172a", color: isShown ? "#dd00ff" : "white" }}>
           Filters
         </FiltersButton>
         <FiltersButton
           variant="contained"
-          endIcon={<FavoriteIcon sx={{ width: '0.5em', height: '0.5em' }} />}
+          endIcon={<FavoriteIcon sx={{ width: '0.65em', height: '0.65em' }} />}
           style={{ backgroundColor: "#21172a", color: favoritesFilter ? "#dd00ff" : "white" }}
           onClick={handleClick}
         >

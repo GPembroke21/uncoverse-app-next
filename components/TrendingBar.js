@@ -99,7 +99,7 @@ export default function TrendingBar() {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs flexGrow={1} padding={'0em 0.9em 0em 0.25em'} sx={{ margin: "auto" }}>
+                    <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.25em'} sx={{ margin: "auto" }}>
                         <Card sx={{
                             width: 1,
                             color: "white",
@@ -133,7 +133,7 @@ export default function TrendingBar() {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.25em'} sx={{ margin: "auto" }}>
+                    <Grid item xs flexGrow={1} padding={'0em 0.9em 0em 0.25em'} sx={{ margin: "auto" }}>
                         <Card sx={{
                             width: 1,
                             color: "white",

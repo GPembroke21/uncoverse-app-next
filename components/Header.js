@@ -1,6 +1,7 @@
 import React from 'react'
 import { styled } from "@mui/system"
 import ProfileButton from './buttons/ProfileButton'
+import Button from '@mui/material/Button'
 import Image from 'next/image'
 import IconButton from '@mui/material/Button'
 import ThemeProvider from "../Theme"
@@ -14,9 +15,26 @@ const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0
 const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
 const Logo = styled("div")(({ theme }) => ({ objectFit: "contain", marginLeft: "-0.1rem", marginRight: "-0.5rem"}))
 const RightContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0.9rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
-const ConnectButtonStyled = styled("button")(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white",
-  backgroundColor: "transparent", border: "1px solid white", borderRadius: "0.4rem", width: "7rem", padding: "0.46rem", cursor: "pointer", marginRight: '-10px',
-  "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" }}));
+const ConnectButtonStyled = styled(Button)(({ theme }) => ({ 
+  fontSize: "clamp(8px, 1vw, 14px)",  
+  fontWeight: "500", 
+  textAlign: "center", 
+  color: "#f5f3f7", 
+  backgroundColor: '#21172a', 
+  borderRadius: "0.4rem", 
+  width: "7rem", 
+  padding: "0.46rem", 
+  cursor: "pointer", 
+  marginRight: '-10px',
+  "&:hover": {
+    color: "#dd00ff",
+    backgroundColor: "#1c1425"
+  },
+  "&:active": {
+    color: "#dd00ff",
+    backgroundColor: "#120C18"
+  },
+}));
 
 
 const Header = (props) => {

@@ -102,8 +102,9 @@ export const SignUpForm = (props) => {
         width: '25rem',
         maxWidth: '90vw',
         // margin: '3rem auto',
-        border: "2px solid #2e2e2e",
+        border: "2px solid #24192e",
         borderRadius: "15px",
+        backgroundColor: "#120C18"
     }
 
     const handleChange = (event) => {
@@ -119,13 +120,13 @@ export const SignUpForm = (props) => {
         event.preventDefault()
     }
 
-    const bgColor = { backgroundColor: "black" }
+    const bgColor = { backgroundColor: "#120C18" }
     const buttonStyle = { margin: '1rem 0' }
 
     return (
         <ThemeProvider>
             <Grid style={bgColor} sx={{ borderRadius: "15px" }}>
-                <Paper elevation={10} style={paperStyle}>
+                {/* <Paper elevation={10} style={paperStyle}> */}
                     <Grid align='center'>
                         <Typography color="white" fontSize="clamp(24px, 4vw, 36px)" fontWeight="bold">Sign Up</Typography>
                     </Grid>
@@ -172,7 +173,7 @@ export const SignUpForm = (props) => {
                         Already have an account? &nbsp;
                         <Link href="#" onClick={props.signInForm} color="inherit" sx={{ '&:hover': { color: '#dd00ff' } }}>Sign in here</Link>
                     </Typography>
-                </Paper>
+                {/* </Paper> */}
             </Grid>
         </ThemeProvider>
     );

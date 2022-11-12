@@ -95,11 +95,12 @@ export const SignInForm = (props) => {
         width: '25rem',
         maxWidth: '90vw',
         // margin: '3rem auto',
-        border: "2px solid #2e2e2e",
+        border: "2px solid #24192e",
         borderRadius: "15px",
+        backgroundColor: "#120C18"
     }
     const gridStyle = {
-        backgroundColor: "black",
+        backgroundColor: "#120C18",
     }
     const buttonStyle = { margin: '1rem 0', color: "black" }
 
@@ -107,7 +108,7 @@ export const SignInForm = (props) => {
     return (
         <ThemeProvider>
             <Grid style={gridStyle} sx={{ borderRadius: "15px" }}>
-                <Paper elevation={10} style={paperStyle}>
+                {/* <Paper elevation={10} style={paperStyle}> */}
                     {!forgotPassword ?
                         <div>
                             <Grid align='center'>
@@ -199,7 +200,7 @@ export const SignInForm = (props) => {
                         Don&apos;t have an account? &nbsp;
                         <Link href="#" onClick={props.signUpForm} color="inherit" sx={{ '&:hover': { color: '#dd00ff' } }}>Sign up here</Link>
                     </Typography>
-                </Paper>
+                {/* </Paper> */}
             </Grid>
         </ThemeProvider>
     )

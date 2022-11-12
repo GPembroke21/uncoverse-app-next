@@ -293,7 +293,7 @@ const theme = createTheme({
       styleOverrides: {
         input: {
           "&:-webkit-autofill": {
-            "WebkitBoxShadow": "0 0 0 100px black inset",
+            "WebkitBoxShadow": "0 0 0 100px #120C18 inset",
             "WebkitTextFillColor": "white",
           },
         },

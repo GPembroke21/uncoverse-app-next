@@ -77,11 +77,13 @@ export default function InfoPane(props) {
         width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' },
         maxWidth: { xs: '100vw', sm: '1000px' },
         height: '100vh',
-        borderRight: '2px solid #2e2e2e',
+        borderRight: '1px solid #2e2e2e',
       }}
-      PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } } }}
+      PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } }, backgroundColor: "#120C18" }}
+      // BackdropProps={{style: {backgroundColor: "#120C18"}}}
+      hideBackdrop="true"
     >
-      <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: "#120C18" }}>
         <InfopaneHead>
           <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: '900', mb: '10px', mt: '0px', lineHeight: '100%' }}>{row.name}</DialogTitle>
           <DialogContentText component={'span'} sx={{ mb: '10px' }}>
