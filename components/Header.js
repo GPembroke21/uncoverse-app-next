@@ -16,11 +16,11 @@ const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", displa
 const Logo = styled("div")(({ theme }) => ({ objectFit: "contain", marginLeft: "-0.1rem", marginRight: "-0.5rem"}))
 const RightContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0.9rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
 const ConnectButtonStyled = styled(Button)(({ theme }) => ({ 
+  color: theme.palette.button.text, 
+  backgroundColor: theme.palette.button.main, 
   fontSize: "clamp(8px, 1vw, 12px)",  
   fontWeight: "500", 
   textAlign: "center", 
-  color: "#f5f3f7", 
-  backgroundColor: '#21172a', 
   borderRadius: "0.4rem", 
   width: "9rem",
   height: "2rem", 
@@ -28,12 +28,12 @@ const ConnectButtonStyled = styled(Button)(({ theme }) => ({
   cursor: "pointer", 
   marginRight: '-10px',
   "&:hover": {
-    color: "#dd00ff",
-    backgroundColor: "#1c1425"
+    color: theme.palette.button.hovertext,
+    backgroundColor: theme.palette.button.hover
   },
   "&:active": {
-    color: "#dd00ff",
-    backgroundColor: "#120C18"
+    color: theme.palette.button.hovertext,
+    backgroundColor: theme.palette.button.active
   },
 }));
 
@@ -55,7 +55,7 @@ const Header = (props) => {
         <LogoContainer>
           <Link href="/" passHref>
             <Logo>
-              <IconButton disableRipple>
+              <IconButton disableRipple sx={{'&:hover': {backgroundColor: 'transparent'}}}>
                 <Image src="/uv-logo.svg" alt='Uncoverse Logo' width="30rem" height="30rem" />
               </IconButton>
             </Logo>

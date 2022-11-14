@@ -61,6 +61,7 @@ const EmptyStateContainer = styled(Grid)(({ theme }) => ({
   alignItems: "center",
   marginLeft: 0,
   marginRight: 0,
+  marginTop: "30vh"
 }));
 
 
@@ -77,7 +78,7 @@ export default function Watchlist(props) {
   return (
     <Wrapper>
     {(!favoritesContext || favoritesContext.length == 0) ?
-      <EmptyStateContainer container sx= {{height: { xs: '80vh', sm: '75vh' }}}>
+      <EmptyStateContainer container>
         {/* <Box position="relative" width="clamp(5rem, 25vw, 12rem)" height="clamp(5rem, 25vw, 12rem)">
             <Image src="/emptystate.svg" layout="fill" objectFit="contain"/>
         </Box> */}

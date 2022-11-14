@@ -8,15 +8,16 @@ const theme = createTheme({
     background: {
       default: "#120C18",
     },
-    primary: {
+    button: {
       main: "#21172a",
+      hover: "#1c1425",
+      active: "#120C18",
+      text: "#f5f3f7",
+      hovertext: "#dd00ff",
     },
-    secondary: {
-      main: "#33283e",
-    },
-    info: {
-      main: "#756c7c",
-    },
+    card: {
+      main: "#1c1425",
+    }
   },
   typography: {
     fontFamily:

@@ -22,11 +22,12 @@ export default function Searchbar() {
 
   return (
     <form onSubmit={handleSubmit}
-      style={{ flex: 1, color: "white", fontSize: "clamp(8px, 1vw, 14px)", backgroundColor: "#21172a", borderRadius: "7px", height: "2.5em", maxWidth: "400px", marginRight: "10px", paddingLeft: 1.5 }}
+      style={{ flex: 1, color: "white", fontSize: "clamp(8px, 1vw, 14px)", height: "2.5em", maxWidth: "400px", marginRight: "10px", paddingLeft: 1.5 }}
     >
       <InputBase
         // sx={{ flex: 1, color: "white", fontSize: "clamp(8px, 1vw, 14px)", backgroundColor: "#252425", borderRadius: "7px", height: "2.5em", width: "11em", maxWidth: '500px', marginRight: "10px", paddingLeft: 1.5 }}
-        style={{width: "100%", height: "100%", color: "white", fontSize: "clamp(8px, 1vw, 14px)", paddingLeft: 8}}
+        sx={{ backgroundColor: (theme) => theme.palette.button.main, color: (theme) => theme.palette.button.text, }}
+        style={{width: "100%", height: "100%", fontSize: "clamp(8px, 1vw, 14px)", paddingLeft: 10, borderRadius: "7px"}}
         placeholder="Search"
         inputProps={{ 'aria-label': 'search' }}
         onChange={handleChange}

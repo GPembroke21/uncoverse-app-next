@@ -84,7 +84,7 @@ export default function Profile(props) {
 
   return (
     <form onSubmit={handleSubmit} style={{ overflow: "hidden", padding: "0 0", background: "transparent" }}>
-      <Main container sx= {{height: { xs: '77vh', sm: '62vh' }}}>
+      <Main container>
         <Grid alignItems="flex-start" flexDirection="column">
           <Grid item marginBottom={1} marginTop={0}>
             <Typography onClick={() => console.log(email, request)}>Display Name  &nbsp; <EditIcon sx={{ fontSize: "1rem" }} onClick={handleEditName} /></Typography>

@@ -12,7 +12,7 @@ import Footer from '../components/Footer'
 import LanderPopup from '../components/LanderPopup'
       
 Amplify.configure({ ...awsExports, ssr: true })
-const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto" }));
+const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto", position: "relative", minHeight: "100vh" }));
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -25,6 +25,7 @@ function MyApp({ Component, pageProps }) {
             paddingY={0}
             paddingX={0}
             px={{ xs: 0, sm: 0, md: "3em", lg: "4em", xl: "5em" }}
+            paddingBottom="72px"
           >
             <Header />
             <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />

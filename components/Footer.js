@@ -6,13 +6,16 @@ import Box from '@mui/material/Box'
 
 const Wrapper = styled("div")(({ theme }) => ({
   margin: "14px 0px 0px 0px",
-  padding: "0px 10px 0px 14px",
+  padding: "0px 8px 0px 14px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   flexDirection: "row",
   borderTop: '1px solid #252425',
-  cursor: 'default'
+  cursor: 'default',
+  // position: "absolute",
+  // bottom: 0,
+  // width: "100%"
 }));
 
 const LogoContainer = styled("div")(({ theme }) => ({
@@ -48,6 +51,18 @@ const Social = styled("div")(({ theme }) => ({
 
 const Filters = () => {
   return (
+    <Box
+    sx={{
+      position: "absolute",
+      bottom: "0",
+      left: "0",
+      right: "0",
+      width: "100%",
+      padding: "inherit",
+      margin: "inherit",
+      height: "72px"
+    }}
+    >
       <Wrapper>
         <LogoContainer>
           <Logo>
@@ -73,6 +88,7 @@ const Filters = () => {
           </Social>
         </SocialsContainer>
       </Wrapper>
+    </Box>
   )
 }
 
