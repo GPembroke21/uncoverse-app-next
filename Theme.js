@@ -8,15 +8,16 @@ const theme = createTheme({
     background: {
       default: "#120C18",
     },
-    primary: {
+    button: {
       main: "#21172a",
+      hover: "#1c1425",
+      active: "#120C18",
+      text: "#f5f3f7",
+      hovertext: "#dd00ff",
     },
-    secondary: {
-      main: "#33283e",
-    },
-    info: {
-      main: "#756c7c",
-    },
+    card: {
+      main: "#1c1425",
+    }
   },
   typography: {
     fontFamily:
@@ -167,7 +168,7 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          fontSize: "clamp(12px, 1.25vw, 14px)",
+          fontSize: "clamp(12px, 1.25vw, 18px)",
           color: "white",
           borderBottom: "1px solid #2e2e2e",
           padding: "10px 5px",
@@ -293,7 +294,7 @@ const theme = createTheme({
       styleOverrides: {
         input: {
           "&:-webkit-autofill": {
-            "WebkitBoxShadow": "0 0 0 100px black inset",
+            "WebkitBoxShadow": "0 0 0 100px #120C18 inset",
             "WebkitTextFillColor": "white",
           },
         },

@@ -27,6 +27,12 @@ const Main = styled(Grid)(({ theme }) => ({
     marginTop: "4px" 
 }));
 
+const TrendingCard = styled(Card)(({ theme }) => ({ 
+    color: "white",
+    borderRadius: "10px",
+    background: theme.palette.card.main,
+}));
+
 const currentTime = new Date();
 
 export default function TrendingBar() {
@@ -57,13 +63,7 @@ export default function TrendingBar() {
             <Wrapper sx={{ display: { xs: 'none', sm: 'revert' } }}>
                 <Main container>
                     <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.9em'} sx={{ margin: "auto" }} zeroMinWidth>
-                        <Card sx={{
-                            width: 1,
-                            color: "white",
-                            borderRadius: "10px",
-                            // border: '1px solid #40454d',
-                            bgcolor: "#1c1425"
-                        }}>
+                        <TrendingCard sx={{width: 1}}>
                             <CardHeader sx={{ height: "20px", margin: "4px 0px 4px -2px", cursor: 'default' }}
                                 avatar={
                                     <Image src="/trendingevents.svg" alt='Top Events' width="20rem" height="20rem" />
@@ -97,16 +97,10 @@ export default function TrendingBar() {
                                     {/* </Grid> */}
                                 </Grid>
                             </CardContent>
-                        </Card>
+                        </TrendingCard>
                     </Grid>
-                    <Grid item xs flexGrow={1} padding={'0em 0.9em 0em 0.25em'} sx={{ margin: "auto" }}>
-                        <Card sx={{
-                            width: 1,
-                            color: "white",
-                            borderRadius: "10px",
-                            // border: '1px solid #40454d',
-                            bgcolor: "#1c1425"
-                        }}>
+                    <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.25em'} sx={{ margin: "auto" }}>
+                        <TrendingCard sx={{width: 1}}>
                             <CardHeader sx={{ height: "20px", margin: "4px 0px 4px -2px", cursor: 'default' }}
                                 avatar={
                                     <Image src="/topcategories.svg" alt='Top Categories' width="20rem" height="20rem" />
@@ -131,16 +125,10 @@ export default function TrendingBar() {
                                     </Grid>
                                 </Grid>
                             </CardContent>
-                        </Card>
+                        </TrendingCard>
                     </Grid>
-                    <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.25em'} sx={{ margin: "auto" }}>
-                        <Card sx={{
-                            width: 1,
-                            color: "white",
-                            borderRadius: "10px",
-                            // border: '1px solid #40454d',
-                            bgcolor: "#1c1425"
-                        }}>
+                    <Grid item xs flexGrow={1} padding={'0em 0.9em 0em 0.25em'} sx={{ margin: "auto" }}>
+                        <TrendingCard sx={{width: 1}}>
                             <CardHeader sx={{ height: "20px", margin: "4px 0px 4px -2px", cursor: 'default' }}
                                 avatar={
                                     <Image src="/topcreators.svg" alt='Top Creators' width="20rem" height="20rem" />
@@ -175,7 +163,7 @@ export default function TrendingBar() {
                                     </Grid>
                                 </Grid>
                             </CardContent>
-                        </Card>
+                        </TrendingCard>
                     </Grid>
                 </Main>
                 <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />

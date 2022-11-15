@@ -28,7 +28,7 @@ export default function FiltersDropdown() {
     if (filtersCategoriesContext && filtersCategoriesContext.includes(cat)) { filtersContextUpdate.updateCategory(filtersCategoriesContext.filter(i => i !== cat)) }
     else if (filtersCategoriesContext) { filtersContextUpdate.updateCategory(filtersCategoriesContext.concat(cat)) }
   }
-
+ 
   const stylePlatformButton = plat => { return (filtersPlatormsContext && filtersPlatormsContext.includes(plat)) ? { color: "#dd00ff" } : { color: "white" } }
   const styleCategoryButton = cat => { return (filtersCategoriesContext && filtersCategoriesContext.includes(cat)) ? { color: "#dd00ff" } : { color: "white" } }
 
@@ -64,7 +64,7 @@ export default function FiltersDropdown() {
         <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
         <FiltersContainer>
           {Object.keys(filterShown).map((filter, index) => (
-            <FilterButton key={index} onClick={() => handleClick(filter)} style={{ color: filterShown[filter] ? "#dd00ff" : "white", width: "11em", maxWidth: "11em", minWidth: "11em" }}>
+            <FilterButton key={index} onClick={() => handleClick(filter)} sx={{ color: filterShown[filter] ? (theme) => theme.palette.button.hovertext : (theme) => theme.palette.button.text, width: "11em", maxWidth: "11em", minWidth: "11em" }}>
               {filter}
             </FilterButton>
           ))}

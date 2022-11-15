@@ -12,8 +12,17 @@ import AuthPopup from './AuthPopup'
 
 const FiltersContainer = styled("div")(({ theme }) => ({ margin: "14px 0px", padding: "0px 10px 0px 14px", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const FiltersButton = styled(Button)(({ theme }) => ({
-  color: "white", backgroundColor: "#252425", fontSize: "clamp(8px, 1vw, 14px)", borderRadius: '7px',
-  marginRight: '10px', height: "2.5em", width: "11em", "&:hover": { color: "#dd00ff" }
+  color: theme.palette.button.text, 
+  background: theme.palette.button.main,
+  fontSize: "clamp(8px, 1vw, 14px)", 
+  borderRadius: '7px',
+  marginRight: '10px', 
+  height: "2.5em", 
+  width: "11em", 
+  "&:hover": { 
+    color: theme.palette.button.hovertext,
+    background: theme.palette.button.main
+  }
 }));
 
 export default function Filters() {
@@ -37,14 +46,14 @@ export default function Filters() {
         <Searchbar />
         <FiltersButton
           onClick={() => setIsShown(!isShown)}
-          endIcon={<TuneIcon sx={{ width: '0.6em', height: '0.6em' }} />}
-          style={{ backgroundColor: "#21172a", color: isShown ? "#dd00ff" : "white" }}>
+          endIcon={<TuneIcon sx={{ width: '0.7em', height: '0.7em' }} />}
+          sx={{ color: isShown ? (theme) => theme.palette.button.hovertext : (theme) => theme.palette.button.text }}>
           Filters
         </FiltersButton>
         <FiltersButton
           variant="contained"
-          endIcon={<FavoriteIcon sx={{ width: '0.5em', height: '0.5em' }} />}
-          style={{ backgroundColor: "#21172a", color: favoritesFilter ? "#dd00ff" : "white" }}
+          endIcon={<FavoriteIcon sx={{ width: '0.65em', height: '0.65em' }} />}
+          sx={{ color: favoritesFilter ? (theme) => theme.palette.button.hovertext : (theme) => theme.palette.button.text }}
           onClick={handleClick}
         >
           Favorites

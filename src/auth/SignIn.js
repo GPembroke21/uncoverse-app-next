@@ -30,13 +30,13 @@ export const SignInForm = (props) => {
     const handleResetConfirm = (event) => { submitForgotPassword({ un: event.target[0].value, code: event.target[2].value, new_pw: event.target[4].value }).then(response => (setForgotPasswordConfirm(false), setForgotPassword(false))); event.preventDefault() }
 
     const paperStyle = { padding: 20, height: 'auto', width: '25rem', maxWidth: '90vw', border: "2px solid #2e2e2e", borderRadius: "15px" }
-    const gridStyle = { backgroundColor: "black" }
-    const buttonStyle = { margin: '1rem 0', color: "black" }
+    const gridStyle = { backgroundColor: "#120C18" }
+    const buttonStyle = { margin: '1rem 0', color: "#120C18" }
 
     return (
         <ThemeProvider>
             <Grid style={gridStyle} sx={{ borderRadius: "15px" }}>
-                <Paper elevation={10} style={paperStyle}>
+                {/* <Paper elevation={10} style={paperStyle}> */}
                     {!forgotPassword ?
                         <div>
                             <Grid align='center'>
@@ -115,7 +115,7 @@ export const SignInForm = (props) => {
                             <Typography sx={{ color: "#FF0000" }}> {errorMsg} </Typography>
                         </Grid>
                     }
-                </Paper>
+                {/* </Paper> */}
             </Grid>
         </ThemeProvider>
     )
