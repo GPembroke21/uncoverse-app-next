@@ -33,28 +33,16 @@ export const SignUpForm = (props) => {
     const [confirming, setConfirming] = React.useState(false)
     const [username, setUsername] = React.useState("")
     const [errorMsg, setErrorMsg] = React.useState(() => null)
+    
     async function signUp(props) { try { const { user } = await Auth.signUp({ username: props.un, password: props.pw, attributes: { email: props.un }, autoSignIn: { enabled: true } }); setErrorMsg(null) } catch (error) { setErrorMsg(error.message); console.log('error signing up:', error); } }
     async function confirmSignUp(props) { try { await Auth.confirmSignUp(props.un, props.code); setErrorMsg(null) } catch (error) { setErrorMsg(error.message); console.log('error confirming sign up', error); } }
     async function resendConfirmationCode(props) { try { await Auth.resendSignUp(props.un); console.log('code resent successfully'); setErrorMsg(null) } catch (err) { setErrorMsg(error.message); console.log('error resending code: ', err); } }
 
-    const paperStyle = {
-        padding: 20,
-        height: 'auto',
-        width: '25rem',
-        maxWidth: '90vw',
-        // margin: '3rem auto',
-        border: "2px solid #2e2e2e",
-        borderRadius: "15px",
-    }
-
     const handleChange = (event) => setUsername(event.target.value)
     const handleSubmit = (event) => { if (confirming == false) { signUp({ un: event.target[0].value, pw: event.target[2].value }).then(response => setConfirming(true)) } else if (confirming) { confirmSignUp({ un: event.target[0].value, code: event.target[4].value }).then(response => (props.closeMenu, setConfirming(true))) }; event.preventDefault() }
+    
     const paperStyle = { padding: 20, height: 'auto', width: '25rem', maxWidth: '90vw', border: "2px solid #24192e", borderRadius: "15px", backgroundColor: "#120C18" }
     const bgColor = { backgroundColor: "#120C18" }
-
-    
-
-    const bgColor = { backgroundColor: "black" }
     const buttonStyle = { margin: '1rem 0' }
 
     return (
