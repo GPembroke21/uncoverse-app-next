@@ -61,7 +61,7 @@ function Row(props) {
   );
 }
 
-export default function EventsList2() {
+export default function EventsList() {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => { setOpen(false); };
   const [infoPaneInfo, setInfoPaneInfo] = React.useState(null)
