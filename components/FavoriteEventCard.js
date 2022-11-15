@@ -41,7 +41,7 @@ export default function FavoriteEventCard(props) {
   return (
     <Card sx={{
       width: 1,
-      backgroundColor: "#282b2f",
+      backgroundColor: (theme) => theme.palette.card.main,
       color: "white",
       borderRadius: "15px",
       border: '1px solid #40454d',
@@ -68,7 +68,7 @@ export default function FavoriteEventCard(props) {
         </CardHeader>
       </a>
       <Divider sx={{ background: '#40454d' }} />
-      <CardActions disableSpacing sx={{ height: '40px', backgroundColor: '#1a1c1f' }}>
+      <CardActions disableSpacing sx={{ height: '40px', backgroundColor:  (theme) => theme.palette.card.secondary }}>
         <Grid marginLeft={'12px'}>
             <FavoriteButton eventId={item.id} ind={props.ind} sx={{ cursor: 'pointer' }} toggle={favoriteToggle} setToggle={(state) => setFavoriteToggle(state)}/>
         </Grid>
@@ -89,7 +89,7 @@ export default function FavoriteEventCard(props) {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ backgroundColor: '#1a1c1f' }}>
+      <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ backgroundColor: (theme) => theme.palette.card.secondary }}>
         <CardContent sx={{ margin: "-20px 0px 0px 0px" }} >
           <Typography variant='h4'>
             {item.description}

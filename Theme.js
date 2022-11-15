@@ -16,8 +16,13 @@ const theme = createTheme({
       hovertext: "#dd00ff",
     },
     card: {
-      main: "#1c1425",
-    }
+      main: "#33283e",
+      secondary: "#21172a",
+      trending: "#1c1425",
+    },
+    // divider: {
+    //   main: "#2e2e2e"
+    // },
   },
   typography: {
     fontFamily:
@@ -87,7 +92,8 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           transitionDuration: "0s",
-          fontFamily: "Inter"
+          fontFamily: "Inter",
+          textTransform: "none",
         },
       },
     },

@@ -46,13 +46,13 @@ export default function Filters() {
         <Searchbar />
         <FiltersButton
           onClick={() => setIsShown(!isShown)}
-          endIcon={<TuneIcon sx={{ width: '0.7em', height: '0.7em' }} />}
+          endIcon={<TuneIcon sx={{ width: '0.6em', height: '0.6em' }} />}
           sx={{ color: isShown ? (theme) => theme.palette.button.hovertext : (theme) => theme.palette.button.text }}>
           Filters
         </FiltersButton>
         <FiltersButton
           variant="contained"
-          endIcon={<FavoriteIcon sx={{ width: '0.65em', height: '0.65em' }} />}
+          endIcon={<FavoriteIcon sx={{ width: '0.6em', height: '0.6em' }} />}
           sx={{ color: favoritesFilter ? (theme) => theme.palette.button.hovertext : (theme) => theme.palette.button.text }}
           onClick={handleClick}
         >

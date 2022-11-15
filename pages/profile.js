@@ -14,8 +14,44 @@ import GetUser from "../src/auth/GetUser";
 // const Main = styled(Grid)(({ theme }) => ({ maxHeight: '50em', color: "#ffffff", margin: "4vw 2em", flexDirection: "row", justifyContent: "center", [theme.breakpoints.down("sm")]: { flexDirection: "column", justifyContent: "left", "> div": { marginLeft: 0, marginRight: 0, paddingRight: "60px" } } }))
 const Main = styled(Grid)(({ theme }) => ({ color: "transparent", margin: "4vw 2em", flexDirection: "row", justifyContent: "center", [theme.breakpoints.down("sm")]: { flexDirection: "column", justifyContent: "left", "> div": { marginLeft: 0, marginRight: 0, paddingRight: "60px" } } }))
 const EditButton = styled(Button)(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white", backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem", cursor: "pointer", margin: "12px 0px", width: "min(40vw, 200px)", height: "55px", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" } }))
-const SaveButton = styled(Button)(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white", backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem", cursor: "pointer", margin: "40px 0px", height: "55px", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" } }))
-const SignOutButton = styled(Button)(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white", backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem", cursor: "pointer", margin: "0px 0px", height: "55px", "&:hover": { border: "1px solid red", color: "red" } }))
+const SaveButton = styled(Button)(({ theme }) => ({ 
+  fontFamily: "Inter", 
+  fontSize: "0.8rem", 
+  fontWeight: "500", 
+  textAlign: "center", 
+  color: "white", 
+  backgroundColor: "transparent", 
+  border: "1px solid white", 
+  borderRadius: "4px", 
+  padding: "0.46rem", 
+  cursor: "pointer", 
+  margin: "40px 0px", 
+  height: "55px", 
+  "&:hover": { 
+    border: "1px solid #dd00ff", 
+    color: "#dd00ff" 
+  } 
+}))
+
+const SignOutButton = styled(Button)(({ theme }) => ({ 
+  fontFamily: "Inter", 
+  fontSize: "0.8rem", 
+  fontWeight: "500", 
+  textAlign: "center", 
+  color: "white", 
+  backgroundColor: "transparent", 
+  border: "1px solid white", 
+  borderRadius: "4px", 
+  padding: "0.46rem", 
+  cursor: "pointer", 
+  margin: "0px 0px", 
+  height: "55px", 
+  "&:hover": { 
+    border: "1px solid red", 
+    color: "red" 
+  } 
+}))
+
 const TextFields = styled(TextField)(({ theme }) => ({ caretColor: "white", '& label.Mui-focused': { color: 'white' }, '& .MuiInput-underline:after': { borderBottomColor: 'white' }, '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: 'white' }, '&:hover fieldset': { borderColor: 'white' }, '&.Mui-focused fieldset': { borderColor: 'white' } }, "& .MuiInputLabel-root": { color: 'white' } }))
 
 export default function Profile(props) {
@@ -87,7 +123,7 @@ export default function Profile(props) {
       <Main container>
         <Grid alignItems="flex-start" flexDirection="column">
           <Grid item marginBottom={1} marginTop={0}>
-            <Typography onClick={() => console.log(email, request)}>Display Name  &nbsp; <EditIcon sx={{ fontSize: "1rem" }} onClick={handleEditName} /></Typography>
+            <Typography onClick={() => console.log(email, request)} sx={{fontWeight: "700"}}>Display Name  &nbsp; <EditIcon sx={{ fontSize: "1rem" }} onClick={handleEditName} /></Typography>
           </Grid>
           <Grid item marginBottom={1} marginTop={1}>
             {(editName || !request || !request.attributes.name) ?
@@ -97,7 +133,7 @@ export default function Profile(props) {
             }
           </Grid>
           <Grid item marginBottom={1} marginTop={3}>
-            <Typography>Email &nbsp; <EditIcon sx={{ fontSize: "1rem" }} onClick={handleEditEmail} /></Typography>
+            <Typography sx={{fontWeight: "700"}}>Email &nbsp; <EditIcon sx={{ fontSize: "1rem" }} onClick={handleEditEmail} /></Typography>
           </Grid>
           <Grid item marginBottom={1} marginTop={1}>
             {(editEmail || !request) ?

@@ -72,7 +72,7 @@ const ClearFilterButton = styled(Button)(({ theme }) => ({
   width: "11em",
   "&:hover": { 
     color: "#dd00ff", 
-    backgroundColor: "#252425" 
+    backgroundColor: "#21172a" 
   }
 }));
 

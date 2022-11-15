@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider>
       <ContextProvider>
         <CssBaseline />
-        {/* <LanderPopup/> */}
+        <LanderPopup/>
         <Wrapper>
           <Box
             paddingY={0}
@@ -28,9 +28,9 @@ function MyApp({ Component, pageProps }) {
             paddingBottom="72px"
           >
             <Header />
-            <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
+            <Divider style={{ width: "100%", height: "0.01px" }} />
             <HeaderBottom />
-            <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
+            <Divider style={{ width: "100%", height: "0.01px" }} />
             <Component {...pageProps} />
             <Footer/>
           </Box>
