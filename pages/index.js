@@ -1,6 +1,6 @@
 import { styled } from "@mui/system"
 import FiltersBar from '../components/FiltersBar'
-import EventsList2 from '../components/EventsList2'
+import EventsList from '../components/EventsList'
 import AdBar from '../components/AdBar'
 import TrendingBar from '../components/TrendingBar'
 
@@ -18,7 +18,7 @@ export default function Index(props) {
       <AdBar/>
       <TrendingBar/>
       <FiltersBar/>
-      <EventsList2 />
+      <EventsList />
     </Wrapper>
   )
 }

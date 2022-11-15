@@ -1,6 +1,4 @@
 import * as React from 'react'
-import {useState} from 'react'
-import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Link from 'next/link'
@@ -27,16 +25,6 @@ const WatchlistButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function BasicButtons() {
-  // const [buttonColor, setButtonColor] = useState("white");
-
-  // const handleClick = event => {
-  //   buttonColor === "white" ? setButtonColor("#dd00ff") : setButtonColor("white");
-  // };
-
-  // const handleButtonColor = () => {
-  //   window.location.href === "http://localhost:3000/watchlist" ? setButtonColor("#dd00ff") : setButtonColor("white");
-  // }
-
   return (
     <WatchlistButton 
     variant="contained"
