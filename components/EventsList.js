@@ -132,19 +132,17 @@ export default function EventsList() {
         }
       </Table>
       <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      open={open}
-      onClose={() => setOpen(false)}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
-    >
-      <animated.div {...bind()} >
-        <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
-      </animated.div>
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={() => setOpen(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{ timeout: 500 }}
+      >
+        <animated.div {...bind()} >
+          <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
+        </animated.div>
       </Modal>
     </TableContainer>
   )

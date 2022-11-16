@@ -67,7 +67,7 @@ export default function TrendingBar() {
                                             {eventsContext.length === 0 ? <span>Loading..</span> :
                                                 <span>
                                                     {
-                                                        topThreeEvents.map((item, i) => (
+                                                        topThreeEvents.slice(0, 3).map((item, i) => (
                                                             < span key={i} onClick={() => handelClick(item)} style={{ cursor: 'pointer' }}>
                                                                 {item.name} < br />
                                                             </span>

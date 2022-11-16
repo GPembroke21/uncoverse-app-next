@@ -112,7 +112,7 @@ export default function Profile(props) {
             </Grid>
           }
 
-          {(editEmail || editEmailConfirm || editName) &&
+          {(editEmail || editEmailConfirm || editName || !request || !request.attributes.name) &&
             <Grid item marginBottom={1} marginTop={1}>
               <SaveButton type='submit' fullWidth>Save</SaveButton>
             </Grid>
