@@ -30,7 +30,7 @@ const Main = styled(Grid)(({ theme }) => ({
 const TrendingCard = styled(Card)(({ theme }) => ({ 
     color: "white",
     borderRadius: "10px",
-    background: theme.palette.card.main,
+    background: theme.palette.card.trending,
 }));
 
 const currentTime = new Date();

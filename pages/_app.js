@@ -12,14 +12,24 @@ import Footer from '../components/Footer'
 import LanderPopup from '../components/LanderPopup'
       
 Amplify.configure({ ...awsExports, ssr: true })
-const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto", position: "relative", minHeight: "100vh" }));
+const Wrapper = styled("div")(({ theme }) => ({ 
+  maxWidth: 1600, 
+  margin: "0 auto", 
+  position: "relative", 
+  minHeight: "100vh",
+  msOverflowStyle: "none",
+  scrollbarWidth: "none", 
+  '&::-webkit-scrollbar': {
+    display: 'none'
+  }, 
+}));
 
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider>
       <ContextProvider>
         <CssBaseline />
-        {/* <LanderPopup/> */}
+        <LanderPopup/>
         <Wrapper>
           <Box
             paddingY={0}
@@ -28,9 +38,9 @@ function MyApp({ Component, pageProps }) {
             paddingBottom="72px"
           >
             <Header />
-            <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
+            <Divider style={{ width: "100%", height: "0.01px" }} />
             <HeaderBottom />
-            <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />
+            <Divider style={{ width: "100%", height: "0.01px" }} />
             <Component {...pageProps} />
             <Footer/>
           </Box>
