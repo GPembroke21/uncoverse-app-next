@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { ReactNode } from 'react'
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Modal, Backdrop } from "@mui/material";
 import Image from 'next/image'
 import FavoriteButton from './buttons/FavoriteButton'
@@ -9,6 +9,7 @@ import { animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 
 const currentTime = new Date();
+const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="left" ref={ref} {...props} /> })
 
 function Row(props) {
   const { row } = props;
@@ -25,7 +26,6 @@ function Row(props) {
   const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
   const dateStyled = (dateTimeStart < currentTime) ? "Active" : (formattedStartDate + ", " + formattedStartTime)
   const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ending " + (formattedEndDate + " @ " + formattedEndTime + ")")) : (formattedStartDate + " @ " + formattedStartTime + " - " + formattedEndDate + " @ " + formattedEndTime)
-  // if (dateTimeStart > currentTime) { console.log ("Upcoming", row.name, dateTimeStart, currentTime)}
   const platLogo = platformLogos[row.platformId]
 
   return (
@@ -60,6 +60,7 @@ function Row(props) {
     </React.Fragment>
   );
 }
+
 
 export default function EventsList() {
   const [open, setOpen] = React.useState(false);
@@ -96,7 +97,7 @@ export default function EventsList() {
   }
 
 
-  const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => { if (!down && mx < -75) handleClose() })
+  const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => { if (mx < -75) handleClose() })
 
   return (
     <TableContainer style={{ overflowX: 'auto' }}>
@@ -131,19 +132,12 @@ export default function EventsList() {
           <TableBody />
         }
       </Table>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={() => setOpen(false)}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{ timeout: 500 }}
-      >
-        <animated.div {...bind()} >
+      <animated.div {...bind()} >
+        {/* <animated.div style={{ xPos }}> */}
+          <Backdrop open={open} onClick={handleClose} />
           <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
-        </animated.div>
-      </Modal>
+        {/* </animated.div> */}
+      </animated.div>
     </TableContainer>
   )
 }

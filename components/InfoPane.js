@@ -1,6 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
-import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, } from '@mui/material'; //Popper, Fade, ClickAwayListener 
+import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card } from '@mui/material'; //Popper, Fade, ClickAwayListener 
 import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButton from './buttons/FavoriteButton';
@@ -23,11 +22,7 @@ export default function InfoPane(props) {
   if (!props.info) return
   const row = props.info
   const imageLoader = ({ src }) => `${row.image}`
-
-  const handleClick = () => {
-    setOpen(true);
-    navigator.clipboard.writeText(urlBase + row.id);
-  };
+  const handleClick = () => { setOpen(true); navigator.clipboard.writeText(urlBase + row.id); };
 
   const currentTime = new Date();
   const dateTimeStart = new Date(row.dateTimeStart);
@@ -40,13 +35,15 @@ export default function InfoPane(props) {
 
   return (
     <Dialog
+      id="dialog-infopane"
       open={props.openState}
       TransitionComponent={Transition}
       keepMounted
       onClose={props.handleCloseFunction}
       aria-describedby="alert-dialog-slide-description"
-      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }} PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } }, backgroundColor: "#120C18" }}
-      hideBackdrop="true"
+      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }}
+      PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } } }}
+      hideBackdrop={true}
     >
       <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: "#120C18" }}>
         <InfopaneHead>
@@ -127,7 +124,7 @@ export default function InfoPane(props) {
             className='non_select'
             sx={{
               lineHeight: '150%',
-              cursor: 'pointer',
+              cursor: 'default',
               width: '100%',
               overflow: "auto",
             }}

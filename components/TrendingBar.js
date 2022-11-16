@@ -23,7 +23,7 @@ export default function TrendingBar() {
     const eventsContext = useEventsContext()
     // const [topCreators, setTopCreators] = React.useState([])
     const topThreeEvents = eventsContext.filter(array => { if ((array.dateTimeEnd > currentTime.toISOString()) && (array.dateTimeStart < currentTime.toISOString())&& array.totalAttendees) { return array } })
-        .sort((a, b) => a.totalAttendees < b.totalAttendees ? 1 : -1).slice(0, 3);
+        .sort((a, b) => a.totalAttendees < b.totalAttendees ? 1 : -1);
     const [infoPaneInfo, setInfoPaneInfo] = React.useState(null)
     const [open, setOpen] = React.useState(false)
     const handleClose = () => setOpen(false)
@@ -132,7 +132,7 @@ export default function TrendingBar() {
                                             {eventsContext.length === 0 ? <span>Loading..</span> :
                                                 <span>
                                                     {
-                                                        topThreeEvents.map((item, i) => (
+                                                        [...new Map(topThreeEvents.map((m) => [m.createdByUser, m])).values()].splice(0,3).map((item, i) => (
                                                             < span key={i}>
                                                                 {item.createdByUser} < br />
                                                             </span>
