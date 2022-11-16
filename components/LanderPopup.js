@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { styled } from "@mui/system"
 import Button from "@mui/material/Button"
 import Grid from "@mui/material/Grid"
@@ -13,6 +13,7 @@ import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import CloseIcon from '@mui/icons-material/Close';
+import Cookies from 'universal-cookie';
 
 const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
@@ -83,6 +84,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function Home(props) {
   const [open, setOpen] = useState(true)
+  const cookies = new Cookies('registered');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -91,6 +93,17 @@ export default function Home(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(()=>{
+    if (cookies.get('registered')) {
+      setOpen(false); //Modal does not open if cookie exists
+    } else if (!cookies.get('registered')) {
+       cookies.set('registered', 'true', {
+        path: '/',
+       });
+       setOpen(true); //Creates a cookie and shows modal.
+    }
+  },[])
 
   return (
         <Wrapper>
