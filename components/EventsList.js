@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Modal, Backdrop } from "@mui/material";
 import Image from 'next/image'
 import FavoriteButton from './buttons/FavoriteButton'
 import { platformLogos } from '../src/static/StaticVariables'
 import InfoPane from './InfoPane'
-import { useFiltersPlatformsContext, useEventsContext, useFiltersCategoriesContext, useFavoritesContext, useFiltersFavoritesContext, useFiltersSearchContext } from './ContextProvider'
+import { useAppContext, useContextUpdate, useFiltersPlatformsContext, useEventsContext, useFiltersCategoriesContext, useFavoritesContext, useFiltersFavoritesContext, useFiltersSearchContext } from './ContextProvider'
+import { animated } from 'react-spring'
+import { useDrag } from 'react-use-gesture'
 
 const currentTime = new Date();
 
@@ -23,9 +25,7 @@ function Row(props) {
   const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
   const dateStyled = (dateTimeStart < currentTime) ? "Active" : (formattedStartDate + ", " + formattedStartTime)
   const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ending " + (formattedEndDate + " @ " + formattedEndTime + ")")) : (formattedStartDate + " @ " + formattedStartTime + " - " + formattedEndDate + " @ " + formattedEndTime)
-
   // if (dateTimeStart > currentTime) { console.log ("Upcoming", row.name, dateTimeStart, currentTime)}
-
   const platLogo = platformLogos[row.platformId]
 
   return (
@@ -76,7 +76,7 @@ export default function EventsList() {
   const filteredArray = array => {
     if (array.dateTimeEnd < currentTime.toISOString()) { return }
     if (filtersSearchContext && filtersSearchContext.length !== 0) {
-      if (array.name.toLowerCase().includes(filtersSearchContext)) { return array}
+      if (array.name.toLowerCase().includes(filtersSearchContext)) { return array }
       else { return }
     }
     if (filtersFavoritesContext && favoritesContext && !favoritesContext.includes(array.id)) return
@@ -94,6 +94,9 @@ export default function EventsList() {
       }
     }
   }
+
+
+  const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => { if (!down && mx < -75) handleClose() })
 
   return (
     <TableContainer style={{ overflowX: 'auto' }}>
@@ -128,7 +131,21 @@ export default function EventsList() {
           <TableBody />
         }
       </Table>
-      <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open}/>
+      <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      open={open}
+      onClose={() => setOpen(false)}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <animated.div {...bind()} >
+        <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
+      </animated.div>
+      </Modal>
     </TableContainer>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, } from '@mui/material'; //Popper, Fade, ClickAwayListener 
 import Image from 'next/image'
 import { styled } from "@mui/system"
@@ -8,54 +8,18 @@ import FavoriteButton from './buttons/FavoriteButton';
 const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
 
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
-const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px"}));
-const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative'}));
+const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px" }));
+const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative' }));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
 const InfopaneInfo = styled(Grid)(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', marginTop: '15px', padding: '5px 10px' }));
-const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': {display: 'none'}, scrollbarWidth: "none" }));
+const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
 const ButtonContainer = styled(Grid)(({ theme }) => ({ [theme.breakpoints.down("xs")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0 }, }, }));
-// const InfopaneButton = styled(Button)(({ theme }) => ({
-//   fontFamily: "Inter", 
-//   fontSize: "min(2vw, 12px)", 
-//   fontWeight: "500", 
-//   textAlign: "center", 
-//   color: "white", 
-//   background: "transparent",
-//   border: "1px solid white", 
-//   borderRadius: "0.4rem", 
-//   padding: "0.46rem", 
-//   cursor: "pointer", 
-//   "&:hover": { 
-//     border: "1px solid #dd00ff", 
-//     color: "#dd00ff", 
-//     background: "transparent" },
-//   "&:active": { 
-//     color: "#dd00ff", 
-//     backgroundColor: "#000000" },
-// }));
-
-const InfopaneButton = styled(Button)(({ theme }) => ({
-  color: "#f5f3f7", 
-  backgroundColor: '#21172a', 
-  fontSize: "clamp(8px, 1vw, 14px)", 
-  borderRadius: '6px',
-  padding: "0.46rem",
-  marginRight: '10px',
-  "&:hover": {
-      color: "#dd00ff",
-      backgroundColor: "#1c1425"
-  },
-  "&:active": {
-    color: "#dd00ff",
-    backgroundColor: "#120C18"
-  },
-}));
-
+const InfopaneButton = styled(Button)(({ theme }) => ({ color: "#f5f3f7", backgroundColor: '#21172a', fontSize: "clamp(8px, 1vw, 14px)", borderRadius: '6px', padding: "0.46rem", marginRight: '10px', "&:hover": { color: "#dd00ff", backgroundColor: "#1c1425" }, "&:active": { color: "#dd00ff", backgroundColor: "#120C18" } }));
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
 
 export default function InfoPane(props) {
   const [open, setOpen] = React.useState(false);
-  React.useEffect(()=> { setOpen(false); return () => {}},[props.openState])
+  React.useEffect(() => { setOpen(false); return () => { } }, [props.openState])
   if (!props.info) return
   const row = props.info
   const imageLoader = ({ src }) => `${row.image}`
@@ -64,7 +28,7 @@ export default function InfoPane(props) {
     setOpen(true);
     navigator.clipboard.writeText(urlBase + row.id);
   };
-  
+
   const currentTime = new Date();
   const dateTimeStart = new Date(row.dateTimeStart);
   const dateTimeEnd = new Date(row.dateTimeEnd);
@@ -81,16 +45,7 @@ export default function InfoPane(props) {
       keepMounted
       onClose={props.handleCloseFunction}
       aria-describedby="alert-dialog-slide-description"
-      sx={{
-        opacity: "100",
-        backgroundColor: "#120C18",
-        width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' },
-        maxWidth: { xs: '100vw', sm: '1000px' },
-        height: '100vh',
-        borderRight: '1px solid #2e2e2e',
-      }}
-      PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } }, backgroundColor: "#120C18" }}
-      // BackdropProps={{style: {backgroundColor: "#120C18"}}}
+      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }} PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } }, backgroundColor: "#120C18" }}
       hideBackdrop="true"
     >
       <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: "#120C18" }}>
@@ -113,11 +68,11 @@ export default function InfoPane(props) {
               </a>
             </InfopaneButton>
           </Grid>
-            <Grid item marginLeft={1} sx={{ flex: '1 0 40%' }}>
-              <InfopaneButton fullWidth aria-describedby="infopane-link-button" variant="contained" onClick={handleClick}>
-                {open ? "Link copied" : "Share Event"}
-              </InfopaneButton>
-            </Grid>
+          <Grid item marginLeft={1} sx={{ flex: '1 0 40%' }}>
+            <InfopaneButton fullWidth aria-describedby="infopane-link-button" variant="contained" onClick={handleClick}>
+              {open ? "Link copied" : "Share Event"}
+            </InfopaneButton>
+          </Grid>
         </ButtonContainer>
         <InfopaneInfo>
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
@@ -169,6 +124,7 @@ export default function InfoPane(props) {
         <InfopaneDescription>
           <DialogContentText
             id="alert-dialog-slide-description"
+            className='non_select'
             sx={{
               lineHeight: '150%',
               cursor: 'pointer',

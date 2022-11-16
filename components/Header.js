@@ -1,15 +1,13 @@
 import React from 'react'
 import { styled } from "@mui/system"
-// import ProfileButton from './buttons/ProfileButton'
-import Button from '@mui/material/Button'
 import Image from 'next/image'
 import IconButton from '@mui/material/Button'
 import ThemeProvider from "../Theme"
 import Link from 'next/link'
 import AuthPopup from './AuthPopup'
 import WatchlistButton from './buttons/WatchlistButton'
-import { Auth } from 'aws-amplify'
-import { useLoginContext, useFiltersContextUpdate, useFiltersPlatformsContext, useFiltersCategoriesContext, useFiltersSearchContext, useAppContext } from './ContextProvider'
+import { useAppContext } from './ContextProvider'
+import GetUser from '../src/auth/GetUser'
 
 const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0px 10px 0px 0px", display: "flex", alignItems: "center", justifyContent: "space-between"}))
 const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
@@ -23,7 +21,7 @@ const ProfileButton = styled("button")(({ theme }) => ({ fontFamily: "Inter", fo
 const Header = (props) => {
   const [headerOpen, setHeaderOpen] = React.useState(false)
   const loginCreds = useAppContext().loginCreds
-  const searchFilter = useFiltersSearchContext()
+  const user = GetUser(loginCreds)
 
   return (
     <ThemeProvider>
@@ -36,8 +34,6 @@ const Header = (props) => {
               </IconButton>
             </Logo>
           </Link>
-          {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={eventsUpdate}/> */}
-          {/* <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => clearFilters.clearFilters()}/> */}
           <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log("")} />
         </LogoContainer>
         <RightContainer>
@@ -51,7 +47,7 @@ const Header = (props) => {
               <WatchlistButton />
               <Link href="/profile">
                 <ProfileButton disableRipple id="basic-button" sx={{ marginRight: "-9px" }} style={{ backgroundColor: 'transparent' }} onClick={() => setHeaderOpen(false)}>
-                  G
+                  {(user && user.attributes.email) ? user.attributes.email.charAt(0).toUpperCase() : "G"}
                 </ProfileButton>
               </Link>
             </div>

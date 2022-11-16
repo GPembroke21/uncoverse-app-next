@@ -12,27 +12,9 @@ import Typography from '@mui/material/Typography';
 import { useEventsContext, useFiltersCategoriesContext, useFiltersContextUpdate } from './ContextProvider';
 import InfoPane from './InfoPane';
 
-const Wrapper = styled("div")(({ theme }) => ({ 
-    overflow: "hidden", 
-    padding: "0 0", 
-    background: "transparent", 
-    boxShadow: "3" 
-}));
-
-const Main = styled(Grid)(({ theme }) => ({ 
-    color: "#ffffff", 
-    justifyContent: "center", 
-    alignItems: "top", 
-    direction: "row", 
-    marginTop: "4px" 
-}));
-
-const TrendingCard = styled(Card)(({ theme }) => ({ 
-    color: "white",
-    borderRadius: "10px",
-    background: theme.palette.card.trending,
-}));
-
+const Wrapper = styled("div")(({ theme }) => ({ overflow: "hidden", padding: "0 0", background: "transparent", boxShadow: "3" }));
+const Main = styled(Grid)(({ theme }) => ({ color: "#ffffff", justifyContent: "center", alignItems: "top", direction: "row", marginTop: "4px" }));
+const TrendingCard = styled(Card)(({ theme }) => ({ color: "white", borderRadius: "10px", background: theme.palette.card.trending }));
 const currentTime = new Date();
 
 export default function TrendingBar() {

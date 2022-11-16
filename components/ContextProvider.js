@@ -53,6 +53,7 @@ export function ContextProvider({ children }) {
         favoriteEvents: favoriteEvents,
         filtersSearch: filtersSearch,
         filtersPlatforms: filtersPlatforms,
+        filtersCategories: filtersCategories,
         filtersFavorites: filtersFavorites,
     })
 
@@ -75,6 +76,7 @@ export function ContextProvider({ children }) {
     }
 
     const updateContext = {
+        updateEventList: () => setGetMoreEvents(prevValue => !prevValue),
         updateSearch: item => {
             if (filtersPlatforms && filtersPlatforms.length !== 0) { setFiltersPlatform([]) };
             if (filtersCategories && filtersCategories.length !== 0) { setFiltersCategories([]) };
@@ -85,6 +87,21 @@ export function ContextProvider({ children }) {
         updateCategory: item => { if (filtersSearch && filtersSearch !== "") { setFiltersSearch("") }; setFiltersCategories(item) },
         toggleFavorites: () => { if (filtersSearch && filtersSearch !== "") { setFiltersSearch("") }; setFiltersFavorites(!filtersFavorites) },
         clearFilters: () => { setFiltersSearch(""), setFiltersPlatform([]), setFiltersCategories([]), setFiltersFavorites(false) },
+        addFavorite: item => {
+            if (favoriteEvents && !favoriteEvents.includes(item)) {
+                setFavoriteEvents(prevArray => {
+                    StoreInteraction({ creds: loginCreds, favArray: [...prevArray, item] })
+                    return [...prevArray, item]
+                })
+            }
+        },
+        removeFavorite: item => {
+            if (favoriteEvents && favoriteEvents.includes(item)) {
+                const newArray = favoriteEvents.filter(i => i !== item)
+                StoreInteraction({ creds: loginCreds, favArray: newArray })
+                setFavoriteEvents(newArray)
+            }
+        }
     }
 
     useEffect(() => {
