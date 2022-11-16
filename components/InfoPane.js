@@ -10,7 +10,7 @@ const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems:
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px" }));
 const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative' }));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
-const InfopaneInfo = styled(Grid)(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', marginTop: '15px', padding: '5px 10px' }));
+const InfopaneInfo = styled(Grid)(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', marginTop: '15px', padding: '5px 10px', cursor: 'default' }));
 const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
 const ButtonContainer = styled(Grid)(({ theme }) => ({ [theme.breakpoints.down("xs")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0 }, }, }));
 const InfopaneButton = styled(Button)(({ theme }) => ({ color: "#f5f3f7", backgroundColor: '#21172a', fontSize: "clamp(8px, 1vw, 14px)", borderRadius: '6px', padding: "0.46rem", marginRight: '10px', "&:hover": { color: "#dd00ff", backgroundColor: "#1c1425" }, "&:active": { color: "#dd00ff", backgroundColor: "#120C18" } }));
@@ -59,11 +59,11 @@ export default function InfoPane(props) {
         </InfopaneHead>
         <ButtonContainer container>
           <Grid item marginRight={1} sx={{ flex: '1 0 40%' }}>
-            <InfopaneButton fullWidth variant="contained">
-              <a href={row.url} target="_blank" rel="noreferrer noopener">
+            <a href={row.url} target="_blank" rel="noreferrer noopener">
+              <InfopaneButton fullWidth variant="contained">
                 Jump to Event
-              </a>
-            </InfopaneButton>
+              </InfopaneButton>
+            </a>
           </Grid>
           <Grid item marginLeft={1} sx={{ flex: '1 0 40%' }}>
             <InfopaneButton fullWidth aria-describedby="infopane-link-button" variant="contained" onClick={handleClick}>

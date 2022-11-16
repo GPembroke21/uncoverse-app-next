@@ -25,7 +25,6 @@ const UncoverseContainer = styled(Grid)(({ theme }) => ({
     display: "flex", 
     justifyContent: 'flex-start',
     alignItems: "center", 
-    // flexDirection: "row",
 }));
 
 const UncoverseLogo = styled(Box)(({ theme }) => ({ 
@@ -37,27 +36,11 @@ const Main = styled(Grid)(({ theme }) => ({
     width: "100%",
     justifyContent: "space-between",
     alignItems: "center",
-    // overflow: "hidden",
-    // marginLeft: 0,
-    // marginRight: 0,
 }));
 
-const LanderImageContainer = styled(Box)(({ theme }) => ({
-    // position: 'absolute',
-    // justifyContent: "flex-end",
-    // alignItems: "flex-end",
-    // bottom: 0,
-    // right: 0,
-}));
+const LanderImageContainer = styled(Box)(({ theme }) => ({}));
 
-const LanderTextContainer = styled(Box)(({ theme }) => ({
-    // position: 'absolute',
-    // justifyContent: "flex-start",
-    // alignItems: "flex-start",
-    // top: 0,
-    // left: 0,
-    // marginTop: "-150px"
-}));
+const LanderTextContainer = styled(Box)(({ theme }) => ({}));
 
 const LogoBar = styled(Grid)(({ theme }) => ({
     // flex: "1",
@@ -96,12 +79,12 @@ export default function Home(props) {
 
   useEffect(()=>{
     if (cookies.get('registered')) {
-      setOpen(false); //Modal does not open if cookie exists
+      setOpen(false);
     } else if (!cookies.get('registered')) {
        cookies.set('registered', 'true', {
         path: '/',
        });
-       setOpen(true); //Creates a cookie and shows modal.
+       setOpen(true);
     }
   },[])
 
@@ -122,7 +105,7 @@ export default function Home(props) {
             }}
             PaperProps= {{
                 style: { width: "100vw", height: "100vh"},
-                sx: {padding: "0rem 2rem", overflow: "hidden"}
+                sx: {padding: "0rem 2rem", overflow: "hidden", backgroundColor: (theme) => theme.palette.background.default}
             }}
             >
             <IconButton
@@ -187,12 +170,9 @@ export default function Home(props) {
             </LanderTextContainer>
             <LanderImageContainer 
                 position="relative" 
-                // width="clamp(1rem, 50vw, 50rem)" 
-                // height="clamp(1rem, 50vw, 50rem)"
                 sx={{
                     width: {xs: "100vw" , sm: "clamp(1rem, 50vw, 50rem)"}, 
-                    height: {xs: "100vw" , sm: "clamp(1rem, 50vw, 50rem)"},
-                    
+                    height: {xs: "100vw" , sm: "clamp(1rem, 50vw, 50rem)"},            
                     // marginRight: {xs: "0" , sm: "0", md: "20px", lg: "30px", xl: "40px"}
                 }}
                 >
