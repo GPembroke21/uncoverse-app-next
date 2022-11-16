@@ -12,7 +12,17 @@ import Footer from '../components/Footer'
 import LanderPopup from '../components/LanderPopup'
       
 Amplify.configure({ ...awsExports, ssr: true })
-const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto", position: "relative", minHeight: "100vh" }));
+const Wrapper = styled("div")(({ theme }) => ({ 
+  maxWidth: 1600, 
+  margin: "0 auto", 
+  position: "relative", 
+  minHeight: "100vh",
+  msOverflowStyle: "none",
+  scrollbarWidth: "none", 
+  '&::-webkit-scrollbar': {
+    display: 'none'
+  }, 
+}));
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -12,7 +12,7 @@ const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px"}));
 const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative'}));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
 const InfopaneInfo = styled(Grid)(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', marginTop: '15px', padding: '5px 10px' }));
-const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto' }));
+const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': {display: 'none'}, scrollbarWidth: "none" }));
 const ButtonContainer = styled(Grid)(({ theme }) => ({ [theme.breakpoints.down("xs")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0 }, }, }));
 // const InfopaneButton = styled(Button)(({ theme }) => ({
 //   fontFamily: "Inter", 
@@ -51,8 +51,6 @@ const InfopaneButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-// const LinkCopiedPopper = styled(Popper)(({ theme }) => ({ zIndex:"1500", backgroundColor: "transparent", color: "white", fontSize: "12px" }));
-
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
 
 export default function InfoPane(props) {
@@ -61,30 +59,11 @@ export default function InfoPane(props) {
   if (!props.info) return
   const row = props.info
   const imageLoader = ({ src }) => `${row.image}`
-  
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-
-  // const initialText = 'Share Event';
-  // const [buttonText, setButtonText] = useState(initialText)
 
   const handleClick = () => {
-    // setAnchorEl(event.currentTarget);
     setOpen(true);
     navigator.clipboard.writeText(urlBase + row.id);
-    // setButtonText('Link Copied');
-    // setTimeout(() => setAnchorEl(null), 3000);
   };
-
-  // setTimeout(() => {
-  //   setButtonText(initialText);
-  // }, 1000);
-
-  // const handleClickAway = () => {
-  //   setOpen(false);
-  // };
-
-  // const canBeOpen = open && Boolean(anchorEl);
-  // const id = canBeOpen ? 'transition-popper' : undefined;
   
   const currentTime = new Date();
   const dateTimeStart = new Date(row.dateTimeStart);
@@ -134,22 +113,11 @@ export default function InfoPane(props) {
               </a>
             </InfopaneButton>
           </Grid>
-          {/* <ClickAwayListener onClickAway={handleClickAway}> */}
             <Grid item marginLeft={1} sx={{ flex: '1 0 40%' }}>
               <InfopaneButton fullWidth aria-describedby="infopane-link-button" variant="contained" onClick={handleClick}>
                 {open ? "Link copied" : "Share Event"}
               </InfopaneButton>
-              {/* <LinkCopiedPopper id={id} open={open} anchorEl={anchorEl} transition>
-                {({ TransitionProps }) => (
-                  <Fade {...TransitionProps} timeout={350}>
-                    <Box sx={{ border: 1, p: 1 , bgcolor: 'black', color: "white", border: "1px solid white", borderRadius: "0.4rem", mt: '15px'}}>
-                      Link Copied
-                    </Box>
-                  </Fade>
-                )}
-              </LinkCopiedPopper> */}
             </Grid>
-          {/* </ClickAwayListener> */}
         </ButtonContainer>
         <InfopaneInfo>
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
@@ -206,14 +174,7 @@ export default function InfoPane(props) {
               cursor: 'pointer',
               width: '100%',
               overflow: "auto",
-              msOverflowStyle: "none",
-              scrollbarWidth: "none",
-              '&::-webkit-scrollbar': {
-                display: "none",
-                width: 0,
-              },
             }}
-            style={{ flex: 1, overflow: 'auto' }}
           >
             {row.description}
           </DialogContentText>

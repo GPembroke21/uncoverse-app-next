@@ -35,7 +35,7 @@ const UncoverseLogo = styled(Box)(({ theme }) => ({
 const Main = styled(Grid)(({ theme }) => ({
     width: "100%",
     justifyContent: "space-between",
-    alignItems: "center", 
+    alignItems: "center",
     // overflow: "hidden",
     // marginLeft: 0,
     // marginRight: 0,
@@ -64,13 +64,13 @@ const LogoBar = styled(Grid)(({ theme }) => ({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    margin: '12px 0px 12px 0px'
+    margin: '6px 0px 12px 0px'
   }));
   
   const Logo = styled(Box)(({ theme }) => ({
     position: 'relative',
-    height: "clamp(2rem, 4vw, 4rem)",
-    width: "clamp(2rem, 4vw, 4rem)",
+    height: "clamp(2rem, 3.1vw, 3rem)",
+    width: "clamp(2rem, 3.1vw, 3rem)",
     border: "1px solid #252425",
     borderRadius: "25px",
     backgroundColor: '#252425',
@@ -101,10 +101,15 @@ export default function Home(props) {
             TransitionComponent={Transition}
             sx={{
               backgroundColor: (theme) => theme.palette.background.default,
-              padding: "0rem 1rem 0rem 2rem",
               maxWidth: "1600px",
               margin: "0 auto",
               overflow: "hidden",
+              height: "100vh"
+            //   position: "relative",
+            }}
+            PaperProps= {{
+                style: { width: "100vw", height: "100vh"},
+                sx: {padding: "0rem 2rem", overflow: "hidden"}
             }}
             >
             <IconButton
@@ -120,11 +125,11 @@ export default function Home(props) {
             >
               <CloseIcon />
             </IconButton>
-            <UncoverseContainer>
+            <UncoverseContainer sx={{mb:"-30px"}}>
                 <UncoverseLogo>
                     <Image src="/uv-logo.svg" alt='Uncoverse Logo' width="40vw" height="40vw" />
                 </UncoverseLogo>
-                <Typography variant="h1" sx={{fontSize: "clamp(36px, 4vw, 48px)", mb: "8px"}}>uncoverse</Typography>
+                <Typography variant="h1" sx={{fontSize: "clamp(36px, 4vw, 48px)", mb: "9px"}}>uncoverse</Typography>
             </UncoverseContainer>
 
             <Main container flexDirection="row">
@@ -134,10 +139,19 @@ export default function Home(props) {
                     marginBottom: {xs: "10vw" , sm: "0px",},
                 }}
             >
-                <Typography variant="h1" sx={{fontSize: "clamp(24px, 2vw, 56px)"}}>
+                <Typography 
+                    variant="h1" 
+                    sx={{
+                        fontSize: {xs: "clamp(24px, 2vw, 56px)" , sm: "clamp(24px, 2vw, 56px)", md: "clamp(24px, 3vw, 72px)", lg: "clamp(24px, 3vw, 72px)", xl: "clamp(24px, 2vw, 56px)"}
+                        }}
+                >
                 Where Metaverses Meet
                 </Typography>
-                <Typography variant="h2" sx={{fontSize: "clamp(16px, 1vw, 42px)"}}>
+                <Typography 
+                    variant="h2" 
+                    sx={{
+                        fontSize: {xs: "clamp(16px, 1vw, 42px)" , sm: "clamp(16px, 1vw, 42px)", md: "clamp(16px, 1.75vw, 56px)", lg: "clamp(16px, 1.75vw, 56px)", xl: "clamp(16px, 1vw, 42px)"}
+                        }}>
                 Your Virtual Event Discovery Engine
                 </Typography>
                 <LogoBar>
@@ -165,6 +179,8 @@ export default function Home(props) {
                 sx={{
                     width: {xs: "100vw" , sm: "clamp(1rem, 50vw, 50rem)"}, 
                     height: {xs: "100vw" , sm: "clamp(1rem, 50vw, 50rem)"},
+                    
+                    // marginRight: {xs: "0" , sm: "0", md: "20px", lg: "30px", xl: "40px"}
                 }}
                 >
                 <Image src="/landerimage.svg" alt='Lander Image' layout='fill' objectFit="contain" unoptimized={true}/>
