@@ -27,7 +27,7 @@ export default function Searchbar() {
       <InputBase
         // sx={{ flex: 1, color: "white", fontSize: "clamp(8px, 1vw, 14px)", backgroundColor: "#252425", borderRadius: "7px", height: "2.5em", width: "11em", maxWidth: '500px', marginRight: "10px", paddingLeft: 1.5 }}
         sx={{ backgroundColor: (theme) => theme.palette.button.main, color: (theme) => theme.palette.button.text, }}
-        style={{width: "100%", height: "100%", fontSize: "clamp(8px, 1vw, 14px)", paddingLeft: 10, borderRadius: "7px"}}
+        style={{width: "100%", height: "100%", fontSize: "clamp(8px, 1vw, 14px)", paddingLeft: 15, borderRadius: "7px"}}
         placeholder="Search"
         inputProps={{ 'aria-label': 'search' }}
         onChange={handleChange}

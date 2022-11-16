@@ -14,7 +14,7 @@ import LanderPopup from '../components/LanderPopup'
 import TagManager, { TagManagerArgs } from 'react-gtm-module'
 
 Amplify.configure({ ...awsExports, ssr: true })
-const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto", position: "relative", minHeight: "100vh", msOverflowStyle: "none", scrollbarWidth: "none", '&::-webkit-scrollbar': { display: 'none' } }));
+const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto", position: "relative", minHeight: "100vh"}));
 
 function MyApp({ Component, pageProps }) {
   // const tagManagerArgs = {gtmId: 'GTM-NP4XFZG'};

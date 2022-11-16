@@ -2,7 +2,7 @@ import React from 'react';
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card } from '@mui/material'; //Popper, Fade, ClickAwayListener 
 import Image from 'next/image'
 import { styled } from "@mui/system"
-import FavoriteButton from './buttons/FavoriteButton';
+import FavoriteButtonLarge from './buttons/FavoriteButtonLarge';
 
 const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
 
@@ -52,7 +52,7 @@ export default function InfoPane(props) {
             <InfopaneImage>
               <Image loader={imageLoader} src={row.image} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />
               <FavoriteButtonContainer>
-                <FavoriteButton eventId={row.id} sx={{ cursor: 'pointer' }} />
+                <FavoriteButtonLarge eventId={row.id} sx={{ cursor: 'pointer' }} />
               </FavoriteButtonContainer>
             </InfopaneImage>
           </DialogContentText>
