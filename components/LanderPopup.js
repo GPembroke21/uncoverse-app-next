@@ -77,16 +77,16 @@ export default function Home(props) {
     setOpen(false);
   };
 
-  // useEffect(()=>{
-  //   if (cookies.get('registered')) {
-  //     setOpen(false);
-  //   } else if (!cookies.get('registered')) {
-  //      cookies.set('registered', 'true', {
-  //       path: '/',
-  //      });
-  //      setOpen(true);
-  //   }
-  // },[])
+  useEffect(()=>{
+    if (cookies.get('registered')) {
+      setOpen(false);
+    } else if (!cookies.get('registered')) {
+       cookies.set('registered', 'true', {
+        path: '/',
+       });
+       setOpen(true);
+    }
+  },[])
 
   return (
         <Wrapper>

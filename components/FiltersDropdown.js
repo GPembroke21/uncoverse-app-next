@@ -11,7 +11,7 @@ const Wrapper = styled("div")(({ theme }) => ({ width: "100%", padding: "0rem 1r
 const FiltersContainer = styled("div")(({ theme }) => ({ margin: "0.6rem 0rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const FilterButton = styled(Button)(({ theme }) => ({ color: "white", backgroundColor: "#21172a", fontSize: "clamp(8px, 1vw, 14px)", padding: '0px 10px', borderRadius: '7px', marginRight: '10px', height: "2.5em", maxWidth: "fit-content", minWidth: "fit-content", "&:hover": { color: "#dd00ff", backgroundColor: "#21172a" } }));
 const DropdownContainer = styled("div")(({ theme }) => ({ margin: "0.6rem 0rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center", width: "100%", overflow: "auto", msOverflowStyle: "none", scrollbarWidth: "none", '&::-webkit-scrollbar': { display: "none", width: 0 } }));
-const ClearFilterButton = styled(Button)(({ theme }) => ({ color: "white", backgroundColor: "#21172a", fontSize: "clamp(8px, 1vw, 14px)", padding: '0px 10px', borderRadius: '7px', marginRight: '10px', height: "2.5em", width: "11em", "&:hover": { color: "#dd00ff", backgroundColor: "#252425" } }));
+const ClearFilterButton = styled(Button)(({ theme }) => ({ color: "white", backgroundColor: "#21172a", fontSize: "clamp(8px, 1vw, 14px)", padding: '0px 10px', borderRadius: '7px', marginRight: '10px', height: "2.5em", width: "11em", "&:hover": { color: "#dd00ff", backgroundColor: "#21172a" } }));
 
 export default function FiltersDropdown() {
   const [filterShown, setfilterShown] = useState({ Platform: false, Category: false })

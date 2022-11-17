@@ -13,7 +13,7 @@ import { useEventsContext, useFiltersCategoriesContext, useFiltersContextUpdate 
 import InfoPane from './InfoPane';
 
 const Wrapper = styled("div")(({ theme }) => ({ overflow: "hidden", padding: "0 0", background: "transparent", boxShadow: "3" }));
-const Main = styled(Grid)(({ theme }) => ({ color: "#ffffff", justifyContent: "center", alignItems: "top", direction: "row", marginTop: "4px" }));
+const Main = styled(Grid)(({ theme }) => ({ color: "#ffffff", justifyContent: "center", alignItems: "top", direction: "row", marginTop: "2px" }));
 const TrendingCard = styled(Card)(({ theme }) => ({ color: "white", borderRadius: "10px", background: theme.palette.card.trending }));
 const currentTime = new Date();
 
@@ -44,7 +44,7 @@ export default function TrendingBar() {
             <CssBaseline />
             <Wrapper sx={{ display: { xs: 'none', sm: 'revert' } }}>
                 <Main container>
-                    <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.9em'} sx={{ margin: "auto" }} zeroMinWidth>
+                    <Grid item xs flexGrow={1} padding={'0em 0.85em 0em 0.9em'} sx={{ margin: "auto" }} zeroMinWidth>
                         <TrendingCard sx={{width: 1}}>
                             <CardHeader sx={{ height: "20px", margin: "4px 0px 4px -2px", cursor: 'default' }}
                                 avatar={
@@ -109,7 +109,7 @@ export default function TrendingBar() {
                             </CardContent>
                         </TrendingCard>
                     </Grid>
-                    <Grid item xs flexGrow={1} padding={'0em 0.9em 0em 0.25em'} sx={{ margin: "auto" }}>
+                    <Grid item xs flexGrow={1} padding={'0em 0.9em 0em 0.85em'} sx={{ margin: "auto" }}>
                         <TrendingCard sx={{width: 1}}>
                             <CardHeader sx={{ height: "20px", margin: "4px 0px 4px -2px", cursor: 'default' }}
                                 avatar={
