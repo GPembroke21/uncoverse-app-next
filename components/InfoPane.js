@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButtonLarge from './buttons/FavoriteButtonLarge';
 
-const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
+const urlBase = "https://uncoverse.com/event?id="
 
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px" }));

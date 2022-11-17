@@ -40,7 +40,7 @@ export default function Event() {
                 </InfopaneHead>
                 <InfopaneInfo>
                     <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
-                        <InfopaneRow>
+                        <InfopaneRow onClick={()=> console.log(router)}>
                             <Box sx={{ marginRight: '10px' }}>
                                 <Image src="/creator.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
                             </Box>
