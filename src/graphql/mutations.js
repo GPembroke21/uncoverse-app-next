@@ -160,3 +160,48 @@ export const deleteEvent = /* GraphQL */ `
     }
   }
 `;
+export const createInteraction = /* GraphQL */ `
+  mutation CreateInteraction(
+    $input: CreateInteractionInput!
+    $condition: ModelInteractionConditionInput
+  ) {
+    createInteraction(input: $input, condition: $condition) {
+      id
+      registeredUserId
+      eventId
+      favorite
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateInteraction = /* GraphQL */ `
+  mutation UpdateInteraction(
+    $input: UpdateInteractionInput!
+    $condition: ModelInteractionConditionInput
+  ) {
+    updateInteraction(input: $input, condition: $condition) {
+      id
+      registeredUserId
+      eventId
+      favorite
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteInteraction = /* GraphQL */ `
+  mutation DeleteInteraction(
+    $input: DeleteInteractionInput!
+    $condition: ModelInteractionConditionInput
+  ) {
+    deleteInteraction(input: $input, condition: $condition) {
+      id
+      registeredUserId
+      eventId
+      favorite
+      createdAt
+      updatedAt
+    }
+  }
+`;

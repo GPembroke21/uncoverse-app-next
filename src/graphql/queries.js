@@ -110,3 +110,34 @@ export const listEvents = /* GraphQL */ `
     }
   }
 `;
+export const getInteraction = /* GraphQL */ `
+  query GetInteraction($id: ID!) {
+    getInteraction(id: $id) {
+      id
+      registeredUserId
+      eventId
+      favorite
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listInteractions = /* GraphQL */ `
+  query ListInteractions(
+    $filter: ModelInteractionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listInteractions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        registeredUserId
+        eventId
+        favorite
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

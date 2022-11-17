@@ -1,45 +1,100 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Header from '../components/Header'
-import HeaderBottom from '../components/HeaderBottom'
+import React from 'react';
 import { styled } from "@mui/system"
-import Button from "@mui/material/Button"
-import Divider from "@mui/material/Divider"
 import Grid from "@mui/material/Grid"
-import Typography from "@mui/material/Typography"
-import ThemeProvider from "../Theme"
-import Link from 'next/link'
-import CssBaseline from '@mui/material/CssBaseline'
-import Filters from '../components/Filters'
-import EventsList2 from '../components/EventsList2'
-import AdBar from '../components/AdBar'
 import Box from "@mui/material/Box"
-import FavoriteEvents from "../components/FavoriteEvents"
+import Typography from "@mui/material/Typography"
+import FavoriteEventCard from "../components/FavoriteEventCard"
+import { useEventsContext, useFavoritesContext } from '../components/ContextProvider';
+import Image from 'next/image'
 
 const Wrapper = styled("div")(({ theme }) => ({
-  // height: "100vh",
   overflow: "hidden",
   padding: "0 0",
-  background: "#000000",
+  background: "transparent",
 }));
 
-const Main = styled("div")(({ theme }) => ({
-  minHeight: "100vh", 
+const Main = styled(Grid)(({ theme }) => ({
   color: "#ffffff",
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  justifyContent: "flex-start",
+  marginLeft: 0,
+  marginRight: 0,
 }));
 
-export default function Test() {
+const Item = styled(Grid)(({ theme }) => ({
+  // margin: 'auto',
+  padding: '0em 1em 0em 1em',
+  marginBottom: -16,
+  width: 'calc(95% * (1/3) + 18px + 0px)',
+  [theme.breakpoints.between('xs', 'sm')]: {
+    flexGrow: '1',
+    width: 'calc(100% * (1) + 0px + 0px)',
+    "> div": {
+      // marginLeft: 0,
+      // marginRight: 0,
+    },
+  },
+  [theme.breakpoints.between('sm', 'md')]: {
+    width: 'calc(100% * (1/2) + 0px + 0px)',
+    "> div": {
+      // marginLeft: 0,
+      // marginRight: 0,
+    },
+  },
+  [theme.breakpoints.up('md')]: {
+    width: 'calc(100% * (1/3) + 0px + 0px)',
+    "> div": {
+      // marginLeft: 0,
+      // marginRight: 0,
+    },
+  },
+}));
+
+const EmptyStateContainer = styled(Grid)(({ theme }) => ({
+  color: "#ffffff",
+  display: "flex",
+  flexDirection: "column",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  alignItems: "center",
+  marginLeft: 0,
+  marginRight: 0,
+  marginTop: "15vh"
+}));
+
+
+export default function Watchlist(props) {
+  const eventsContext = useEventsContext()
+  const favoritesContext = useFavoritesContext()
+
+  const getFavoriteEvent = eventId => {
+    for (let i = 0; i < eventsContext.length; i++) {
+      if (eventsContext[i].id === eventId) return eventsContext[i]
+    }
+  }
+
   return (
-    <ThemeProvider>
-      <CssBaseline />
-      <Wrapper>
-        <Header/>
-          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <HeaderBottom/>
-          <Divider style={{backgroundColor: "#2e2e2e", width:"100%", height: "0.01px"}} />
-        <FavoriteEvents/>
-      </Wrapper>
-    </ThemeProvider>
+    <Wrapper>
+    {(!favoritesContext || favoritesContext.length == 0) ?
+      <EmptyStateContainer container>
+        <Box position="relative" sx={{width: {xs: "clamp(5rem, 50vw, 20rem)", sm: "clamp(5rem, 25vw, 12rem)"}, height: {xs: "clamp(5rem, 50vw, 20rem)", sm: "clamp(5rem, 25vw, 12rem)"}}}>
+            <Image src="/emptystate.svg" layout="fill" objectFit="contain"/>
+        </Box>
+        <Typography variant="h1" sx={{fontSize: "clamp(30px, 3vw, 70px)"}}>So much empty….</Typography>
+        <Typography variant="h2" sx={{fontSize: "clamp(15px, 2vw, 30px)"}}>Favorite some events to get started</Typography>
+      </EmptyStateContainer>
+      :
+      <Main container>
+        {favoritesContext.map((keyName, i) => (
+          <Item item key={i}>
+            <FavoriteEventCard item={getFavoriteEvent(keyName)} />
+          </Item>
+        ))}
+        {/* <button onClick={() => console.log(eventsContext[0])}>000</button> */}
+      </Main>
+    }
+    </Wrapper>
   )
 }

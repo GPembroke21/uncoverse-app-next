@@ -1,19 +1,28 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NextRequest } from "next/server";
-import Inter from "@fontsource/inter";
+import Inter from "typeface-inter";
+
 
 const theme = createTheme({
   palette: {
     background: {
-      default: "#000000",
-  },
-  primary: {
-    main: "#000000",
-  },
-  secondary: {
-    main: "#ffffff",
-    mainGradient: "linear-gradient(to right, tomato, cyan)",
-  },
+      default: "#120C18",
+    },
+    button: {
+      main: "#21172a",
+      hover: "#1c1425",
+      active: "#120C18",
+      text: "#f5f3f7",
+      hovertext: "#dd00ff",
+    },
+    card: {
+      main: "#33283e",
+      secondary: "#21172a",
+      trending: "#1c1425",
+    },
+    // divider: {
+    //   main: "#2e2e2e"
+    // },
   },
   typography: {
     fontFamily:
@@ -65,7 +74,7 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 900,
+      md: 1000,
       lg: 1200,
       xl: 1600,
     },
@@ -83,7 +92,8 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           transitionDuration: "0s",
-          fontFamily: "Inter"
+          fontFamily: "Inter",
+          textTransform: "none",
         },
       },
     },
@@ -112,10 +122,10 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "0.8rem",
-          backgroundColor: "transparent",
+          backgroundColor: "#252425",
           color: "white",
           '&:hover': {
-            backgroundColor: "#282b2f",
+            backgroundColor: "#252425",
           },
         },
       },
@@ -146,7 +156,7 @@ const theme = createTheme({
     MuiTableContainer: {
       styleOverrides: {
         root: {
-          backgroundColor: "rgb(0, 0, 0)",
+          backgroundColor: "transparent",
           border: "none",
           padding: "0em 1em 0em 1em",
         },
@@ -155,7 +165,7 @@ const theme = createTheme({
     MuiTable: {
       styleOverrides: {
         root: {
-          backgroundColor: "rgb(0, 0, 0)",
+          backgroundColor: "transparent",
           /*borderSpacing: "0.1rem",
           borderCollapse: "separate",*/
         },
@@ -164,7 +174,7 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          fontSize: "max(min(1.2vw, 36px), 8px)",
+          fontSize: "clamp(12px, 1.25vw, 18px)",
           color: "white",
           borderBottom: "1px solid #2e2e2e",
           padding: "10px 5px",
@@ -172,6 +182,7 @@ const theme = createTheme({
         head: {
           padding: "0px 5px",
           fontSize: "min(2vw, 12px)",
+          cursor: 'default'
         },
       },
     },
@@ -179,12 +190,24 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: "white",
+          borderBottom: "1px solid #2e2e2e",
           /*height: "0rem",*/
           /*'&:last-child td, &:last-child th': {
             borderRadius: "0px 10px 10px 0px"},
             '&:first-child td, &:first-child th': {
             borderRadius: "10px 0px 0px 10px"},*/
           /*borderBottom: "5px solid rgb(15, 15, 15)",*/
+        },
+      },
+    },
+    MuiTablePagination: {
+      styleOverrides: {
+        root: {
+          borderBottom: "none",
+        },
+        toolbar: {
+        },
+        spacer: {
         },
       },
     },
@@ -250,18 +273,47 @@ const theme = createTheme({
     MuiImageListItemBar: {
       styleOverrides: {
         title: {
-          color: "#737373",
-          fontSize: "min(2.9vw, 13px)",
+          color: "#f5f3f7",
+          // fontSize: "min(2.9vw, 13px)",
+          fontSize: "clamp(12px, 1.45vw, 14px)",
+          fontWeight: "400",
           margin: "-0.2rem 0rem 0rem 0rem"
         },
         subtitle: {
-          color: "white",
-          fontSize: "min(2.6vw, 13px)",
-          margin: "-0.2rem 0rem -0.2rem 0rem",
+          color: "#756c7c",
+          // fontSize: "min(2.6vw, 13px)",
+          fontSize: "clamp(10px, 1.25vw, 14px)",
+          fontWeight: "300",
+          margin: "0rem 0rem -0.2rem 0rem",
           padding: "0px 0px 1px 0px"
         },
       },
     },
+    MuiCardHeader: {
+      styleOverrides: {
+        avatar: {
+          margin: '0px 12px 0px -3px',
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        input: {
+          "&:-webkit-autofill": {
+            "WebkitBoxShadow": "0 0 0 100px #120C18 inset",
+            "WebkitTextFillColor": "white",
+          },
+        },
+      },
+    },
+    MuiDialogContentText: {
+      styleOverrides: {
+        root: {
+          fontSize: "clamp(10px, 1.5vw, 16px)",
+          color: 'white',
+        },
+      },
+    },   
   },
 });
 
