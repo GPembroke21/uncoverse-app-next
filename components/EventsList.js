@@ -132,10 +132,8 @@ export default function EventsList() {
         }
       </Table>
       <animated.div {...bind()} >
-        {/* <animated.div style={{ xPos }}> */}
-          <Backdrop open={open} onClick={handleClose} />
-          <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
-        {/* </animated.div> */}
+        <Backdrop open={open} onClick={handleClose} />
+        <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
       </animated.div>
     </TableContainer>
   )

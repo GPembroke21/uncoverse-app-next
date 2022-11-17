@@ -1,16 +1,12 @@
 import * as React from 'react';
 import Image from 'next/image'
-import { styled } from "@mui/system"
 import ThemeProvider from "../Theme"
-import Grid from "@mui/material/Grid"
-import Box from "@mui/material/Box"
-import CssBaseline from '@mui/material/CssBaseline'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Typography from '@mui/material/Typography';
+import { styled } from "@mui/system"
+import { Backdrop, Box, Card, CardContent, CardHeader, CssBaseline, Grid, Typography } from "@mui/material";
 import { useEventsContext, useFiltersCategoriesContext, useFiltersContextUpdate } from './ContextProvider';
 import InfoPane from './InfoPane';
+import { animated } from 'react-spring'
+import { useDrag } from 'react-use-gesture'
 
 const Wrapper = styled("div")(({ theme }) => ({ overflow: "hidden", padding: "0 0", background: "transparent", boxShadow: "3" }));
 const Main = styled(Grid)(({ theme }) => ({ color: "#ffffff", justifyContent: "center", alignItems: "top", direction: "row", marginTop: "4px" }));
@@ -21,11 +17,13 @@ export default function TrendingBar() {
     const filtersCategoriesContext = useFiltersCategoriesContext()
     const filtersContextUpdate = useFiltersContextUpdate()
     const eventsContext = useEventsContext()
-    // const [topCreators, setTopCreators] = React.useState([])
-    const topThreeEvents = eventsContext.filter(array => { if ((array.dateTimeEnd > currentTime.toISOString()) && (array.dateTimeStart < currentTime.toISOString())&& array.totalAttendees) { return array } })
-        .sort((a, b) => a.totalAttendees < b.totalAttendees ? 1 : -1);
     const [infoPaneInfo, setInfoPaneInfo] = React.useState(null)
     const [open, setOpen] = React.useState(false)
+
+    const topEvents = eventsContext.filter(array => { if ((array.dateTimeEnd > currentTime.toISOString()) && (array.dateTimeStart < currentTime.toISOString()) && array.totalAttendees) { return array } })
+        .sort((a, b) => a.totalAttendees < b.totalAttendees ? 1 : -1);
+    const topCreators = [...new Map(topEvents.filter(array => { if(array.createdByUser && array.createdByUser !== "") return array }).map((m) => [m.createdByUser, m])).values()]
+
     const handleClose = () => setOpen(false)
     const handelClick = event => {
         setInfoPaneInfo(event)
@@ -38,6 +36,7 @@ export default function TrendingBar() {
         else if (filtersCategoriesContext) { filtersContextUpdate.updateCategory(filtersCategoriesContext.concat(cat)) }
     }
     const styleCategoryButton = cat => { return (filtersCategoriesContext && filtersCategoriesContext.includes(cat)) ? { color: "#dd00ff" } : { color: "white" } }
+    const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => { if (mx < -75) handleClose() })
 
     return (
         <ThemeProvider>
@@ -45,14 +44,14 @@ export default function TrendingBar() {
             <Wrapper sx={{ display: { xs: 'none', sm: 'revert' } }}>
                 <Main container>
                     <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.9em'} sx={{ margin: "auto" }} zeroMinWidth>
-                        <TrendingCard sx={{width: 1}}>
+                        <TrendingCard sx={{ width: 1 }}>
                             <CardHeader sx={{ height: "20px", margin: "4px 0px 4px -2px", cursor: 'default' }}
                                 avatar={
                                     <Image src="/trendingevents.svg" alt='Top Events' width="20rem" height="20rem" />
                                 }
                                 title="Trending Events"
                                 titleTypographyProps={{ fontSize: 'clamp(12px, 1.45vw, 16px)', fontWeight: '600', color: "#f5f3f7", marginLeft: "-3px" }}
-                            // onClick={() => console.log(topThreeEvents)}
+                            // onClick={() => console.log(topEvents)}
                             />
                             {/* <Divider sx={{background:'#40454d'}}/> */}
                             <CardContent>
@@ -63,26 +62,29 @@ export default function TrendingBar() {
                                         </Typography>
                                     </Grid>
                                     {/* <Grid item> */}
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" sx={{whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}} lineHeight="175%">
-                                            {eventsContext.length === 0 ? <span>Loading..</span> :
-                                                <span>
-                                                    {
-                                                        topThreeEvents.slice(0, 3).map((item, i) => (
-                                                            < span key={i} onClick={() => handelClick(item)} style={{ cursor: 'pointer' }}>
-                                                                {item.name} < br />
-                                                            </span>
-                                                        ))
-                                                    }
-                                                </span>
-                                            }
-                                        </Typography>
+                                    <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" sx={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} lineHeight="175%">
+                                        {eventsContext.length === 0 ? <span>Loading..</span> :
+                                            <span>
+                                                {
+                                                    topEvents.slice(0, 3).map((item, i) => (
+                                                        < span key={i} onClick={() => handelClick(item)} style={{ cursor: 'pointer' }}>
+                                                            {item.name} < br />
+                                                        </span>
+                                                    ))
+                                                }
+                                            </span>
+                                        }
+                                    </Typography>
                                     {/* </Grid> */}
                                 </Grid>
                             </CardContent>
                         </TrendingCard>
                     </Grid>
+
+
+
                     <Grid item xs flexGrow={1} padding={'0em 0.25em 0em 0.25em'} sx={{ margin: "auto" }}>
-                        <TrendingCard sx={{width: 1}}>
+                        <TrendingCard sx={{ width: 1 }}>
                             <CardHeader sx={{ height: "20px", margin: "4px 0px 4px -2px", cursor: 'default' }}
                                 avatar={
                                     <Image src="/topcategories.svg" alt='Top Categories' width="20rem" height="20rem" />
@@ -109,15 +111,18 @@ export default function TrendingBar() {
                             </CardContent>
                         </TrendingCard>
                     </Grid>
+
+
+
                     <Grid item xs flexGrow={1} padding={'0em 0.9em 0em 0.25em'} sx={{ margin: "auto" }}>
-                        <TrendingCard sx={{width: 1}}>
+                        <TrendingCard sx={{ width: 1 }}>
                             <CardHeader sx={{ height: "20px", margin: "4px 0px 4px -2px", cursor: 'default' }}
                                 avatar={
                                     <Image src="/topcreators.svg" alt='Top Creators' width="20rem" height="20rem" />
                                 }
                                 title="Top Creators"
                                 titleTypographyProps={{ fontSize: 'clamp(12px, 1.45vw, 16px)', fontWeight: '600', color: "#f5f3f7", marginLeft: "-3px" }}
-                            // onClick={() => console.log(topCreators())}
+                                onClick={() => console.log(topCreators.splice(0, 3))}
                             />
                             {/* <Divider sx={{background:'#40454d'}}/> */}
                             <CardContent>
@@ -132,7 +137,7 @@ export default function TrendingBar() {
                                             {eventsContext.length === 0 ? <span>Loading..</span> :
                                                 <span>
                                                     {
-                                                        [...new Map(topThreeEvents.map((m) => [m.createdByUser, m])).values()].splice(0,3).map((item, i) => (
+                                                        topCreators.splice(0, 3).map((item, i) => (
                                                             < span key={i}>
                                                                 {item.createdByUser} < br />
                                                             </span>
@@ -148,7 +153,10 @@ export default function TrendingBar() {
                         </TrendingCard>
                     </Grid>
                 </Main>
-                <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
+                <animated.div {...bind()} >
+                    <Backdrop open={open} onClick={handleClose} />
+                    <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
+                </animated.div>
             </Wrapper>
         </ThemeProvider >
     )

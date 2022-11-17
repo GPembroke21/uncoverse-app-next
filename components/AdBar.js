@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Image from 'next/image';
+// import Image from 'next/image';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -11,7 +11,7 @@ export default function TitlebarBelowImageList() {
   const [horizontalScroll, setHorizontalScroll] = useState(0);
   const [scrollWidth, setScrollWidth] = useState();
   const [clientWidth, setClientWidth] = useState();
-  const imageLoader = ({ src }) => `${src}?w=248&fit=crop&auto=format`
+  // const imageLoader = ({ src }) => `${src}?w=248&fit=crop&auto=format`
 
   useEffect(() => {
     const imageListEl = document.querySelector("#imageList");
