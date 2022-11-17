@@ -9,7 +9,6 @@ import { animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 
 const currentTime = new Date();
-const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="left" ref={ref} {...props} /> })
 
 function Row(props) {
   const { row } = props;
