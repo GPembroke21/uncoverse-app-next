@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButtonLarge from './buttons/FavoriteButtonLarge';
 
-const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
+const urlBase = "https://www.uncoverse.com/event?id="
 
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px" }));
@@ -50,7 +50,7 @@ export default function InfoPane(props) {
           <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: '900', mb: '10px', mt: '0px', lineHeight: '100%' }}>{row.name}</DialogTitle>
           <DialogContentText component={'span'} sx={{ mb: '10px' }}>
             <InfopaneImage>
-              <Image loader={imageLoader} src={row.image} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />
+              <Image loader={imageLoader} src={row.image} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'default' }} position='relative' />
               <FavoriteButtonContainer>
                 <FavoriteButtonLarge eventId={row.id} sx={{ cursor: 'pointer' }} />
               </FavoriteButtonContainer>
@@ -72,7 +72,7 @@ export default function InfoPane(props) {
           </Grid>
         </ButtonContainer>
         <InfopaneInfo>
-          <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
+          <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'default' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/creator.svg" alt='Creator' width="12rem" height="12rem" unoptimized={true} />
@@ -81,7 +81,7 @@ export default function InfoPane(props) {
             </InfopaneRow>
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
-          <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
+          <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'default' }}>
             <InfopaneRow>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/date.svg" alt='Date' width="12rem" height="12rem" unoptimized={true} />

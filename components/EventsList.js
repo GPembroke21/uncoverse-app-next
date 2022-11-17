@@ -9,7 +9,6 @@ import { animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 
 const currentTime = new Date();
-const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="left" ref={ref} {...props} /> })
 
 function Row(props) {
   const { row } = props;
@@ -133,10 +132,8 @@ export default function EventsList() {
         }
       </Table>
       <animated.div {...bind()} >
-        {/* <animated.div style={{ xPos }}> */}
-          <Backdrop open={open} onClick={handleClose} />
-          <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
-        {/* </animated.div> */}
+        <Backdrop open={open} onClick={handleClose} />
+        <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
       </animated.div>
     </TableContainer>
   )
