@@ -66,27 +66,27 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function Home(props) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const cookies = new Cookies('registered');
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  useEffect(()=>{
-    if (cookies.get('registered')) {
-      setOpen(false);
-    } else if (!cookies.get('registered')) {
-       cookies.set('registered', 'true', {
-        path: '/',
-       });
-       setOpen(true);
-    }
-  },[])
+  // useEffect(()=>{
+  //   if (cookies.get('registered')) {
+  //     setOpen(false);
+  //   } else if (!cookies.get('registered')) {
+  //      cookies.set('registered', 'true', {
+  //       // path: '/',
+  //      });
+  //      setOpen(true);
+  //   }
+  // },[])
 
   return (
         <Wrapper>
@@ -177,7 +177,7 @@ export default function Home(props) {
                     // marginRight: {xs: "0" , sm: "0", md: "20px", lg: "30px", xl: "40px"}
                 }}
                 >
-                <Image src="/landerimage.svg" alt='Lander Image' layout='fill' objectFit="contain" unoptimized={true}/>
+                <Image src="/landerimagepixelated.png" alt='Lander Image' layout='fill' objectFit="contain" unoptimized={true}/>
             </LanderImageContainer>
             </Main>
             </Dialog>

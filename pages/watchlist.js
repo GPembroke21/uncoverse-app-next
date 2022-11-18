@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography"
 import FavoriteEventCard from "../components/FavoriteEventCard"
 import { useEventsContext, useFavoritesContext } from '../components/ContextProvider';
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Wrapper = styled("div")(({ theme }) => ({ overflow: "hidden", padding: "0 0", background: "transparent", }));
 const Main = styled(Grid)(({ theme }) => ({ color: "#ffffff", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-start", marginLeft: 0, marginRight: 0, }));
@@ -26,8 +27,10 @@ export default function Watchlist(props) {
     <Wrapper>
       {(!favoritesContext || favoritesContext.length == 0 || !eventsContext || eventsContext.length == 0) ?
         <EmptyStateContainer container>
-          <Box position="relative" sx={{ width: { xs: "clamp(5rem, 50vw, 20rem)", sm: "clamp(5rem, 25vw, 12rem)" }, height: { xs: "clamp(5rem, 50vw, 20rem)", sm: "clamp(5rem, 25vw, 12rem)" } }}>
-            <Image src="/emptystate.svg" alt="empty-state" layout="fill" objectFit="contain" />
+          <Box position="relative" sx={{ width: { xs: "clamp(5rem, 50vw, 20rem)", sm: "clamp(5rem, 25vw, 12rem)" }, height: { xs: "clamp(5rem, 50vw, 20rem)", sm: "clamp(5rem, 25vw, 12rem)" }, cursor: "pointer" }}>
+            <Link href="/" passHref>
+              <Image src="/emptystate.svg" alt="empty-state" layout="fill" objectFit="contain" />
+            </Link>
           </Box>
           <Typography variant="h1" sx={{ fontSize: "clamp(30px, 3vw, 70px)" }}>So much empty….</Typography>
           <Typography variant="h2" sx={{ fontSize: "clamp(15px, 2vw, 30px)" }}>Favorite some events to get started</Typography>
