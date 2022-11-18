@@ -66,7 +66,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function Home(props) {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const cookies = new Cookies('registered');
 
   const handleClickOpen = () => {
