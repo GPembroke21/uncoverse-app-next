@@ -10,7 +10,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useFiltersFavoritesContext, useFiltersContextUpdate, useLoginContext } from './ContextProvider';
 import AuthPopup from './AuthPopup'
 
-const FiltersContainer = styled("div")(({ theme }) => ({ margin: "14px 0px", padding: "0px 10px 0px 14px", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
+const FiltersContainer = styled("div")(({ theme }) => ({ margin: "18px 0px 14px 0px", padding: "0px 10px 0px 14px", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const FiltersButton = styled(Button)(({ theme }) => ({ color: theme.palette.button.text, background: theme.palette.button.main, fontSize: "clamp(8px, 1vw, 14px)", borderRadius: '7px', marginRight: '10px', height: "2.5em", width: "11em", "&:hover": { color: theme.palette.button.hovertext, background: theme.palette.button.main } }));
 
 export default function Filters() {

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButtonLarge from './buttons/FavoriteButtonLarge';
 
-const urlBase = "https://uncoverse.com/event?id="
+const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
 
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px" }));
@@ -41,7 +41,7 @@ export default function InfoPane(props) {
       keepMounted
       onClose={props.handleCloseFunction}
       aria-describedby="alert-dialog-slide-description"
-      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '75vw', md: '50vw', lg: '50vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }}
+      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '40vw', md: '40vw', lg: '50vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }}
       PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } } }}
       hideBackdrop={true}
     >
@@ -73,7 +73,7 @@ export default function InfoPane(props) {
         </ButtonContainer>
         <InfopaneInfo>
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
-            <InfopaneRow>
+            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/creator.svg" alt='Creator' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -82,7 +82,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
-            <InfopaneRow>
+            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/date.svg" alt='Date' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -91,7 +91,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'}>
-            <InfopaneRow>
+            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -100,7 +100,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'}>
-            <InfopaneRow>
+            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -109,7 +109,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'}>
-            <InfopaneRow>
+            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/location.svg" alt='Location' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -127,6 +127,8 @@ export default function InfoPane(props) {
               cursor: 'default',
               width: '100%',
               overflow: "auto",
+              fontSize: "12px", 
+              fontWeight: "500"
             }}
           >
             {row.description}

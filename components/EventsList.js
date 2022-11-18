@@ -29,7 +29,7 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' }, "&:hover": {backgroundColor: (theme) => theme.palette.button.hover} }}>
         <TableCell component="th" scope="row" onClick={handleClick}>
           <Box position="relative" width="clamp(0.8rem, 1.8vw, 1.2rem)" height="clamp(0.8rem, 1.8vw, 1.2rem)" maxWidth="3rem" maxHeight="3rem" marginRight="-0.4rem">
             <Image src={platLogo} alt={row.platformId} layout="fill" objectFit="contain" unoptimized={true} />
@@ -132,10 +132,8 @@ export default function EventsList() {
         }
       </Table>
       <animated.div {...bind()} >
-        {/* <animated.div style={{ xPos }}> */}
-          <Backdrop open={open} onClick={handleClose} />
-          <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
-        {/* </animated.div> */}
+        <Backdrop open={open} onClick={handleClose} />
+        <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
       </animated.div>
     </TableContainer>
   )

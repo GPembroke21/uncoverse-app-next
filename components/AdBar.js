@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
-import Image from 'next/image';
+// import Image from 'next/image';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import Card from '@mui/material/Card'
 import { styled } from "@mui/system"
 
-const AdBarContainer = styled("div")(({ theme }) => ({ margin: "0rem 1rem -1rem 1rem" }));
+const AdBarContainer = styled("div")(({ theme }) => ({ margin: "0rem 1rem 0rem 1rem" }));
+const AdBarCard = styled(Card)(({ theme }) => ({ 
+  color: "white", 
+  borderRadius: "10px", 
+  background: theme.palette.card.trending,
+  padding: "10px 10px 0px 10px",
+}));
+
 
 export default function TitlebarBelowImageList() {
   const [horizontalScroll, setHorizontalScroll] = useState(0);
   const [scrollWidth, setScrollWidth] = useState();
   const [clientWidth, setClientWidth] = useState();
-  const imageLoader = ({ src }) => `${src}?w=248&fit=crop&auto=format`
+  // const imageLoader = ({ src }) => `${src}?w=248&fit=crop&auto=format`
 
   useEffect(() => {
     const imageListEl = document.querySelector("#imageList");
@@ -34,7 +42,7 @@ export default function TitlebarBelowImageList() {
     <AdBarContainer>
       <ImageList
         id="imageList"
-        gap={10}
+        gap={18}
         variant='standard'
         rowHeight="auto"
         sx={{
@@ -58,6 +66,7 @@ export default function TitlebarBelowImageList() {
       >
         {itemData.map((item, index) => (
           <a key={index} href={item.link} target="_blank" rel="noreferrer">
+            <AdBarCard style={{ width: '100%', height: '100%' }}>
             <ImageListItem style={{ width: '100%', height: '100%' }}>
               <img
                 src={`${item.img}?w=248&fit=crop&auto=format`}
@@ -74,6 +83,7 @@ export default function TitlebarBelowImageList() {
                 position="below"
               />
             </ImageListItem>
+            </AdBarCard>
           </a>
         ))}
       </ImageList>
