@@ -31,7 +31,7 @@ export default function InfoPane(props) {
   const formattedEndDate = (dateTimeEnd.toLocaleDateString('en-US', { year: 'numeric' }) == currentTime.toLocaleDateString('en-US', { year: 'numeric' })) ? dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) : dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
   const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
   const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
-  const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ending " + (formattedEndDate + " @ " + formattedEndTime + ")")) : (formattedStartDate + " @ " + formattedStartTime + " - " + formattedEndDate + " @ " + formattedEndTime)
+  const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ends " + (formattedEndDate + " @ " + formattedEndTime + ")")) : (formattedStartDate + " @ " + formattedStartTime + " - " + formattedEndDate + " @ " + formattedEndTime)
 
   return (
     <Dialog
@@ -41,12 +41,20 @@ export default function InfoPane(props) {
       keepMounted
       onClose={props.handleCloseFunction}
       aria-describedby="alert-dialog-slide-description"
-      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '40vw', md: '40vw', lg: '50vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }}
+      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '35vw', md: '40vw', lg: '50vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }}
       PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } } }}
       hideBackdrop={true}
     >
       <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: "#120C18" }}>
         <InfopaneHead>
+          <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
+            <InfopaneRow sx={{fontSize: "10px", fontWeight: "300"}}>
+              {/* <Box sx={{ marginRight: '10px' }}>
+                <Image src="/date.svg" alt='Date' width="12rem" height="12rem" unoptimized={true} />
+              </Box> */}
+              {dateStyledInfo}
+            </InfopaneRow>
+          </DialogContentText>
           <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: '900', mb: '10px', mt: '0px', lineHeight: '100%' }}>{row.name}</DialogTitle>
           <DialogContentText component={'span'} sx={{ mb: '10px' }}>
             <InfopaneImage>
@@ -78,15 +86,6 @@ export default function InfoPane(props) {
                 <Image src="/creator.svg" alt='Creator' width="12rem" height="12rem" unoptimized={true} />
               </Box>
               {row.createdByUser}
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider sx={{ margin: '3px 0px' }} />
-          <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
-            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
-              <Box sx={{ marginRight: '10px' }}>
-                <Image src="/date.svg" alt='Date' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              {dateStyledInfo}
             </InfopaneRow>
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
