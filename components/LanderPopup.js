@@ -66,7 +66,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function Home(props) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const cookies = new Cookies('registered');
 
   // const handleClickOpen = () => {
@@ -77,16 +77,16 @@ export default function Home(props) {
     setOpen(false);
   };
 
-  useEffect(()=>{
-    if (cookies.get('registered')) {
-      setOpen(false);
-    } else if (!cookies.get('registered')) {
-       cookies.set('registered', 'true', {
-        // path: '/',
-       });
-       setOpen(true);
-    }
-  },[])
+  // useEffect(()=>{
+  //   if (cookies.get('registered')) {
+  //     setOpen(false);
+  //   } else if (!cookies.get('registered')) {
+  //      cookies.set('registered', 'true', {
+  //       // path: '/',
+  //      });
+  //      setOpen(true);
+  //   }
+  // },[])
 
   return (
         <Wrapper>
@@ -171,13 +171,14 @@ export default function Home(props) {
             </LanderTextContainer>
             <LanderImageContainer 
                 position="relative" 
+                display="block"
                 sx={{
                     width: {xs: "100vw" , sm: "clamp(1rem, 50vw, 50rem)"}, 
                     height: {xs: "100vw" , sm: "clamp(1rem, 50vw, 50rem)"},            
                     // marginRight: {xs: "0" , sm: "0", md: "20px", lg: "30px", xl: "40px"}
                 }}
                 >
-                <Image src="/landerimage.svg" alt='Lander Image' layout='fill' objectFit="contain" unoptimized={true}/>
+                <Image src="/landerimage.svg" alt='Lander Image' layout='fill' objectFit="contain" unoptimized={true} priority/>
             </LanderImageContainer>
             </Main>
             </Dialog>

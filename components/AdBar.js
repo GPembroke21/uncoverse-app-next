@@ -14,6 +14,13 @@ const AdBarCard = styled(Card)(({ theme }) => ({
   padding: "10px 10px 0px 10px",
 }));
 
+const AdBarCardCard = styled(Card)(({ theme }) => ({ 
+  color: "white", 
+  borderRadius: "10px", 
+  background: theme.palette.card.trending,
+  padding: "10px 10px 0px 10px",
+}));
+
 
 export default function TitlebarBelowImageList() {
   const [horizontalScroll, setHorizontalScroll] = useState(0);
