@@ -12,9 +12,10 @@ import HeaderBottom from '../components/HeaderBottom'
 import Footer from '../components/Footer'
 import LanderPopup from '../components/LanderPopup'
 import TagManager, { TagManagerArgs } from 'react-gtm-module'
+import Script from 'next/script'
 
 Amplify.configure({ ...awsExports, ssr: true })
-const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto", position: "relative", minHeight: "100vh"}));
+const Wrapper = styled("div")(({ theme }) => ({ maxWidth: 1600, margin: "0 auto", position: "relative", minHeight: "100vh" }));
 
 function MyApp({ Component, pageProps }) {
   // const tagManagerArgs = {gtmId: 'GTM-NP4XFZG'};
@@ -22,9 +23,22 @@ function MyApp({ Component, pageProps }) {
   // useEffect(() => {
   //   TagManager.initialize(tagManagerArgs);
   // }, []);
-  
+
   return (
     <ThemeProvider>
+      {/* Google tag (gtag.js) */}
+      {/* <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} /> */}
+      {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-45L3Q5M9BX"></script> */}
+      <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-45L3Q5M9BX" />
+      <Script id='google-analytics' strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-45L3Q5M9BX');
+        `}
+      </Script>
+
       <ContextProvider>
         <CssBaseline />
         <LanderPopup />
