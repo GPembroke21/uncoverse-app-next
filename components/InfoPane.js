@@ -127,7 +127,8 @@ export default function InfoPane(props) {
               width: '100%',
               overflow: "auto",
               fontSize: "12px", 
-              fontWeight: "500"
+              fontWeight: "500",
+              overflowWrap: "break-word",
             }}
           >
             {row.description}
