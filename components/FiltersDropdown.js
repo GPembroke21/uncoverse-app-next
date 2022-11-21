@@ -68,7 +68,7 @@ export default function FiltersDropdown() {
               {filter}
             </FilterButton>
           ))}
-          <ClearFilterButton>Clear Filters</ClearFilterButton>
+          <ClearFilterButton onClick={()=> filtersContextUpdate.clearFilters()}>Clear Filters</ClearFilterButton>
         </FiltersContainer>
         {(filterShown.Platform || filterShown.Category) && <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />}
         {filterShown.Category && categoryDropdown}
