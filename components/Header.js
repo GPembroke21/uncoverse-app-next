@@ -57,7 +57,7 @@ const Header = (props) => {
           <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log("")} />
         </LogoContainer>
         <RightContainer>
-          <AnalyticsButton/>
+          {/* <AnalyticsButton/> */}
           {!loginCreds.signedIn ?
             <div>
               <ConnectButtonStyled onClick={() => setHeaderOpen(!headerOpen)}>Connect</ConnectButtonStyled>

@@ -92,13 +92,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'} 
-            // onClick={() => console.log(
-            //   Intl.DateTimeFormat().resolvedOptions().timeZone, "\n",
-            //   row.dateTimeStart, "\n",
-            //   dateTimeStart, "\n",
-            //   formattedStartDate, "\n",
-            //   formattedStartTime, "\n\n",
-            //   row)}
+            onClick={() => console.log(row)}
           >
             <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px' }}>
