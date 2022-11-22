@@ -3,6 +3,8 @@ import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, 
 import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButtonLarge from './buttons/FavoriteButtonLarge';
+import IosShareIcon from '@mui/icons-material/IosShare';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
 
@@ -10,10 +12,10 @@ const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems:
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px" }));
 const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative' }));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
-const InfopaneInfo = styled(Grid)(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', marginTop: '15px', padding: '5px 10px', cursor: 'default' }));
-const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
+const InfopaneInfo = styled(Grid)(({ theme }) => ({  backgroundColor: theme.palette.card.secondary, borderRadius: '6px', marginTop: '15px', padding: '5px 10px', cursor: 'default' }));
+const InfopaneDescription = styled('div')(({ theme }) => ({ backgroundColor: theme.palette.card.secondary, borderRadius: '6px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
 const ButtonContainer = styled(Grid)(({ theme }) => ({ [theme.breakpoints.down("xs")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0 }, }, }));
-const InfopaneButton = styled(Button)(({ theme }) => ({ color: "#f5f3f7", backgroundColor: '#21172a', fontSize: "clamp(8px, 1vw, 14px)", borderRadius: '6px', padding: "0.46rem", marginRight: '10px', "&:hover": { color: "#dd00ff", backgroundColor: "#1c1425" }, "&:active": { color: "#dd00ff", backgroundColor: "#120C18" } }));
+const InfopaneButton = styled(Button)(({ theme }) => ({ color: "#f5f3f7", backgroundColor: '#21172a', fontSize: "clamp(8px, 1vw, 14px)", borderRadius: '6px', padding: "0.46rem", marginRight: '10px', boxShadow: "none", "&:hover": { color: "#dd00ff", backgroundColor: "#1c1425", boxShadow: "none" }, "&:active": { color: "#dd00ff", backgroundColor: "#120C18", boxShadow: "none" } }));
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
 
 export default function InfoPane(props) {
@@ -41,7 +43,7 @@ export default function InfoPane(props) {
       keepMounted
       onClose={props.handleCloseFunction}
       aria-describedby="alert-dialog-slide-description"
-      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '35vw', md: '40vw', lg: '50vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }}
+      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '40vw', md: '40vw', lg: '40vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }}
       PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } } }}
       hideBackdrop={true}
     >

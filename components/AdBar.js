@@ -17,7 +17,7 @@ const AdBarCard = styled(Card)(({ theme }) => ({
 const AdBarCardCard = styled(Card)(({ theme }) => ({ 
   color: "white", 
   borderRadius: "10px", 
-  background: theme.palette.card.trending,
+  background: theme.palette.card.secondary,
   padding: "10px 10px 0px 10px",
 }));
 
