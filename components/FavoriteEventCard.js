@@ -30,6 +30,7 @@ export default function FavoriteEventCard(props) {
   const [expanded, setExpanded] = React.useState(false)
   const handleExpandClick = () => setExpanded(!expanded)
   const [favoriteToggle, setFavoriteToggle] = React.useState(false)
+  if (!item) return
   
   const dateTimeStart = new Date(item.dateTimeStart);
   const dateTimeEnd = new Date(item.dateTimeEnd);
@@ -68,9 +69,9 @@ export default function FavoriteEventCard(props) {
         </CardHeader>
       </a>
       <Divider sx={{ background: '#40454d' }} />
-      <CardActions disableSpacing sx={{ height: '40px', backgroundColor:  (theme) => theme.palette.card.secondary }}>
+      <CardActions disableSpacing sx={{ height: '40px', backgroundColor: (theme) => theme.palette.card.secondary }}>
         <Grid marginLeft={'12px'}>
-            <FavoriteButton eventId={item.id} ind={props.ind} sx={{ cursor: 'pointer' }} toggle={favoriteToggle} setToggle={(state) => setFavoriteToggle(state)}/>
+          <FavoriteButton eventId={item.id} ind={props.ind} sx={{ cursor: 'pointer' }} toggle={favoriteToggle} setToggle={(state) => setFavoriteToggle(state)} />
         </Grid>
         <Grid
           container
@@ -78,7 +79,7 @@ export default function FavoriteEventCard(props) {
         >
           <Typography variant='h4'>Users: {item.totalAttendees}</Typography>
           <Typography variant='h4' sx={{ color: '#40454d', fontWeight: '700' }} >&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
-          <Typography variant='h4' sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '7rem', overflow: 'hidden'}}>{item.category}</Typography>
+          <Typography variant='h4' sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '7rem', overflow: 'hidden' }}>{item.category}</Typography>
         </Grid>
         <ExpandMore
           expand={expanded}

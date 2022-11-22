@@ -29,8 +29,8 @@ export default function InfoPane(props) {
   const dateTimeEnd = new Date(row.dateTimeEnd);
   const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
   const formattedEndDate = (dateTimeEnd.toLocaleDateString('en-US', { year: 'numeric' }) == currentTime.toLocaleDateString('en-US', { year: 'numeric' })) ? dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) : dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
-  const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
-  const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
+  const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US')
+  const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US')
   const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ends " + (formattedEndDate + " @ " + formattedEndTime + ")")) : (formattedStartDate + " @ " + formattedStartTime + " - " + formattedEndDate + " @ " + formattedEndTime)
 
   return (
@@ -48,7 +48,7 @@ export default function InfoPane(props) {
       <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: "#120C18" }}>
         <InfopaneHead>
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
-            <InfopaneRow sx={{fontSize: "10px", fontWeight: "300"}}>
+            <InfopaneRow sx={{ fontSize: "10px", fontWeight: "300" }}>
               {/* <Box sx={{ marginRight: '10px' }}>
                 <Image src="/date.svg" alt='Date' width="12rem" height="12rem" unoptimized={true} />
               </Box> */}
@@ -81,7 +81,7 @@ export default function InfoPane(props) {
         </ButtonContainer>
         <InfopaneInfo>
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
-            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
+            <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/creator.svg" alt='Creator' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -89,8 +89,16 @@ export default function InfoPane(props) {
             </InfopaneRow>
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
-          <DialogContentText component={'span'}>
-            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
+          <DialogContentText component={'span'} 
+            // onClick={() => console.log(
+            //   Intl.DateTimeFormat().resolvedOptions().timeZone, "\n",
+            //   row.dateTimeStart, "\n",
+            //   dateTimeStart, "\n",
+            //   formattedStartDate, "\n",
+            //   formattedStartTime, "\n\n",
+            //   row)}
+          >
+            <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -99,7 +107,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'}>
-            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
+            <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -108,7 +116,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'}>
-            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
+            <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/location.svg" alt='Location' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -126,7 +134,7 @@ export default function InfoPane(props) {
               cursor: 'default',
               width: '100%',
               overflow: "auto",
-              fontSize: "12px", 
+              fontSize: "12px",
               fontWeight: "500",
               overflowWrap: "break-word",
             }}
