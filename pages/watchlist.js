@@ -22,9 +22,17 @@ export default function Watchlist(props) {
       if (eventsContext[i].id === eventId) return eventsContext[i]
     }
   }
+  const favorties = () => {
+    const arr = []
+    for (let i = 0; i < eventsContext.length; i++) {
+      if (favoritesContext.includes(eventsContext[i].id)) arr.push(eventsContext[i])
+    }
+    return arr
+  }
+
   return (
     <Wrapper>
-      {(!favoritesContext || favoritesContext.length == 0 || !eventsContext || eventsContext.length == 0) ?
+      {(!favoritesContext || favoritesContext.length == 0 || !eventsContext || eventsContext.length == 0 || favorties().length == 0) ?
         <EmptyStateContainer container>
           <Box position="relative" sx={{ width: { xs: "clamp(5rem, 50vw, 20rem)", sm: "clamp(5rem, 25vw, 12rem)" }, height: { xs: "clamp(5rem, 50vw, 20rem)", sm: "clamp(5rem, 25vw, 12rem)" }, cursor: "pointer" }}>
             <Link href="/" passHref>
@@ -36,9 +44,9 @@ export default function Watchlist(props) {
         </EmptyStateContainer>
         :
         <Main container>
-          {favoritesContext.map((keyName, i) => (
+          {favorties().map((keyName, i) => (
             <Item item key={i}>
-              <FavoriteEventCard item={getFavoriteEvent(keyName)} />
+              <FavoriteEventCard item={keyName} />
             </Item>
           ))}
           {/* <button onClick={() => console.log(eventsContext[0])}>000</button> */}

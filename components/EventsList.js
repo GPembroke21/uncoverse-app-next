@@ -38,10 +38,10 @@ function Row(props) {
         <TableCell align="left" onClick={handleClick} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {row.name}
         </TableCell>
-        <TableCell align="left" onClick={handleClick} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
+        <TableCell align="left" onClick={handleClick} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {dateStyled}
         </TableCell>
-        <TableCell align="left" onClick={handleClick} sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
+        <TableCell align="left" onClick={handleClick} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {row.category}
         </TableCell>
         <TableCell align="left" onClick={handleClick} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
@@ -105,8 +105,8 @@ export default function EventsList() {
           <TableRow sx={{ borderBottom: "none" }}>
             <TableCell style={{ width: "2%" }}></TableCell>
             <TableCell align="left" style={{ width: "35%" }}>Name</TableCell>
-            <TableCell align="left" style={{ width: "15%" }}>Date</TableCell>
-            <TableCell align="left" style={{ width: "15%" }}>Category</TableCell>
+            <TableCell align="left" style={{ width: "15%" }} sx={{ display: { xs: 'none', sm: 'revert' } }}>Date</TableCell>
+            <TableCell align="left" style={{ width: "15%" }} sx={{ display: { xs: 'none', sm: 'revert' } }}>Category</TableCell>
             <TableCell align="left" style={{ width: "4%" }} sx={{ display: { xs: 'none', sm: 'revert' } }}>Users</TableCell>
             <TableCell align="left" style={{ width: "8%" }} sx={{ display: { xs: 'none', sm: 'revert' } }}>Location</TableCell>
             <TableCell style={{ width: "2%" }}></TableCell>

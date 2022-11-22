@@ -3,6 +3,8 @@ import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, 
 import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButtonLarge from './buttons/FavoriteButtonLarge';
+import IosShareIcon from '@mui/icons-material/IosShare';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
 
@@ -10,10 +12,10 @@ const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems:
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "15px" }));
 const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative' }));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
-const InfopaneInfo = styled(Grid)(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', marginTop: '15px', padding: '5px 10px', cursor: 'default' }));
-const InfopaneDescription = styled('div')(({ theme }) => ({ border: '1px solid white', borderRadius: '12px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
+const InfopaneInfo = styled(Grid)(({ theme }) => ({  backgroundColor: theme.palette.card.secondary, borderRadius: '6px', marginTop: '15px', padding: '5px 10px', cursor: 'default' }));
+const InfopaneDescription = styled('div')(({ theme }) => ({ backgroundColor: theme.palette.card.secondary, borderRadius: '6px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
 const ButtonContainer = styled(Grid)(({ theme }) => ({ [theme.breakpoints.down("xs")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0 }, }, }));
-const InfopaneButton = styled(Button)(({ theme }) => ({ color: "#f5f3f7", backgroundColor: '#21172a', fontSize: "clamp(8px, 1vw, 14px)", borderRadius: '6px', padding: "0.46rem", marginRight: '10px', "&:hover": { color: "#dd00ff", backgroundColor: "#1c1425" }, "&:active": { color: "#dd00ff", backgroundColor: "#120C18" } }));
+const InfopaneButton = styled(Button)(({ theme }) => ({ color: "#f5f3f7", backgroundColor: '#21172a', fontSize: "clamp(8px, 1vw, 14px)", borderRadius: '6px', padding: "0.46rem", marginRight: '10px', boxShadow: "none", "&:hover": { color: "#dd00ff", backgroundColor: "#1c1425", boxShadow: "none" }, "&:active": { color: "#dd00ff", backgroundColor: "#120C18", boxShadow: "none" } }));
 const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="right" ref={ref} {...props} /> })
 
 export default function InfoPane(props) {
@@ -29,8 +31,8 @@ export default function InfoPane(props) {
   const dateTimeEnd = new Date(row.dateTimeEnd);
   const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
   const formattedEndDate = (dateTimeEnd.toLocaleDateString('en-US', { year: 'numeric' }) == currentTime.toLocaleDateString('en-US', { year: 'numeric' })) ? dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) : dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
-  const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
-  const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US', { timeZone: 'EST', timezoneName: 'short', timeStyle: 'short' })
+  const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US')
+  const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US')
   const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ends " + (formattedEndDate + " @ " + formattedEndTime + ")")) : (formattedStartDate + " @ " + formattedStartTime + " - " + formattedEndDate + " @ " + formattedEndTime)
 
   return (
@@ -41,14 +43,14 @@ export default function InfoPane(props) {
       keepMounted
       onClose={props.handleCloseFunction}
       aria-describedby="alert-dialog-slide-description"
-      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '35vw', md: '40vw', lg: '50vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }}
+      sx={{ opacity: "100", backgroundColor: "#120C18", width: { xs: '100vw', sm: '40vw', md: '40vw', lg: '40vw', xl: '25vw' }, maxWidth: { xs: '100vw', sm: '1000px' }, height: '100vh', borderRight: '1px solid #2e2e2e', }}
       PaperProps={{ elevation: 0, sx: { margin: { xs: '24px 24px', sm: '0px 24px' } } }}
       hideBackdrop={true}
     >
       <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: "#120C18" }}>
         <InfopaneHead>
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
-            <InfopaneRow sx={{fontSize: "10px", fontWeight: "300"}}>
+            <InfopaneRow sx={{ fontSize: "10px", fontWeight: "300" }}>
               {/* <Box sx={{ marginRight: '10px' }}>
                 <Image src="/date.svg" alt='Date' width="12rem" height="12rem" unoptimized={true} />
               </Box> */}
@@ -81,7 +83,7 @@ export default function InfoPane(props) {
         </ButtonContainer>
         <InfopaneInfo>
           <DialogContentText component={'span'} sx={{ mt: '15px', cursor: 'pointer' }}>
-            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
+            <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/creator.svg" alt='Creator' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -89,8 +91,10 @@ export default function InfoPane(props) {
             </InfopaneRow>
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
-          <DialogContentText component={'span'}>
-            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
+          <DialogContentText component={'span'} 
+            onClick={() => console.log(row)}
+          >
+            <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -99,7 +103,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'}>
-            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
+            <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -108,7 +112,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'}>
-            <InfopaneRow sx={{fontSize: "12px", fontWeight: "500"}}>
+            <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px' }}>
                 <Image src="/location.svg" alt='Location' width="12rem" height="12rem" unoptimized={true} />
               </Box>
@@ -126,7 +130,7 @@ export default function InfoPane(props) {
               cursor: 'default',
               width: '100%',
               overflow: "auto",
-              fontSize: "12px", 
+              fontSize: "12px",
               fontWeight: "500",
               overflowWrap: "break-word",
             }}
