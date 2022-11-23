@@ -5,7 +5,7 @@ import ThemeProvider from "../Theme"
 import Button from "@mui/material/Button"
 import Divider from "@mui/material/Divider"
 import { platformsDict, categoryList, platformsList } from '../src/static/StaticVariables'
-import { useFiltersCategoriesContext, useFiltersPlatformsContext, useFiltersContextUpdate } from './ContextProvider'
+import { useAppContext, useAppContextUpdate } from './ContextProvider'
 
 const Wrapper = styled("div")(({ theme }) => ({ width: "100%", padding: "0rem 1rem" }));
 const FiltersContainer = styled("div")(({ theme }) => ({ margin: "0.6rem 0rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
@@ -15,18 +15,18 @@ const ClearFilterButton = styled(Button)(({ theme }) => ({ color: "white", backg
 
 export default function FiltersDropdown() {
   const [filterShown, setfilterShown] = useState({ Platform: false, Category: false })
-  const filtersPlatormsContext = useFiltersPlatformsContext()
-  const filtersCategoriesContext = useFiltersCategoriesContext()
-  const filtersContextUpdate = useFiltersContextUpdate()
+  const filtersPlatormsContext = useAppContext().filtersPlatforms
+  const filtersCategoriesContext = useAppContext().filtersCategories
+  const appContextUpdate = useAppContextUpdate()
 
   const handleClickPlatform = plat => {
-    if (filtersPlatormsContext && filtersPlatormsContext.includes(plat)) { filtersContextUpdate.updatePlatform(filtersPlatormsContext.filter(i => i !== plat)) }
-    else if (filtersPlatormsContext) { filtersContextUpdate.updatePlatform(filtersPlatormsContext.concat(plat)) }
+    if (filtersPlatormsContext && filtersPlatormsContext.includes(plat)) { appContextUpdate.updatePlatform(filtersPlatormsContext.filter(i => i !== plat)) }
+    else if (filtersPlatormsContext) { appContextUpdate.updatePlatform(filtersPlatormsContext.concat(plat)) }
   }
 
   const handleClickCategory = cat => {
-    if (filtersCategoriesContext && filtersCategoriesContext.includes(cat)) { filtersContextUpdate.updateCategory(filtersCategoriesContext.filter(i => i !== cat)) }
-    else if (filtersCategoriesContext) { filtersContextUpdate.updateCategory(filtersCategoriesContext.concat(cat)) }
+    if (filtersCategoriesContext && filtersCategoriesContext.includes(cat)) { appContextUpdate.updateCategory(filtersCategoriesContext.filter(i => i !== cat)) }
+    else if (filtersCategoriesContext) { appContextUpdate.updateCategory(filtersCategoriesContext.concat(cat)) }
   }
  
   const stylePlatformButton = plat => { return (filtersPlatormsContext && filtersPlatormsContext.includes(plat)) ? { color: "#dd00ff" } : { color: "white" } }
@@ -68,7 +68,7 @@ export default function FiltersDropdown() {
               {filter}
             </FilterButton>
           ))}
-          <ClearFilterButton onClick={()=> filtersContextUpdate.clearFilters()}>Clear Filters</ClearFilterButton>
+          <ClearFilterButton onClick={()=> appContextUpdate.clearFilters()}>Clear Filters</ClearFilterButton>
         </FiltersContainer>
         {(filterShown.Platform || filterShown.Category) && <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />}
         {filterShown.Category && categoryDropdown}

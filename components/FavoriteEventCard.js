@@ -1,17 +1,8 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+import { Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Divider, Grid, IconButton, Typography } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FavoriteButton from './buttons/FavoriteButton';
-import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
 import Image from 'next/image'
 
 const ExpandMore = styled((props) => {
@@ -55,11 +46,6 @@ export default function FavoriteEventCard(props) {
       />
       <a href={item.url} target="_blank" rel="noreferrer noopener">
         <CardHeader
-          // action={
-          //   <Grid margin={'6px 10px 0px 0px'}>
-          //     <FavoriteButton />
-          //   </Grid>
-          // }
           title={item.name}
           titleTypographyProps={{ fontWeight: 'bold' }}
           subheader={dateA}

@@ -27,8 +27,6 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider>
       {/* Google tag (gtag.js) */}
-      {/* <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} /> */}
-      {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-45L3Q5M9BX"></script> */}
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-45L3Q5M9BX" />
       <Script id='google-analytics' strategy="afterInteractive">
         {`

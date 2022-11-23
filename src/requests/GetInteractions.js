@@ -2,18 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { Amplify, API } from 'aws-amplify'
 import awsExports from '../aws-exports';
 import { getInteraction } from '../graphql/queries'
-import { favoriteEvents, favoriteEventsArray } from '../static/StaticVariables';
-// import { useLoginContext } from '../../components/ContextProvider';
-
-
 
 Amplify.configure({ ...awsExports, ssr: true })
 
-const appendToArray = data => { console.log("favorites append:", typeof data, data) }
-
 export default function GetInteractions(interactionsId) {
     const [request, setRequest] = useState(() => [])
-    // const loginCreds = useLoginContext()
 
     const getFunction = useCallback(async (intId) => {
         const gqlQuery = () => { return {

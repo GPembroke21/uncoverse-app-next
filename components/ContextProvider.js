@@ -6,28 +6,14 @@ import GetInteractions from '../src/requests/GetInteractions'
 import StoreInteraction from '../src/requests/CreateInteraction'
 
 const AppContext = createContext()
-const LoginContext = createContext()
 const EventsContext = createContext()
-const EventsContextUpdate = createContext()
 const FavoritesContext = createContext()
-const FavoritesContextUpdate = createContext()
-const FiltersSearchContext = createContext()
-const FiltersPlatformsContext = createContext()
-const FiltersCategoriesContext = createContext()
-const FiltersFavoritesContext = createContext()
-const FiltersContextUpdate = createContext()
+const AppContextUpdate = createContext()
 
 export function useAppContext() { return useContext(AppContext) }
-export function useLoginContext() { return useContext(LoginContext) }
 export function useEventsContext() { return useContext(EventsContext) }
-export function useEventsContextUpdate() { return useContext(EventsContextUpdate) }
 export function useFavoritesContext() { return useContext(FavoritesContext) }
-export function useFavoritesContextUpdate() { return useContext(FavoritesContextUpdate) }
-export function useFiltersSearchContext() { return useContext(FiltersSearchContext) }
-export function useFiltersPlatformsContext() { return useContext(FiltersPlatformsContext) }
-export function useFiltersCategoriesContext() { return useContext(FiltersCategoriesContext) }
-export function useFiltersFavoritesContext() { return useContext(FiltersFavoritesContext) }
-export function useFiltersContextUpdate() { return useContext(FiltersContextUpdate) }
+export function useAppContextUpdate() { return useContext(AppContextUpdate) }
 
 export function ContextProvider({ children }) {
     const [loginStatus, setLoginStatus] = useState(() => false)
@@ -36,57 +22,31 @@ export function ContextProvider({ children }) {
     const [getMoreEvents, setGetMoreEvents] = useState(() => { false })
     const eventList = GetEvents(getMoreEvents)
     const [events, setEvents] = useState([])
-    const updateEventList = () => setGetMoreEvents(prevValue => !prevValue)
 
     const [interactionsId, setInteractionsId] = useState(() => null)
     const userInteractions = GetInteractions(interactionsId)
     const [favoriteEvents, setFavoriteEvents] = useState(() => [])
-   
-    const [filtersSearch, setFiltersSearch] = useState("")
-    const [filtersPlatforms, setFiltersPlatform] = useState([])
-    const [filtersCategories, setFiltersCategories] = useState([])
-    const [filtersFavorites, setFiltersFavorites] = useState(false)
 
-    const [context, setContext] = useState({
-        loginCreds: loginCreds,
-        events: events,
-        favoriteEvents: favoriteEvents,
-        filtersSearch: filtersSearch,
-        filtersPlatforms: filtersPlatforms,
-        filtersCategories: filtersCategories,
-        filtersFavorites: filtersFavorites,
+    const [appContext, setAppContext] = useState({
+        loginCreds: { id: "", signedIn: false },
+        activeFilters: false,
+        filtersSearch: "",
+        filtersPlatforms: [],
+        filtersCategories: [],
+        filtersFavorites: false,
+        filtersCreators: [],
+        filtersActiveUpcoming: "",
     })
 
-    const updateFavoriteEvents = {
-        addFavorite: item => {
-            if (favoriteEvents && !favoriteEvents.includes(item)) {
-                setFavoriteEvents(prevArray => {
-                    StoreInteraction({ creds: loginCreds, favArray: [...prevArray, item] })
-                    return [...prevArray, item]
-                })
-            }
-        },
-        removeFavorite: item => {
-            if (favoriteEvents && favoriteEvents.includes(item)) {
-                const newArray = favoriteEvents.filter(i => i !== item)
-                StoreInteraction({ creds: loginCreds, favArray: newArray })
-                setFavoriteEvents(newArray)
-            }
-        }
-    }
-
-    const updateContext = {
+    const updateAppContext = {
         updateEventList: () => setGetMoreEvents(prevValue => !prevValue),
-        updateSearch: item => {
-            if (filtersPlatforms && filtersPlatforms.length !== 0) { setFiltersPlatform([]) };
-            if (filtersCategories && filtersCategories.length !== 0) { setFiltersCategories([]) };
-            if (filtersFavorites) { setFiltersFavorites(false) };
-            setFiltersSearch(item)
-        },
-        updatePlatform: item => { if (filtersSearch && filtersSearch !== "") { setFiltersSearch("") }; setFiltersPlatform(item) },
-        updateCategory: item => { if (filtersSearch && filtersSearch !== "") { setFiltersSearch("") }; setFiltersCategories(item) },
-        toggleFavorites: () => { if (filtersSearch && filtersSearch !== "") { setFiltersSearch("") }; setFiltersFavorites(!filtersFavorites) },
-        clearFilters: () => { setFiltersSearch(""), setFiltersPlatform([]), setFiltersCategories([]), setFiltersFavorites(false) },
+        updateSearch: item => { setAppContext(priorState => { return { ...priorState, filtersSearch: item, filtersPlatforms: [], filtersCategories: [], filtersCreators: [], filtersActiveUpcoming: "", filtersFavorites: false } }) },
+        updatePlatform: item => { setAppContext(priorState => { return { ...priorState, filtersSearch: "", filtersCreators: [], filtersPlatforms: item } }) },
+        updateCategory: item => { setAppContext(priorState => { return { ...priorState, filtersSearch: "", filtersCreators: [], filtersCategories: item } }) },
+        updateCreators: item => { setAppContext(priorState => { return { ...priorState, filtersSearch: "", filtersPlatforms: [], filtersCategories: [], filtersFavorites: false, filtersCreators: item } }) },
+        updateActiveUpcoming: item => { setAppContext(priorState => { return { ...priorState, filtersSearch: "", filtersActiveUpcoming: item } }) },
+        toggleFavorites: () => { setAppContext(priorState => { return { ...priorState, filtersSearch: "", filtersFavorites: !priorState.filtersFavorites } }) },
+        clearFilters: () => { setAppContext(priorState => { return { ...priorState, filtersSearch: "", filtersPlatforms: [], filtersCategories: [], filtersFavorites: false, filtersCreators: [], filtersActiveUpcoming: "" } }) },
         addFavorite: item => {
             if (favoriteEvents && !favoriteEvents.includes(item)) {
                 setFavoriteEvents(prevArray => {
@@ -112,7 +72,7 @@ export function ContextProvider({ children }) {
     useEffect(() => {
         Auth.currentCredentials().then(credentials => {
             setLoginCreds({ id: credentials.identityId, signedIn: credentials.authenticated })
-            setContext(priorState => {return {...priorState,  loginCreds: {id: credentials.identityId, signedIn: credentials.authenticated}}})
+            setAppContext(priorState => { return { ...priorState, loginCreds: { id: credentials.identityId, signedIn: credentials.authenticated } } })
             if (credentials.authenticated) {
                 setInteractionsId(prevValue => { if (prevValue !== credentials.identityId) return credentials.identityId })
             } else if (!credentials.authenticated) {
@@ -158,28 +118,16 @@ export function ContextProvider({ children }) {
     }, [userInteractions])
 
     return (
-        <AppContext.Provider value={context}>
-            <LoginContext.Provider value={loginCreds}>
-                <EventsContext.Provider value={events}>
-                    <EventsContextUpdate.Provider value={updateEventList}>
-                        <FavoritesContext.Provider value={favoriteEvents}>
-                            <FavoritesContextUpdate.Provider value={updateFavoriteEvents}>
-                                <FiltersSearchContext.Provider value={filtersSearch}>
-                                    <FiltersPlatformsContext.Provider value={filtersPlatforms}>
-                                        <FiltersCategoriesContext.Provider value={filtersCategories}>
-                                            <FiltersFavoritesContext.Provider value={filtersFavorites}>
-                                                <FiltersContextUpdate.Provider value={updateContext}>
-                                                    {children}
-                                                </FiltersContextUpdate.Provider>
-                                            </FiltersFavoritesContext.Provider>
-                                        </FiltersCategoriesContext.Provider>
-                                    </FiltersPlatformsContext.Provider>
-                                </FiltersSearchContext.Provider>
-                            </FavoritesContextUpdate.Provider>
-                        </FavoritesContext.Provider>
-                    </EventsContextUpdate.Provider>
-                </EventsContext.Provider>
-            </LoginContext.Provider>
+        <AppContext.Provider value={appContext}>
+            {/* <LoginContext.Provider value={loginCreds}> */}
+            <EventsContext.Provider value={events}>
+                <FavoritesContext.Provider value={favoriteEvents}>
+                    <AppContextUpdate.Provider value={updateAppContext}>
+                        {children}
+                    </AppContextUpdate.Provider>
+                </FavoritesContext.Provider>
+            </EventsContext.Provider>
+            {/* </LoginContext.Provider> */}
         </AppContext.Provider >
 
     )

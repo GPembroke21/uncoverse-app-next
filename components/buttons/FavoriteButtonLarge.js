@@ -4,12 +4,12 @@ import Stack from '@mui/material/Stack';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AuthPopup from '../AuthPopup';
-import { useLoginContext, useFavoritesContext, useFavoritesContextUpdate } from '../ContextProvider';
+import { useAppContext, useFavoritesContext, useAppContextUpdate } from '../ContextProvider';
 
 export default function FavoriteButton(props) {
-  const loginCreds = useLoginContext()
+  const loginCreds = useAppContext().loginCreds
   const favoritesContext = useFavoritesContext()
-  const favoritesContextUpdate = useFavoritesContextUpdate()
+  const appContextUpdate = useAppContextUpdate()
   const [authOpen, setAuthOpen] = React.useState(false)
 
   const handleClick = () => {
@@ -17,9 +17,9 @@ export default function FavoriteButton(props) {
       setAuthOpen(true)
     } else if (favoritesContext && loginCreds.signedIn) {
       if (!favoritesContext.includes(props.eventId)) {
-        favoritesContextUpdate.addFavorite(props.eventId)
+        appContextUpdate.addFavorite(props.eventId)
       } else if (favoritesContext.includes(props.eventId)) {
-        favoritesContextUpdate.removeFavorite(props.eventId)
+        appContextUpdate.removeFavorite(props.eventId)
       }
     }
   }
