@@ -2,19 +2,8 @@
 import { Line } from 'react-chartjs-2'
 import Chart from 'chart.js/auto'
 
-const data = {
-  labels: [
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec',
-    'Jan',
-  ],
+const data = (labelsVar, dataVar) => { return {
+  labels: labelsVar,
   datasets: [
     {
       fill: false,
@@ -34,10 +23,10 @@ const data = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 72, 45, 67, 55, 42],
+      data: dataVar,
     },
   ],
-}
+}}
 
 const options = {
 //   maintainAspectRatio: false,
@@ -60,9 +49,9 @@ const options = {
   },
 }
 
-const BalanceChart = () => {
+const BalanceChart = (props) => {
   return (
-      <Line data={data} options={options} width={400} height={150} />
+      <Line data={data(props.labels, props.data)} options={options} width={400} height={150} />
   )
 }
 

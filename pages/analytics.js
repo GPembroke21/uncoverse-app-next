@@ -33,6 +33,21 @@ const ChartTitle = styled("div")(({ theme }) => ({
   color: theme.palette.button.text,
 }));
 
+const labels = [
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sept',
+      'Oct',
+      'Nov',
+      'Dec',
+      'Jan',
+]
+
+const data = [65, 59, 80, 81, 56, 72, 45, 67, 55, 42]
+
 export default function Index(props) {
   return (
 <Wrapper>
@@ -41,7 +56,7 @@ export default function Index(props) {
             <ChartContainer>
                 <ChartTitle>MetaverseName</ChartTitle>
                 <ChartSubtitle>Daily Active Users</ChartSubtitle>
-                <Chart/>
+                <Chart labels={labels} data={data}/>
                 <ChartBottom/>
             </ChartContainer>
         </Content>
