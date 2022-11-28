@@ -42,6 +42,10 @@ const options = {
         },
     },
     x: {
+        // type: 'time',
+        // time: {
+        //     unit: 'month',
+        // },
         grid: {
         color: "transparent",
         },
