@@ -23,6 +23,10 @@ const theme = createTheme({
     // divider: {
     //   main: "#2e2e2e"
     // },
+    text: {
+      primary: "#f5f3f7",
+      secondary: "#b9b3ba",
+    },
   },
   typography: {
     fontFamily:
