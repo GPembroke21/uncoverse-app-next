@@ -2,6 +2,9 @@ import { styled } from "@mui/system"
 import Chart from '../components/Chart'
 import ChartBottom from '../components/ChartBottom'
 import ChartTable from '../components/ChartTable'
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 const Wrapper = styled("div")(({ theme }) => ({ 
     position: "relative", 
@@ -19,6 +22,53 @@ const ChartContainer = styled("div")(({ theme }) => ({
   border: "1px solid #2e2e2e",
   borderRadius: "10px",
   padding: "1rem 2rem",
+  width: "100%",
+  [theme.breakpoints.down("sm")]: {
+    padding: "0.5rem 1rem"
+},
+}));
+
+const ChartHeader = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center", 
+    justifyContent: "space-between",
+    marginBottom: "1rem",
+    [theme.breakpoints.down("sm")]: {
+        flexDirection: "column",
+        alignItems: "flex-start",
+        width: "100%",
+        "> div": {
+          marginLeft: 0,
+          marginRight: 0,
+        },
+    },
+}));
+
+const ChartHeaderLeft = styled("div")(({ theme }) => ({
+}));
+
+const ChartHeaderRight = styled("div")(({ theme }) => ({
+        [theme.breakpoints.down("sm")]: {
+        width: "100%",
+    },
+}));
+
+const DateButtons = styled(ButtonGroup)(({ theme }) => ({
+    '& .MuiButtonGroup-grouped:not(:last-of-type)': {
+        borderColor: theme.palette.button.hover
+      },
+    [theme.breakpoints.down("sm")]: {
+        marginTop: "12px"
+    },
+}));
+
+const DateButton = styled(Button)(({ theme }) => ({
+    fontSize: "clamp(8px, 1.5vw, 24px)", 
+    background: theme.palette.button.main,
+    "&:hover": {
+        color: theme.palette.button.hovertext,
+        backgroundColor: theme.palette.button.hover
+    },
 }));
 
 const ChartSubtitle = styled("div")(({ theme }) => ({
@@ -54,10 +104,23 @@ export default function Index(props) {
         <Content>
             <ChartTable/>
             <ChartContainer>
-                <ChartTitle>MetaverseName</ChartTitle>
-                <ChartSubtitle>Daily Active Users</ChartSubtitle>
+                <ChartHeader>
+                    <ChartHeaderLeft>
+                        <ChartTitle>Decentraland</ChartTitle>
+                        <ChartSubtitle>Daily Active Users</ChartSubtitle>
+                    </ChartHeaderLeft>
+                    <ChartHeaderRight>
+                        <DateButtons variant="contained" aria-label="outlined primary button group" fullWidth>
+                            <DateButton>Day</DateButton>
+                            <DateButton>Week</DateButton>
+                            <DateButton>Month</DateButton>
+                            <DateButton>Year</DateButton>
+                            <DateButton>All</DateButton>
+                        </DateButtons>
+                    </ChartHeaderRight>
+                </ChartHeader>
                 <Chart labels={labels} data={data}/>
-                <ChartBottom/>
+                {/* <ChartBottom/> */}
             </ChartContainer>
         </Content>
     </Wrapper>
