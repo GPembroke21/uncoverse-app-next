@@ -10,7 +10,7 @@ const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
 
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "8px" }));
-const InfopaneImage = styled(Card)(({ theme }) => ({ position: 'relative' }));
+const InfopaneImage = styled("div")(({ theme }) => ({ position: 'relative' }));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
 const InfopaneInfo = styled(Grid)(({ theme }) => ({  backgroundColor: theme.palette.card.secondary, borderRadius: '6px', marginTop: '15px', padding: '5px 10px', cursor: 'default' }));
 const InfopaneDescription = styled('div')(({ theme }) => ({ backgroundColor: theme.palette.card.secondary, borderRadius: '6px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
