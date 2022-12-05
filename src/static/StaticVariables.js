@@ -49,6 +49,11 @@ export const categoryList = [
     'NFT'
 ]
 
+export const typeList = [
+    'Event',
+    'Space'
+]
+
 const currentTime = new Date();
 
 export const getDate = (dateStartRaw, dateEndRaw) => {

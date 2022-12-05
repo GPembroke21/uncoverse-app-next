@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { styled } from "@mui/system"
 import Button from "@mui/material/Button"
 import Grid from "@mui/material/Grid"
@@ -11,12 +12,79 @@ import { Auth } from "aws-amplify"
 import { Box } from "@mui/material";
 import GetUser from "../src/auth/GetUser";
 
-// const Main = styled(Grid)(({ theme }) => ({ maxHeight: '50em', color: "#ffffff", margin: "4vw 2em", flexDirection: "row", justifyContent: "center", [theme.breakpoints.down("sm")]: { flexDirection: "column", justifyContent: "left", "> div": { marginLeft: 0, marginRight: 0, paddingRight: "60px" } } }))
-const Main = styled(Grid)(({ theme }) => ({ color: "transparent", margin: "4vw 2em", flexDirection: "row", justifyContent: "center", [theme.breakpoints.down("sm")]: { flexDirection: "column", justifyContent: "left", "> div": { marginLeft: 0, marginRight: 0, paddingRight: "60px" } } }))
-const EditButton = styled(Button)(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white", backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem", cursor: "pointer", margin: "12px 0px", width: "min(40vw, 200px)", height: "55px", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" } }))
-const SaveButton = styled(Button)(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white", backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem", cursor: "pointer", margin: "40px 0px", height: "55px", "&:hover": { border: "1px solid #dd00ff", color: "#dd00ff" } }))
-const SignOutButton = styled(Button)(({ theme }) => ({ fontFamily: "Inter", fontSize: "0.8rem", fontWeight: "500", textAlign: "center", color: "white", backgroundColor: "transparent", border: "1px solid white", borderRadius: "4px", padding: "0.46rem", cursor: "pointer", margin: "0px 0px", height: "55px", "&:hover": { border: "1px solid red", color: "red" } }))
-const TextFields = styled(TextField)(({ theme }) => ({ caretColor: "white", '& label.Mui-focused': { color: 'white' }, '& .MuiInput-underline:after': { borderBottomColor: 'white' }, '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: 'white' }, '&:hover fieldset': { borderColor: 'white' }, '&.Mui-focused fieldset': { borderColor: 'white' } }, "& .MuiInputLabel-root": { color: 'white' } }))
+const Main = styled(Grid)(({ theme }) => ({ 
+  color: "transparent", 
+  margin: "4vw 0em", 
+  flexDirection: "row", 
+  justifyContent: "center", 
+  // [theme.breakpoints.down("sm")]: { 
+  //   flexDirection: "column", 
+  //   justifyContent: "left", 
+  //   "> div": { 
+  //     marginLeft: 0, 
+  //     marginRight: 0, 
+  //     paddingRight: "60px" 
+  //   } 
+  // } 
+}))
+
+const SignOutButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.button.text, 
+  backgroundColor: theme.palette.button.main, 
+  fontSize: "clamp(8px, 1vw, 12px)", 
+  borderRadius: '6px',
+  padding: "0.46rem",
+  marginRight: '10px',
+  height: "2rem",
+  width: "14rem",
+  "&:hover": {
+      color: theme.palette.button.hovertext,
+      backgroundColor: theme.palette.button.hover
+  },
+  "&:active": {
+    color: theme.palette.button.hovertext,
+    backgroundColor: theme.palette.button.active
+  },
+}));
+
+const SaveButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.button.text, 
+  backgroundColor: theme.palette.button.main, 
+  fontSize: "clamp(8px, 1vw, 12px)", 
+  borderRadius: '6px',
+  padding: "0.46rem",
+  marginRight: '10px',
+  height: "2rem",
+  width: "14rem",
+  "&:hover": {
+      color: theme.palette.button.hovertext,
+      backgroundColor: theme.palette.button.hover
+  },
+  "&:active": {
+    color: theme.palette.button.hovertext,
+    backgroundColor: theme.palette.button.active
+  },
+}));
+
+const TextFields = styled(TextField)(({ theme }) => ({ 
+  marginBottom: "-12px",
+  width: "14rem",
+  caretColor: "white", 
+  '& label.Mui-focused': { 
+    color: 'white' 
+  }, 
+  '& .MuiInput-underline:after': { 
+    borderBottomColor: 'white' 
+  }, 
+  '& .MuiOutlinedInput-root': { 
+    '& fieldset': { borderColor: 'white' }, 
+    '&:hover fieldset': { borderColor: 'white' }, 
+    '&.Mui-focused fieldset': { borderColor: 'white' } 
+  }, 
+  "& .MuiInputLabel-root": { 
+    color: 'white' 
+  } 
+}))
 
 export default function Profile(props) {
   const [changed, setChanged] = React.useState(false)
@@ -79,29 +147,37 @@ export default function Profile(props) {
     }
   };
 
-  const handleEditName = () => { setEditEmail(false); setEditEmailConfirm(false); setEditName(!editName) }
-  const handleEditEmail = () => { setEditName(false); setEditEmail(!editEmail) }
+  const handleEditName = () => { setEditEmail(false); setEditEmailConfirm(false); setEditName(!editName); setShow(!show), iconColor1 === "white" ? setIconColor1("#dd00ff") : setIconColor1("white") }
+  const handleEditEmail = () => { setEditName(false); setEditEmail(!editEmail); setShow(!show), iconColor2 === "white" ? setIconColor2("#dd00ff") : setIconColor2("white") }
+
+  const [show, setShow] = useState(true);
+  const [iconColor1, setIconColor1] = useState("white");
+  const [iconColor2, setIconColor2] = useState("white");
+
+  const hideButton = () => {
+    setShow(true);
+  };
 
   return (
     <form onSubmit={handleSubmit} style={{ overflow: "hidden", padding: "0 0", background: "transparent" }}>
       <Main container>
-        <Grid alignItems="flex-start" flexDirection="column">
+        <Grid alignItems="center" flexDirection="column">
           <Grid item marginBottom={1} marginTop={0}>
-            <Typography onClick={() => console.log(email, request)} sx={{ fontWeight: "700" }}>Display Name  &nbsp; <EditIcon sx={{ fontSize: "1rem" }} onClick={handleEditName} /></Typography>
+            <Typography onClick={() => console.log(email, request)} sx={{ fontWeight: "700" }}>Display Name  &nbsp; <EditIcon sx={{ fontSize: "1rem", color: iconColor1 }} onClick={handleEditName}/></Typography>
           </Grid>
           <Grid item marginBottom={1} marginTop={1}>
             {(editName || !request || !request.attributes.name) ?
-              <TextFields placeholder="Enter name..." fullWidth required inputProps={{ sx: { "&::placeholder": { color: "white" } } }} sx={{ input: { color: 'white' } }} />
+              <TextFields placeholder="{request.attributes.name}" required inputProps={{ sx: { "&::placeholder": { color: "white" }, padding: "4px 12px" } }} sx={{ input: { color: 'white' }}} />
               :
               <Typography>{request.attributes.name}</Typography>
             }
           </Grid>
           <Grid item marginBottom={1} marginTop={3}>
-            <Typography sx={{ fontWeight: "700" }}>Email &nbsp; <EditIcon sx={{ fontSize: "1rem" }} onClick={handleEditEmail} /></Typography>
+            <Typography sx={{ fontWeight: "700" }}>Email &nbsp; <EditIcon sx={{ fontSize: "1rem", color: iconColor2 }} onClick={handleEditEmail}/></Typography>
           </Grid>
           <Grid item marginBottom={1} marginTop={1}>
             {(editEmail || !request) ?
-              <TextFields placeholder="Enter email..." fullWidth required inputProps={{ sx: { "&::placeholder": { color: "white" } } }} sx={{ input: { color: 'white' } }} />
+              <TextFields placeholder={email} fullWidth required inputProps={{ sx: { "&::placeholder": { color: "white" }, padding: "4px 12px" } }} sx={{ input: { color: 'white' } }} />
               :
               <Typography>{email}</Typography>
             }
@@ -113,8 +189,8 @@ export default function Profile(props) {
           }
 
           {(editEmail || editEmailConfirm || editName || !request || !request.attributes.name) &&
-            <Grid item marginBottom={1} marginTop={1}>
-              <SaveButton type='submit' fullWidth>Save</SaveButton>
+            <Grid item marginBottom={1} marginTop={3}>
+              <SaveButton type='submit' fullWidth onClick={hideButton}>Save</SaveButton>
             </Grid>
           }
           {errorMsg &&
@@ -123,9 +199,11 @@ export default function Profile(props) {
             </Grid>
           }
           <Grid item marginBottom={1} marginTop={3}>
+            {show &&
             <Link href="/">
               <SignOutButton fullWidth onClick={handleCloseAndSignOut}>Sign Out</SignOutButton>
             </Link>
+            }
           </Grid>
         </Grid>
       </Main>

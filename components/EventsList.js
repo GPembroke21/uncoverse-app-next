@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react'
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Modal, Backdrop } from "@mui/material";
+import React from 'react'
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Backdrop } from "@mui/material";
 import Image from 'next/image'
 import FavoriteButton from './buttons/FavoriteButton'
 import { platformLogos } from '../src/static/StaticVariables'
 import InfoPane from './InfoPane'
-import { useAppContext, useContextUpdate, useFiltersPlatformsContext, useEventsContext, useFiltersCategoriesContext, useFavoritesContext, useFiltersFavoritesContext, useFiltersSearchContext } from './ContextProvider'
+import { useAppContext, useEventsContext, useFavoritesContext } from './ContextProvider'
 import { animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 
@@ -67,10 +67,12 @@ export default function EventsList() {
   const [infoPaneInfo, setInfoPaneInfo] = React.useState(null)
 
   const eventsContext = useEventsContext()
-  const filtersPlatformsContext = useFiltersPlatformsContext()
-  const filtersCategoriesContext = useFiltersCategoriesContext()
-  const filtersFavoritesContext = useFiltersFavoritesContext()
-  const filtersSearchContext = useFiltersSearchContext()
+  const filtersPlatformsContext = useAppContext().filtersPlatforms
+  const filtersCategoriesContext = useAppContext().filtersCategories
+  const filtersFavoritesContext = useAppContext().filtersFavorites
+  const filtersSearchContext = useAppContext().filtersSearch
+  const filtersCreatorsContext = useAppContext().filtersCreators
+  const filtersActiveContext = useAppContext().filtersActive
   const favoritesContext = useFavoritesContext()
 
   const filteredArray = array => {
@@ -79,6 +81,9 @@ export default function EventsList() {
       if (array.name.toLowerCase().includes(filtersSearchContext)) { return array }
       else { return }
     }
+    if (filtersActiveContext == "A" && array.dateTimeStart > currentTime.toISOString()) { return }
+    if (filtersActiveContext == "U" && array.dateTimeStart < currentTime.toISOString()) { return }
+    if (filtersCreatorsContext.length !== 0 && !filtersCreatorsContext.includes(array.createdByUser)) { return }
     if (filtersFavoritesContext && favoritesContext && !favoritesContext.includes(array.id)) return
     if (filtersPlatformsContext.length === 0 && filtersCategoriesContext.length === 0) {
       return array
@@ -93,6 +98,7 @@ export default function EventsList() {
         for (let i = 0; i < catArr.length; i++) { if (filtersCategoriesContext.includes(catArr[i].trim())) return array }
       }
     }
+    if (filtersCreatorsContext.length !== 0 && filtersCreatorsContext.includes(array.createdByUser)) { return array}
   }
 
 

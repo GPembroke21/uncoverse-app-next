@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import Head from 'next/head'
 import ThemeProvider from '../Theme'
 import { ContextProvider } from '../components/ContextProvider'
 import React from "react"
@@ -26,9 +27,10 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider>
+      <Head>
+        <meta property="og:title" content="Metaverse Search Engine" key="title" />
+      </Head>
       {/* Google tag (gtag.js) */}
-      {/* <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} /> */}
-      {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-45L3Q5M9BX"></script> */}
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-45L3Q5M9BX" />
       <Script id='google-analytics' strategy="afterInteractive">
         {`
