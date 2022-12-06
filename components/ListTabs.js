@@ -47,7 +47,7 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%', mb: "-20px", mt: "-10px" }}>
+    <Box sx={{ width: '100%', mb: "-20px", mt: {xs: "-50px", sm: "-32px"} }}>
       <Box sx={{padding: "1em"}}>
         <Tabs 
             value={value} 

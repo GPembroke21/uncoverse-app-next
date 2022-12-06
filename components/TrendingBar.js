@@ -10,6 +10,7 @@ import { useDrag } from 'react-use-gesture'
 
 const Wrapper = styled("div")(({ theme }) => ({ overflow: "hidden", padding: "0 0", background: "transparent", boxShadow: "3" }));
 const Main = styled(Grid)(({ theme }) => ({ color: "#ffffff", justifyContent: "center", alignItems: "top", direction: "row", marginTop: "2px" }));
+const BackCard = styled(Card)(({ theme }) => ({ color: "white", padding: "0px 0px", margin: "0px 0px"}));
 const TrendingCard = styled(Card)(({ theme }) => ({ color: "white", borderRadius: "10px", background: theme.palette.card.trending }));
 const currentTime = new Date();
 
@@ -49,14 +50,16 @@ export default function TrendingBar() {
         <ThemeProvider>
             <CssBaseline />
             <Wrapper sx={{ display: { xs: 'none', sm: 'revert' } }}>
+            <BackCard>
                 <Main container>
+                {/* <Typography sx={{transform: 'rotate(-90deg)', marginLeft: "20px", marginRight: "-90px", fontSize: "clamp(19px, 2vw, 23px)", fontWeight: "800"}}>TRENDING</Typography> */}
                     <Grid item xs flexGrow={1} padding={'0em 0.85em 0em 0.9em'} sx={{ margin: "auto" }} zeroMinWidth>
                         <TrendingCard sx={{ width: 1 }}>
                             <CardHeader sx={{ height: "20px", margin: "4px 0px 4px -2px", cursor: 'default' }}
                                 avatar={
                                     <Image src="/trendingevents.svg" alt='Top Events' width="20rem" height="20rem" />
                                 }
-                                title="Trending Events"
+                                title="Top Events"
                                 titleTypographyProps={{ fontSize: 'clamp(12px, 1.45vw, 16px)', fontWeight: '600', color: "#f5f3f7", marginLeft: "-3px" }}
                             // onClick={() => console.log(topEvents)}
                             />
@@ -155,6 +158,7 @@ export default function TrendingBar() {
                         </TrendingCard>
                     </Grid>
                 </Main>
+                </BackCard>
                 <animated.div {...bind()} >
                     <Backdrop open={open} onClick={handleClose} />
                     <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />

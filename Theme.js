@@ -323,6 +323,9 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "clamp(12px, 1vw, 16px)",
+          margin: "10px 0px -10px 0px",
+          minWidth: 75,
+          width: 75,
         },
       },
     }, 
