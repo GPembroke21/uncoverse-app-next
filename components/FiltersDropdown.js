@@ -14,7 +14,7 @@ const DropdownContainer = styled("div")(({ theme }) => ({ margin: "0.6rem 0rem",
 const ClearFilterButton = styled(Button)(({ theme }) => ({ color: "white", backgroundColor: "#21172a", fontSize: "clamp(8px, 1vw, 14px)", padding: '0px 10px', borderRadius: '7px', marginRight: '10px', height: "2.5em", width: "11em", "&:hover": { color: "#dd00ff", backgroundColor: "#21172a" } }));
 
 export default function FiltersDropdown() {
-  const [filterShown, setfilterShown] = useState({ Platform: false, Category: false, Type: false })
+  const [filterShown, setfilterShown] = useState({ Platform: false, Category: false, /*Type: false*/ })
   const filtersPlatormsContext = useAppContext().filtersPlatforms
   const filtersCategoriesContext = useAppContext().filtersCategories
   const filtersTypeContext = useAppContext().filtersType
@@ -91,7 +91,7 @@ export default function FiltersDropdown() {
         {(filterShown.Platform || filterShown.Category || filterShown.Type) && <Divider style={{ backgroundColor: "#2e2e2e", width: "100%", height: "0.01px" }} />}
         {filterShown.Category && categoryDropdown}
         {filterShown.Platform && plaftformDropdown}
-        {filterShown.Type && typeDropdown}
+        {/* {filterShown.Type && typeDropdown} */}
       </Wrapper>
     </ThemeProvider>
   )

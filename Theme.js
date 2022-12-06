@@ -319,6 +319,13 @@ const theme = createTheme({
         },
       },
     },   
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          fontSize: "clamp(12px, 1vw, 16px)",
+        },
+      },
+    }, 
   },
 });
 
