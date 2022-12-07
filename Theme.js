@@ -322,10 +322,11 @@ const theme = createTheme({
     MuiTab: {
       styleOverrides: {
         root: {
-          fontSize: "clamp(12px, 1vw, 16px)",
-          margin: "10px 0px -10px 0px",
-          minWidth: 75,
-          width: 75,
+          fontSize: "clamp(8px, 1.2vw, 14px)",
+          // margin: "10px 0px -10px 0px",
+          // minWidth: 75,
+          // width: 75,
+          textTransform: "none",
         },
       },
     }, 

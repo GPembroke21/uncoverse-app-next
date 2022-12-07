@@ -12,7 +12,6 @@ export default function Index(props) {
     <Wrapper>
       <AdBar />
       <TrendingBar />
-      <ListTabs />
       <FiltersBar />
       <EventsList />
     </Wrapper>
