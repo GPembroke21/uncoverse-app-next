@@ -68,8 +68,8 @@ export default function BasicTabs() {
                   backgroundColor: "transparent",
                   border: "1px solid #dd00ff",
                   borderRadius: "6px",
-                  height: "28px",
-                  margin: "0px 0px 10px 0px",
+                  height: {xs: "20px", sm: "28px"},
+                  margin: {xs: "0px 0px 14px 0px", sm: "0px 0px 10px 0px"},
                 }
             }}
         >

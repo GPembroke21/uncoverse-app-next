@@ -2,7 +2,7 @@ import * as React from 'react';
 import Image from 'next/image'
 import ThemeProvider from "../Theme"
 import { styled } from "@mui/system"
-import { Backdrop, Card, CardContent, CardHeader, CssBaseline, Grid, Typography } from "@mui/material";
+import { Backdrop, Card, CardContent, CardHeader, CssBaseline, Grid, Typography, Box } from "@mui/material";
 import { useEventsContext, useAppContext, useAppContextUpdate } from './ContextProvider';
 import InfoPane from './InfoPane';
 import { animated } from 'react-spring'
@@ -11,7 +11,7 @@ import { useDrag } from 'react-use-gesture'
 const Wrapper = styled("div")(({ theme }) => ({ overflow: "hidden", padding: "0 0", background: "transparent", boxShadow: "3" }));
 const Main = styled(Grid)(({ theme }) => ({ color: "#ffffff", justifyContent: "center", alignItems: "top", direction: "row", marginTop: "2px" }));
 const BackCard = styled(Card)(({ theme }) => ({ color: "white", padding: "0px 0px", margin: "0px 0px"}));
-const TrendingCard = styled(Card)(({ theme }) => ({ color: "white", borderRadius: "10px", background: theme.palette.card.trending }));
+const TrendingCard = styled(Card)(({ theme }) => ({ color: "white", borderRadius: "10px", background: theme.palette.card.trending, padding: '0px 0px 0px 2px' }));
 const currentTime = new Date();
 
 export default function TrendingBar() {
@@ -66,19 +66,21 @@ export default function TrendingBar() {
                             {/* <Divider sx={{background:'#40454d'}}/> */}
                             <CardContent>
                                 <Grid container marginTop={-2} marginBottom={-1.5} wrap="nowrap">
-                                    <Grid item marginRight={2}>
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color={(theme) => theme.palette.text.label} lineHeight="175%" sx={{cursor: "default"}}>
+                                    <Grid item marginRight={1.3}>
+                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" fontWeight="200" color={(theme) => theme.palette.text.label} lineHeight="175%" sx={{cursor: "default"}}>
                                             1<br />2<br />3
                                         </Typography>
                                     </Grid>
                                     {/* <Grid item> */}
-                                    <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" sx={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} lineHeight="175%">
+                                    <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" sx={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} lineHeight="175%" width="calc(100% - 22px)">
                                         {eventsContext.length === 0 ? <span>Loading..</span> :
                                             <span>
                                                 {
                                                     topEvents.slice(0, 3).map((item, i) => (
                                                         < span key={i} onClick={() => handelClick(item)} style={{ cursor: 'pointer' }}>
+                                                            <Box sx={{"&:hover": {backgroundColor: (theme) => theme.palette.button.main}, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", borderRadius: "8px", padding: "0px 2px 0px 6px"}}>
                                                             {item.name} < br />
+                                                            </Box>
                                                         </span>
                                                     ))
                                                 }
@@ -105,16 +107,22 @@ export default function TrendingBar() {
                             {/* <Divider sx={{background:'#40454d'}}/> */}
                             <CardContent>
                                 <Grid container marginTop={-2} marginBottom={-1.5}>
-                                    <Grid item marginRight={2}>
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color={(theme) => theme.palette.text.label} lineHeight="175%" sx={{cursor: "default"}}>
+                                    <Grid item marginRight={1.3}>
+                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" fontWeight="200" color={(theme) => theme.palette.text.label} lineHeight="175%" sx={{cursor: "default"}}>
                                             1<br />2<br />3
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
+                                    <Grid item width="calc(100% - 24px)">
                                         <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" style={{ cursor: 'pointer' }} lineHeight="175%">
+                                        <Box sx={{"&:hover": {backgroundColor: (theme) => theme.palette.button.main}, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", borderRadius: "8px", padding: "0px 2px 0px 6px"}}>
                                             <span onClick={() => handleClickCategory("Music")} style={styleCategoryButton("Music")}>Music <br /> </span>
+                                        </Box>
+                                        <Box sx={{"&:hover": {backgroundColor: (theme) => theme.palette.button.main}, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", borderRadius: "8px", padding: "0px 2px 0px 6px"}}>
                                             <span onClick={() => handleClickCategory("Information")} style={styleCategoryButton("Information")}>Information <br /></span>
+                                        </Box>
+                                        <Box sx={{"&:hover": {backgroundColor: (theme) => theme.palette.button.main}, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", borderRadius: "8px", padding: "0px 2px 0px 6px"}}>
                                             <span onClick={() => handleClickCategory("NFT")} style={styleCategoryButton("NFT")}>NFT <br /></span>
+                                        </Box>
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -132,19 +140,21 @@ export default function TrendingBar() {
                             {/* <Divider sx={{background:'#40454d'}}/> */}
                             <CardContent>
                                 <Grid container marginTop={-2} marginBottom={-1.5}>
-                                    <Grid item marginRight={2}>
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" color= {(theme) => theme.palette.text.label} lineHeight="175%" sx={{cursor: "default"}}>
+                                    <Grid item marginRight={1.3}>
+                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" fontWeight="200" color= {(theme) => theme.palette.text.label} lineHeight="175%" sx={{cursor: "default"}}>
                                             1<br />2<br />3
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
+                                    <Grid item width="calc(100% - 24px)">
                                         <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" lineHeight="175%" style={{ cursor: 'pointer' }}>
                                             {eventsContext.length === 0 ? <span>Loading..</span> :
                                                 <span>
                                                     {
                                                         topCreators.splice(0, 3).map((item, i) => (
                                                             < span key={i} onClick={() => handleClickCreator(item.createdByUser)} style={styleCreatorButton(item.createdByUser)}>
+                                                                <Box sx={{"&:hover": {backgroundColor: (theme) => theme.palette.button.main}, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", borderRadius: "8px", padding: "0px 2px 0px 6px"}}>
                                                                 {item.createdByUser} < br />
+                                                                </Box>
                                                             </span>
                                                         ))
                                                     }

@@ -10,7 +10,7 @@ import WatchlistButton from './buttons/WatchlistButton'
 import AnalyticsButton from './buttons/AnalyticsButton'
 import { useAppContext } from './ContextProvider'
 import GetUser from '../src/auth/GetUser'
-import Searchbar2 from './Searchbar2'
+import Searchbar from './Searchbar'
 
 const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0px 10px 0px 0px", display: "flex", alignItems: "center", justifyContent: "space-between"}))
 const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
@@ -56,7 +56,7 @@ const Header = (props) => {
           <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log("")} />
         </LogoContainer>
         <RightContainer>
-          <Searchbar2/>
+          <Searchbar/>
           {/* <AnalyticsButton/> */}
           {!loginCreds.signedIn ?
             <div>

@@ -41,11 +41,11 @@ export default function FiltersDropdown() {
 
   const handleClick = filterType => {
     if (filterType === "Platform") {
-      setfilterShown(currentState => { return { Platform: !currentState.Platform, Category: false, Type: false } })
+      setfilterShown(currentState => { return { Platform: !currentState.Platform, Category: false } })
     } else if (filterType === "Category") {
-      setfilterShown(currentState => { return { Platform: false, Category: !currentState.Category, Type: false } })
+      setfilterShown(currentState => { return { Platform: false, Category: !currentState.Category } })
     } else if (filterType === "Type") {
-      setfilterShown(currentState => { return { Platform: false, Category: false, Type: !currentState.Type } })
+      setfilterShown(currentState => { return { Platform: false, Category: false } })
     }
   };
 
