@@ -281,14 +281,14 @@ const theme = createTheme({
           color: "#f5f3f7",
           // fontSize: "min(2.9vw, 13px)",
           fontSize: "clamp(12px, 1.45vw, 14px)",
-          fontWeight: "300",
+          fontWeight: "200",
           margin: "-0.2rem 0rem 0rem 0rem"
         },
         subtitle: {
           color: "#7b7a7c",
           // fontSize: "min(2.6vw, 13px)",
           fontSize: "clamp(10px, 1.25vw, 14px)",
-          fontWeight: "400",
+          fontWeight: "300",
           margin: "0rem 0rem -0.2rem 0rem",
           padding: "0px 0px 1px 0px"
         },
@@ -319,6 +319,14 @@ const theme = createTheme({
         },
       },
     },   
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          fontSize: "clamp(8px, 1.2vw, 14px)",
+          textTransform: "none",
+        },
+      },
+    }, 
   },
 });
 
