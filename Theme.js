@@ -30,8 +30,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily:
-      "Inter",
+    fontFamily: "Inter",
     h1: {
       font: "Inter",
       fontSize: "min(3vw, 70px)",
@@ -85,14 +84,11 @@ const theme = createTheme({
     },
   },
   components: {
-    MuiCssBaseline: {
-      "@global": {
-        '@font-face': [Inter],
-        body: {
-          backgroundImage:"",
-        },
-      },
-    },
+    // MuiCssBaseline: {
+    //   "@global": {
+    //     '@font-face': [Inter],
+    //   },
+    // },
     MuiButton: {
       styleOverrides: {
         root: {
