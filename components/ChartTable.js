@@ -27,35 +27,53 @@ const rows = [
 ];
 
 export default function BasicTable() {
-  const [rowColor1, setRowColor1] = useState("#dd00ff")
+  const [rowColor1, setRowColor1] = useState("white")
   // const [rowColor2, setRowColor2] = useState("white")
   // const [rowColor3, setRowColor3] = useState("white")
   // const [rowColor4, setRowColor4] = useState("white")
+  const [rowActive, setRowActive] = useState(null)
+  const [selected, setSelected] = useState(1)
+
+  const handleSelectRow = (rowIndex) => {
+    setSelected(rowIndex);
+  }
+
+  // const handleClick = event => {
+  //   rowColor1 === "white" ? setRowColor1("#dd00ff") : setRowColor1("white");
+  // };
 
   const handleClick = event => {
-    rowColor1 === "white" ? setRowColor1("#dd00ff") : setRowColor1("white");
+    setSelected(row.id)
   };
 
   return (
     <ChartTable component={Paper}>
       <Table aria-label="simple table">
         <TableHead >
-          <TableRow sx={{height: "40px"}}>
+          <TableRow sx={{height: "40px"}} selected={selected === 0} onClick={() => handleSelectRow(0)}>
             <TableCell sx={{fontWeight: 700}}>Platforms</TableCell>
             <TableCell align="right">Users</TableCell>
             <TableCell align="right">Events</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, index) => (
             <TableRow
               key={row.name}
               sx={{ 
                 '&:last-child td, &:last-child th': { border: 0 } ,
+                '&:last-child': { borderBottom: 'none' },
                 "&:hover": {backgroundColor: (theme) => theme.palette.button.hover},
                 cursor: "pointer",
+                "&.Mui-selected, &.Mui-selected:hover": {
+                  backgroundColor: "transparent",
+                  "& > .MuiTableCell-root": {
+                    color: "#dd00ff"
+                  }
+                }
               }}
-              onClick={handleClick}
+              selected={selected === index + 1}
+              onClick={() => handleSelectRow(index + 1)}
             >
               <TableCell component="th" scope="row">
                 {row.platform}
