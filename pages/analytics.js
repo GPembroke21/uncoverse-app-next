@@ -1,8 +1,9 @@
+import React from 'react'
+import { useState } from 'react'
 import { styled } from "@mui/system"
 import Chart from '../components/Chart'
 import ChartBottom from '../components/ChartBottom'
 import ChartTable from '../components/ChartTable'
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
@@ -83,34 +84,48 @@ const ChartTitle = styled("div")(({ theme }) => ({
   color: theme.palette.button.text,
 }));
 
-const labels = [
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sept',
-      'Oct',
-      'Nov',
-      'Dec',
-      'Jan',
-]
+const weekLabels = ['Mon','Tues','Wed','Thurs','Fri','Sat','Sun']
+const weekData = [65, 59, 80, 81, 56, 72, 45]
 
-const data = [65, 59, 80, 81, 56, 72, 45, 67, 55, 42]
-// const data= [{
-//   x: '2021-11-06 23:39:30',
-//   y: 50
-// }, {
-//   x: '2021-11-07 01:00:28',
-//   y: 60
-// }, {
-//   x: '2021-11-07 09:00:28',
-//   y: 20
-// }]
+const monthLabels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30']
+const monthData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+
+const yearLabels = ['Jan','Feb','March','April','May','June','July','Aug','Sept','Oct','Nov','Dec']
+const yearData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 export default function Index(props) {
+  const [labels, setLabels] = useState(weekLabels)
+  const [data, setData] = useState(weekData)
+  const [buttonColorWeek, setButtonColorWeek] = useState('#dd00ff')
+  const [buttonColorMonth, setButtonColorMonth] = useState('white')
+  const [buttonColorYear, setButtonColorYear] = useState('white')
+
+  const handleClickWeek = () => {
+      setLabels(weekLabels)
+      setData(weekData)
+      setButtonColorWeek("#dd00ff")
+      setButtonColorMonth("white")
+      setButtonColorYear("white")
+  }
+
+  const handleClickMonth = () => {
+    setLabels(monthLabels)
+    setData(monthData)
+    setButtonColorWeek("white")
+    setButtonColorMonth("#dd00ff")
+    setButtonColorYear("white")
+  }
+
+  const handleClickYear = () => {
+    setLabels(yearLabels)
+    setData(yearData)
+    setButtonColorWeek("white")
+    setButtonColorMonth("white")
+    setButtonColorYear("#dd00ff")
+  }
+
   return (
-<Wrapper>
+    <Wrapper>
         <Content>
             <ChartTable/>
             <ChartContainer>
@@ -121,10 +136,9 @@ export default function Index(props) {
                     </ChartHeaderLeft>
                     <ChartHeaderRight>
                         <DateButtons variant="contained" aria-label="outlined primary button group" fullWidth>
-                            <DateButton>Day</DateButton>
-                            <DateButton>Week</DateButton>
-                            <DateButton>Month</DateButton>
-                            <DateButton>Year</DateButton>
+                            <DateButton onClick={handleClickWeek} style= {{ color: buttonColorWeek }}>Week</DateButton>
+                            <DateButton onClick={handleClickMonth} style= {{ color: buttonColorMonth }}>Month</DateButton>
+                            <DateButton onClick={handleClickYear} style= {{ color: buttonColorYear }}>Year</DateButton>
                             <DateButton>All</DateButton>
                         </DateButtons>
                     </ChartHeaderRight>
