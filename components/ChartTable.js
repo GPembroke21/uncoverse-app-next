@@ -26,11 +26,12 @@ const rows = [
   createData('Voxels', 305, "18"),
 ];
 
-export default function BasicTable() {
+export default function BasicTable(props) {
   const [selected, setSelected] = useState(null)
 
   const handleSelectRow = (rowIndex) => {
     setSelected(rowIndex);
+    props.handleSelect(rowIndex)
   }
 
   return (
@@ -46,7 +47,7 @@ export default function BasicTable() {
         <TableBody>
           {rows.map((row, index) => (
             <TableRow
-              key={row.name}
+              key={index}
               sx={{ 
                 '&:last-child td, &:last-child th': { border: 0 } ,
                 '&:last-child': { borderBottom: 'none' },

@@ -120,6 +120,8 @@ export default function Index(props) {
   const [buttonColorWeek, setButtonColorWeek] = useState('#dd00ff')
   const [buttonColorMonth, setButtonColorMonth] = useState('white')
   const [buttonColorYear, setButtonColorYear] = useState('white')
+  const allSets = [decentralandData, sandboxData, somniumData, voxelsData]
+  const [dataArray, setDataArray] = useState(allSets)
 
   //X axis modifier buttons
   const handleClickWeek = () => {
@@ -155,14 +157,20 @@ export default function Index(props) {
     setButtonColorYear("#dd00ff")
   }
 
+  const handleSelect = info => {
+    console.log(allSets[info])
+    setDataArray([allSets[info]])
+  }
+
+
   return (
     <Wrapper>
         <Content>
-            <ChartTable/>
+            <ChartTable handleSelect={handleSelect}/>
             <ChartContainer>
                 <ChartHeader>
                     <ChartHeaderLeft>
-                        <ChartTitle>Daily Active Users (DAU)</ChartTitle>
+                        <ChartTitle onClick={() => console.log(dataArray)}>Daily Active Users (DAU)</ChartTitle>
                         {/* <ChartSubtitle>Daily Active Users</ChartSubtitle> */}
                     </ChartHeaderLeft>
                     <ChartHeaderRight>
@@ -176,6 +184,7 @@ export default function Index(props) {
                 </ChartHeader>
                 <Chart 
                   labels={labels} 
+                  dataArray={dataArray}
                   decentralandData={decentralandData}
                   sandboxData={sandboxData}
                   somniumData={somniumData}
