@@ -27,30 +27,17 @@ const rows = [
 ];
 
 export default function BasicTable() {
-  const [rowColor1, setRowColor1] = useState("white")
-  // const [rowColor2, setRowColor2] = useState("white")
-  // const [rowColor3, setRowColor3] = useState("white")
-  // const [rowColor4, setRowColor4] = useState("white")
-  const [rowActive, setRowActive] = useState(null)
-  const [selected, setSelected] = useState(1)
+  const [selected, setSelected] = useState(null)
 
   const handleSelectRow = (rowIndex) => {
     setSelected(rowIndex);
   }
 
-  // const handleClick = event => {
-  //   rowColor1 === "white" ? setRowColor1("#dd00ff") : setRowColor1("white");
-  // };
-
-  const handleClick = event => {
-    setSelected(row.id)
-  };
-
   return (
     <ChartTable component={Paper}>
       <Table aria-label="simple table">
-        <TableHead >
-          <TableRow sx={{height: "40px"}} selected={selected === 0} onClick={() => handleSelectRow(0)}>
+        <TableHead>
+          <TableRow selected={selected === 0} onClick={() => handleSelectRow(0)} sx={{height: "40px", "&.Mui-selected, &.Mui-selected:hover": {backgroundColor: "transparent"}}}>
             <TableCell sx={{fontWeight: 700}}>Platforms</TableCell>
             <TableCell align="right">Users</TableCell>
             <TableCell align="right">Events</TableCell>
