@@ -2,17 +2,38 @@
 import { Line } from 'react-chartjs-2'
 import Chart from 'chart.js/auto'
 
-const data = (labelsVar, dataArray) => {
+// activeData = {showAll: true, showArray: [], timeFrame: 7}
+
+const tableFormats = {
+  'Arcade Land': 'red',
+  'Axie Infinity': 'green',
+  'Decentraland': '#dd00ff',
+  'Fluf World': 'green',
+  'Netvrk': 'green',
+  'NFT Worlds': 'green',
+  'Otherdeed for Otherside': 'green',
+  'Somnium': 'white',
+  'Superworld AR': 'green',
+  'The Sandbox': 'blue',
+  'Treeverse': 'green',
+  'Voxels': 'grey',
+  'Worldwide Webb Land': 'green',
+
+}
+
+const data = dataProps => {
+
+  const timeFrame = dataProps.activeData.timeFrame
 
   const datasetsArray = []
-  for (let i = 0; i < dataArray.length; i++) {
+  for (let i = 0; i < dataProps.dataArray.length; i++) {
     datasetsArray.push(
       {
-        label: "Decentraland",
+        label: dataProps.dataArray[i].name,
         fill: false,
         lineTension: 0.1,
-        backgroundColor: "#dd00ff",
-        borderColor: "#dd00ff",
+        backgroundColor: tableFormats[dataProps.dataArray[i].name],
+        borderColor: tableFormats[dataProps.dataArray[i].name],
         borderCapStyle: 'butt',
         borderDash: [],
         borderDashOffset: 0.0,
@@ -26,13 +47,13 @@ const data = (labelsVar, dataArray) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: dataArray[i],
+        data: dataProps.dataArray[i].data.splice(-timeFrame),
       }
     )
   }
 
   return {
-    labels: labelsVar,
+    labels: dataProps.labelsVar,
     datasets: datasetsArray
     // datasets: [
     //   {
@@ -154,7 +175,7 @@ const BalanceChart = (props) => {
 
   return (
     // <Line data={data(props.labels, props.decentralandData, props.sandboxData, props.somniumData, props.voxelsData )} options={options} width={400} height={150} />
-    <Line data={data(props.labels, props.dataArray)} options={options} width={400} height={150} />
+    <Line data={data(props)} options={options} width={400} height={150} />
   )
 }
 
