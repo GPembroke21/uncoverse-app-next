@@ -26,19 +26,29 @@ const rows = [
   createData('Voxels', 305, "18"),
 ];
 
-export default function BasicTable(props) {
-  const [selected, setSelected] = useState(null)
 
-  const handleSelectRow = (rowIndex) => {
-    setSelected(rowIndex);
-    props.handleSelect(rowIndex)
+
+export default function BasicTable(props) {
+  const [selected, setSelected] = useState([])
+
+  const handleSelectRow = rowIndex => {
+    if (selected.includes(rowIndex)){
+      props.handleSelect(selected.filter(item => item !== rowIndex))
+      setSelected(oldArray => oldArray.filter(item => item !== rowIndex))
+    } else {
+      setSelected(oldArray => {
+        props.handleSelect([...oldArray, rowIndex])
+        return [...oldArray, rowIndex]
+      })
+    }
+    
   }
 
   return (
     <ChartTable component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
-          <TableRow selected={selected === 0} onClick={() => handleSelectRow(0)} sx={{height: "40px", "&.Mui-selected, &.Mui-selected:hover": {backgroundColor: "transparent"}}}>
+          <TableRow selected={selected.includes(0)} onClick={() => handleSelectRow(0)} sx={{height: "40px", "&.Mui-selected, &.Mui-selected:hover": {backgroundColor: "transparent"}}}>
             <TableCell sx={{fontWeight: 700}}>Platforms</TableCell>
             <TableCell align="right">Users</TableCell>
             <TableCell align="right">Events</TableCell>
@@ -60,7 +70,7 @@ export default function BasicTable(props) {
                   }
                 }
               }}
-              selected={selected === index + 1}
+              selected={selected.includes(index + 1)}
               onClick={() => handleSelectRow(index + 1)}
             >
               <TableCell component="th" scope="row">
