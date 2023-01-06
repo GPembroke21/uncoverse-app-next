@@ -205,3 +205,54 @@ export const deleteInteraction = /* GraphQL */ `
     }
   }
 `;
+export const createAnalytics = /* GraphQL */ `
+  mutation CreateAnalytics(
+    $input: CreateAnalyticsInput!
+    $condition: ModelAnalyticsConditionInput
+  ) {
+    createAnalytics(input: $input, condition: $condition) {
+      id
+      name
+      data
+      lastDate
+      firstDate
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateAnalytics = /* GraphQL */ `
+  mutation UpdateAnalytics(
+    $input: UpdateAnalyticsInput!
+    $condition: ModelAnalyticsConditionInput
+  ) {
+    updateAnalytics(input: $input, condition: $condition) {
+      id
+      name
+      data
+      lastDate
+      firstDate
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteAnalytics = /* GraphQL */ `
+  mutation DeleteAnalytics(
+    $input: DeleteAnalyticsInput!
+    $condition: ModelAnalyticsConditionInput
+  ) {
+    deleteAnalytics(input: $input, condition: $condition) {
+      id
+      name
+      data
+      lastDate
+      firstDate
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;

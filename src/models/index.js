@@ -4,11 +4,12 @@ import { schema } from './schema';
 
 
 
-const { Todo, Platform, Event, Interaction } = initSchema(schema);
+const { Todo, Platform, Event, Interaction, Analytics } = initSchema(schema);
 
 export {
   Todo,
   Platform,
   Event,
-  Interaction
+  Interaction,
+  Analytics
 };

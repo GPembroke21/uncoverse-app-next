@@ -8,13 +8,13 @@ Amplify.configure({ ...awsExports, ssr: true })
 const nextToken = [null]
 
 export default function GetEvents(getMoreEvents) {
-    const [request, setRequest] = useState(() => { nextToken.splice(0, 0, null); return { data: null, error: false} })
+    const [request, setRequest] = useState(() => { nextToken.splice(0, 0, null); return { data: null, error: false } })
 
     const gqlQuery = () => {
         return {
             query: listEvents,
             authMode: "AWS_IAM",
-            variables: { limit: 500, nextToken: nextToken.at(0)}
+            variables: { limit: 1000, nextToken: nextToken.at(0) }
         }
     }
 
@@ -26,17 +26,17 @@ export default function GetEvents(getMoreEvents) {
             nextToken.splice(0, 0, response.data[objectKey].nextToken)
             // appendToArray(response.data[objectKey].items)
             // console.log("Next fetched: ", response.data.listEvents.nextToken)
-            setRequest({ data: response.data[objectKey].items, error: false})
+            setRequest({ data: response.data[objectKey].items, error: false })
         } catch (error) {
             console.log("Error loading API:", error)
-            setRequest(() => { return { data: null, error: true}})
+            setRequest(() => { return { data: null, error: true } })
         }
     }, [])
 
     useEffect(() => {
         getFunction()
         // console.log("Function running!!")
-        return () => { setRequest({ data: null, error: false})}
+        return () => { setRequest({ data: null, error: false }) }
     }, [getFunction, getMoreEvents])
 
     return request
@@ -51,3 +51,4 @@ export default function GetEvents(getMoreEvents) {
 //         }
 //     }
 // }
+
