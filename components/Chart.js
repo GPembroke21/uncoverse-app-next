@@ -68,12 +68,13 @@ const options = dataProps => {
         minUnit: 'day',
         maxUnit: 'day',
         sourceFormat: 'MM/DD'
-      }
+      },
     }
   ] : []
 
   return {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,
@@ -116,7 +117,7 @@ const BalanceChart = (props) => {
 
   return (
     // <Line data={data(props.labels, props.decentralandData, props.sandboxData, props.somniumData, props.voxelsData )} options={options} width={400} height={150} />
-    <Line data={data(props)} options={options(props)} width={400} height={150} />
+    <Line data={data(props)} options={options(props)} />
   )
 }
 

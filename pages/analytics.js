@@ -6,16 +6,69 @@ import ChartBottom from '../components/ChartBottom'
 import ChartTable from '../components/ChartTable'
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
 
 //styles
-const Wrapper = styled("div")(({ theme }) => ({ position: "relative", height: "calc(100%)", width: "100%" }));
-const Content = styled("div")(({ theme }) => ({ width: "100%", padding: "1rem 1rem" }));
-const ChartContainer = styled("div")(({ theme }) => ({
+const Wrapper = styled(Grid)(({ theme }) => ({ 
+  height: "calc(100%)", 
+  flexDirection: "row",
+}));
+
+const Content = styled(Grid)(({ theme }) => ({ 
+  padding: "1rem 1rem",
+  flexDirection: "row",
+  height: "100%",
+  width:"100%",
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: "column",
+    "> div": {
+      marginLeft: 0,
+      marginRight: 0,
+    },
+  }, 
+}));
+
+const TableCard = styled(Grid)(({ theme }) => ({
+  // height: 0,
+  // minHeight: "100%",
+  contain: "size",
+  overflow: "scroll",
+  border: "1px solid #2e2e2e",
+  borderRadius: "10px",
+  // paddingRight: "12px",
+  [theme.breakpoints.down("md")]: { 
+    // padding: "0rem 0rem",
+    contain: "none",
+    marginBottom: "16px",
+    "> div": {
+      height: 200,
+      minHeight: "100%",
+    },
+  },
+}));
+
+const ChartCard = styled(Grid)(({ theme }) => ({
   border: "1px solid #2e2e2e",
   borderRadius: "10px",
   padding: "1rem 2rem",
+  position: "relative",
   width: "100%",
-  [theme.breakpoints.down("sm")]: { padding: "0.5rem 1rem" },
+  [theme.breakpoints.down("sm")]: { 
+    padding: "0.5rem 1rem",
+    width:"100%",
+  },
+}));
+
+const ChartContainer = styled("div")(({ theme }) => ({
+  position: "relative",
+  height:"50vh",
+  [theme.breakpoints.down("sm")]: { 
+    height: "25vh"
+  },
+  [theme.breakpoints.up("lg")]: { 
+    height: "450px"
+  },
 }));
 
 const ChartHeader = styled("div")(({ theme }) => ({
@@ -33,15 +86,22 @@ const ChartHeader = styled("div")(({ theme }) => ({
     },
   },
 }));
-const ChartHeaderLeft = styled("div")(({ theme }) => ({}));
-const ChartHeaderRight = styled("div")(({ theme }) => ({ [theme.breakpoints.down("sm")]: { width: "100%", } }));
+const ChartHeaderLeft = styled("div")(({ theme }) => ({
+}));
+
+const ChartHeaderRight = styled("div")(({ theme }) => ({ 
+  [theme.breakpoints.down("sm")]: { 
+    width: "100%", 
+  } 
+}));
+
 const DateButtons = styled(ButtonGroup)(({ theme }) => ({
   '& .MuiButtonGroup-grouped:not(:last-of-type)': { borderColor: theme.palette.button.hover },
   [theme.breakpoints.down("sm")]: { marginTop: "12px" },
 }));
 
 const DateButton = styled(Button)(({ theme }) => ({
-  fontSize: "clamp(8px, 1.5vw, 24px)",
+  fontSize: "clamp(8px, 1.2vw, 16px)",
   background: theme.palette.button.main,
   "&:hover": {
     color: theme.palette.button.hovertext,
@@ -50,7 +110,7 @@ const DateButton = styled(Button)(({ theme }) => ({
 }));
 
 const ChartSubtitle = styled("div")(({ theme }) => ({ color: "#8a919e", fontSize: "0.9rem", margin: "0 0 0.25rem 0" }));
-const ChartTitle = styled("div")(({ theme }) => ({ fontSize: "1.8rem", fontWeight: "700", color: theme.palette.button.text }));
+const ChartTitle = styled("div")(({ theme }) => ({ fontSize: "1rem", fontWeight: "700", color: theme.palette.button.text }));
 
 //X axis modifiers
 const weekLabels = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
@@ -239,9 +299,12 @@ export default function Index(props) {
 
   return (
     <Wrapper>
-      <Content>
-        <ChartTable handleSelect={handleSelect} />
-        <ChartContainer>
+      <Content container>
+        <TableCard xs={12} sm={12} md={4}>
+            <ChartTable handleSelect={handleSelect} />
+        </TableCard>
+        <Grid xs={0} sm={0} md={0.25}/>
+        <ChartCard xs={12} sm={12} md={7.75}>
           <ChartHeader>
             <ChartHeaderLeft>
               <ChartTitle onClick={() => console.log(dataArray)}>Daily Active Users (DAU)</ChartTitle>
@@ -256,17 +319,19 @@ export default function Index(props) {
               </DateButtons>
             </ChartHeaderRight>
           </ChartHeader>
-          <Chart
-            labels={labels}
-            dataArray={dataArray}
-            activeData={activeData}
-          // decentralandData={decentralandData}
-          // sandboxData={sandboxData}
-          // somniumData={somniumData}
-          // voxelsData={voxelsData}
-          />
-          {/* <ChartBottom/> */}
-        </ChartContainer>
+          <ChartContainer style={{position: "relative"}}>
+            <Chart
+              labels={labels}
+              dataArray={dataArray}
+              activeData={activeData}
+            // decentralandData={decentralandData}
+            // sandboxData={sandboxData}
+            // somniumData={somniumData}
+            // voxelsData={voxelsData}
+            />
+            {/* <ChartBottom/> */}
+          </ChartContainer>
+        </ChartCard>
       </Content>
     </Wrapper>
   )
