@@ -10,7 +10,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 const ChartTable = styled(TableContainer)(({ theme }) => ({
-    margin: "0rem 0 1rem 0",
+    margin: "0rem 0rem",
+    padding: "0px 0px"
   }));
 
 function createData(platform, events, users) {
@@ -54,10 +55,10 @@ export default function BasicTable(props) {
     <ChartTable component={Paper} elevation={0}>
       <Table aria-label="simple table">
         <TableHead>
-          <TableRow selected={selected.includes(0)} onClick={() => handleSelectRow(0)} sx={{height: "40px", "&.Mui-selected, &.Mui-selected:hover": {backgroundColor: "transparent"}}}>
-            <TableCell sx={{fontWeight: 700}}>Platforms</TableCell>
-            <TableCell align="right">Users</TableCell>
-            <TableCell align="right">Events</TableCell>
+          <TableRow selected={selected.includes(0)} onClick={() => handleSelectRow(0)} sx={{backgroundColor: "#21172a", height: "40px", "&.Mui-selected, &.Mui-selected:hover": {backgroundColor: "transparent"}}}>
+            <TableCell sx={{fontWeight: 700, paddingLeft: "12px"}}>Platforms</TableCell>
+            <TableCell align="right" sx={{fontWeight: 700}}>Users</TableCell>
+            <TableCell align="right" sx={{fontWeight: 700, paddingRight: "12px"}}>Events</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -79,11 +80,11 @@ export default function BasicTable(props) {
               selected={selected.includes(index + 1)}
               onClick={() => handleSelectRow(index + 1)}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{borderBottom: "1px solid #40454d", paddingLeft: "12px"}}>
                 {row.platform}
               </TableCell>
-              <TableCell align="right">{row.users}</TableCell>
-              <TableCell align="right">{row.events}</TableCell>
+              <TableCell align="right" sx={{borderBottom: "1px solid #40454d"}}>{row.users}</TableCell>
+              <TableCell align="right" sx={{borderBottom: "1px solid #40454d", paddingRight: "12px"}}>{row.events}</TableCell>
             </TableRow>
           ))}
         </TableBody>

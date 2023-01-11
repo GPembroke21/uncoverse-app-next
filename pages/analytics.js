@@ -30,6 +30,7 @@ const Content = styled(Grid)(({ theme }) => ({
 }));
 
 const TableCard = styled(Grid)(({ theme }) => ({
+  // background: theme.palette.card.main,
   contain: "size",
   overflow: "scroll",
   border: "1px solid #2e2e2e",
@@ -40,6 +41,10 @@ const TableCard = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.down("md")]: { 
     contain: "none",
     marginBottom: "16px",
+    overflow: "scroll",
+    msOverflowStyle: "none", 
+    scrollbarWidth: "none",
+    '&::-webkit-scrollbar': { display: 'none' }, 
     "> div": {
       height: 200,
       minHeight: "100%",
@@ -111,8 +116,59 @@ const DateButton = styled(Button)(({ theme }) => ({
 const ChartSubtitle = styled("div")(({ theme }) => ({ color: "#8a919e", fontSize: "0.9rem", margin: "0 0 0.25rem 0" }));
 const ChartTitle = styled("div")(({ theme }) => ({ fontSize: "1rem", fontWeight: "700", color: theme.palette.button.text }));
 
+
+function GetDates(startDate, daysToAdd) {
+  var aryDates = [];
+
+  for (var i = 0; i <= daysToAdd; i++) {
+      var currentDate = new Date();
+      currentDate.setDate(startDate.getDate() + i);
+      aryDates.push(DayAsString(currentDate.getDay()) 
+      // + ", " + currentDate.getDate() + " " + MonthAsString(currentDate.getMonth()) + " " + currentDate.getFullYear()
+      );
+  }
+
+  return aryDates;
+}
+
+function MonthAsString(monthIndex) {
+  var d = new Date();
+  var month = new Array();
+  month[0] = "January";
+  month[1] = "February";
+  month[2] = "March";
+  month[3] = "April";
+  month[4] = "May";
+  month[5] = "June";
+  month[6] = "July";
+  month[7] = "August";
+  month[8] = "September";
+  month[9] = "October";
+  month[10] = "November";
+  month[11] = "December";
+
+  return month[monthIndex];
+}
+
+function DayAsString(dayIndex) {
+  var weekdays = new Array(7);
+  weekdays[0] = "Sun";
+  weekdays[1] = "Mon";
+  weekdays[2] = "Tues";
+  weekdays[3] = "Wed";
+  weekdays[4] = "Thurs";
+  weekdays[5] = "Fri";
+  weekdays[6] = "Sat";
+
+  return weekdays[dayIndex];
+}
+
+var startDate = new Date();
+var aryDates = GetDates(startDate, 7);
+console.log(aryDates);
+
 //X axis modifiers
-const weekLabels = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+const weekLabels = [aryDates]
 const monthLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
 // const yearLabels = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
 const yearLabels = ['12/01', '12/02', '12/03', '12/04', '12/05', '12/06', '12/07', '12/08', '12/09', '12/10', '12/11', '12/12', '12/13', '12/14', '12/15', '12/16', '12/17', '12/18', '12/19', '12/20', '12/21', '12/22', '12/23', '12/24', '12/25', '12/26', '12/27', '12/28', '12/29', '12/30', '12/31', '01/01', '01/02', '01/03', '01/04', '01/05', '01/06', '01/07', '01/08', '01/09', '01/10', '01/11',

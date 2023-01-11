@@ -77,6 +77,7 @@ const options = dataProps => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
+        onClick: null, 
         display: true,
         position: 'bottom',
         labels: { boxWidth: 25, color: 'white' }
