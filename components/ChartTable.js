@@ -11,8 +11,6 @@ import Paper from '@mui/material/Paper';
 
 const ChartTable = styled(TableContainer)(({ theme }) => ({
     margin: "0rem 0 1rem 0",
-    border: "1px solid #2e2e2e",
-    borderRadius: "10px",
   }));
 
 function createData(platform, events, users) {
@@ -24,6 +22,14 @@ const rows = [
   createData('Sandbox', 237, "30k"),
   createData('Somnium', 262, "24k"),
   createData('Voxels', 305, "18"),
+  createData('Arcade Land', 159, "36k"),
+  createData('Axie Infinity', 237, "30k"),
+  createData('Fluff World', 262, "24k"),
+  createData('Netvrk', 305, "18"),
+  createData('NFT Worlds', 159, "36k"),
+  createData('Otherdeed', 237, "30k"),
+  createData('Superworld AR', 262, "24k"),
+  createData('Treeverse', 305, "18"),
 ];
 
 
@@ -45,7 +51,7 @@ export default function BasicTable(props) {
   }
 
   return (
-    <ChartTable component={Paper}>
+    <ChartTable component={Paper} elevation={0}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow selected={selected.includes(0)} onClick={() => handleSelectRow(0)} sx={{height: "40px", "&.Mui-selected, &.Mui-selected:hover": {backgroundColor: "transparent"}}}>
