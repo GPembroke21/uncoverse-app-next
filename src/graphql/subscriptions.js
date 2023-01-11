@@ -169,3 +169,45 @@ export const onDeleteInteraction = /* GraphQL */ `
     }
   }
 `;
+export const onCreateAnalytics = /* GraphQL */ `
+  subscription OnCreateAnalytics {
+    onCreateAnalytics {
+      id
+      name
+      data
+      lastDate
+      firstDate
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateAnalytics = /* GraphQL */ `
+  subscription OnUpdateAnalytics {
+    onUpdateAnalytics {
+      id
+      name
+      data
+      lastDate
+      firstDate
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteAnalytics = /* GraphQL */ `
+  subscription OnDeleteAnalytics {
+    onDeleteAnalytics {
+      id
+      name
+      data
+      lastDate
+      firstDate
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;

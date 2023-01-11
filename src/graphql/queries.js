@@ -141,3 +141,38 @@ export const listInteractions = /* GraphQL */ `
     }
   }
 `;
+export const getAnalytics = /* GraphQL */ `
+  query GetAnalytics($id: ID!) {
+    getAnalytics(id: $id) {
+      id
+      name
+      data
+      lastDate
+      firstDate
+      color
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listAnalytics = /* GraphQL */ `
+  query ListAnalytics(
+    $filter: ModelAnalyticsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAnalytics(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        data
+        lastDate
+        firstDate
+        color
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
