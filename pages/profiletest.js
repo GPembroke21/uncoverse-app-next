@@ -62,7 +62,7 @@ const Links = styled(Grid)(({ theme }) => ({
 
 const TextFields = styled(InputBase)(({ theme }) => ({ 
   marginBottom: "12px",
-  border: "1px solid white",
+  border: "0.5px solid white",
   borderRadius: "10px",
   // width: "14rem",
   caretColor: "white", 

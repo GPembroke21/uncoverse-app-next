@@ -30,15 +30,14 @@ const Content = styled(Grid)(({ theme }) => ({
 }));
 
 const TableCard = styled(Grid)(({ theme }) => ({
-  // height: 0,
-  // minHeight: "100%",
   contain: "size",
   overflow: "scroll",
   border: "1px solid #2e2e2e",
   borderRadius: "10px",
-  // paddingRight: "12px",
+  msOverflowStyle: "none", 
+  scrollbarWidth: "none",
+  '&::-webkit-scrollbar': { display: 'none' }, 
   [theme.breakpoints.down("md")]: { 
-    // padding: "0rem 0rem",
     contain: "none",
     marginBottom: "16px",
     "> div": {
@@ -300,11 +299,11 @@ export default function Index(props) {
   return (
     <Wrapper>
       <Content container>
-        <TableCard xs={12} sm={12} md={4}>
+        <TableCard item xs={12} sm={12} md={4}>
             <ChartTable handleSelect={handleSelect} />
         </TableCard>
-        <Grid xs={0} sm={0} md={0.25}/>
-        <ChartCard xs={12} sm={12} md={7.75}>
+        <Grid item xs={0} sm={0} md={0.25}/>
+        <ChartCard item xs={12} sm={12} md={7.75}>
           <ChartHeader>
             <ChartHeaderLeft>
               <ChartTitle onClick={() => console.log(dataArray)}>Daily Active Users (DAU)</ChartTitle>
