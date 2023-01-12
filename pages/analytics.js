@@ -287,7 +287,7 @@ const worldwideWebbLandData = {
 const allDataSets = [arcadeLandData, decentralandData, theSandboxData, somniumData, voxelsData, axieInfinityData, flufWorldData, netvrkData, NFTWorldsData, otherdeedforOthersideData, superworldARData, treeverseData, worldwideWebbLandData]
 
 export default function Index(props) {
-  const [labels, setLabels] = useState(weekLabels)
+  const [labels, setLabels] = useState(yearLabels.slice(-7))
   // const [decentralandData, setDecentralandData] = useState(decentralandWeekData)
   // const [sandboxData, setSandboxData] = useState(sandboxWeekData)
   // const [somniumData, setSomniumData] = useState(somniumWeekData)
@@ -302,7 +302,7 @@ export default function Index(props) {
 
   //X axis modifier buttons
   const handleClickWeek = () => {
-    setLabels(weekLabels)
+    setLabels(yearLabels.slice(-7))
     setActiveData({ ...activeData, timeFrame: 7 })
     // setDecentralandData(decentralandWeekData)
     // setSandboxData(sandboxWeekData)
@@ -314,7 +314,7 @@ export default function Index(props) {
   }
 
   const handleClickMonth = () => {
-    setLabels(monthLabels)
+    setLabels(yearLabels.slice(-30))
     setActiveData({ ...activeData, timeFrame: 30 })
     // setDecentralandData(decentralandMonthData)
     // setSandboxData(sandboxMonthData)
