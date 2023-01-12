@@ -73,8 +73,8 @@ export default function BasicTabs() {
                 }
             }}
         >
-          <Tab label="Events" /*{...a11yProps(0)}*/ />
-          <Tab label="Spaces" /*{...a11yProps(1)}*/ />
+          {/* <Tab label="Events" //*{...a11yProps(0)} />
+          <Tab label="Spaces" //*{...a11yProps(1)} /> */}
         </Tabs>
       </Box>
       {/* <TabPanel value={value} index={0}>
