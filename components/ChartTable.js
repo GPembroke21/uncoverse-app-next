@@ -36,9 +36,13 @@ const rows = [
 
 
 export default function BasicTable(props) {
-  const [selected, setSelected] = useState([])
+  const [selected, setSelected] = useState([1,2,3])
 
   const handleSelectRow = rowIndex => {
+    if (selected.length === 3 && !selected.includes(rowIndex)) {
+      // alert('Maximum of 5 items can be selected.');
+      return;
+    }
     if (selected.includes(rowIndex)){
       props.handleSelect(selected.filter(item => item !== rowIndex))
       setSelected(oldArray => oldArray.filter(item => item !== rowIndex))
