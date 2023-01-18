@@ -5,7 +5,7 @@ import Chart from 'chart.js/auto'
 // activeData = {showAll: true, showArray: [], timeFrame: 7}
 
 const tableFormats = {
-  'Arcade Land': 'red',
+  'Arcade Land': '#00FEFE',
   'Axie Infinity': 'green',
   'Decentraland': '#dd00ff',
   'Fluf World': 'green',
@@ -22,22 +22,26 @@ const tableFormats = {
 }
 
 const data = dataProps => {
+  if (!dataProps.dataArray) return
   const timeFrame = dataProps.activeData.timeFrame
   const datasetsArray = []
   for (let i = 0; i < dataProps.dataArray.length; i++) {
+    const dataset = JSON.parse(dataProps.dataArray[i].data)
+    console.log(typeof dataset)
+    console.log(dataset.slice(7))
     datasetsArray.push(
       {
         label: dataProps.dataArray[i].name,
         fill: false,
         lineTension: 0.1,
-        backgroundColor: tableFormats[dataProps.dataArray[i].name],
-        borderColor: tableFormats[dataProps.dataArray[i].name],
+        backgroundColor: dataProps.dataArray[i].color,
+        borderColor: dataProps.dataArray[i].color,
         borderCapStyle: 'butt',
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: 'miter',
-        pointBorderColor: tableFormats[dataProps.dataArray[i].name],
-        pointBackgroundColor: tableFormats[dataProps.dataArray[i].name],
+        pointBorderColor: dataProps.dataArray[i].color,
+        pointBackgroundColor: dataProps.dataArray[i].color,
         pointBorderWidth: 1,
         pointHoverRadius: 5,
         pointHoverBackgroundColor: '#dd00ff',
@@ -45,13 +49,13 @@ const data = dataProps => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: dataProps.dataArray[i].data.slice(-timeFrame),
+        data: dataset.slice(7),
       }
     )
   }
 
   return {
-    labels: dataProps.labels,
+    // labels: dataProps.labels,
     datasets: datasetsArray,
   }
 }
@@ -77,38 +81,38 @@ const options = dataProps => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        onClick: null, 
+        onClick: null,
         display: true,
         position: 'bottom',
         labels: { boxWidth: 25, color: 'white' }
       },
     },
     scales: {
-      yAxes: [
-        {
-          grid: {
-            color: 'transparent',
-          },
+      y:
+      {
+        grid: {
+          color: 'transparent',
         },
-      ],
-      xAxes: [
-        {
-          type: 'time',
-          time: dataProps.activeData.timeFrame == 366 ? {
-            unit: 'month',
-            displayFormats: {
-              month: 'MMM YYYY'
-            },
-            minUnit: 'day',
-            maxUnit: 'day',
-            sourceFormat: 'MM/DD'
-          } : {},
-          grid: {
-            color: 'transparent',
-          },
-          
+      },
+
+      x:
+      {
+        // type: 'time',
+        // time: dataProps.activeData.timeFrame == 366 ? {
+        //   unit: 'month',
+        //   displayFormats: {
+        //     month: 'MMM YYYY'
+        //   },
+        //   minUnit: 'day',
+        //   maxUnit: 'day',
+        //   sourceFormat: 'MM/DD'
+        // } : {},
+        grid: {
+          color: 'transparent',
         },
-      ],
+
+      },
+
     },
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { styled } from "@mui/system"
+import { useAnalyticsContext } from '../components/ContextProvider'
 import Chart from '../components/Chart'
 import ChartBottom from '../components/ChartBottom'
 import ChartTable from '../components/ChartTable'
@@ -9,25 +10,8 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 
-//styles
-const Wrapper = styled(Grid)(({ theme }) => ({ 
-  height: "calc(100%)", 
-  flexDirection: "row",
-}));
-
-const Content = styled(Grid)(({ theme }) => ({ 
-  padding: "1rem 1rem",
-  flexDirection: "row",
-  height: "100%",
-  width:"100%",
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column",
-    "> div": {
-      marginLeft: 0,
-      marginRight: 0,
-    },
-  }, 
-}));
+const Wrapper = styled(Grid)(({ theme }) => ({ height: "calc(100%)", flexDirection: "row", }));
+const Content = styled(Grid)(({ theme }) => ({ padding: "1rem 1rem", flexDirection: "row", height: "100%", width: "100%", [theme.breakpoints.down("sm")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0, }, }, }));
 
 const TableCard = styled(Grid)(({ theme }) => ({
   // background: theme.palette.card.main,
@@ -35,16 +19,16 @@ const TableCard = styled(Grid)(({ theme }) => ({
   overflow: "scroll",
   border: "1px solid #2e2e2e",
   borderRadius: "10px",
-  msOverflowStyle: "none", 
+  msOverflowStyle: "none",
   scrollbarWidth: "none",
-  '&::-webkit-scrollbar': { display: 'none' }, 
-  [theme.breakpoints.down("md")]: { 
+  '&::-webkit-scrollbar': { display: 'none' },
+  [theme.breakpoints.down("md")]: {
     contain: "none",
     marginBottom: "16px",
     overflow: "scroll",
-    msOverflowStyle: "none", 
+    msOverflowStyle: "none",
     scrollbarWidth: "none",
-    '&::-webkit-scrollbar': { display: 'none' }, 
+    '&::-webkit-scrollbar': { display: 'none' },
     "> div": {
       height: 200,
       minHeight: "100%",
@@ -58,19 +42,19 @@ const ChartCard = styled(Grid)(({ theme }) => ({
   padding: "1rem 2rem",
   position: "relative",
   width: "100%",
-  [theme.breakpoints.down("sm")]: { 
+  [theme.breakpoints.down("sm")]: {
     padding: "0.5rem 1rem",
-    width:"100%",
+    width: "100%",
   },
 }));
 
 const ChartContainer = styled("div")(({ theme }) => ({
   position: "relative",
-  height:"50vh",
-  [theme.breakpoints.down("sm")]: { 
+  height: "50vh",
+  [theme.breakpoints.down("sm")]: {
     height: "25vh"
   },
-  [theme.breakpoints.up("lg")]: { 
+  [theme.breakpoints.up("lg")]: {
     height: "450px"
   },
 }));
@@ -90,29 +74,11 @@ const ChartHeader = styled("div")(({ theme }) => ({
     },
   },
 }));
-const ChartHeaderLeft = styled("div")(({ theme }) => ({
-}));
 
-const ChartHeaderRight = styled("div")(({ theme }) => ({ 
-  [theme.breakpoints.down("sm")]: { 
-    width: "100%", 
-  } 
-}));
-
-const DateButtons = styled(ButtonGroup)(({ theme }) => ({
-  '& .MuiButtonGroup-grouped:not(:last-of-type)': { borderColor: theme.palette.button.hover },
-  [theme.breakpoints.down("sm")]: { marginTop: "12px" },
-}));
-
-const DateButton = styled(Button)(({ theme }) => ({
-  fontSize: "clamp(8px, 1.2vw, 16px)",
-  background: theme.palette.button.main,
-  "&:hover": {
-    color: theme.palette.button.hovertext,
-    backgroundColor: theme.palette.button.hover
-  },
-}));
-
+const ChartHeaderLeft = styled("div")(({ theme }) => ({}));
+const ChartHeaderRight = styled("div")(({ theme }) => ({ [theme.breakpoints.down("sm")]: { width: "100%", } }));
+const DateButtons = styled(ButtonGroup)(({ theme }) => ({ '& .MuiButtonGroup-grouped:not(:last-of-type)': { borderColor: theme.palette.button.hover }, [theme.breakpoints.down("sm")]: { marginTop: "12px" }, }));
+const DateButton = styled(Button)(({ theme }) => ({ fontSize: "clamp(8px, 1.2vw, 16px)", background: theme.palette.button.main, "&:hover": { color: theme.palette.button.hovertext, backgroundColor: theme.palette.button.hover }, }));
 const ChartSubtitle = styled("div")(({ theme }) => ({ color: "#8a919e", fontSize: "0.9rem", margin: "0 0 0.25rem 0" }));
 const ChartTitle = styled("div")(({ theme }) => ({ fontSize: "1rem", fontWeight: "700", color: theme.palette.button.text }));
 
@@ -121,11 +87,11 @@ function GetDates(startDate, daysToAdd) {
   var aryDates = [];
 
   for (var i = 0; i <= daysToAdd; i++) {
-      var currentDate = new Date();
-      currentDate.setDate(startDate.getDate() + i);
-      aryDates.push(DayAsString(currentDate.getDay()) 
+    var currentDate = new Date();
+    currentDate.setDate(startDate.getDate() + i);
+    aryDates.push(DayAsString(currentDate.getDay())
       // + ", " + currentDate.getDate() + " " + MonthAsString(currentDate.getMonth()) + " " + currentDate.getFullYear()
-      );
+    );
   }
 
   return aryDates;
@@ -165,7 +131,7 @@ function DayAsString(dayIndex) {
 
 var startDate = new Date();
 var aryDates = GetDates(startDate, 7);
-console.log(aryDates);
+// console.log(aryDates);
 
 //X axis modifiers
 const weekLabels = [aryDates]
@@ -288,6 +254,7 @@ const allDataSets = [arcadeLandData, decentralandData, theSandboxData, somniumDa
 
 export default function Index(props) {
   const [labels, setLabels] = useState(yearLabels.slice(-7))
+  const analyticsContext = useAnalyticsContext().data
   // const [decentralandData, setDecentralandData] = useState(decentralandWeekData)
   // const [sandboxData, setSandboxData] = useState(sandboxWeekData)
   // const [somniumData, setSomniumData] = useState(somniumWeekData)
@@ -356,13 +323,13 @@ export default function Index(props) {
     <Wrapper>
       <Content container>
         <TableCard item xs={12} sm={12} md={4}>
-            <ChartTable handleSelect={handleSelect} />
+          <ChartTable handleSelect={handleSelect} />
         </TableCard>
-        <Grid item xs={0} sm={0} md={0.25}/>
+        <Grid item xs={0} sm={0} md={0.25} />
         <ChartCard item xs={12} sm={12} md={7.75}>
           <ChartHeader>
             <ChartHeaderLeft>
-              <ChartTitle onClick={() => console.log(dataArray)}>Daily Active Users (DAU)</ChartTitle>
+              <ChartTitle onClick={() => console.log(analyticsContext)}>Daily Active Users (DAU)</ChartTitle>
               {/* <ChartSubtitle>Daily Active Users</ChartSubtitle> */}
             </ChartHeaderLeft>
             <ChartHeaderRight>
@@ -374,10 +341,10 @@ export default function Index(props) {
               </DateButtons>
             </ChartHeaderRight>
           </ChartHeader>
-          <ChartContainer style={{position: "relative"}}>
+          <ChartContainer style={{ position: "relative" }}>
             <Chart
               labels={labels}
-              dataArray={dataArray}
+              dataArray={analyticsContext}
               activeData={activeData}
             // decentralandData={decentralandData}
             // sandboxData={sandboxData}

@@ -79,7 +79,7 @@ export declare class Interaction {
 export declare class Analytics {
   readonly id: string;
   readonly name: string;
-  readonly data: string;
+  readonly data?: string;
   readonly lastDate?: string;
   readonly firstDate?: string;
   readonly color?: string;

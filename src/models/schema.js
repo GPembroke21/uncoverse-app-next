@@ -379,8 +379,8 @@ export const schema = {
                 "data": {
                     "name": "data",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
+                    "type": "AWSJSON",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "lastDate": {
@@ -454,5 +454,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "35376b18de350556871074f2e0cef932"
+    "version": "dff8466493ec40844e94ea1a8248834a"
 };

@@ -43,7 +43,7 @@ type Analytics @model @auth(rules: [
   { allow: private, provider: iam, operations: [read] } ]) {
   id: ID!
   name: String!
-  data: String!
+  data: AWSJSON
   lastDate: String
   firstDate: String
   color: String
