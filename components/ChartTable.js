@@ -37,6 +37,10 @@ const rows = [
 
 export default function BasicTable(props) {
   const [selected, setSelected] = useState([1,2,3])
+  const [selectedColor, setSelectedColor] = useState([])
+
+  const handleSelectedColor = {
+  }
 
   const handleSelectRow = rowIndex => {
     if (selected.length === 3 && !selected.includes(rowIndex)) {
