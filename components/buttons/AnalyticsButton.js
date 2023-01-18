@@ -7,20 +7,20 @@ import { styled } from "@mui/system"
 
 const WatchlistButton = styled(Button)(({ theme }) => ({
     color: theme.palette.button.text, 
-    backgroundColor: theme.palette.button.main, 
+    backgroundColor: "transparent", 
     fontSize: "clamp(8px, 1vw, 12px)", 
     borderRadius: '6px',
-    padding: "0.46rem",
+    padding: "0rem",
     marginRight: '10px',
-    width: "11em",
-    height: "2rem",
+    // width: "11em",
+    // height: "1rem",
     "&:hover": {
         color: theme.palette.button.hovertext,
-        backgroundColor: theme.palette.button.hover
+        backgroundColor: "transparent"
     },
     "&:active": {
       color: theme.palette.button.hovertext,
-      backgroundColor: theme.palette.button.active
+      backgroundColor: "transparent"
     },
 }));
 
@@ -28,7 +28,7 @@ export default function BasicButtons() {
   return (
     <WatchlistButton 
     variant="contained"
-    endIcon={<ShowChartIcon sx={{ width: '0.5em', height: '0.5em' }}/>}
+    endIcon={<ShowChartIcon sx={{ width: '0.5em', height: '0.5em', marginLeft: '-5px' }}/>}
     >
       <Link href="/analytics">
         Analytics
