@@ -27,8 +27,6 @@ const data = dataProps => {
   const datasetsArray = []
   for (let i = 0; i < dataProps.dataArray.length; i++) {
     const dataset = JSON.parse(dataProps.dataArray[i].data)
-    console.log(typeof dataset)
-    console.log(dataset.slice(7))
     datasetsArray.push(
       {
         label: dataProps.dataArray[i].name,
@@ -49,7 +47,7 @@ const data = dataProps => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: dataset.slice(7),
+        data: dataset.slice(0, Math.min(timeFrame, dataset.length)),
       }
     )
   }
