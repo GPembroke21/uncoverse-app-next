@@ -31,9 +31,7 @@ const Header = () => {
           <Typography variant="h4" onClick={() => handleClick("U")} style={upcomingStyle}>Upcoming Events:</Typography>
           <Typography variant="h4" sx={{ color: "#5794f7" }}>&nbsp;{allEvents - activeEvents}</Typography>
         </TickerContainer>
-        <Link href="/analytics">
-          <AnalyticsButton/>
-        </Link>
+        <AnalyticsButton />
       </Wrapper>
     </ThemeProvider>
   )
