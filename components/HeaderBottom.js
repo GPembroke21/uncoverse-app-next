@@ -3,6 +3,8 @@ import { styled } from "@mui/system"
 import ThemeProvider from "../Theme"
 import Typography from "@mui/material/Typography"
 import { useEventsContext, useAppContext, useAppContextUpdate } from './ContextProvider'
+import AnalyticsButton from './buttons/AnalyticsButton'
+import Link from 'next/link'
 
 const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0px 10px 0px 0px", display: "flex", alignItems: "center", justifyContent: "space-between" }));
 const TickerContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 1rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center", cursor: 'default' }));
@@ -29,6 +31,7 @@ const Header = () => {
           <Typography variant="h4" onClick={() => handleClick("U")} style={upcomingStyle}>Upcoming Events:</Typography>
           <Typography variant="h4" sx={{ color: "#5794f7" }}>&nbsp;{allEvents - activeEvents}</Typography>
         </TickerContainer>
+        <AnalyticsButton />
       </Wrapper>
     </ThemeProvider>
   )

@@ -4,16 +4,19 @@ import GetEvents from '../src/requests/GetEvents'
 import { eventsIdArray } from '../src/static/StaticVariables'
 import GetInteractions from '../src/requests/GetInteractions'
 import StoreInteraction from '../src/requests/CreateInteraction'
+import GetAnalyticsData from '../src/requests/GetAnalyticsData'
 
 const AppContext = createContext()
 const EventsContext = createContext()
 const FavoritesContext = createContext()
 const AppContextUpdate = createContext()
+const AnalyticsContext = createContext()
 
 export function useAppContext() { return useContext(AppContext) }
 export function useEventsContext() { return useContext(EventsContext) }
 export function useFavoritesContext() { return useContext(FavoritesContext) }
 export function useAppContextUpdate() { return useContext(AppContextUpdate) }
+export function useAnalyticsContext() { return useContext(AnalyticsContext) }
 
 export function ContextProvider({ children }) {
     const [loginStatus, setLoginStatus] = useState(() => false)
@@ -117,13 +120,17 @@ export function ContextProvider({ children }) {
         return () => { }
     }, [userInteractions])
 
+    const analyticsData = GetAnalyticsData()
+
     return (
         <AppContext.Provider value={appContext}>
             {/* <LoginContext.Provider value={loginCreds}> */}
             <EventsContext.Provider value={events}>
                 <FavoritesContext.Provider value={favoriteEvents}>
                     <AppContextUpdate.Provider value={updateAppContext}>
-                        {children}
+                        <AnalyticsContext.Provider value={analyticsData}>
+                            {children}
+                        </AnalyticsContext.Provider>
                     </AppContextUpdate.Provider>
                 </FavoritesContext.Provider>
             </EventsContext.Provider>

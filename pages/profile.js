@@ -10,22 +10,25 @@ import { signOut } from '../src/auth/SignOut'
 import React from 'react'
 import { Auth } from "aws-amplify"
 import { Box } from "@mui/material";
+import Divider from "@mui/material/Divider"
 import GetUser from "../src/auth/GetUser";
 
-const Main = styled(Grid)(({ theme }) => ({ 
-  color: "transparent", 
-  margin: "4vw 0em", 
-  flexDirection: "row", 
-  justifyContent: "center", 
-  // [theme.breakpoints.down("sm")]: { 
-  //   flexDirection: "column", 
-  //   justifyContent: "left", 
-  //   "> div": { 
-  //     marginLeft: 0, 
-  //     marginRight: 0, 
-  //     paddingRight: "60px" 
-  //   } 
-  // } 
+const Wrapper = styled(Grid)(({ theme }) => ({
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+    width: "100%"
+  }))
+
+const Header = styled(Grid)(({ theme }) => ({ 
+    justifyContent: "center",
+}))
+
+const Field = styled(Grid)(({ theme }) => ({ 
+    width: "14rem",
+  }))
+
+const FieldHeader = styled(Grid)(({ theme }) => ({ 
 }))
 
 const SignOutButton = styled(Button)(({ theme }) => ({
@@ -39,12 +42,32 @@ const SignOutButton = styled(Button)(({ theme }) => ({
   width: "14rem",
   "&:hover": {
       color: theme.palette.button.hovertext,
-      backgroundColor: theme.palette.button.hover
+      backgroundColor: theme.palette.button.hover,
   },
   "&:active": {
     color: theme.palette.button.hovertext,
     backgroundColor: theme.palette.button.active
   },
+}));
+
+const CancelButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.button.text, 
+    backgroundColor: "transparent", 
+    fontSize: "clamp(8px, 1vw, 12px)", 
+    borderRadius: '6px',
+    border: "1px solid white",
+    padding: "0.46rem",
+    height: "2rem",
+    "&:hover": {
+        color: "red",
+        backgroundColor: "transparent",
+        borderColor: "red"
+    },
+    "&:active": {
+        color: "red",
+        backgroundColor: "transparent",
+        borderColor: "red"
+    },
 }));
 
 const SaveButton = styled(Button)(({ theme }) => ({
@@ -53,9 +76,7 @@ const SaveButton = styled(Button)(({ theme }) => ({
   fontSize: "clamp(8px, 1vw, 12px)", 
   borderRadius: '6px',
   padding: "0.46rem",
-  marginRight: '10px',
   height: "2rem",
-  width: "14rem",
   "&:hover": {
       color: theme.palette.button.hovertext,
       backgroundColor: theme.palette.button.hover
@@ -64,6 +85,35 @@ const SaveButton = styled(Button)(({ theme }) => ({
     color: theme.palette.button.hovertext,
     backgroundColor: theme.palette.button.active
   },
+}));
+
+const ConnectButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.button.text, 
+    backgroundColor: "transparent", 
+    fontSize: "clamp(8px, 1vw, 12px)",
+    border: "1px solid white", 
+    borderRadius: '6px',
+    padding: "0.46rem",
+    height: "2rem",
+    "&:hover": {
+        color: theme.palette.button.hovertext,
+        borderColor: theme.palette.button.hovertext,
+    },
+    "&:active": {
+        color: theme.palette.button.hovertext,
+        borderColor: theme.palette.button.hovertext,
+    },
+  }));
+
+
+const DeleteButton = styled(Button)(({ theme }) => ({
+    color: "red", 
+    backgroundColor: "transparent", 
+    fontSize: "clamp(8px, 1vw, 12px)",
+    border: "1px solid red", 
+    borderRadius: '6px',
+    padding: "0.46rem",
+    height: "2rem",
 }));
 
 const TextFields = styled(TextField)(({ theme }) => ({ 
@@ -86,6 +136,10 @@ const TextFields = styled(TextField)(({ theme }) => ({
   } 
 }))
 
+const ButtonContainer = styled(Grid)(({ theme }) => ({ 
+}));
+
+
 export default function Profile(props) {
   const [changed, setChanged] = React.useState(false)
   const request = GetUser(changed)
@@ -95,6 +149,11 @@ export default function Profile(props) {
   const [errorMsg, setErrorMsg] = React.useState(() => null)
   const handleCloseAndSignOut = () => signOut()
   const [email, setEmail] = React.useState(() => null)
+  const [hover, setHover] = React.useState(false);
+
+  const handleHover = () => {
+    setHover(!hover);
+  };
 
   React.useEffect(() => {
     if (!request || !request.attributes.email) return
@@ -160,53 +219,88 @@ export default function Profile(props) {
 
   return (
     <form onSubmit={handleSubmit} style={{ overflow: "hidden", padding: "0 0", background: "transparent" }}>
-      <Main container>
-        <Grid alignItems="center" flexDirection="column">
-          <Grid item marginBottom={1} marginTop={0}>
-            <Typography onClick={() => console.log(email, request)} sx={{ fontWeight: "700" }}>Display Name  &nbsp; <EditIcon sx={{ fontSize: "1rem", color: iconColor1 }} onClick={handleEditName}/></Typography>
-          </Grid>
-          <Grid item marginBottom={1} marginTop={1}>
-            {(editName || !request || !request.attributes.name) ?
-              <TextFields placeholder="{request.attributes.name}" required inputProps={{ sx: { "&::placeholder": { color: "white" }, padding: "4px 12px" } }} sx={{ input: { color: 'white' }}} />
-              :
-              <Typography>{request.attributes.name}</Typography>
-            }
-          </Grid>
-          <Grid item marginBottom={1} marginTop={3}>
-            <Typography sx={{ fontWeight: "700" }}>Email &nbsp; <EditIcon sx={{ fontSize: "1rem", color: iconColor2 }} onClick={handleEditEmail}/></Typography>
-          </Grid>
-          <Grid item marginBottom={1} marginTop={1}>
-            {(editEmail || !request) ?
-              <TextFields placeholder={email} fullWidth required inputProps={{ sx: { "&::placeholder": { color: "white" }, padding: "4px 12px" } }} sx={{ input: { color: 'white' } }} />
-              :
-              <Typography>{email}</Typography>
-            }
-          </Grid>
-          {editEmailConfirm &&
-            <Grid item marginBottom={1} marginTop={1}>
-              <TextFields placeholder="Enter confirmation code..." fullWidth required inputProps={{ sx: { "&::placeholder": { color: "white" } } }} sx={{ input: { color: 'white' } }} />
+        <Wrapper container>
+          <Header sx={{margin: {xs: "4vw 0vw 0vw 0vw", sm: "2vw 0vw 0vw 0vw"} }}>
+            <Typography sx={{ fontWeight: "700", fontSize: "2rem" }}>User Settings</Typography>
+          </Header>
+          <Divider sx={{margin:"1rem 0rem 1.5rem 0rem", width: "17rem"}}/>
+          <Field>
+            <FieldHeader item marginBottom={1} marginTop={0}>
+                <Typography sx={{ fontWeight: "700" }}>Wallet</Typography>
+            </FieldHeader>
+            <Grid item marginBottom={0} marginTop={0}>
+                <ConnectButton fullWidth onMouseEnter={handleHover} onMouseLeave={handleHover}>{hover ? 'Coming Soon' : 'Connect Wallet'}</ConnectButton>
             </Grid>
-          }
+          </Field>
+          <Divider sx={{margin:"2rem 0rem 1.5rem 0rem", width: "17rem"}}/>
+          <Field>
+            <FieldHeader item marginBottom={1} marginTop={0}>
+                <Typography onClick={() => console.log(email, request)} sx={{ fontWeight: "700" }}>Username</Typography>
+            </FieldHeader>
+            <Grid item marginBottom={1} marginTop={1}>
+                {/* {(editName || !request || !request.attributes.name) ? */}
+                <TextFields placeholder="{request.attributes.name}" required inputProps={{ sx: { "&::placeholder": { color: "white" }, padding: "4px 12px" } }} sx={{ input: { color: 'white' }}} />
+                {/* :
+                <Typography>{request.attributes.name}</Typography>
+                } */}
+            </Grid>
+          </Field>
+          <Field>
+            <FieldHeader item marginBottom={1} marginTop={2}>
+                <Typography sx={{ fontWeight: "700" }}>Email &nbsp;</Typography>
+            </FieldHeader>
+            <Grid item marginBottom={2} marginTop={1}>
+                {/* {(editEmail || !request) ? */}
+                <TextFields placeholder={email} fullWidth required inputProps={{ sx: { "&::placeholder": { color: "white" }, padding: "4px 12px" } }} sx={{ input: { color: 'white' } }} />
+                {/* :
+                <Typography>{email}</Typography>
+                } */}
+            </Grid>
+            {editEmailConfirm &&
+                <Grid item marginBottom={2} marginTop={1}>
+                <TextFields placeholder="Enter confirmation code..." fullWidth required inputProps={{ sx: { "&::placeholder": { color: "white" } } }} sx={{ input: { color: 'white' } }} />
+                </Grid>
+            }
 
-          {(editEmail || editEmailConfirm || editName || !request || !request.attributes.name) &&
-            <Grid item marginBottom={1} marginTop={3}>
-              <SaveButton type='submit' fullWidth onClick={hideButton}>Save</SaveButton>
-            </Grid>
-          }
-          {errorMsg &&
-            <Grid item marginBottom={1} marginTop={1}>
-              <Typography sx={{ color: "#FF0000" }}> {errorMsg} </Typography>
-            </Grid>
-          }
-          <Grid item marginBottom={1} marginTop={3}>
-            {show &&
-            <Link href="/">
-              <SignOutButton fullWidth onClick={handleCloseAndSignOut}>Sign Out</SignOutButton>
-            </Link>
+            {/* {(editEmail || editEmailConfirm || editName || !request || !request.attributes.name) &&
+                <Grid item marginBottom={1} marginTop={3}>
+                <SaveButton type='submit' fullWidth>Save</SaveButton>
+                </Grid>
+            } */}
+            {errorMsg &&
+                <Grid item marginBottom={1} marginTop={1}>
+                <Typography sx={{ color: "#FF0000" }}> {errorMsg} </Typography>
+                </Grid>
             }
-          </Grid>
-        </Grid>
-      </Main>
+            <ButtonContainer container marginBottom={0} marginTop={3} sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
+                <Grid item marginRight={1}>
+                    <CancelButton type='cancel' fullWidth>Cancel</CancelButton>
+                </Grid>
+                <Grid item marginLeft={1}>
+                    <SaveButton type='submit' fullWidth>Save</SaveButton>
+                </Grid>
+            </ButtonContainer>
+            <Grid item marginBottom={0} marginTop={2}>
+                {show &&
+                <Link href="/">
+                    <SignOutButton fullWidth onClick={handleCloseAndSignOut}>Sign Out</SignOutButton>
+                </Link>
+                }
+            </Grid>
+          </Field>
+          <Divider sx={{margin:"2rem 0rem 1.5rem 0rem", width: "16rem"}}/>
+          <Field sx={{marginBottom: {xs: "8vw", sm: "4vw"} }}>
+            <FieldHeader item marginBottom={0} marginTop={0}>
+                <Typography sx={{ fontWeight: "700" }}>Data</Typography>
+            </FieldHeader>
+            <Grid item marginBottom={1}>
+                <Typography sx={{ fontWeight: "300", fontSize: "10px" }}>Requests may take a few days to process.</Typography>
+            </Grid>
+            <Grid item marginBottom={1} marginTop={1}>
+                <DeleteButton fullWidth >Delete Account</DeleteButton>
+            </Grid>
+          </Field>
+        </Wrapper>
     </form>
   )
 }

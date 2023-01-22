@@ -37,3 +37,14 @@ type Interaction @model @auth(rules: [ { allow: private, provider: iam, operatio
   eventId: String!
   favorite: Boolean
 }
+
+type Analytics @model @auth(rules: [
+  { allow: public, provider: iam, operations: [read] }
+  { allow: private, provider: iam, operations: [read] } ]) {
+  id: ID!
+  name: String!
+  data: AWSJSON
+  lastDate: String
+  firstDate: String
+  color: String
+}

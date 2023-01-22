@@ -71,8 +71,7 @@ export default function TrendingBar() {
                                             1<br />2<br />3
                                         </Typography>
                                     </Grid>
-                                    {/* <Grid item> */}
-                                    <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" sx={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} lineHeight="175%" width="calc(100% - 22px)">
+                                    <Typography component={'span'} variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" sx={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} lineHeight="175%" width="calc(100% - 22px)">
                                         {eventsContext.length === 0 ? <span>Loading..</span> :
                                             <span>
                                                 {
@@ -87,7 +86,6 @@ export default function TrendingBar() {
                                             </span>
                                         }
                                     </Typography>
-                                    {/* </Grid> */}
                                 </Grid>
                             </CardContent>
                         </TrendingCard>
@@ -113,7 +111,7 @@ export default function TrendingBar() {
                                         </Typography>
                                     </Grid>
                                     <Grid item width="calc(100% - 24px)">
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" style={{ cursor: 'pointer' }} lineHeight="175%">
+                                        <Typography component={'span'} variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" style={{ cursor: 'pointer' }} lineHeight="175%">
                                         <Box sx={{"&:hover": {backgroundColor: (theme) => theme.palette.button.main}, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", borderRadius: "8px", padding: "0px 2px 0px 6px"}}>
                                             <span onClick={() => handleClickCategory("Music")} style={styleCategoryButton("Music")}>Music <br /> </span>
                                         </Box>
@@ -146,7 +144,7 @@ export default function TrendingBar() {
                                         </Typography>
                                     </Grid>
                                     <Grid item width="calc(100% - 24px)">
-                                        <Typography variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" lineHeight="175%" style={{ cursor: 'pointer' }}>
+                                        <Typography component={'span'} variant="body2" fontSize="clamp(10px, 1.3vw, 14px)" lineHeight="175%" style={{ cursor: 'pointer' }}>
                                             {eventsContext.length === 0 ? <span>Loading..</span> :
                                                 <span>
                                                     {
