@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { styled } from "@mui/system"
 import { useAnalyticsContext } from '../components/ContextProvider'
 import Chart from '../components/Chart'
-import ChartBottom from '../components/ChartBottom'
 import ChartTable from '../components/ChartTable'
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
