@@ -124,7 +124,7 @@ export default function Test() {
                       sx={{ input: { color: 'white' } }}
                       startAdornment={
                         <Box position="relative" width="clamp(1rem, 2vw, 1.5rem)" height="clamp(1rem, 2vw, 1.5rem)" margin="0rem 0.5rem">
-                          <Image src="twitterlogo.svg" layout="fill" objectFit="contain" unoptimized={true} />
+                          <Image src="twitterlogo.svg" alt="twitter" layout="fill" objectFit="contain" unoptimized={true} />
                         </Box>
                       }
                     />
@@ -138,7 +138,7 @@ export default function Test() {
                       sx={{ input: { color: 'white' } }}
                       startAdornment={
                         <Box position="relative" width="clamp(1rem, 2vw, 1.5rem)" height="clamp(1rem, 2vw, 1.5rem)" margin="0rem 0.5rem">
-                          <Image src="instagramlogo.svg" layout="fill" objectFit="contain" unoptimized={true} />
+                          <Image src="instagramlogo.svg" alt="instagram" layout="fill" objectFit="contain" unoptimized={true} />
                         </Box>
                       }
                     />
@@ -152,7 +152,7 @@ export default function Test() {
                       sx={{ input: { color: 'white' } }}
                       startAdornment={
                         <Box position="relative" width="clamp(1rem, 2vw, 1.5rem)" height="clamp(1rem, 2vw, 1.5rem)" margin="0rem 0.5rem">
-                          <Image src="facebooklogo.svg" layout="fill" objectFit="contain" unoptimized={true} />
+                          <Image src="facebooklogo.svg" alt="facebook" layout="fill" objectFit="contain" unoptimized={true} />
                         </Box>
                       }
                     />
