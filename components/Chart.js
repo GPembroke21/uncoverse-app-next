@@ -1,6 +1,7 @@
 import { Line } from 'react-chartjs-2'
 import 'chartjs-adapter-moment';
-
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 const data = dataProps => {
   if (!dataProps.dataArray) return
@@ -82,12 +83,10 @@ const options = dataProps => {
   }
 }
 
-const BalanceChart = (props) => {
+export const AnalyticsChart = (props) => {
   if (!props.dataArray) return
 
   return (
     <Line data={data(props)} options={options(props)} />
   )
 }
-
-export default BalanceChart

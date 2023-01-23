@@ -2,12 +2,11 @@ import React from 'react'
 import { useState } from 'react'
 import { styled } from "@mui/system"
 import { useAnalyticsContext } from '../components/ContextProvider'
-import Chart from '../components/Chart'
+import { AnalyticsChart } from '../components/Chart'
 import ChartTable from '../components/ChartTable'
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
 
 const Wrapper = styled(Grid)(({ theme }) => ({ height: "calc(100%)", flexDirection: "row", }));
 const Content = styled(Grid)(({ theme }) => ({ padding: "1rem 1rem", flexDirection: "row", height: "100%", width: "100%", [theme.breakpoints.down("sm")]: { flexDirection: "column", "> div": { marginLeft: 0, marginRight: 0, }, }, }));
@@ -186,7 +185,7 @@ export default function Index(props) {
             </ChartHeaderRight>
           </ChartHeader>
           <ChartContainer style={{ position: "relative" }}>
-            <Chart
+            <AnalyticsChart
               dataArray={analyticsContext}
               activeData={activeData}
             />
