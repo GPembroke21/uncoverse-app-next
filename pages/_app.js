@@ -28,7 +28,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider>
       <Head>
+        <title>Uncoverse</title>
+        <meta property="title" content="Metaverse Search Engine" key="title" />
         <meta property="og:title" content="Metaverse Search Engine" key="title" />
+        <meta property="description" content="Discover the Metaverse with Uncoverse – the ultimate search engine and analytics platform for virtual events, gaming, and spaces. Find out what’s happening and explore exciting virtual worlds." key="description" />
+        <meta property="keywords" content="Uncoverse, Metaverse, Metaverse search, Metaverse search engine, Metaverse navigation engine, Metaverse navigation, Metaverse analytics, Learn about Metaverse, Metaverse spaces, Metaverse gaming, Gaming, Virtual Events, VR, Virtual Reality, Virtual Reality events, Decentraland, The Sandbox, Somnium Space, Voxels, Analytics" key="keywords" />
+        <link rel="shortcut icon" href="/uv-logo.svg" />
       </Head>
       {/* Google tag (gtag.js) */}
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-45L3Q5M9BX" />
