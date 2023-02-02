@@ -286,7 +286,7 @@ export default function Profile(props) {
             :
             <ButtonContainer container marginBottom={0} marginTop={1} sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
               <Grid item marginRight={1}>
-                <StandardButtonClear onClick={() => {setShowDeleteConfirm(false); setDeleteError("Deleting cannot be revered!")}} fullWidth>Cancel</StandardButtonClear>
+                <StandardButtonClear onClick={() => {setShowDeleteConfirm(false); setDeleteError("Deleting cannot be reversed!")}} fullWidth>Cancel</StandardButtonClear>
               </Grid>
               <Grid item marginLeft={1}>
                 <StandardButtonFilled type='submit' fullWidth>Confirm Delete</StandardButtonFilled>

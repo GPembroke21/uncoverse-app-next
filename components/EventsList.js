@@ -66,7 +66,7 @@ export default function EventsList() {
   const handleClose = () => { setOpen(false); };
   const [infoPaneInfo, setInfoPaneInfo] = React.useState(null)
 
-  const eventsContext = useEventsContext()
+  const eventsContext = useEventsContext().filter(array => array.dateTimeEnd > currentTime.toISOString())
   const filtersPlatformsContext = useAppContext().filtersPlatforms
   const filtersCategoriesContext = useAppContext().filtersCategories
   const filtersFavoritesContext = useAppContext().filtersFavorites
@@ -76,7 +76,7 @@ export default function EventsList() {
   const favoritesContext = useFavoritesContext()
 
   const filteredArray = array => {
-    if (array.dateTimeEnd < currentTime.toISOString()) { return }
+    // if (array.dateTimeEnd < currentTime.toISOString()) { return }
     if (filtersSearchContext && filtersSearchContext.length !== 0) {
       if (array.name.toLowerCase().includes(filtersSearchContext)) { return array }
       else { return }
@@ -101,8 +101,10 @@ export default function EventsList() {
     if (filtersCreatorsContext.length !== 0 && filtersCreatorsContext.includes(array.createdByUser)) { return array}
   }
 
-
-  const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => { if (mx < -75) handleClose() })
+  const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => { 
+    if (mx < -75) handleClose() 
+    if (mx > 75) setInfoPaneInfo(priorValue => {return(eventsContext[Math.min(eventsContext.indexOf(priorValue) +1, eventsContext.length-1)])})
+  })
 
   return (
     <TableContainer style={{ overflowX: 'auto' }}>

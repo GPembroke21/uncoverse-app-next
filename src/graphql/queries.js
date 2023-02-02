@@ -68,6 +68,7 @@ export const getEvent = /* GraphQL */ `
       name
       description
       image
+      imageOverlay
       category
       totalAttendees
       dateTimeStart
@@ -76,6 +77,8 @@ export const getEvent = /* GraphQL */ `
       createdByUser
       locator
       url
+      parentEvent
+      childEvents
       createdAt
       updatedAt
     }
@@ -95,6 +98,7 @@ export const listEvents = /* GraphQL */ `
         name
         description
         image
+        imageOverlay
         category
         totalAttendees
         dateTimeStart
@@ -103,6 +107,8 @@ export const listEvents = /* GraphQL */ `
         createdByUser
         locator
         url
+        parentEvent
+        childEvents
         createdAt
         updatedAt
       }
@@ -147,8 +153,6 @@ export const getAnalytics = /* GraphQL */ `
       id
       name
       data
-      lastDate
-      firstDate
       color
       createdAt
       updatedAt
@@ -166,8 +170,6 @@ export const listAnalytics = /* GraphQL */ `
         id
         name
         data
-        lastDate
-        firstDate
         color
         createdAt
         updatedAt
