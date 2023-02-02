@@ -103,7 +103,7 @@ export default function EventsList() {
 
   const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => { 
     if (mx < -75) handleClose() 
-    if (mx < 75) setInfoPaneInfo(priorValue => {return(eventsContext[Math.min(eventsContext.indexOf(priorValue) +1, eventsContext.length-1)])})
+    if (mx > 75) setInfoPaneInfo(priorValue => {return(eventsContext[Math.min(eventsContext.indexOf(priorValue) +1, eventsContext.length-1)])})
   })
 
   return (
