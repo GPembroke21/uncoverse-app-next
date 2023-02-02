@@ -21,6 +21,7 @@ type Event @model @auth(rules: [
   name: String!
   description: String!
   image: String!
+  imageOverlay: String
   category: String!
   totalAttendees: Int
   dateTimeStart: String!
@@ -29,6 +30,8 @@ type Event @model @auth(rules: [
   createdByUser: String
   locator: String
   url: String
+  parentEvent: String
+  childEvents: AWSJSON
 }
 
 type Interaction @model @auth(rules: [ { allow: private, provider: iam, operations: [create, read, update] } ]) {
@@ -44,7 +47,5 @@ type Analytics @model @auth(rules: [
   id: ID!
   name: String!
   data: AWSJSON
-  lastDate: String
-  firstDate: String
   color: String
 }

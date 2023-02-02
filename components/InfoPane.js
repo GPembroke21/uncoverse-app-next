@@ -1,12 +1,12 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, Typography } from '@mui/material'; //Popper, Fade, ClickAwayListener 
+import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, Box, Grid, Button, Card, Typography } from '@mui/material';
 import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButtonLarge from './buttons/FavoriteButtonLarge';
-import IosShareIcon from '@mui/icons-material/IosShare';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+// import IosShareIcon from '@mui/icons-material/IosShare';
+// import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-const urlBase = "https://master.db4mjp2e43zo9.amplifyapp.com/event?id="
+const urlBase = "https://uncoverse.com/event?id="
 
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "8px" }));
@@ -23,7 +23,7 @@ export default function InfoPane(props) {
   React.useEffect(() => { setOpen(false); return () => { } }, [props.openState])
   if (!props.info) return
   const row = props.info
-  const imageLoader = ({ src }) => `${row.image}`
+  const imageLoader = ({ src }) => `${src}`
   const handleClick = () => { setOpen(true); navigator.clipboard.writeText(urlBase + row.id); };
 
   const currentTime = new Date();
@@ -51,26 +51,21 @@ export default function InfoPane(props) {
         <InfopaneHead>
           <DialogContentText component={'span'}>
             <InfopaneImage>
-              <Image loader={imageLoader} src={row.image} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer' }} position='relative' />
+              <Image src={row.image} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer', top: '0', left:'0', zIndex: '-1', position: 'absolute' }} />
+              {/* {row.imageOverlay && <Image src={row.imageOverlay} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'pointer', top: '0', left:'0', zIndex: '1', position: 'absolute' }} />} */}
               <FavoriteButtonContainer>
-                <FavoriteButtonLarge eventId={row.id} sx={{ cursor: 'pointer' }} />
+                <FavoriteButtonLarge eventId={row.id} sx={{ cursor: 'pointer', zIndex: '1' }} />
               </FavoriteButtonContainer>
             </InfopaneImage>
           </DialogContentText>
           <DialogContentText component={'span'} sx={{ cursor: 'pointer', color: (theme) => theme.palette.text.secondary }}>
             <InfopaneRow sx={{ fontSize: "10px", fontWeight: "300" }}>
-              {/* <Box sx={{ marginRight: '10px' }}>
-                <Image src="/date.svg" alt='Date' width="12rem" height="12rem" unoptimized={true} />
-              </Box> */}
               {dateStyledInfo}
             </InfopaneRow>
           </DialogContentText>
-          <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: '900', lineHeight: '100%' }}>{row.name}</DialogTitle>
+          <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: '900', lineHeight: '100%' }} onClick={() => console.log(row)}>{row.name}</DialogTitle>
           <DialogContentText component={'span'}>
             <InfopaneRow sx={{ fontSize: "10px", fontWeight: "500", color: (theme) => theme.palette.text.secondary }}>
-              {/* <Box sx={{ marginRight: '10px' }}>
-                <Image src="/location.svg" alt='Location' width="12rem" height="12rem" unoptimized={true} />
-              </Box> */}
               {row.platformId}
               &nbsp;
               &#x2022;

@@ -97,6 +97,7 @@ export const createEvent = /* GraphQL */ `
       name
       description
       image
+      imageOverlay
       category
       totalAttendees
       dateTimeStart
@@ -105,6 +106,8 @@ export const createEvent = /* GraphQL */ `
       createdByUser
       locator
       url
+      parentEvent
+      childEvents
       createdAt
       updatedAt
     }
@@ -122,6 +125,7 @@ export const updateEvent = /* GraphQL */ `
       name
       description
       image
+      imageOverlay
       category
       totalAttendees
       dateTimeStart
@@ -130,6 +134,8 @@ export const updateEvent = /* GraphQL */ `
       createdByUser
       locator
       url
+      parentEvent
+      childEvents
       createdAt
       updatedAt
     }
@@ -147,6 +153,7 @@ export const deleteEvent = /* GraphQL */ `
       name
       description
       image
+      imageOverlay
       category
       totalAttendees
       dateTimeStart
@@ -155,6 +162,8 @@ export const deleteEvent = /* GraphQL */ `
       createdByUser
       locator
       url
+      parentEvent
+      childEvents
       createdAt
       updatedAt
     }
@@ -214,8 +223,6 @@ export const createAnalytics = /* GraphQL */ `
       id
       name
       data
-      lastDate
-      firstDate
       color
       createdAt
       updatedAt
@@ -231,8 +238,6 @@ export const updateAnalytics = /* GraphQL */ `
       id
       name
       data
-      lastDate
-      firstDate
       color
       createdAt
       updatedAt
@@ -248,8 +253,6 @@ export const deleteAnalytics = /* GraphQL */ `
       id
       name
       data
-      lastDate
-      firstDate
       color
       createdAt
       updatedAt

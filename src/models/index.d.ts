@@ -51,6 +51,7 @@ export declare class Event {
   readonly name: string;
   readonly description: string;
   readonly image: string;
+  readonly imageOverlay?: string;
   readonly category: string;
   readonly totalAttendees?: number;
   readonly dateTimeStart: string;
@@ -59,6 +60,8 @@ export declare class Event {
   readonly createdByUser?: string;
   readonly locator?: string;
   readonly url?: string;
+  readonly parentEvent?: string;
+  readonly childEvents?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Event, EventMetaData>);
@@ -80,8 +83,6 @@ export declare class Analytics {
   readonly id: string;
   readonly name: string;
   readonly data?: string;
-  readonly lastDate?: string;
-  readonly firstDate?: string;
   readonly color?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
