@@ -11,7 +11,7 @@ const urlBase = "https://uncoverse.com/event?id="
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "8px" }));
 const InfopaneImage = styled("div")(({ theme }) => ({ position: 'relative' }));
-const ImageOverlayContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',}));
+const ImageOverlayContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: "20em", height: "10em"}));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
 const InfopaneInfo = styled(Grid)(({ theme }) => ({ backgroundColor: theme.palette.card.secondary, borderRadius: '6px', marginTop: '15px', padding: '5px 10px', cursor: 'default' }));
 const InfopaneDescription = styled('div')(({ theme }) => ({ backgroundColor: theme.palette.card.secondary, borderRadius: '6px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
@@ -55,7 +55,7 @@ export default function InfoPane(props) {
               <Image src={row.image} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'default' }} position='relative' />
               {row.imageOverlay &&
                 <ImageOverlayContainer>
-                  <Image src={row.imageOverlay} width="200rem" height="100rem" alt={row.name} unoptimized={true} style={{ borderRadius: '8px', cursor: 'default', zIndex: '1'}} position='relative'/>
+                  <Image src={row.imageOverlay} layout="fill" objectFit="contain" alt={row.name} unoptimized={true} style={{ borderRadius: '8px', cursor: 'default', zIndex: '1'}} position='relative'/>
                 </ImageOverlayContainer>
               }
               <FavoriteButtonContainer>
