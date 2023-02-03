@@ -183,6 +183,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "imageOverlay": {
+                    "name": "imageOverlay",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "category": {
                     "name": "category",
                     "isArray": false,
@@ -236,6 +243,20 @@ export const schema = {
                     "name": "url",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "parentEvent": {
+                    "name": "parentEvent",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "childEvents": {
+                    "name": "childEvents",
+                    "isArray": false,
+                    "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -383,20 +404,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "lastDate": {
-                    "name": "lastDate",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "firstDate": {
-                    "name": "firstDate",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "color": {
                     "name": "color",
                     "isArray": false,
@@ -454,5 +461,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "dff8466493ec40844e94ea1a8248834a"
+    "version": "f895a2bc8ff3a265b038419a49739990"
 };
