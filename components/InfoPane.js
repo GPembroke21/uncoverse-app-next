@@ -11,7 +11,7 @@ const urlBase = "https://uncoverse.com/event?id="
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "8px" }));
 const InfopaneImage = styled("div")(({ theme }) => ({ position: 'relative' }));
-const ImageOverlayContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '25%', left: '25%', right: '0', bottom: '0', margin: 'auto' }));
+const ImageOverlayContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',}));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
 const InfopaneInfo = styled(Grid)(({ theme }) => ({ backgroundColor: theme.palette.card.secondary, borderRadius: '6px', marginTop: '15px', padding: '5px 10px', cursor: 'default' }));
 const InfopaneDescription = styled('div')(({ theme }) => ({ backgroundColor: theme.palette.card.secondary, borderRadius: '6px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
