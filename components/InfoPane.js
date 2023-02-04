@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide, Divider, 
 import Image from 'next/image'
 import { styled } from "@mui/system"
 import FavoriteButtonLarge from './buttons/FavoriteButtonLarge';
+import { platformsDict } from '../src/static/StaticVariables';
 // import IosShareIcon from '@mui/icons-material/IosShare';
 // import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
@@ -11,7 +12,7 @@ const urlBase = "https://uncoverse.com/event?id="
 const InfopaneRow = styled("div")(({ theme }) => ({ display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }));
 const InfopaneHead = styled(Grid)(({ theme }) => ({ marginBottom: "8px" }));
 const InfopaneImage = styled("div")(({ theme }) => ({ position: 'relative' }));
-const ImageOverlayContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: "20em", height: "10em"}));
+const ImageOverlayContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: "20em", height: "10em" }));
 const FavoriteButtonContainer = styled("div")(({ theme }) => ({ position: 'absolute', top: '1em', right: '1em' }));
 const InfopaneInfo = styled(Grid)(({ theme }) => ({ backgroundColor: theme.palette.card.secondary, borderRadius: '6px', marginTop: '15px', padding: '5px 10px', cursor: 'default' }));
 const InfopaneDescription = styled('div')(({ theme }) => ({ backgroundColor: theme.palette.card.secondary, borderRadius: '6px', margin: '15px 0px 0px 0px', padding: '5px 10px', height: 'auto', overflow: 'auto', msOverflowStyle: "none", '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: "none" }));
@@ -28,13 +29,28 @@ export default function InfoPane(props) {
   const handleClick = () => { setOpen(true); navigator.clipboard.writeText(urlBase + row.id); };
 
   const currentTime = new Date();
-  const dateTimeStart = new Date(row.dateTimeStart);
-  const dateTimeEnd = new Date(row.dateTimeEnd);
-  const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
-  const formattedEndDate = (dateTimeEnd.toLocaleDateString('en-US', { year: 'numeric' }) == currentTime.toLocaleDateString('en-US', { year: 'numeric' })) ? dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) : dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
-  const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US')
-  const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US')
-  const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ends " + (formattedEndDate + " @ " + formattedEndTime + ")")) : (formattedStartDate + " @ " + formattedStartTime + " - " + formattedEndDate + " @ " + formattedEndTime)
+
+  const dateStyled = rowItem => {
+    const dateTimeStart = new Date(rowItem.dateTimeStart);
+    const dateTimeEnd = new Date(rowItem.dateTimeEnd);
+    const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+    const formattedEndDate = (dateTimeEnd.toLocaleDateString('en-US', { year: 'numeric' }) == currentTime.toLocaleDateString('en-US', { year: 'numeric' })) ? dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) : dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+    const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US')
+    const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US')
+    const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ends " + (formattedEndDate + " @ " + formattedEndTime + ")")) : (formattedStartDate + " @ " + formattedStartTime + " - " + formattedEndDate + " @ " + formattedEndTime)
+    return dateStyledInfo
+  }
+
+  const dateStyledShort = rowItem => {
+    const dateTimeStart = new Date(rowItem.dateTimeStart);
+    const dateTimeEnd = new Date(rowItem.dateTimeEnd);
+    const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
+    const formattedEndDate = (dateTimeEnd.toLocaleDateString('en-US', { year: 'numeric' }) == currentTime.toLocaleDateString('en-US', { year: 'numeric' })) ? dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) : dateTimeEnd.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+    const formattedStartTime = dateTimeStart.toLocaleTimeString('en-US')
+    const formattedEndTime = dateTimeEnd.toLocaleTimeString('en-US')
+    const dateStyledInfo = (dateTimeStart < currentTime) ? ("Active (ends " + formattedEndDate + ")") : (formattedStartDate + " @ " + formattedStartTime)
+    return dateStyledInfo
+  }
 
   return (
     <Dialog
@@ -51,11 +67,13 @@ export default function InfoPane(props) {
       <DialogContent sx={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: "#120C18" }}>
         <InfopaneHead>
           <DialogContentText component={'span'}>
+
+            {/* ############################################## IMAGE ############################################## */}
             <InfopaneImage>
               <Image src={row.image} alt={row.name} width="600rem" height="300rem" unoptimized={true} style={{ borderRadius: '8px', cursor: 'default' }} position='relative' />
               {row.imageOverlay &&
                 <ImageOverlayContainer>
-                  <Image src={row.imageOverlay} layout="fill" objectFit="contain" alt={row.name} unoptimized={true} style={{ borderRadius: '8px', cursor: 'default', zIndex: '1'}} position='relative'/>
+                  <Image src={row.imageOverlay} layout="fill" objectFit="contain" alt={row.name} unoptimized={true} style={{ borderRadius: '8px', cursor: 'default', zIndex: '1' }} position='relative' />
                 </ImageOverlayContainer>
               }
               <FavoriteButtonContainer>
@@ -63,15 +81,17 @@ export default function InfoPane(props) {
               </FavoriteButtonContainer>
             </InfopaneImage>
           </DialogContentText>
+
+          {/* ########################################### DATE / TITLE ############################################ */}
           <DialogContentText component={'span'} sx={{ cursor: 'pointer', color: (theme) => theme.palette.text.secondary }}>
             <InfopaneRow sx={{ fontSize: "10px", fontWeight: "300" }}>
-              {dateStyledInfo}
+              {dateStyled(row)}
             </InfopaneRow>
           </DialogContentText>
           <DialogTitle sx={{ padding: '0px 0px', fontSize: '20px', fontWeight: '900', lineHeight: '100%' }}>{row.name}</DialogTitle>
           <DialogContentText component={'span'}>
             <InfopaneRow sx={{ fontSize: "10px", fontWeight: "500", color: (theme) => theme.palette.text.secondary }}>
-              {row.platformId}
+              {platformsDict[row.platformId]}
               &nbsp;
               &#x2022;
               &nbsp;
@@ -79,6 +99,8 @@ export default function InfoPane(props) {
             </InfopaneRow>
           </DialogContentText>
         </InfopaneHead>
+
+        {/* ############################################### BUTTONS ############################################### */}
         <ButtonContainer container>
           <Grid item marginRight={1} sx={{ flex: '1 0 40%' }}>
             <a href={row.url} target="_blank" rel="noreferrer noopener">
@@ -93,6 +115,8 @@ export default function InfoPane(props) {
             </InfopaneButton>
           </Grid>
         </ButtonContainer>
+
+        {/* ###################################### CREATOR / USERS / CATEGORY ###################################### */}
         <InfopaneInfo>
           <DialogContentText component={'span'} sx={{ cursor: 'default' }}>
             <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
@@ -123,7 +147,7 @@ export default function InfoPane(props) {
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
           <DialogContentText component={'span'}
-            // onClick={() => console.log(row)}
+          // onClick={() => console.log(row)}
           >
             <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
               <Box sx={{ marginRight: '10px', mt: '3px' }}>
@@ -133,6 +157,8 @@ export default function InfoPane(props) {
             </InfopaneRow>
           </DialogContentText>
         </InfopaneInfo>
+
+        {/* ########################################### DESCRIPTION ############################################ */}
         <InfopaneDescription>
           <DialogContentText
             id="alert-dialog-slide-description"
@@ -150,6 +176,54 @@ export default function InfoPane(props) {
             {row.description}
           </DialogContentText>
         </InfopaneDescription>
+
+        {/* ########################################### CHILD EVENTS ############################################ */}
+        {row.childEvents &&
+          <nav>
+            <DialogTitle sx={{ marginTop: '15px', padding: '0px 10px', fontSize: '13px', fontWeight: '700', lineHeight: '100%' }}>Associated Events</DialogTitle>
+            <InfopaneInfo sx={{ marginTop: '5px' }}>
+              {props.getAssociatedEvents(row.childEvents)
+                .map((childRow, i) => (
+                  <nav key={i}>
+                    {i !== 0 && <Divider sx={{ margin: '3px 0px' }} />}
+                    <DialogContentText component={'span'} onClick={() => props.setInfoPaneRow(childRow.id)}>
+                      <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500", cursor: 'pointer', color: (theme) => theme.palette.text.secondary }}>
+                        <Typography sx={{ fontSize: "12px", fontWeight: "300" }}>{childRow.name}</Typography>
+                        &nbsp;
+                        &#x2022;
+                        &nbsp;
+                        <Typography sx={{ fontSize: "12px", fontWeight: "300", color: (theme) => theme.palette.text.secondary }}>{dateStyledShort(childRow)}</Typography>
+                      </InfopaneRow>
+                    </DialogContentText>
+                  </nav>
+                ))}
+            </InfopaneInfo>
+          </nav>
+        }
+
+        {/* ########################################### PARENT EVENT ############################################ */}
+        {row.parentEvent &&
+          <nav>
+            <DialogTitle sx={{ marginTop: '15px', padding: '0px 10px', fontSize: '13px', fontWeight: '700', lineHeight: '100%' }}>Main Event</DialogTitle>
+            <InfopaneInfo sx={{ marginTop: '5px' }}>
+              {props.getAssociatedEvents([row.parentEvent])
+                .map((parentRow, i) => (
+                  <nav key={i}>
+                    {i !== 0 && <Divider sx={{ margin: '3px 0px' }} />}
+                    <DialogContentText component={'span'} onClick={() => props.setInfoPaneRow(parentRow.id)}>
+                      <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500", cursor: 'pointer', color: (theme) => theme.palette.text.secondary }}>
+                        <Typography sx={{ fontSize: "12px", fontWeight: "300" }}>{parentRow.name}</Typography>
+                        &nbsp;
+                        &#x2022;
+                        &nbsp;
+                        <Typography sx={{ fontSize: "12px", fontWeight: "300", color: (theme) => theme.palette.text.secondary }}>{dateStyledShort(parentRow)}</Typography>
+                      </InfopaneRow>
+                    </DialogContentText>
+                  </nav>
+                ))}
+            </InfopaneInfo>
+          </nav>
+        }
       </DialogContent>
     </Dialog>
   );
