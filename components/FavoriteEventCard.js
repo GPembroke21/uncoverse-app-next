@@ -22,7 +22,7 @@ export default function FavoriteEventCard(props) {
   const handleExpandClick = () => setExpanded(!expanded)
   const [favoriteToggle, setFavoriteToggle] = React.useState(false)
   if (!item) return
-  
+
   const dateTimeStart = new Date(item.dateTimeStart);
   const dateTimeEnd = new Date(item.dateTimeEnd);
   const formattedStartDate = dateTimeStart.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
@@ -39,11 +39,14 @@ export default function FavoriteEventCard(props) {
       border: '1px solid #40454d',
       margin: "20px 0px",
     }}>
+      {/* ############################################### IMAGE ############################################### */}
       <CardMedia
         component="img"
         height="194"
         image={item.image}
       />
+
+      {/* ############################################ NAME / DATE ############################################ */}
       <a href={item.url} target="_blank" rel="noreferrer noopener">
         <CardHeader
           title={item.name}
@@ -55,18 +58,19 @@ export default function FavoriteEventCard(props) {
         </CardHeader>
       </a>
       <Divider sx={{ background: '#40454d' }} />
+
+      {/* ###################################### FAV / USERS / CATEGORIES ##################################### */}
       <CardActions disableSpacing sx={{ height: '40px', backgroundColor: (theme) => theme.palette.card.secondary }}>
         <Grid marginLeft={'12px'}>
           <FavoriteButton eventId={item.id} ind={props.ind} sx={{ cursor: 'pointer' }} toggle={favoriteToggle} setToggle={(state) => setFavoriteToggle(state)} />
         </Grid>
-        <Grid
-          container
-          marginLeft={1.2}
-        >
+        <Grid container marginLeft={1.2}        >
           <Typography variant='h4'>Users: {item.totalAttendees}</Typography>
           <Typography variant='h4' sx={{ color: '#40454d', fontWeight: '700' }} >&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
-          <Typography variant='h4' sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '7rem', overflow: 'hidden' }}>{item.category}</Typography>
+          <Typography variant='h4' sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '15rem', overflow: 'hidden' }}>{item.category.replace(/;/g, ',').substring(0, item.category.length - 1)}</Typography>
         </Grid>
+
+        {/* ##################################### EXPAND / DESCRIPTION ######################################## */}
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

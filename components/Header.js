@@ -12,22 +12,22 @@ import { useAppContext } from './ContextProvider'
 import GetUser from '../src/auth/GetUser'
 import Searchbar from './Searchbar'
 
-const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0px 10px 0px 0px", display: "flex", alignItems: "center", justifyContent: "space-between"}))
-const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
-const Logo = styled("div")(({ theme }) => ({ objectFit: "contain", marginLeft: "-0.1rem", marginRight: "-0.5rem"}))
-const RightContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0.9rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center"}))
+const Wrapper = styled("div")(({ theme }) => ({ width: "calc(100%)", padding: "0px 10px 0px 0px", display: "flex", alignItems: "center", justifyContent: "space-between" }))
+const LogoContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }))
+const Logo = styled("div")(({ theme }) => ({ objectFit: "contain", marginLeft: "-0.1rem", marginRight: "-0.5rem" }))
+const RightContainer = styled("div")(({ theme }) => ({ margin: "0.5rem 0.9rem", display: "flex", alignItems: "flex-start", flexDirection: "row", alignItems: "center" }))
 const ConnectButtonStyled = styled(Button)(({ theme }) => ({
-  color: theme.palette.button.text, 
-  backgroundColor: theme.palette.button.main, 
-  fontSize: "clamp(8px, 1vw, 12px)", 
+  color: theme.palette.button.text,
+  backgroundColor: theme.palette.button.main,
+  fontSize: "clamp(8px, 1vw, 12px)",
   borderRadius: '6px',
   padding: "0.46rem",
   marginRight: '-10px',
   width: "11em",
   height: "2rem",
   "&:hover": {
-      color: theme.palette.button.hovertext,
-      backgroundColor: theme.palette.button.hover
+    color: theme.palette.button.hovertext,
+    backgroundColor: theme.palette.button.hover
   },
   "&:active": {
     color: theme.palette.button.hovertext,
@@ -46,17 +46,19 @@ const Header = (props) => {
     <ThemeProvider>
       <Wrapper>
         <LogoContainer>
-          <Link href="/" passHref>
-            <Logo>
-              <IconButton disableRipple sx={{'&:hover': {backgroundColor: 'transparent'}}}>
-                <Image src="/uv-logo.svg" alt='Uncoverse Logo' width="30rem" height="30rem" />
-              </IconButton>
-            </Logo>
+          <Link href="/">
+            <a>
+              <Logo>
+                <IconButton disableRipple sx={{ '&:hover': { backgroundColor: 'transparent' } }}>
+                  <Image src="/uv-logo.svg" alt='Uncoverse Logo' width="30rem" height="30rem" />
+                </IconButton>
+              </Logo>
+            </a>
           </Link>
           <Image src="/beta.svg" alt='Beta' width="30rem" height="15rem" onClick={() => console.log("")} />
         </LogoContainer>
         <RightContainer>
-          <Searchbar/>
+          <Searchbar />
           {/* <AnalyticsButton/> */}
           {!loginCreds.signedIn ?
             <div>
@@ -67,9 +69,11 @@ const Header = (props) => {
             <div>
               <WatchlistButton />
               <Link href="/profile">
-                <ProfileButton disableRipple id="basic-button" sx={{ marginRight: "-9px" }} style={{ backgroundColor: 'transparent' }} onClick={() => setHeaderOpen(false)}>
-                  {(user && user.attributes.email) ? user.attributes.email.charAt(0).toUpperCase() : "G"}
-                </ProfileButton>
+                <a>
+                  <ProfileButton disableRipple id="basic-button" sx={{ marginRight: "-9px" }} style={{ backgroundColor: 'transparent' }} onClick={() => setHeaderOpen(false)}>
+                    {(user && user.attributes.email) ? user.attributes.email.charAt(0).toUpperCase() : "G"}
+                  </ProfileButton>
+                </a>
               </Link>
             </div>
           }

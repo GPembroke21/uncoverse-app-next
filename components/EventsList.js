@@ -7,6 +7,7 @@ import InfoPane from './InfoPane'
 import { useAppContext, useEventsContext, useFavoritesContext } from './ContextProvider'
 import { animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
+import { max } from 'moment/moment';
 
 const currentTime = new Date();
 
@@ -29,7 +30,7 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' }, "&:hover": {backgroundColor: (theme) => theme.palette.button.hover} }}>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' }, "&:hover": { backgroundColor: (theme) => theme.palette.button.hover } }}>
         <TableCell component="th" scope="row" onClick={handleClick}>
           <Box position="relative" width="clamp(0.8rem, 1.8vw, 1.2rem)" height="clamp(0.8rem, 1.8vw, 1.2rem)" maxWidth="3rem" maxHeight="3rem" marginRight="-0.4rem">
             <Image src={platLogo} alt={row.platformId} layout="fill" objectFit="contain" unoptimized={true} />
@@ -42,7 +43,7 @@ function Row(props) {
           {dateStyled}
         </TableCell>
         <TableCell align="left" onClick={handleClick} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
-          {row.category}
+          {row.category.replace(/;/g, ',').substring(0,row.category.length-1)}
         </TableCell>
         <TableCell align="left" onClick={handleClick} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {row.totalAttendees}
@@ -66,7 +67,11 @@ export default function EventsList() {
   const handleClose = () => { setOpen(false); };
   const [infoPaneInfo, setInfoPaneInfo] = React.useState(null)
 
-  const eventsContext = useEventsContext().filter(array => array.dateTimeEnd > currentTime.toISOString())
+  const sortArray = (a, b) => {
+    if (a.dateTimeStart < currentTime.toISOString()) a.totalAttendees > b.totalAttendees ? -1 : 1 
+  }
+
+  const eventsContext = useEventsContext().filter(array => array.dateTimeEnd > currentTime.toISOString()).sort((a,b) => a.dateTimeStart < b.dateTimeStart ? -1 : 1).sort((a, b) => sortArray(a, b))
   const filtersPlatformsContext = useAppContext().filtersPlatforms
   const filtersCategoriesContext = useAppContext().filtersCategories
   const filtersFavoritesContext = useAppContext().filtersFavorites
@@ -75,8 +80,11 @@ export default function EventsList() {
   const filtersActiveContext = useAppContext().filtersActive
   const favoritesContext = useFavoritesContext()
 
+
+
   const filteredArray = array => {
     // if (array.dateTimeEnd < currentTime.toISOString()) { return }
+    if (array.parentEvent) return
     if (filtersSearchContext && filtersSearchContext.length !== 0) {
       if (array.name.toLowerCase().includes(filtersSearchContext)) { return array }
       else { return }
@@ -98,13 +106,30 @@ export default function EventsList() {
         for (let i = 0; i < catArr.length; i++) { if (filtersCategoriesContext.includes(catArr[i].trim())) return array }
       }
     }
-    if (filtersCreatorsContext.length !== 0 && filtersCreatorsContext.includes(array.createdByUser)) { return array}
+    if (filtersCreatorsContext.length !== 0 && filtersCreatorsContext.includes(array.createdByUser)) { return array }
   }
 
-  const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => { 
-    if (mx < -75) handleClose() 
-    if (mx > 75) setInfoPaneInfo(priorValue => {return(eventsContext[Math.min(eventsContext.indexOf(priorValue) +1, eventsContext.length-1)])})
+  const bind = useDrag(({ args: [index], down, movement: [mx, my] }) => {
+    if (mx < -75) handleClose()
+    if (!down && mx > 75) setInfoPaneInfo(priorValue => { return (eventsContext[Math.min(eventsContext.indexOf(priorValue) + 1, eventsContext.length - 1)]) })
   })
+
+  const getAssociatedEvents = associatedEventsArray => {
+    const arr = []
+    for (let i = 0; i < eventsContext.length; i++) {
+      if (associatedEventsArray.includes(eventsContext[i].id)) arr.push(eventsContext[i])
+    }
+    return arr
+  }
+
+  const setInfoPaneRow = rowId => {
+    for (let i = 0; i < eventsContext.length; i++) {
+      if (eventsContext[i].id == rowId) {
+        setInfoPaneInfo(eventsContext[i])
+        return
+      }
+    }
+  }
 
   return (
     <TableContainer style={{ overflowX: 'auto' }}>
@@ -124,7 +149,7 @@ export default function EventsList() {
           <TableBody sx={{ backgroundColor: "transparent" }}>
             {eventsContext
               .filter(array => filteredArray(array))
-              .sort((a, b) => a.dateTimeStart < b.dateTimeStart ? -1 : 1)
+              // .sort((a, b) => a.dateTimeStart < b.dateTimeStart ? -1 : 1)
               .map((row, i) => (
                 <Row
                   key={row.id}
@@ -141,7 +166,7 @@ export default function EventsList() {
       </Table>
       <animated.div {...bind()} >
         <Backdrop open={open} onClick={handleClose} />
-        <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} />
+        <InfoPane handleCloseFunction={handleClose} info={infoPaneInfo} openState={open} getAssociatedEvents={getAssociatedEvents} setInfoPaneRow={setInfoPaneRow} />
       </animated.div>
     </TableContainer>
   )
