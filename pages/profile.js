@@ -265,11 +265,7 @@ export default function Profile(props) {
               <StandardButtonClear fullWidth onClick={handelEditDetailsClick}>Edit details</StandardButtonClear>
             </Grid>
           }
-          <Grid item marginBottom={0} marginTop={2}>
-            <Link href="/">
-              <StandardButtonFilled fullWidth onClick={handleCloseAndSignOut}>Sign Out</StandardButtonFilled>
-            </Link>
-          </Grid>
+          
         </Field>
       </form>
 
@@ -300,6 +296,11 @@ export default function Profile(props) {
           </Grid>
 
         }
+        <Grid item marginBottom={0} marginTop={2}>
+            <Link href="/">
+              <StandardButtonFilled fullWidth onClick={handleCloseAndSignOut}>Sign Out</StandardButtonFilled>
+            </Link>
+          </Grid>
         </Field>
       </form>
     </Wrapper>

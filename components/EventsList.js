@@ -43,7 +43,7 @@ function Row(props) {
           {dateStyled}
         </TableCell>
         <TableCell align="left" onClick={handleClick} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
-          {row.category}
+          {row.category.replace(/;/g, ',').substring(0,row.category.length-1)}
         </TableCell>
         <TableCell align="left" onClick={handleClick} sx={{ display: { xs: 'none', sm: 'revert' }, whiteSpace: 'nowrap', textOverflow: 'ellipsis', maxWidth: '1rem', overflow: 'hidden', cursor: 'pointer' }}>
           {row.totalAttendees}

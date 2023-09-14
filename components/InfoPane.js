@@ -129,23 +129,27 @@ export default function InfoPane(props) {
             </InfopaneRow>
           </DialogContentText>
           <Divider sx={{ margin: '3px 0px' }} />
-          <DialogContentText component={'span'}>
-            <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
-              <Box sx={{ marginRight: '10px', mt: '3px' }}>
-                <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
-              </Box>
-              <Typography sx={{ fontSize: "12px", fontWeight: "300" }}>{row.totalAttendees}</Typography>
-              &nbsp;
-              <Typography sx={{ fontSize: "12px", fontWeight: "300" }}>total users</Typography>
-              &nbsp;
+
+          {row.totalAttendees &&
+            <DialogContentText component={'span'}>
+              <InfopaneRow sx={{ fontSize: "12px", fontWeight: "500" }}>
+                <Box sx={{ marginRight: '10px', mt: '3px' }}>
+                  <Image src="/users.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
+                </Box>
+                <Typography sx={{ fontSize: "12px", fontWeight: "300" }}>{row.totalAttendees}</Typography>
+                &nbsp;
+                <Typography sx={{ fontSize: "12px", fontWeight: "300" }}>total users</Typography>
+                {/* &nbsp;
               &#x2022;
               &nbsp;
               <Typography sx={{ fontSize: "12px", fontWeight: "300" }}>{row.totalAttendees}</Typography>
               &nbsp;
-              <Typography sx={{ fontSize: "12px", fontWeight: "300" }}>active users</Typography>
-            </InfopaneRow>
-          </DialogContentText>
-          <Divider sx={{ margin: '3px 0px' }} />
+              <Typography sx={{ fontSize: "12px", fontWeight: "300" }}>active users</Typography> */}
+              </InfopaneRow>
+            </DialogContentText>
+          }
+          {row.totalAttendees && <Divider sx={{ margin: '3px 0px' }} />}
+
           <DialogContentText component={'span'}
           // onClick={() => console.log(row)}
           >
@@ -153,7 +157,7 @@ export default function InfoPane(props) {
               <Box sx={{ marginRight: '10px', mt: '3px' }}>
                 <Image src="/category.svg" alt='Category' width="12rem" height="12rem" unoptimized={true} />
               </Box>
-              {row.category}
+              {row.category.replace(/;/g, ',').substring(0, row.category.length - 1)}
             </InfopaneRow>
           </DialogContentText>
         </InfopaneInfo>

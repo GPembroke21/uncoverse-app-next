@@ -6,10 +6,6 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "auth": {
-        "userPoolGroups": {
-            "AdminsGroupRole": "string",
-            "DefaultGroupRole": "string"
-        },
         "uncoverseappnexte880bb60e880bb60": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
@@ -19,6 +15,10 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientIDWeb": "string",
             "AppClientID": "string",
             "CreatedSNSRole": "string"
+        },
+        "userPoolGroups": {
+            "AdminsGroupRole": "string",
+            "DefaultGroupRole": "string"
         }
     }
 }
